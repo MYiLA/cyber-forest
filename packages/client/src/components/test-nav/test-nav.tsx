@@ -12,7 +12,7 @@ export const TestNav = () => {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.testContainer}>
       <ul>
         <li>
           <NavLink
