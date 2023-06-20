@@ -1,9 +1,9 @@
-import styles from './test-nav.module.css'
 import { NavLink } from 'react-router-dom'
 import { PATH } from '../../core/config/constants'
 import { useDispatch } from 'react-redux'
 import { TDispatch } from '../../core/store/store'
 import { toggleTheme } from '../../core/store/reducers/theme-reducer'
+import styles from './test-nav.module.css'
 
 export const TestNav = () => {
   const dispatch = useDispatch<TDispatch>()
