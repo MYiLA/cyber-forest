@@ -1,12 +1,3 @@
-.testContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 10px;
-  background: #10222e;
-}
-
 ul {
   margin: 0 auto;
   width: 1440px;
@@ -35,4 +26,13 @@ li:hover {
 
 .active:hover {
   color: black;
+}
+
+.testContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background: #10222e;
 }
