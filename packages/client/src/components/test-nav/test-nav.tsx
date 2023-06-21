@@ -1,15 +1,21 @@
 import { NavLink } from 'react-router-dom'
 import { PATH } from '../../core/config/constants'
-import { useDispatch } from 'react-redux'
-import { TDispatch } from '../../core/store/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { TDispatch, TRootState } from '../../core/store/store'
 import { toggleTheme } from '../../core/store/reducers/theme-reducer'
-import styles from './test-nav.module.css'
+import styles from './test-nav.module.scss'
+import { useEffect } from 'react'
 
 export const TestNav = () => {
   const dispatch = useDispatch<TDispatch>()
   const changeTheme = () => {
     dispatch(toggleTheme())
   }
+
+  const { themeName } = useSelector((store: TRootState) => store.theme)
+  useEffect(() => {
+    document.body.className = `body-${themeName}`
+  }, [themeName])
 
   return (
     <div className={styles.testContainer}>

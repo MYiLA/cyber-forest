@@ -19,7 +19,8 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.13.0",
-    "redux-thunk": "^2.4.2"
+    "redux-thunk": "^2.4.2",
+    "sass": "^1.63.4"
   },
   "devDependencies": {
     "@testing-library/react": "^13.3.0",
