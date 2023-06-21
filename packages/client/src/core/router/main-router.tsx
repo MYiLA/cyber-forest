@@ -1,7 +1,7 @@
 import { Fragment, Suspense } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import { getRoutes } from './routes'
-import { Loading } from '../../shared/components/loading/loading'
+import { Loading } from '../../shared/ui/loading/loading'
 
 export const MainRouter = () => {
   const location = useLocation()
