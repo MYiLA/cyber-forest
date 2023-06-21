@@ -1,18 +1,20 @@
-import { useEffect } from 'react'
 import './App.css'
+import { BrowserRouter } from 'react-router-dom'
+import { MainRouter } from './core/router/main-router'
+import { Provider } from 'react-redux'
+import store from './core/store/store'
+import React from 'react'
+import { TestNav } from './components/test-nav/test-nav'
 
 function App() {
-  useEffect(() => {
-    const fetchServerData = async () => {
-      const url = `http://localhost:${__SERVER_PORT__}`
-      const response = await fetch(url)
-      const data = await response.json()
-      console.log(data)
-    }
-
-    fetchServerData()
-  }, [])
-  return <div className="App">Вот тут будет жить ваше приложение :)</div>
+  return (
+    <Provider store={store}>
+      <BrowserRouter>
+        <TestNav />
+        <MainRouter />
+      </BrowserRouter>
+    </Provider>
+  )
 }
 
 export default App
