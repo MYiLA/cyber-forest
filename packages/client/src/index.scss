@@ -19,7 +19,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: white;
+  color: $color-white;
 }
 
 body,
@@ -77,9 +77,9 @@ a:hover {
 }
 
 .body-neon {
-  background: #10222e;
+  background: $color-bg-neon;
 }
 
 .body-murmur {
-  background: #05151d;
+  background: $color-bg-murmur;
 }

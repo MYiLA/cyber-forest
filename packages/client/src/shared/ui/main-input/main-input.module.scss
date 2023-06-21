@@ -1,3 +1,4 @@
+@import "../../../core/scss/_variables.scss";
 .container {
 	position: relative;
 	margin-bottom: 12px;
@@ -14,7 +15,7 @@
 .placeholder {
 	left: 0px;
 	top: 3px;
-	color: white;
+	color: $color-white;
 	font-size: 20px;
 	pointer-events: none;
 	position: absolute;
@@ -25,10 +26,10 @@ input {
 	padding: 3px;
 	font-size: 20px;
 	width: 100%;
-	border-bottom: 1px solid #FFF;
-	color: white;
+	border-bottom: 1px solid $color-white;
+	color: $color-white;
 	&::placeholder {
-		color: yellow;
+		color: $color-gray;
 	}
 
 	&:focus {
@@ -39,23 +40,14 @@ input {
 	&:focus ~ .placeholder,
 	&:not(:placeholder-shown) ~ .placeholder {
 		transform: translateY(-15px) scale(0.6);
-		color: white;
-		//color: var(--gray-color)
-	}
-
-	&:not(:placeholder-shown) ~ .placeholder {
-		//color: var(--primary-color);
-	}
-
-	&:focus ~ .placeholder {
-		//color: var(--primary-color);
+		color: $color-white;
 	}
 }
 .error {
 	font-size: 12px;
 	position: absolute;
 	bottom: -15px;
-	color: red;
+	color: $color-error;
 }
 
 
