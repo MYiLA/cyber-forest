@@ -1,0 +1,26 @@
+@import "../../../core/scss/_variables.scss";
+
+.container {
+	border: 1px solid $color-white;
+	position: relative;
+	display: inline-block;
+	.lb {
+		position: absolute;
+		bottom: -1px;
+		left: -1px;
+	}
+	.rt {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+	}
+
+	button {
+		padding: 5px 10px;
+		background: none;
+		border: none;
+		cursor: pointer;
+		font-family: 'New Zelek', Times, serif;
+		color: $color-white;
+	}
+}

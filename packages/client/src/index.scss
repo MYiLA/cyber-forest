@@ -1,3 +1,6 @@
+@import "./core/scss/_variables.scss";
+@import "./core/scss/_box.scss";
+
 @font-face {
   font-family: 'New Zelek';
   src: url(./assets/fonts/New-Zelek.ttf);
@@ -16,12 +19,25 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  color: white;
+  color: $color-white;
+  background: $color-bg-murmur;
 }
 
 body,
 * {
   box-sizing: border-box;
+}
+
+input, textarea {
+  margin: 0;
+  border: 0;
+  border: none;
+  background: none;
+  font-family: 'Blender Pro', Times, serif;
+}
+
+input:focus, textarea:focus {
+  outline: 0;
 }
 
 h1,
@@ -62,9 +78,9 @@ a:hover {
 }
 
 .body-neon {
-  background: #10222e;
+  background: $color-bg-neon;
 }
 
 .body-murmur {
-  background: #05151d;
+  background: $color-bg-murmur;
 }
