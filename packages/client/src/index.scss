@@ -1,3 +1,6 @@
+@import "./core/scss/_variables.scss";
+@import "./core/scss/_box.scss";
+
 @font-face {
   font-family: 'New Zelek';
   src: url(./assets/fonts/New-Zelek.ttf);
@@ -22,6 +25,18 @@ body {
 body,
 * {
   box-sizing: border-box;
+}
+
+input, textarea {
+  margin: 0;
+  border: 0;
+  border: none;
+  background: none;
+  font-family: 'Blender Pro', Times, serif;
+}
+
+input:focus, textarea:focus {
+  outline: 0;
 }
 
 h1,

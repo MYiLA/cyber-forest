@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom'
-import { PATH } from '../../core/config/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { TDispatch, TRootState } from '../../core/store/store'
 import { toggleTheme } from '../../core/store/reducers/theme-reducer'
 import styles from './test-nav.module.scss'
 import { useEffect } from 'react'
+import { TDispatch, TRootState } from '../../core/store/store'
+import { PATH } from '../../core/config/constants'
 
 export const TestNav = () => {
   const dispatch = useDispatch<TDispatch>()
