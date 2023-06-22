@@ -20,7 +20,7 @@ export const PageLogin = () => {
       <DialogWindow>
         <div className={styles.inside}>
           <h2>Вход в аккаунт</h2>
-          <form onSubmit={onSubmit} autoComplete={'off'} className="mt-5 w-100">
+          <form onSubmit={onSubmit} className="mt-5 w-100">
             <MainInput
               name="email"
               type="email"
@@ -44,7 +44,7 @@ export const PageLogin = () => {
               Войти
             </MainButton>
           </form>
-          <div className={styles.steps}>
+          <div className={styles.alternative_links}>
             <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
             <NavLink to={PATH.FORGOT_PASSWORD}>Забыли пароль?</NavLink>
           </div>
