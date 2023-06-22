@@ -1,0 +1,71 @@
+@import "../../core/scss/_variables.scss";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	h2 {
+		font-size: 39px;
+	}
+	h3 {
+		color: $color-white;
+		font-size: 26px;
+		text-shadow: $color-white 0 0 3px;
+	}
+
+	.message {
+		margin-top: 100px;
+		margin-left: 80px;
+	}
+
+	.images_murmur_404 {
+		height: 615px;
+		width: 757px;
+		background-image: url("../../assets/images/errors/animal-murmur-404.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-murmur-404.svg");
+		background-position: 100px 170px, bottom, top center;
+		background-repeat: no-repeat, no-repeat, no-repeat;
+		h2 {
+			color: $color-violet;
+			text-shadow: $color-violet 0 0 3px;
+		}
+	}
+
+	.images_murmur_500 {
+		height: 615px;
+		width: 757px;
+		background-image: url("../../assets/images/errors/animal-murmur-500.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-murmur-500.svg");
+		background-position: 140px 170px, bottom, top center;
+		background-repeat: no-repeat, no-repeat, no-repeat;
+		h2 {
+			color: $color-yellow;
+			text-shadow: $color-yellow 0 0 3px;
+		}
+	}
+
+	.images_neon_404 {
+		height: 615px;
+		width: 757px;
+		background-image: url("../../assets/images/errors/animal-neon-404.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-neon-404.svg");
+		background-position: 100px 160px, bottom, top center;
+		background-repeat: no-repeat, no-repeat, no-repeat;
+		h2 {
+			color: $color-neon;
+			text-shadow: $color-neon 0 0 3px;
+		}
+	}
+
+	.images_neon_500 {
+		height: 615px;
+		width: 757px;
+		background-image: url("../../assets/images/errors/animal-neon-500.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-neon-500.svg");
+		background-position: 110px 160px, bottom, top center;
+		background-repeat: no-repeat, no-repeat, no-repeat;
+		h2 {
+			color: $color-orange;
+			text-shadow: $color-orange 0 0 3px;
+		}
+	}
+}
