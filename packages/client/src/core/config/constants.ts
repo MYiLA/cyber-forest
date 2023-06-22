@@ -1,14 +1,17 @@
 export const PATH = {
   HOME: '/',
-  GAME: '/game',
   LOGIN: '/login',
-  REGISTER: '/register',
-  FORGOT_PASSWORD: '/forgot-password',
-  RESET_PASSWORD: '/reset-password',
+  REGISTER: '/registration',
+  FORGOT_PASS: '/forgot-password',
+  RESET_PASS: '/reset-password',
+  LOBBY: '/lobby',
+  TABLE: '/lobby/table',
+  USER: '/user-data',
+  HELP: '/lobby/help',
   ERROR: '/error',
 }
 
 export const THEME = {
   NEON: 'neon',
-  MURMUR: 'murmur',
+  PURPLE: 'purple',
 }
