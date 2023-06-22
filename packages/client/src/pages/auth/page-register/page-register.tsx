@@ -1,4 +1,4 @@
-import { useForm } from '../../../shared/hooks/use-form'
+import { TValidators, useForm } from '../../../shared/hooks/use-form'
 import { FormEvent } from 'react'
 import styles from './page-register.module.scss'
 import { DialogWindow } from '../../../shared/ui/dialog-window/dialog-window'
@@ -6,6 +6,49 @@ import { MainInput } from '../../../shared/ui/main-input/main-input'
 import { MainButton } from '../../../shared/ui/main-button/main-button'
 import { NavLink } from 'react-router-dom'
 import { PATH } from '../../../core/config/constants'
+
+const validators: TValidators = {
+  first_name: {
+    required: true,
+    rule: /^[A-ZА-Я][a-zA-Zа-яА-Я-]+$/,
+    message: 'Только буквы или -, первая заглавная',
+  },
+  second_name: {
+    required: true,
+    rule: /^[A-ZА-Я][a-zA-Zа-яА-Я-]+$/,
+    message: 'Только буквы или -, первая заглавная',
+  },
+  login: {
+    required: true,
+    rule: /^(?![\d+]+$)[a-zа-я0-9+_-]{3,20}$/gi,
+    message: '3-20 символов без пробелов, буквы обязательно',
+  },
+  email: {
+    required: true,
+    rule: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+    message: 'Email в формате ivan@mail.ru',
+  },
+  phone: {
+    required: true,
+    rule: /^(?:\+|\d)[0-9]{10,15}$/,
+    message: '10-15 цифр, можно в начале +',
+  },
+  password: {
+    required: true,
+    rule: /^(?=.*\d)(?=.*[A-Z])\S{8,40}$/g,
+    message: '8-40 символов, обязательны цифры и заглавные буквы',
+  },
+  password_confirm: {
+    required: true,
+    rule: 'confirm:password',
+    message: 'пароли не совпадают',
+  },
+  agreement: {
+    required: true,
+    rule: true,
+    message: 'Нужно обязательно принять условия',
+  },
+}
 
 const initialForm = {
   first_name: '',
@@ -15,14 +58,16 @@ const initialForm = {
   password: '',
   password_confirm: '',
   phone: '',
-  agreement: true,
+  agreement: false,
 }
 
 export const PageRegister = () => {
-  const { form, onChange } = useForm(initialForm)
+  const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
+    useForm(initialForm, validators)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
+    console.log(validateAllFields(), form)
   }
 
   return (
@@ -30,70 +75,91 @@ export const PageRegister = () => {
       <DialogWindow>
         <div className={styles.inside}>
           <h2>Регистрация</h2>
-          <form onSubmit={onSubmit} className="mt-5">
+          <form onSubmit={onSubmit} className="mt-5" noValidate>
             <div className={styles.inputs_list}>
               <MainInput
                 autoFocus
                 name="first_name"
                 placeholder="Имя"
-                value={form.first_name}
+                value={form.first_name as string}
                 onChange={onChange}
                 className={styles.inputs}
+                error={validate.first_name.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
               <MainInput
                 name="second_name"
                 placeholder="Фамилия"
-                value={form.second_name}
+                value={form.second_name as string}
                 onChange={onChange}
                 className={styles.inputs}
                 align="right"
+                error={validate.second_name.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
               <MainInput
                 name="phone"
                 placeholder="Телефон"
-                value={form.phone}
+                value={form.phone as string}
                 onChange={onChange}
                 className={styles.inputs}
+                error={validate.phone.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
               <MainInput
                 name="email"
                 type="email"
                 placeholder="Email"
-                value={form.email}
+                value={form.email as string}
                 onChange={onChange}
                 className={styles.inputs}
                 align="right"
+                error={validate.email.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
               <MainInput
                 name="password"
                 type="password"
                 placeholder="Пароль"
-                value={form.password}
+                value={form.password as string}
                 onChange={onChange}
                 className={styles.inputs}
+                error={validate.password.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
               <MainInput
                 name="password_confirm"
                 type="password"
                 placeholder="Повторите пароль"
-                value={form.password_confirm}
+                value={form.password_confirm as string}
                 onChange={onChange}
                 className={styles.inputs}
                 align="right"
+                error={validate.password_confirm.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
               <MainInput
                 name="login"
                 placeholder="Логин"
-                value={form.login}
+                value={form.login as string}
                 onChange={onChange}
                 className={styles.inputs}
+                error={validate.login.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
               />
             </div>
             <div className={styles.agreement}>
               <MainInput
                 type="checkbox"
                 name="agreement"
-                checked={form.agreement}
+                checked={form.agreement as boolean}
                 onChange={onChange}
               />
               <span>
@@ -101,7 +167,12 @@ export const PageRegister = () => {
                 соглашения.
               </span>
             </div>
-            <span>
+            {validate.agreement.error && (
+              <div className={styles.agreement_error}>
+                {validate.agreement.error}
+              </div>
+            )}
+            <div>
               <MainButton
                 type="submit"
                 extraClassName="ml-10 mr-10"
@@ -109,7 +180,7 @@ export const PageRegister = () => {
                 Регистрация
               </MainButton>
               <NavLink to={PATH.LOGIN}>Зарегистрированы?</NavLink>
-            </span>
+            </div>
           </form>
         </div>
       </DialogWindow>

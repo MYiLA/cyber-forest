@@ -13,5 +13,5 @@ export const PATH = {
 
 export const THEME = {
   NEON: 'neon',
-  MURMUR: 'murmur',
+  PURPUR: 'purpur',
 }

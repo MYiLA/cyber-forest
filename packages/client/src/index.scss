@@ -20,7 +20,7 @@ body {
   align-items: center;
   height: 100vh;
   color: $color-white;
-  background: $color-bg-murmur;
+  background: $color-bg-purpur;
 }
 
 body,
@@ -80,15 +80,15 @@ a:hover {
   background-image: url(./assets/images/bg-neon.jpg);
 }
 
-.container-murmur {
+.container-purpur {
   height: 100%;
-  background-image: url(./assets/images/bg-murmur.jpg);
+  background-image: url(./assets/images/bg-purpur.jpg);
 }
 
 .body-neon {
   background: $color-bg-neon;
 }
 
-.body-purple {
-  background: $color-bg-murmur;
+.body-purpur {
+  background: $color-bg-purpur;
 }
