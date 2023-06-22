@@ -9,7 +9,7 @@ interface TInputProps extends InputHTMLAttributes<HTMLInputElement> {
   placeholder?: string
   type?: string
   extraClassName?: string
-  error?: string
+  error?: string | null
   className?: string
   align?: string
 }
@@ -19,7 +19,7 @@ export const MainInput: FC<TInputProps> = ({
   name,
   placeholder,
   type = 'text',
-  error = '',
+  error = null,
   className,
   align = 'left',
   ...rest
@@ -28,9 +28,17 @@ export const MainInput: FC<TInputProps> = ({
     return (
       <>
         {align === 'left' ? (
-          <img className={styles.bottom_right} src={inputUnderlineR} />
+          <img
+            className={styles.bottom_right}
+            src={inputUnderlineR}
+            alt="стилизация input справа"
+          />
         ) : (
-          <img className={styles.bottom_left} src={inputUnderlineL} />
+          <img
+            className={styles.bottom_left}
+            src={inputUnderlineL}
+            alt="стилизация input слева"
+          />
         )}
       </>
     )
@@ -65,7 +73,7 @@ export const MainInput: FC<TInputProps> = ({
             {...rest}
           />
           <label className={styles.placeholder}>{placeholder}</label>
-          <div className={styles.error}>{error}</div>
+          {error && <div className={styles.error}>{error}</div>}
         </div>
       )}
     </Fragment>

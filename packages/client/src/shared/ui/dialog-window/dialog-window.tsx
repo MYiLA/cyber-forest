@@ -9,10 +9,10 @@ export const DialogWindow: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div className={styles.window}>
       <div className={styles.inside_one}>
-        <img className={styles.lt} src={cornerLt} alt="" />
-        <img className={styles.lb} src={cornerLb} alt="" />
-        <img className={styles.rt} src={cornerRt} alt="" />
-        <img className={styles.rb} src={cornerRb} alt="" />
+        <img className={styles.lt} src={cornerLt} alt="рамка слева сверху" />
+        <img className={styles.lb} src={cornerLb} alt="рамка слева снизу" />
+        <img className={styles.rt} src={cornerRt} alt="рамка справа сверху" />
+        <img className={styles.rb} src={cornerRb} alt="рамка справа снизу" />
         <div className={styles.content}>{children}</div>
       </div>
     </div>

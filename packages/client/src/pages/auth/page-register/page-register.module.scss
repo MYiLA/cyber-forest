@@ -1,3 +1,5 @@
+@import "../../../core/scss/_variables.scss";
+
 .container {
 	display: flex;
 	justify-content: center;
@@ -5,20 +7,20 @@
 	height: 100%;
 
 	.inside {
-		width: 700px;
-		padding: 40px 0;
+		width: 750px;
+		padding: 20px 0;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 		text-align: center;
 
 		.inputs_list {
-			width: 560px;
+			width: 650px;
 			text-align: left;
 		}
 
 		.inputs {
-			width: 250px;
+			width: 290px;
 			display: inline-flex;
 			margin: 15px;
 		}
@@ -29,5 +31,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.agreement_error {
+		color: $color-error;
 	}
 }
