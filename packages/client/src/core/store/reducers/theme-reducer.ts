@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { THEME } from '../../config/constants'
 
 const initialState = {
-  themeName: THEME.MURMUR,
+  themeName: THEME.NEON,
 }
 
 export const themeSlice = createSlice({
