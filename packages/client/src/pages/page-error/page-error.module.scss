@@ -21,6 +21,12 @@
 		margin-left: 80px;
 	}
 
+	.link {
+		font-size: 20px;
+		padding-top: 353px;
+		padding-left: 463px;
+	}
+
 	.images_murmur_404 {
 		height: 615px;
 		width: 757px;
@@ -30,6 +36,12 @@
 		h2 {
 			color: $color-violet;
 			text-shadow: $color-violet 0 0 3px;
+		}
+
+		.link {
+			color: $color-violet;
+			text-shadow: $color-violet 0 0 3px;
+			font-family: 'New Zelek', Times, serif;
 		}
 	}
 
@@ -55,6 +67,13 @@
 			color: $color-neon;
 			text-shadow: $color-neon 0 0 3px;
 		}
+
+		.link {
+			color: $color-neon;
+			text-shadow: $color-neon 0 0 3px;
+			font-family: 'New Zelek', Times, serif;
+		}
+
 	}
 
 	.images_neon_500 {
@@ -68,4 +87,5 @@
 			text-shadow: $color-orange 0 0 3px;
 		}
 	}
+
 }
