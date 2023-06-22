@@ -40,6 +40,14 @@ input:focus, textarea:focus {
   outline: 0;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: $color-white !important;
+  transition: background-color 9999s ease-in-out 0s
+}
+
 h1,
 h2,
 h3,
