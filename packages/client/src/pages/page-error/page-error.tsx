@@ -2,7 +2,8 @@ import styles from './page-error.module.scss'
 import { useSelector } from 'react-redux'
 import { TRootState } from '../../core/store/store'
 
-import { useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+import { PATH } from '../../core/config/constants'
 
 const errorMessages: Record<string, string> = {
   404: 'Страница не найдена',
@@ -21,6 +22,11 @@ export const PageError = () => {
         <div className={styles.message}>
           <h2>{error}</h2>
           <h3>{errorMessages[error]}</h3>
+          {error === '404' && (
+            <div className={styles.link}>
+              <NavLink to={PATH.HOME}>В лобби</NavLink>
+            </div>
+          )}
         </div>
       </div>
     </div>
