@@ -9,8 +9,13 @@ export const useForm = <T>(initialFields: T) => {
   }, [form, initialFields])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setForm(prev => ({ ...prev, [name]: value }))
+    if (e.target.type === 'checkbox') {
+      const { name, checked } = e.target
+      setForm(prev => ({ ...prev, [name]: checked }))
+    } else {
+      const { name, value } = e.target
+      setForm(prev => ({ ...prev, [name]: value }))
+    }
   }
 
   const resetForm = () => {

@@ -8,8 +8,13 @@ import { useForm } from '../../../shared/hooks/use-form'
 import { DialogWindow } from '../../../shared/ui/dialog-window/dialog-window'
 import styles from './page-login.module.scss'
 
+const initialForm = {
+  login: '',
+  password: '',
+}
+
 export const PageLogin = () => {
-  const { form, onChange } = useForm({ email: '', password: '' })
+  const { form, onChange } = useForm(initialForm)
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -22,32 +27,31 @@ export const PageLogin = () => {
           <h2>Вход в аккаунт</h2>
           <form onSubmit={onSubmit} className="mt-5 w-100">
             <MainInput
-              name="email"
-              type="email"
-              placeholder="Email"
-              value={form.email}
+              autoFocus
+              name="login"
+              placeholder="Логин"
+              value={form.login}
               onChange={onChange}
               className={styles.inputs}
             />
             <MainInput
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder="Пароль"
               value={form.password}
               onChange={onChange}
               className={styles.inputs}
             />
-            <MainButton
-              type="submit"
-              extraClassName="ml-10 mr-10"
-              className="mt-5 mb-10">
-              Войти
-            </MainButton>
+            <span>
+              <MainButton
+                type="submit"
+                extraClassName="ml-10 mr-10"
+                className="mt-10 mb-1 mr-5">
+                Войти
+              </MainButton>
+              <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
+            </span>
           </form>
-          <div className={styles.alternative_links}>
-            <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
-            <NavLink to={PATH.FORGOT_PASSWORD}>Забыли пароль?</NavLink>
-          </div>
         </div>
       </DialogWindow>
     </div>

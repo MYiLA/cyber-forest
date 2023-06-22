@@ -1,0 +1,33 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	.inside {
+		width: 700px;
+		padding: 40px 0;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+
+		.inputs_list {
+			width: 560px;
+			text-align: left;
+		}
+
+		.inputs {
+			width: 250px;
+			display: inline-flex;
+			margin: 15px;
+		}
+	}
+
+	.agreement {
+		margin-top: 12px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
