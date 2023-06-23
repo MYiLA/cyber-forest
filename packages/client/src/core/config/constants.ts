@@ -9,6 +9,7 @@ export const PATH = {
   USER: '/user-data',
   HELP: '/lobby/help',
   ERROR: '/error',
+  ABOUT: '/about',
 }
 
 export const THEME = {

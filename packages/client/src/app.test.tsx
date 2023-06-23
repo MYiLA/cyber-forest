@@ -1,8 +1,8 @@
 import App from './app'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 
-const appContent = 'Home'
+const appContent = '/'
 
 // global.fetch = jest.fn(() =>
 //   Promise.resolve({ json: () => Promise.resolve('hey') })
@@ -12,5 +12,6 @@ test('Example test', async () => {
   await act(() => {
     render(<App />)
   })
-  expect(screen.getByText(appContent)).toBeDefined()
+
+  expect(window.location.pathname).toEqual(appContent)
 })
