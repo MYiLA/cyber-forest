@@ -19,7 +19,7 @@ const routes = [
   {
     path: PATH.HOME,
     element: <PageHome />,
-    layout: 'blank',
+    layout: 'game',
   },
   {
     path: PATH.LOBBY,

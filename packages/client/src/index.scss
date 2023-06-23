@@ -15,9 +15,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Blender Pro', Times, serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
   height: 100vh;
   color: $color-white;
   background: $color-bg-purpur;
@@ -70,8 +68,8 @@ a:hover {
 }
 
 .wrapper {
-  height: 1024px;
-  width: 1440px;
+  //height: 1024px;
+  //width: 1440px;
   overflow: hidden;
 }
 
@@ -81,7 +79,7 @@ a:hover {
 }
 
 .container-purpur {
-  height: 100%;
+  height: 100vh;
   background-image: url(./assets/images/bg-purpur.jpg);
 }
 

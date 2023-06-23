@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  gap: 50px;
+  height: 100%;
+  .header {
+    color: rgba(238, 216, 255, 0.10);
+    text-align: center;
+    text-shadow: 0 0 1em #fff;
+    font-size: 150px;
+    font-family: New_Zelek;
+    -webkit-text-stroke-width: 5px;
+    &.purpur {
+      -webkit-text-stroke-color: #dcd0ea;
+    }
+    &.neon {
+      -webkit-text-stroke-color: #7CF0F0;
+    }
+  }
+  .image {
+    display: block;
+    margin: 0 auto;
+  }
+  .buttons_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    //margin-top: 50px;
+
+    width: 650px;
+    .nav_link {
+      width: 297px;
+      height: 60px;
+
+      padding-top: 10px;
+
+      position: relative;
+
+      color: #FFFFFF;
+      font-size: 32px;
+      font-family: New_Zelek;
+      text-align: center;
+      text-transform: uppercase;
+      &.purpur {
+        background: rgba(187, 106, 234, 0.60);
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.60) inset, 0px 0px 2px 1px rgba(255, 255, 255, 0.50);
+        &:hover {
+          box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+      }
+      &.neon {
+        border: 1px solid #FFF;
+        background: rgba(124, 240, 240, 0.60);
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.60) inset, 0px 0px 2px 1px rgba(255, 255, 255, 0.50);
+        &:hover {
+          box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.30);
+        }
+      }
+      &:first-child {
+        margin-right: 80px;
+      }
+      &:before {
+        content: url("../../assets/images/button-link-big-lb.svg");
+        display: block;
+        position: absolute;
+        bottom: -9px;
+        left: 0;
+      }
+      &:after {
+        content: url("../../assets/images/button-link-big-rt.svg");
+        display: block;
+        position: absolute;
+        top: -15px;
+        right: 0;
+      }
+    }
+  }
+  .sub_nav_link {
+    display: block;
+
+    font-size: 30px;
+    font-family: Blender Pro;
+    font-weight: 500;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
