@@ -1,3 +1,5 @@
+@import "../../../core/scss/_variables.scss";
+
 .container {
 	display: flex;
 	justify-content: center;
@@ -13,6 +15,19 @@
 		.inputs {
 			width: 305px;
 			margin: 25px;
+		}
+
+		.form_buttons {
+			margin-top: 40px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.error {
+			margin-top: 10px;
+			color: $color-error;
+			text-align: center;
 		}
 	}
 }
