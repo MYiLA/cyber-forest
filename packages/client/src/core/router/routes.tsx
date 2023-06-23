@@ -1,21 +1,19 @@
 import { FC, ReactNode, Fragment, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, useLocation } from 'react-router-dom'
-import { TRootState } from '../store/store'
-import { PATH } from '../config/constants'
-
-import { BlankLayout } from '../../shared/layouts/blank-layout/blank-layout'
-import { GameLayout } from '../../shared/layouts/game-layout/game-layout'
-
 import {
   PageError,
   PageGame,
   PageHome,
   PageLogin,
   PageRegister,
-} from './router-pages'
-import { useAuth } from '../../shared/hooks/use-auth'
-import { Loading } from '../../shared/ui/loading/loading'
+} from '@router/router-pages'
+import { PATH } from '@config/constants'
+import { RootState } from '@store/store'
+import { BlankLayout } from '@layouts/blank-layout/blank-layout'
+import { GameLayout } from '@layouts/game-layout/game-layout'
+import { useAuth } from '@hooks/use-auth'
+import { Loading } from '@ui/loading/loading'
 
 const routes = [
   {
@@ -66,7 +64,7 @@ const routes = [
 const ProtectedRouteElement: FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation()
 
-  const { authorized } = useSelector((store: TRootState) => store.user)
+  const { authorized } = useSelector((store: RootState) => store.user)
   const { checkAuth, authChecked } = useAuth()
 
   useEffect(() => {

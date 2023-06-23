@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux'
-import { TRootState } from '../../core/store/store'
-import { PATH, THEME } from '../../core/config/constants'
 import { NavLink } from 'react-router-dom'
+import { RootState } from '@store/store'
+import { PATH, THEME } from '@config/constants'
 import styles from './page-home.module.scss'
 
 export const PageHome = () => {
-  const { themeName } = useSelector((store: TRootState) => store.theme)
+  const { themeName } = useSelector((store: RootState) => store.theme)
 
   return (
     <div className={styles.container}>

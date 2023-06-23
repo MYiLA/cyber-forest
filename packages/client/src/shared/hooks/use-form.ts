@@ -1,18 +1,15 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 
-export type TValidatorItem = {
+export type ValidatorItem = {
   required?: boolean
   rule?: RegExp | string | boolean | null
   message: string
   error?: string | null
 }
-export type TValidators = Record<string, TValidatorItem>
-export type TFields = Record<string, string | boolean | null>
+export type Validators = Record<string, ValidatorItem>
+export type Fields = Record<string, string | boolean | null>
 
-export const useForm = (
-  initialFields: TFields,
-  validators: TValidators = {}
-) => {
+export const useForm = (initialFields: Fields, validators: Validators = {}) => {
   const [form, setForm] = useState(initialFields)
   const [modified, setModified] = useState(false)
   const [validate, setValidate] = useState(validators)

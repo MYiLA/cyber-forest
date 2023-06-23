@@ -1,4 +1,4 @@
-export type TUser = {
+export type User = {
   id?: number
   first_name: string
   second_name: string
@@ -9,12 +9,12 @@ export type TUser = {
   phone: string
 }
 
-export type TUserLogin = {
+export type UserLogin = {
   login: string
   password: string
 }
 
-export type TUserRegister = {
+export type UserRegister = {
   first_name: string
   second_name: string
   display_name?: string

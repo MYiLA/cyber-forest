@@ -1,23 +1,23 @@
 import { useCallback, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { TDispatch, TRootState } from '../../core/store/store'
+import { useNavigate } from 'react-router-dom'
+import { Dispatch, RootState } from '@store/store'
+import { PATH } from '@config/constants'
 import {
-  resetError,
   userGetInfo,
   userLogin,
   userLogout,
   userRegister,
-} from '../../core/store/reducers/user-reducer'
-import { useNavigate } from 'react-router-dom'
-import { PATH } from '../../core/config/constants'
-import { TUserLogin, TUserRegister } from '../../core/config/user-types'
+  resetError,
+} from '@store/reducers/user-reducer'
+import { UserLogin, UserRegister } from '@config/user-types'
 
 export const useAuth = () => {
-  const dispatch = useDispatch<TDispatch>()
+  const dispatch = useDispatch<Dispatch>()
   const navigate = useNavigate()
 
   const { loading, error, authorized, authChecked } = useSelector(
-    (store: TRootState) => store.user
+    (store: RootState) => store.user
   )
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export const useAuth = () => {
 
   useEffect(() => {
     if (!loading && needRedirect.current && !error) {
-      navigate(authorized ? PATH.HOME : PATH.LOGIN)
+      navigate(authorized ? PATH.LOBBY : PATH.LOGIN)
     }
   }, [authorized, loading])
 
@@ -39,7 +39,7 @@ export const useAuth = () => {
   }, [])
 
   const toLogin = useCallback(
-    (data: TUserLogin) => {
+    (data: UserLogin) => {
       needRedirect.current = true
       dispatch(userLogin(data))
     },
@@ -52,7 +52,7 @@ export const useAuth = () => {
   }, [needRedirect, dispatch])
 
   const toRegister = useCallback(
-    (data: TUserRegister) => {
+    (data: UserRegister) => {
       needRedirect.current = true
       dispatch(userRegister(data))
     },

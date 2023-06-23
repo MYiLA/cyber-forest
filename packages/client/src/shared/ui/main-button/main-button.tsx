@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
-import buttonLb from '../../../assets/images/button-lb.svg'
-import buttonRt from '../../../assets/images/button-rt.svg'
+import buttonLb from '@images/button-lb.svg'
+import buttonRt from '@images/button-rt.svg'
 import styles from './main-button.module.scss'
 import classNames from 'classnames'
 

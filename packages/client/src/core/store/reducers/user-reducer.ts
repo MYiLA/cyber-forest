@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import Api from '../../api/api'
-import { TUser, TUserLogin, TUserRegister } from '../../config/user-types'
+import Api from '@api/auth-api'
+import { User, UserLogin, UserRegister } from '@config/user-types'
 
-export const userLogin = createAsyncThunk('user/login', (data: TUserLogin) => {
+export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
   return Api.userLogin(data).then(() => Api.userGetInfo())
 })
 
@@ -12,7 +12,7 @@ export const userLogout = createAsyncThunk('user/logout', () => {
 
 export const userRegister = createAsyncThunk(
   'user/register',
-  (data: TUserRegister) => {
+  (data: UserRegister) => {
     return Api.userRegister(data).then(() => Api.userGetInfo())
   }
 )
@@ -26,7 +26,7 @@ const initialState: {
   loading: boolean
   error: string | null
   authChecked: boolean
-  user: TUser | null
+  user: User | null
 } = {
   authorized: false,
   loading: false,

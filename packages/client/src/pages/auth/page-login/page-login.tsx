@@ -1,16 +1,15 @@
 import { FormEvent } from 'react'
 import { NavLink } from 'react-router-dom'
-
-import { PATH } from '../../../core/config/constants'
-import { MainInput } from '../../../shared/ui/main-input/main-input'
-import { MainButton } from '../../../shared/ui/main-button/main-button'
-import { TFields, TValidators, useForm } from '../../../shared/hooks/use-form'
-import { DialogWindow } from '../../../shared/ui/dialog-window/dialog-window'
+import { Fields, Validators, useForm } from '@hooks/use-form'
+import { useAuth } from '@hooks/use-auth'
+import { UserLogin } from '@config/user-types'
+import { DialogWindow } from '@ui/dialog-window/dialog-window'
+import { MainInput } from '@ui/main-input/main-input'
+import { MainButton } from '@ui/main-button/main-button'
+import { PATH } from '@config/constants'
 import styles from './page-login.module.scss'
-import { useAuth } from '../../../shared/hooks/use-auth'
-import { TUserLogin } from '../../../core/config/user-types'
 
-const validators: TValidators = {
+const validators: Validators = {
   login: {
     required: true,
     rule: /^(?![\d+]+$)[a-zа-я0-9+_-]{3,20}$/gi,
@@ -23,7 +22,7 @@ const validators: TValidators = {
   },
 }
 
-const initialForm: TFields = {
+const initialForm: Fields = {
   login: '',
   password: '',
 }
@@ -37,7 +36,7 @@ export const PageLogin = () => {
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
     if (validateAllFields()) {
-      toLogin(form as TUserLogin)
+      toLogin(form as UserLogin)
     }
   }
 

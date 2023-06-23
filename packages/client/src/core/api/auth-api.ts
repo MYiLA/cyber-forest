@@ -1,8 +1,8 @@
 import axios, { Axios } from 'axios'
-import { API, API_URL } from '../config/constants'
-import { TUserLogin, TUserRegister } from '../config/user-types'
+import { API, API_URL } from '@config/constants'
+import { UserLogin, UserRegister } from '@config/user-types'
 
-class Api {
+class AuthApi {
   private _axios: Axios
   constructor() {
     this._axios = axios.create({
@@ -18,7 +18,7 @@ class Api {
     )
   }
 
-  public userLogin(data: TUserLogin) {
+  public userLogin(data: UserLogin) {
     return this._axios.post(API.USER_LOGIN, data)
   }
 
@@ -30,9 +30,9 @@ class Api {
     return this._axios.get(API.USER_INFO)
   }
 
-  public userRegister(data: TUserRegister) {
+  public userRegister(data: UserRegister) {
     return this._axios.post(API.USER_REGISTER, data)
   }
 }
 
-export default new Api()
+export default new AuthApi()
