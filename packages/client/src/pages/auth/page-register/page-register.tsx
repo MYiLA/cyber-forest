@@ -6,6 +6,8 @@ import { MainInput } from '../../../shared/ui/main-input/main-input'
 import { MainButton } from '../../../shared/ui/main-button/main-button'
 import { NavLink } from 'react-router-dom'
 import { PATH } from '../../../core/config/constants'
+import { useAuth } from '../../../shared/hooks/use-auth'
+import { TUserRegister } from '../../../core/config/user-types'
 
 const validators: TValidators = {
   first_name: {
@@ -65,9 +67,13 @@ export const PageRegister = () => {
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators)
 
+  const { toRegister, error } = useAuth()
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    console.log(validateAllFields(), form)
+    if (validateAllFields()) {
+      toRegister(form as TUserRegister)
+    }
   }
 
   return (
@@ -182,6 +188,7 @@ export const PageRegister = () => {
               <NavLink to={PATH.LOGIN}>Зарегистрированы?</NavLink>
             </div>
           </form>
+          {error && <div className={styles.error}>{error}</div>}
         </div>
       </DialogWindow>
     </div>

@@ -1,4 +1,4 @@
-import { FC, ReactNode, Fragment } from 'react'
+import { FC, ReactNode, Fragment, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, useLocation } from 'react-router-dom'
 import { TRootState } from '../store/store'
@@ -14,6 +14,8 @@ import {
   PageLogin,
   PageRegister,
 } from './router-pages'
+import { useAuth } from '../../shared/hooks/use-auth'
+import { Loading } from '../../shared/ui/loading/loading'
 
 const routes = [
   {
@@ -62,8 +64,20 @@ const routes = [
 ]
 
 const ProtectedRouteElement: FC<{ children: ReactNode }> = ({ children }) => {
-  const { authorized } = useSelector((store: TRootState) => store.user)
   const location = useLocation()
+
+  const { authorized } = useSelector((store: TRootState) => store.user)
+  const { checkAuth, authChecked } = useAuth()
+
+  useEffect(() => {
+    if (!authChecked && !authorized) {
+      checkAuth()
+    }
+  }, [authorized, authChecked, checkAuth])
+
+  if (!authChecked) {
+    return <Loading />
+  }
 
   if (authorized) {
     return <Fragment>{children}</Fragment>

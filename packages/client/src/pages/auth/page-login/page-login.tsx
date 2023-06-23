@@ -7,6 +7,8 @@ import { MainButton } from '../../../shared/ui/main-button/main-button'
 import { TFields, TValidators, useForm } from '../../../shared/hooks/use-form'
 import { DialogWindow } from '../../../shared/ui/dialog-window/dialog-window'
 import styles from './page-login.module.scss'
+import { useAuth } from '../../../shared/hooks/use-auth'
+import { TUserLogin } from '../../../core/config/user-types'
 
 const validators: TValidators = {
   login: {
@@ -20,6 +22,7 @@ const validators: TValidators = {
     message: '8-40 символов, обязательны цифры и заглавные буквы',
   },
 }
+
 const initialForm: TFields = {
   login: '',
   password: '',
@@ -29,9 +32,13 @@ export const PageLogin = () => {
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators)
 
+  const { toLogin, error } = useAuth()
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    console.log(validateAllFields(), form)
+    if (validateAllFields()) {
+      toLogin(form as TUserLogin)
+    }
   }
 
   return (
@@ -62,16 +69,17 @@ export const PageLogin = () => {
               onFocus={onFocus}
               onBlur={onBlur}
             />
-            <span>
+            <div className={styles.form_buttons}>
               <MainButton
                 type="submit"
                 extraClassName="ml-10 mr-10"
-                className="mt-10 mb-1 mr-5">
+                className="mr-5">
                 Войти
               </MainButton>
               <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
-            </span>
+            </div>
           </form>
+          {error && <div className={styles.error}>{error}</div>}
         </div>
       </DialogWindow>
     </div>
