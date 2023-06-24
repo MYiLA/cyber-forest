@@ -1,17 +1,117 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import Api from '@api/auth-api'
+import { User, UserLogin, UserRegister } from '@config/user-types'
 
-const initialState = {
-  authorized: true,
+export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
+  return Api.userLogin(data).then(() => Api.userGetInfo())
+})
+
+export const userLogout = createAsyncThunk('user/logout', () => {
+  return Api.userLogout()
+})
+
+export const userRegister = createAsyncThunk(
+  'user/register',
+  (data: UserRegister) => {
+    return Api.userRegister(data).then(() => Api.userGetInfo())
+  }
+)
+
+export const userGetInfo = createAsyncThunk('user/info', () => {
+  return Api.userGetInfo()
+})
+
+const initialState: {
+  authorized: boolean | null
+  loading: boolean
+  error: string | null
+  authChecked: boolean
+  user: User | null
+} = {
+  authorized: false,
+  loading: false,
+  error: null,
+  authChecked: false,
+  user: null,
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
-  // eslint-disable-next-line
-  extraReducers: builder => {},
+  reducers: {
+    resetError: state => {
+      return { ...state, error: null }
+    },
+  },
+  extraReducers: builder => {
+    builder
+      // Login
+      .addCase(userLogin.pending, () => {
+        return { ...initialState, loading: true }
+      })
+      .addCase(userLogin.rejected, (state, action) => {
+        return { ...initialState, error: action.error.message as string }
+      })
+      .addCase(userLogin.fulfilled, (state, action) => {
+        return {
+          ...initialState,
+          user: action.payload.data,
+          authorized: true,
+          authChecked: true,
+        }
+      })
+
+      // Logout
+      .addCase(userLogout.pending, () => {
+        return { ...initialState, loading: true }
+      })
+      .addCase(userLogout.rejected, (state, action) => {
+        return { ...initialState, error: action.error.message as string }
+      })
+      .addCase(userLogout.fulfilled, () => {
+        return { ...initialState }
+      })
+
+      // Get info
+      .addCase(userGetInfo.pending, state => {
+        return { ...state, loading: true }
+      })
+      .addCase(userGetInfo.rejected, (state, action) => {
+        return {
+          ...initialState,
+          error: action.error.message as string,
+          authChecked: true,
+        }
+      })
+      .addCase(userGetInfo.fulfilled, (state, action) => {
+        return {
+          ...state,
+          loading: false,
+          authorized: true,
+          error: null,
+          user: action.payload.data,
+          authChecked: true,
+        }
+      })
+
+      // Register
+      .addCase(userRegister.pending, () => {
+        return { ...initialState, loading: true }
+      })
+      .addCase(userRegister.rejected, (state, action) => {
+        return { ...initialState, error: action.error.message as string }
+      })
+      .addCase(userRegister.fulfilled, (state, action) => {
+        return {
+          ...state,
+          user: action.payload.data,
+          loading: false,
+          authChecked: true,
+          authorized: true,
+        }
+      })
+  },
 })
 
-// eslint-disable-next-line
-export const {} = userSlice.actions
+export const { resetError } = userSlice.actions
 export default userSlice.reducer

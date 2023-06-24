@@ -1,6 +1,6 @@
 import styles from './main-input.module.scss'
-import inputUnderlineR from '../../../assets/images/input-underline-r.svg'
-import inputUnderlineL from '../../../assets/images/input-underline-l.svg'
+import inputUnderlineR from '@images/input-underline-r.svg'
+import inputUnderlineL from '@images/input-underline-l.svg'
 import { FC, Fragment, InputHTMLAttributes, useCallback } from 'react'
 import classNames from 'classnames'
 

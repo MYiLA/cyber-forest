@@ -1,9 +1,9 @@
 import styles from './page-error.module.scss'
 import { useSelector } from 'react-redux'
-import { TRootState } from '../../core/store/store'
 
 import { NavLink, useLocation } from 'react-router-dom'
-import { PATH } from '../../core/config/constants'
+import { RootState } from '@store/store'
+import { PATH } from '@config/constants'
 
 const errorMessages: Record<string, string> = {
   404: 'Страница не найдена',
@@ -11,7 +11,7 @@ const errorMessages: Record<string, string> = {
 }
 
 export const PageError = () => {
-  const { themeName } = useSelector((store: TRootState) => store.theme)
+  const { themeName } = useSelector((store: RootState) => store.theme)
   const location = useLocation()
 
   const error = (location.state && location.state.error) || '404'

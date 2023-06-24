@@ -16,3 +16,12 @@ export const THEME = {
   NEON: 'neon',
   PURPUR: 'purpur',
 }
+
+export const API_URL = 'https://ya-praktikum.tech/api/v2'
+
+export const API = {
+  USER_LOGIN: '/auth/signin',
+  USER_REGISTER: '/auth/signup',
+  USER_LOGOUT: '/auth/logout',
+  USER_INFO: '/auth/user',
+}

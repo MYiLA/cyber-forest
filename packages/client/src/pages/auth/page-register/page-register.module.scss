@@ -1,4 +1,4 @@
-@import "../../../core/scss/_variables.scss";
+@import "@scss/_variables.scss";
 
 .container {
 	display: flex;
@@ -24,6 +24,11 @@
 			display: inline-flex;
 			margin: 15px;
 		}
+	}
+	.error {
+		margin-top: 10px;
+		color: $color-error;
+		text-align: center;
 	}
 
 	.agreement {

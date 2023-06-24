@@ -1,13 +1,16 @@
-import { TValidators, useForm } from '../../../shared/hooks/use-form'
 import { FormEvent } from 'react'
-import styles from './page-register.module.scss'
-import { DialogWindow } from '../../../shared/ui/dialog-window/dialog-window'
-import { MainInput } from '../../../shared/ui/main-input/main-input'
-import { MainButton } from '../../../shared/ui/main-button/main-button'
 import { NavLink } from 'react-router-dom'
-import { PATH } from '../../../core/config/constants'
+import { Validators, useForm } from '@hooks/use-form'
+import { useAuth } from '@hooks/use-auth'
+import { UserRegister } from '@config/user-types'
+import { DialogWindow } from '@ui/dialog-window/dialog-window'
+import { MainInput } from '@ui/main-input/main-input'
+import { MainButton } from '@ui/main-button/main-button'
+import { PATH } from '@config/constants'
 
-const validators: TValidators = {
+import styles from './page-register.module.scss'
+
+const validators: Validators = {
   first_name: {
     required: true,
     rule: /^[A-ZА-Я][a-zA-Zа-яА-Я-]+$/,
@@ -65,9 +68,13 @@ export const PageRegister = () => {
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators)
 
+  const { toRegister, error } = useAuth()
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-    console.log(validateAllFields(), form)
+    if (validateAllFields()) {
+      toRegister(form as UserRegister)
+    }
   }
 
   return (
@@ -182,6 +189,7 @@ export const PageRegister = () => {
               <NavLink to={PATH.LOGIN}>Зарегистрированы?</NavLink>
             </div>
           </form>
+          {error && <div className={styles.error}>{error}</div>}
         </div>
       </DialogWindow>
     </div>
