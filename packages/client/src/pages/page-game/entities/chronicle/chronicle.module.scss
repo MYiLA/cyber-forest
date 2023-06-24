@@ -1,0 +1,54 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.chronicle {
+  @include glow-for-big;
+
+  position: relative;
+  width: 100%;
+  background: $game-gradient;
+  padding: 20px;
+
+  &::before {
+    @include background-img-position;
+
+    content: '';
+    width: 395px;
+    height: 274px;
+    bottom: -10px;
+    left: -7px;
+    background-image: url(./src/assets/images/game/chronicle/angle-bottom-left.svg);
+  }
+
+  &::after {
+    @include background-img-position;
+
+    content: '';
+    width: 78px;
+    height: 90px;
+    top: -1px;
+    right: -1px;
+    background-image: url(./src/assets/images/game/chronicle/angle-top-right.svg);
+  }
+}
+
+.messages_list {
+  height: 328px;
+  margin: 0;
+  margin-bottom: 24px;
+  padding: 0;
+  padding-right: 6px;
+  list-style: none;
+  overflow-y: scroll;
+}
+
+.message_wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-family: $font-accent;
+  font-size: 14px;
+}

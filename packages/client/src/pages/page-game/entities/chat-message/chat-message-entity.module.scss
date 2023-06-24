@@ -1,0 +1,53 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.message_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  @include glow-for-smile;
+
+  flex-shrink: 0;
+  position: relative;
+  width: 42px;
+  height: 42px;
+  margin-right: 12px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    @include absolute-center;
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.message {
+  flex-grow: 1;
+  font-size: 16px;
+  font-family: $font-main;
+}
+
+.user_name {
+  margin-bottom: 6px;
+  font-family: $font-accent;
+}
+
+.time {
+  opacity: .8;
+  font-weight: 500;
+  margin-left: 12px;
+  font-family: $font-main;
+}
+
+.text {
+  opacity: .8;
+  font-weight: 500;
+}

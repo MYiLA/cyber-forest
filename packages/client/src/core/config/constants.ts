@@ -10,6 +10,7 @@ export const PATH = {
   HELP: '/lobby/help',
   ERROR: '/error',
   ABOUT: '/about',
+  GAME: '/game',
 }
 
 export enum Theme {

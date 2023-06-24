@@ -14,7 +14,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Blender Pro', Times, serif;
+  font-family: $font-main;
   overflow: hidden;
   height: 100vh;
   color: $color-white;
@@ -31,7 +31,7 @@ input, textarea {
   border: 0;
   border: none;
   background: none;
-  font-family: 'Blender Pro', Times, serif;
+  font-family: $font-main;
 }
 
 input:focus, textarea:focus {
@@ -53,7 +53,7 @@ h4,
 h5 {
   padding: 0;
   margin: 0;
-  font-family: 'New Zelek', Times, serif;
+  font-family: $font-accent;
 }
 
 p {

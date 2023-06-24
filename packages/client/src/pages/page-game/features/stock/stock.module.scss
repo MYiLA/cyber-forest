@@ -1,0 +1,42 @@
+@import "@scss/_variables.scss";
+
+.stock {
+  flex-grow: 1;
+  padding: 30px;
+  padding-right: 0;
+  padding-bottom: 6px;
+}
+
+.list {
+  width: 100%;
+  height: 150px;
+  overflow-y: scroll;
+  padding: 0;
+  padding-top: 7px;
+  padding-left: 7px;
+  margin: 0;
+  list-style: none;
+}
+
+.item {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 16px;
+  margin-bottom: 16px;
+
+  transition: transform;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:nth-child(9n + 1) {
+    margin-left: 0;
+  }
+}
+
+.title {
+  margin-left: 7px;
+  font-family: $font-accent;
+  font-size: 14px;
+}

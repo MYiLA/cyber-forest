@@ -1,0 +1,41 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.forest_wrap {
+  @include glow-for-big;
+
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background-color: red;
+  width: 50px;
+  height: 1046px;
+  background-color: #2F1E45;
+
+  &::after {
+    @include background-img-position;
+
+    content: '';
+    width: 45px;
+    height: 1001px;
+    bottom: 45px;
+    left: -6px;
+    background-image: url(./src/assets/images/game/forest/angle-left-top.svg);
+  }
+}
+
+.forest_switch_btn {
+  position: absolute;
+  top: 50%;
+  right: -88px;
+  font-family: $font-accent;
+  font-size: 36px;
+  background-color: transparent;
+  border: none;
+  color: $color-white;
+  transform: rotate(-90deg);
+}
+
+.forest {
+  display: none;
+}
