@@ -12,9 +12,9 @@ export const PATH = {
   ABOUT: '/about',
 }
 
-export const THEME = {
-  NEON: 'neon',
-  PURPUR: 'purpur',
+export enum Theme {
+  Neon = 'neon',
+  Purple = 'purple',
 }
 
 export const API_URL = 'https://ya-praktikum.tech/api/v2'

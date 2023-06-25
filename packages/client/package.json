@@ -8,6 +8,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
+    "ts:check": "tsc --skipLibCheck --noEmit --project tsconfig.json",
     "test": "jest ./"
   },
   "dependencies": {

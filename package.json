@@ -21,6 +21,9 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.3.9",
-    "lerna": "^5.4.3"
-  }
+    "eslint": "^8.43.0",
+    "lerna": "^5.4.3",
+    "prettier": "^2.8.8"
+  },
+  "packageManager": "yarn@3.6.0"
 }
