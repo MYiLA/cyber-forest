@@ -1,0 +1,12 @@
+.winner_screen_wrapper {
+  border: 1px solid #FFF;
+  width: 670px;
+
+  .purple {
+    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+  }
+
+  .neon {
+    background: linear-gradient(135deg, #71AEA0 0%, #45404E 51.04%, #192349 100%);
+  }
+}
