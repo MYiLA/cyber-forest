@@ -15,6 +15,7 @@ export type ModalProps = {
   onClose?: (e: MouseEvent<HTMLDivElement> | KeyboardEvent) => void
   children: ReactNode
   open: boolean
+  closeDelay?: number
   slotProps?: {
     root?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
   }
@@ -28,7 +29,7 @@ const closeStyle = {
 }
 
 export const Modal = (props: ModalProps) => {
-  const { onClose, open, children, slotProps } = props
+  const { onClose, closeDelay = 0, open, children, slotProps } = props
   const rootProps = slotProps?.root
   const [isOpen, setIsOpen] = useState(open)
   const ref = useRef<null | HTMLDivElement>(null)
@@ -59,11 +60,15 @@ export const Modal = (props: ModalProps) => {
   }
 
   useEffect(() => {
+    let timoutId: NodeJS.Timeout
     if (open) {
       openModal()
     } else {
-      closeModal()
+      timoutId = setTimeout(() => {
+        closeModal()
+      }, closeDelay)
     }
+    return () => clearTimeout(timoutId)
   }, [open])
 
   return (

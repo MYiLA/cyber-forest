@@ -1,0 +1,18 @@
+@import "@scss/variables";
+
+.how_to_play_button {
+  color: #E2B0FF;
+  text-align: center;
+  font-size: 20px;
+  font-family: $new-zelek;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  cursor: pointer;
+  &:active {
+    opacity: .7;
+  }
+}
