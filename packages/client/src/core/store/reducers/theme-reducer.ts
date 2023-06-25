@@ -16,8 +16,6 @@ export const themeSlice = createSlice({
       }
     },
   },
-  // eslint-disable-next-line
-  extraReducers: builder => {},
 })
 
 export const { toggleTheme } = themeSlice.actions

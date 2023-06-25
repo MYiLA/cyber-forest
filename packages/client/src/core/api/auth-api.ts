@@ -1,5 +1,5 @@
 import axios, { Axios } from 'axios'
-import { API, API_URL } from '@config/constants'
+import { API_AUTH, API_URL } from '@config/constants'
 import { UserLogin, UserRegister } from '@config/user-types'
 
 class AuthApi {
@@ -19,19 +19,19 @@ class AuthApi {
   }
 
   public userLogin(data: UserLogin) {
-    return this._axios.post(API.USER_LOGIN, data)
+    return this._axios.post(API_AUTH.USER_LOGIN, data)
   }
 
   public userLogout() {
-    return this._axios.post(API.USER_LOGOUT)
+    return this._axios.post(API_AUTH.USER_LOGOUT)
   }
 
   public userGetInfo() {
-    return this._axios.get(API.USER_INFO)
+    return this._axios.get(API_AUTH.USER_INFO)
   }
 
   public userRegister(data: UserRegister) {
-    return this._axios.post(API.USER_REGISTER, data)
+    return this._axios.post(API_AUTH.USER_REGISTER, data)
   }
 }
 
