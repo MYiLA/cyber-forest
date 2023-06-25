@@ -1,24 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import Api from '@api/auth-api'
+import ApiAuth from '@api/auth-api'
 import { User, UserLogin, UserRegister } from '@config/user-types'
 
 export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
-  return Api.userLogin(data).then(() => Api.userGetInfo())
+  return ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
 })
 
 export const userLogout = createAsyncThunk('user/logout', () => {
-  return Api.userLogout()
+  return ApiAuth.userLogout()
 })
 
 export const userRegister = createAsyncThunk(
   'user/register',
   (data: UserRegister) => {
-    return Api.userRegister(data).then(() => Api.userGetInfo())
+    return ApiAuth.userRegister(data).then(() => ApiAuth.userGetInfo())
   }
 )
 
 export const userGetInfo = createAsyncThunk('user/info', () => {
-  return Api.userGetInfo()
+  return ApiAuth.userGetInfo()
 })
 
 const initialState: {
@@ -45,7 +45,7 @@ export const userSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      // Login
+      /** Логин пользователя */
       .addCase(userLogin.pending, () => {
         return { ...initialState, loading: true }
       })
@@ -61,7 +61,7 @@ export const userSlice = createSlice({
         }
       })
 
-      // Logout
+      /** Выход пользователя */
       .addCase(userLogout.pending, () => {
         return { ...initialState, loading: true }
       })
@@ -72,7 +72,7 @@ export const userSlice = createSlice({
         return { ...initialState }
       })
 
-      // Get info
+      /** Информация о пользователя */
       .addCase(userGetInfo.pending, state => {
         return { ...state, loading: true }
       })
@@ -94,7 +94,7 @@ export const userSlice = createSlice({
         }
       })
 
-      // Register
+      /** Регистрация пользователя */
       .addCase(userRegister.pending, () => {
         return { ...initialState, loading: true }
       })

@@ -19,7 +19,7 @@ export const THEME = {
 
 export const API_URL = 'https://ya-praktikum.tech/api/v2'
 
-export const API = {
+export const API_AUTH = {
   USER_LOGIN: '/auth/signin',
   USER_REGISTER: '/auth/signup',
   USER_LOGOUT: '/auth/logout',
