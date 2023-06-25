@@ -1,24 +1,25 @@
+// User reducer
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import Api from '@api/auth-api'
+import ApiAuth from '@api/auth-api'
 import { User, UserLogin, UserRegister } from '@config/user-types'
 
 export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
-  return Api.userLogin(data).then(() => Api.userGetInfo())
+  return ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
 })
 
 export const userLogout = createAsyncThunk('user/logout', () => {
-  return Api.userLogout()
+  return ApiAuth.userLogout()
 })
 
 export const userRegister = createAsyncThunk(
   'user/register',
   (data: UserRegister) => {
-    return Api.userRegister(data).then(() => Api.userGetInfo())
+    return ApiAuth.userRegister(data).then(() => ApiAuth.userGetInfo())
   }
 )
 
 export const userGetInfo = createAsyncThunk('user/info', () => {
-  return Api.userGetInfo()
+  return ApiAuth.userGetInfo()
 })
 
 const initialState: {

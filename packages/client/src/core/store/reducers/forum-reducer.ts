@@ -1,10 +1,10 @@
-// Players reducer
+// Forum reducer
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {}
 
-export const playersSlice = createSlice({
-  name: 'players',
+export const forumSlice = createSlice({
+  name: 'forum',
   initialState,
   reducers: {},
   // eslint-disable-next-line
@@ -12,5 +12,5 @@ export const playersSlice = createSlice({
 })
 
 // eslint-disable-next-line
-export const {} = playersSlice.actions
-export default playersSlice.reducer
+export const {} = forumSlice.actions
+export default forumSlice.reducer
