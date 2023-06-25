@@ -1,9 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { THEME } from '@config/constants'
+import { Theme } from '@config/constants'
+
+type ThemeState = {
+  themeName: Theme
+}
 
 const initialState = {
-  themeName: THEME.PURPUR,
-}
+  themeName: Theme.Purple,
+} as ThemeState
 
 export const themeSlice = createSlice({
   name: 'theme',
@@ -12,7 +16,7 @@ export const themeSlice = createSlice({
     toggleTheme: state => {
       return {
         ...state,
-        themeName: state.themeName === THEME.PURPUR ? THEME.NEON : THEME.PURPUR,
+        themeName: state.themeName === Theme.Purple ? Theme.Neon : Theme.Purple,
       }
     },
   },

@@ -13,7 +13,7 @@
     font-size: 150px;
     font-family: New_Zelek;
     -webkit-text-stroke-width: 5px;
-    &.purpur {
+    &.purple {
       -webkit-text-stroke-color: #dcd0ea;
     }
     &.neon {
@@ -45,7 +45,7 @@
       font-family: New_Zelek;
       text-align: center;
       text-transform: uppercase;
-      &.purpur {
+      &.purple {
         background: rgba(187, 106, 234, 0.60);
         box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.60) inset, 0px 0px 2px 1px rgba(255, 255, 255, 0.50);
         &:hover {

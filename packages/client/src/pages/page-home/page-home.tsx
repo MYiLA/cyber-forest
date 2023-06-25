@@ -1,33 +1,36 @@
-import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { RootState } from '@store/store'
-import { PATH, THEME } from '@config/constants'
+import { PATH, Theme } from '@config/constants'
 import styles from './page-home.module.scss'
+import cn from 'classnames'
+import { useTheme } from '@hooks/use-theme'
 
 export const PageHome = () => {
-  const { themeName } = useSelector((store: RootState) => store.theme)
+  const { themeName } = useTheme()
 
   return (
     <div className={styles.container}>
       <h3
-        className={`${styles.header} ${
-          themeName === THEME.PURPUR ? styles.purpur : styles.neon
-        }`}>
+        className={cn(styles.header, {
+          [styles.purple]: themeName === Theme.Purple,
+          [styles.neon]: themeName === Theme.Neon,
+        })}>
         киберлес
       </h3>
       <div className={styles.buttons_wrapper}>
         <NavLink
           to={PATH.LOGIN}
-          className={`${styles.nav_link} ${
-            themeName === THEME.PURPUR ? styles.purpur : styles.neon
-          }`}>
+          className={cn(styles.nav_link, {
+            [styles.purple]: themeName === Theme.Purple,
+            [styles.neon]: themeName === Theme.Neon,
+          })}>
           Вход
         </NavLink>
         <NavLink
           to={PATH.REGISTER}
-          className={`${styles.nav_link} ${
-            themeName === THEME.PURPUR ? styles.purpur : styles.neon
-          }`}>
+          className={cn(styles.nav_link, {
+            [styles.purple]: themeName === Theme.Purple,
+            [styles.neon]: themeName === Theme.Neon,
+          })}>
           {' '}
           Регистрация{' '}
         </NavLink>
