@@ -8,11 +8,11 @@ import {
   useRef,
   useState,
 } from 'react'
-import s from './backdrop.module.scss'
+import s from './modal.module.scss'
 import cn from 'classnames'
 
-export type BackdropProps = {
-  onClick?: (e: MouseEvent<HTMLDivElement> | KeyboardEvent) => void
+export type ModalProps = {
+  onClose?: (e: MouseEvent<HTMLDivElement> | KeyboardEvent) => void
   children: ReactNode
   open: boolean
   slotProps?: {
@@ -27,15 +27,15 @@ const closeStyle = {
   visibility: 'hidden' as const,
 }
 
-export const Backdrop = (props: BackdropProps) => {
-  const { onClick, open, children, slotProps } = props
+export const Modal = (props: ModalProps) => {
+  const { onClose, open, children, slotProps } = props
   const rootProps = slotProps?.root
   const [isOpen, setIsOpen] = useState(open)
   const ref = useRef<null | HTMLDivElement>(null)
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
     if (ref.current !== e.target) return
     rootProps?.onClick?.(e)
-    onClick?.(e)
+    onClose?.(e)
   }
 
   const openModal = () => {
