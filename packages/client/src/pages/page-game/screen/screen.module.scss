@@ -1,0 +1,45 @@
+.screen_wrapper {
+  border: 1px solid #FFF;
+  width: 670px;
+  position: relative;
+
+  &.purple {
+    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+  }
+
+  &.neon {
+    background: linear-gradient(135deg, #71AEA0 0%, #45404E 51.04%, #192349 100%);
+  }
+}
+
+.border {
+  position: absolute;
+
+  &_lt {
+    top: 78px;
+    left: -11px;
+  }
+
+  &_lb {
+    bottom: -1px;
+    left: -1px;
+  }
+
+  &_rt {
+    top: -1px;
+    right: -1px;
+  }
+}
+
+.lobby_button {
+  border: 1px solid #FFF;
+
+  &.neon {
+    background: rgba(124, 240, 240, 0.50);
+  }
+
+  &.purple {
+    background: rgba(187, 106, 234, 0.65);
+  }
+
+}
