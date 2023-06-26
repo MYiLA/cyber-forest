@@ -34,29 +34,38 @@ export const useForm = (initialFields: Fields, validators: Validators = {}) => {
     setValidate(validators)
   }, [initialFields, validators])
 
-  const onFocus = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    if (value === '' && validate[name].error === null) {
+  const onFocus = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target
+      if (value === '' && validate[name].error === null) {
+        setValidate(prev => ({
+          ...prev,
+          [name]: { ...prev[name], error: '' },
+        }))
+      }
+    },
+    [validate, form]
+  )
+
+  const onBlur = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target
+      toValidate(name, value)
+    },
+    [form]
+  )
+
+  const toValidate = useCallback(
+    (name: string, value: string) => {
+      const error = validateField(name, value) as string | null
       setValidate(prev => ({
         ...prev,
-        [name]: { ...prev[name], error: '' },
+        [name]: { ...prev[name], error },
       }))
-    }
-  }, [])
-
-  const onBlur = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    toValidate(name, value)
-  }, [])
-
-  const toValidate = useCallback((name: string, value: string) => {
-    const error = validateField(name, value) as string | null
-    setValidate(prev => ({
-      ...prev,
-      [name]: { ...prev[name], error },
-    }))
-    return error
-  }, [])
+      return error
+    },
+    [form, validate]
+  )
 
   const validateField = useCallback(
     (field: string, value: string): string | null => {
@@ -82,7 +91,6 @@ export const useForm = (initialFields: Fields, validators: Validators = {}) => {
         const neededField = (validators[field].rule as string).split(
           ':'
         )[1] as string
-
         return value === form[neededField] ? null : validators[field].message
       }
 
@@ -101,15 +109,18 @@ export const useForm = (initialFields: Fields, validators: Validators = {}) => {
         return null
       }
     },
-    [validators]
+    [validators, form]
   )
 
-  const clearError = useCallback((name: string) => {
-    setValidate(prev => ({
-      ...prev,
-      [name]: { ...prev[name], error: '' },
-    }))
-  }, [])
+  const clearError = useCallback(
+    (name: string) => {
+      setValidate(prev => ({
+        ...prev,
+        [name]: { ...prev[name], error: '' },
+      }))
+    },
+    [form]
+  )
 
   const validateAllFields = useCallback((): boolean => {
     let result = true
