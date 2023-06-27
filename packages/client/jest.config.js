@@ -12,6 +12,7 @@ export default {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '^@api/(.*)$': '<rootDir>/src/core/api/$1',
     '^@config/(.*)$': '<rootDir>/src/core/config/$1',
+    '^@core/(.*)$': '<rootDir>/src/core/$1',
     '^@router/(.*)$': '<rootDir>/src/core/router/$1',
     '^@store/(.*)$': '<rootDir>/src/core/store/$1',
     '^@pages/(.*)$': '<rootDir>/src/pages/$1',

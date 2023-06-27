@@ -46,11 +46,11 @@ export const userSlice = createSlice({
   extraReducers: builder => {
     builder
       /** Логин пользователя */
-      .addCase(userLogin.pending, () => {
-        return { ...initialState, loading: true }
+      .addCase(userLogin.pending, state => {
+        return { ...state, loading: true }
       })
       .addCase(userLogin.rejected, (state, action) => {
-        return { ...initialState, error: action.error.message as string }
+        return { ...state, error: action.error.message as string }
       })
       .addCase(userLogin.fulfilled, (state, action) => {
         return {
@@ -95,8 +95,8 @@ export const userSlice = createSlice({
       })
 
       /** Регистрация пользователя */
-      .addCase(userRegister.pending, () => {
-        return { ...initialState, loading: true }
+      .addCase(userRegister.pending, state => {
+        return { ...state, loading: true }
       })
       .addCase(userRegister.rejected, (state, action) => {
         return { ...initialState, error: action.error.message as string }

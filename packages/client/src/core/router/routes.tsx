@@ -1,4 +1,4 @@
-import { FC, ReactNode, Fragment, useEffect } from 'react'
+import { FC, ReactNode, Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Navigate, useLocation } from 'react-router-dom'
 import {
@@ -12,8 +12,6 @@ import { PATH } from '@config/constants'
 import { RootState } from '@store/store'
 import { BlankLayout } from '@layouts/blank-layout/blank-layout'
 import { GameLayout } from '@layouts/game-layout/game-layout'
-import { useAuth } from '@hooks/use-auth'
-import { Loading } from '@ui/loading/loading'
 
 const routes = [
   {
@@ -65,17 +63,6 @@ const ProtectedRouteElement: FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation()
 
   const { authorized } = useSelector((store: RootState) => store.user)
-  const { checkAuth, authChecked } = useAuth()
-
-  useEffect(() => {
-    if (!authChecked && !authorized) {
-      checkAuth()
-    }
-  }, [authorized, authChecked, checkAuth])
-
-  if (!authChecked) {
-    return <Loading />
-  }
 
   if (authorized) {
     return <Fragment>{children}</Fragment>
