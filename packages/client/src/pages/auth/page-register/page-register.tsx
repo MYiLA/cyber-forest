@@ -1,5 +1,5 @@
-import { FormEvent } from 'react'
-import { NavLink } from 'react-router-dom'
+import { FormEvent, Fragment } from 'react'
+import { Navigate, NavLink } from 'react-router-dom'
 import { Validators, useForm } from '@hooks/use-form'
 import { useAuth } from '@hooks/use-auth'
 import { UserRegister } from '@config/user-types'
@@ -9,6 +9,8 @@ import { MainButton } from '@ui/main-button/main-button'
 import { PATH } from '@config/constants'
 
 import styles from './page-register.module.scss'
+import { useSelector } from 'react-redux'
+import { RootState } from '@store/store'
 
 const validators: Validators = {
   first_name: {
@@ -65,6 +67,9 @@ const initialForm = {
 }
 
 export const PageRegister = () => {
+  const getUserState = (store: RootState) => store.user
+  const { authorized } = useSelector(getUserState)
+
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators)
 
@@ -78,120 +83,126 @@ export const PageRegister = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <DialogWindow>
-        <div className={styles.inside}>
-          <h2>Регистрация</h2>
-          <form onSubmit={onSubmit} className="mt-5" noValidate>
-            <div className={styles.inputs_list}>
-              <MainInput
-                autoFocus
-                name="first_name"
-                placeholder="Имя"
-                value={form.first_name as string}
-                onChange={onChange}
-                className={styles.inputs}
-                error={validate.first_name.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-              <MainInput
-                name="second_name"
-                placeholder="Фамилия"
-                value={form.second_name as string}
-                onChange={onChange}
-                className={styles.inputs}
-                align="right"
-                error={validate.second_name.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-              <MainInput
-                name="phone"
-                placeholder="Телефон"
-                value={form.phone as string}
-                onChange={onChange}
-                className={styles.inputs}
-                error={validate.phone.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-              <MainInput
-                name="email"
-                type="email"
-                placeholder="Email"
-                value={form.email as string}
-                onChange={onChange}
-                className={styles.inputs}
-                align="right"
-                error={validate.email.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-              <MainInput
-                name="password"
-                type="password"
-                placeholder="Пароль"
-                value={form.password as string}
-                onChange={onChange}
-                className={styles.inputs}
-                error={validate.password.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-              <MainInput
-                name="password_confirm"
-                type="password"
-                placeholder="Повторите пароль"
-                value={form.password_confirm as string}
-                onChange={onChange}
-                className={styles.inputs}
-                align="right"
-                error={validate.password_confirm.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
-              <MainInput
-                name="login"
-                placeholder="Логин"
-                value={form.login as string}
-                onChange={onChange}
-                className={styles.inputs}
-                error={validate.login.error}
-                onFocus={onFocus}
-                onBlur={onBlur}
-              />
+    <Fragment>
+      {authorized ? (
+        <Navigate to={PATH.LOBBY} replace={true} />
+      ) : (
+        <div className={styles.container}>
+          <DialogWindow>
+            <div className={styles.inside}>
+              <h2>Регистрация</h2>
+              <form onSubmit={onSubmit} className="mt-5" noValidate>
+                <div className={styles.inputs_list}>
+                  <MainInput
+                    autoFocus
+                    name="first_name"
+                    placeholder="Имя"
+                    value={form.first_name as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    error={validate.first_name.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                  <MainInput
+                    name="second_name"
+                    placeholder="Фамилия"
+                    value={form.second_name as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    align="right"
+                    error={validate.second_name.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                  <MainInput
+                    name="phone"
+                    placeholder="Телефон"
+                    value={form.phone as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    error={validate.phone.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                  <MainInput
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    value={form.email as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    align="right"
+                    error={validate.email.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                  <MainInput
+                    name="password"
+                    type="password"
+                    placeholder="Пароль"
+                    value={form.password as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    error={validate.password.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                  <MainInput
+                    name="password_confirm"
+                    type="password"
+                    placeholder="Повторите пароль"
+                    value={form.password_confirm as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    align="right"
+                    error={validate.password_confirm.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                  <MainInput
+                    name="login"
+                    placeholder="Логин"
+                    value={form.login as string}
+                    onChange={onChange}
+                    className={styles.inputs}
+                    error={validate.login.error}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                </div>
+                <div className={styles.agreement}>
+                  <MainInput
+                    type="checkbox"
+                    name="agreement"
+                    checked={form.agreement as boolean}
+                    onChange={onChange}
+                  />
+                  <span>
+                    Я ознакомлен и согласен с условиями пользовательского
+                    соглашения.
+                  </span>
+                </div>
+                {validate.agreement.error && (
+                  <div className={styles.agreement_error}>
+                    {validate.agreement.error}
+                  </div>
+                )}
+                <div>
+                  <MainButton
+                    type="submit"
+                    extraClassName="ml-10 mr-10"
+                    className="mt-10 mb-1 mr-5">
+                    Регистрация
+                  </MainButton>
+                  <NavLink to={PATH.LOGIN}>Зарегистрированы?</NavLink>
+                </div>
+              </form>
+              {error && <div className={styles.error}>{error}</div>}
             </div>
-            <div className={styles.agreement}>
-              <MainInput
-                type="checkbox"
-                name="agreement"
-                checked={form.agreement as boolean}
-                onChange={onChange}
-              />
-              <span>
-                Я ознакомлен и согласен с условиями пользовательского
-                соглашения.
-              </span>
-            </div>
-            {validate.agreement.error && (
-              <div className={styles.agreement_error}>
-                {validate.agreement.error}
-              </div>
-            )}
-            <div>
-              <MainButton
-                type="submit"
-                extraClassName="ml-10 mr-10"
-                className="mt-10 mb-1 mr-5">
-                Регистрация
-              </MainButton>
-              <NavLink to={PATH.LOGIN}>Зарегистрированы?</NavLink>
-            </div>
-          </form>
-          {error && <div className={styles.error}>{error}</div>}
+          </DialogWindow>
         </div>
-      </DialogWindow>
-    </div>
+      )}
+    </Fragment>
   )
 }

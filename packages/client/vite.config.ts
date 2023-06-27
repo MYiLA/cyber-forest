@@ -16,6 +16,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@api': resolve(__dirname, './src/core/api/'),
+      '@core': resolve(__dirname, './src/core/'),
       '@config': resolve(__dirname, './src/core/config/'),
       '@router': resolve(__dirname, './src/core/router/'),
       '@store': resolve(__dirname, './src/core/store/'),

@@ -20,6 +20,7 @@
       "@/*": ["./src/*"],
       "@api/*": ["./src/core/api/*"],
       "@config/*": ["./src/core/config/*"],
+      "@core/*": ["./src/core/*"],
       "@router/*": ["./src/core/router/*"],
       "@store/*": ["./src/core/store/*"],
       "@pages/*": ["./src/pages/*"],

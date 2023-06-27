@@ -1,5 +1,5 @@
-import { FormEvent } from 'react'
-import { NavLink } from 'react-router-dom'
+import { FormEvent, Fragment } from 'react'
+import { Navigate, NavLink } from 'react-router-dom'
 import { Fields, Validators, useForm } from '@hooks/use-form'
 import { useAuth } from '@hooks/use-auth'
 import { UserLogin } from '@config/user-types'
@@ -8,6 +8,8 @@ import { MainInput } from '@ui/main-input/main-input'
 import { MainButton } from '@ui/main-button/main-button'
 import { PATH } from '@config/constants'
 import styles from './page-login.module.scss'
+import { useSelector } from 'react-redux'
+import { RootState } from '@store/store'
 
 const validators: Validators = {
   login: {
@@ -28,6 +30,9 @@ const initialForm: Fields = {
 }
 
 export const PageLogin = () => {
+  const getUserState = (store: RootState) => store.user
+  const { authorized } = useSelector(getUserState)
+
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators)
 
@@ -41,46 +46,52 @@ export const PageLogin = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <DialogWindow>
-        <div className={styles.inside}>
-          <h2>Вход в аккаунт</h2>
-          <form onSubmit={onSubmit} className="mt-5 w-100" noValidate>
-            <MainInput
-              autoFocus
-              name="login"
-              placeholder="Логин"
-              value={form.login as string}
-              onChange={onChange}
-              className={styles.inputs}
-              error={validate.login.error}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
-            <MainInput
-              name="password"
-              type="password"
-              placeholder="Пароль"
-              value={form.password as string}
-              onChange={onChange}
-              className={styles.inputs}
-              error={validate.password.error}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
-            <div className={styles.form_buttons}>
-              <MainButton
-                type="submit"
-                extraClassName="ml-10 mr-10"
-                className="mr-5">
-                Войти
-              </MainButton>
-              <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
+    <Fragment>
+      {authorized ? (
+        <Navigate to={PATH.LOBBY} replace={true} />
+      ) : (
+        <div className={styles.container}>
+          <DialogWindow>
+            <div className={styles.inside}>
+              <h2>Вход в аккаунт</h2>
+              <form onSubmit={onSubmit} className="mt-5 w-100" noValidate>
+                <MainInput
+                  autoFocus
+                  name="login"
+                  placeholder="Логин"
+                  value={form.login as string}
+                  onChange={onChange}
+                  className={styles.inputs}
+                  error={validate.login.error}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
+                <MainInput
+                  name="password"
+                  type="password"
+                  placeholder="Пароль"
+                  value={form.password as string}
+                  onChange={onChange}
+                  className={styles.inputs}
+                  error={validate.password.error}
+                  onFocus={onFocus}
+                  onBlur={onBlur}
+                />
+                <div className={styles.form_buttons}>
+                  <MainButton
+                    type="submit"
+                    extraClassName="ml-10 mr-10"
+                    className="mr-5">
+                    Войти
+                  </MainButton>
+                  <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
+                </div>
+              </form>
+              {error && <div className={styles.error}>{error}</div>}
             </div>
-          </form>
-          {error && <div className={styles.error}>{error}</div>}
+          </DialogWindow>
         </div>
-      </DialogWindow>
-    </div>
+      )}
+    </Fragment>
   )
 }

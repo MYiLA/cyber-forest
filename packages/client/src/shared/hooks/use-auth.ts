@@ -16,9 +16,8 @@ export const useAuth = () => {
   const dispatch = useDispatch<Dispatch>()
   const navigate = useNavigate()
 
-  const { loading, error, authorized, authChecked } = useSelector(
-    (store: RootState) => store.user
-  )
+  const getUserState = (store: RootState) => store.user
+  const { loading, error, authorized, authChecked } = useSelector(getUserState)
 
   useEffect(() => {
     return () => {
