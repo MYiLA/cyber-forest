@@ -62,7 +62,8 @@ const routes = [
 const ProtectedRouteElement: FC<{ children: ReactNode }> = ({ children }) => {
   const location = useLocation()
 
-  const { authorized } = useSelector((store: RootState) => store.user)
+  const getUserState = (store: RootState) => store.user
+  const { authorized } = useSelector(getUserState)
 
   if (authorized) {
     return <Fragment>{children}</Fragment>

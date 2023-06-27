@@ -5,7 +5,8 @@ import { useAuth } from '@hooks/use-auth'
 import { Loading } from '@ui/loading/loading'
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const { authorized } = useSelector((store: RootState) => store.user)
+  const getUserState = (store: RootState) => store.user
+  const { authorized } = useSelector(getUserState)
   const { checkAuth, authChecked } = useAuth()
 
   useEffect(() => {

@@ -30,7 +30,8 @@ const initialForm: Fields = {
 }
 
 export const PageLogin = () => {
-  const { authorized } = useSelector((store: RootState) => store.user)
+  const getUserState = (store: RootState) => store.user
+  const { authorized } = useSelector(getUserState)
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators)
