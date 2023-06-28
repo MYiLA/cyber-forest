@@ -13,7 +13,12 @@ class AuthApi {
     this._axios.interceptors.response.use(
       response => response,
       error => {
-        return Promise.reject(error.response.data.reason)
+        return Promise.reject(
+          (error.response &&
+            error.response.data &&
+            error.response.data.reason) ||
+            'Something wrong'
+        )
       }
     )
   }
