@@ -13,6 +13,21 @@ export default defineConfig({
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
   plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        app: './index.html',
+        'service-worker': './src/service-worker.ts',
+      },
+      output: {
+        entryFileNames: assetInfo => {
+          return assetInfo.name === 'service-worker'
+            ? '[name].js'
+            : 'assets/[name].[hash].js'
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@api': resolve(__dirname, './src/core/api/'),

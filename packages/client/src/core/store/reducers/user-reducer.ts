@@ -76,10 +76,9 @@ export const userSlice = createSlice({
       .addCase(userGetInfo.pending, state => {
         return { ...state, loading: true }
       })
-      .addCase(userGetInfo.rejected, (state, action) => {
+      .addCase(userGetInfo.rejected, () => {
         return {
           ...initialState,
-          error: action.error.message as string,
           authChecked: true,
         }
       })
