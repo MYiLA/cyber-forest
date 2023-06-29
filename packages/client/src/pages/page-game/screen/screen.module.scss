@@ -4,7 +4,7 @@
   position: relative;
 
   &.purple {
-    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+    background: $game-gradient;
   }
 
   &.neon {

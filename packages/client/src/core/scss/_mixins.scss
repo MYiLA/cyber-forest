@@ -1,0 +1,52 @@
+@mixin content-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+@mixin background-img-position {
+  pointer-events: none;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@mixin glow-for-smile {
+  border: solid 1px #FFFFFF;
+  box-shadow: 0 0 6px -1px #FFFFFF;
+}
+
+@mixin glow-for-big {
+  border: 1px solid #FFFFFF;
+  box-shadow: 0 0 15px -3px #FFFFFF;
+}
+
+@mixin angle-top-left {
+  @include background-img-position;
+
+  content: '';
+  width: 120px;
+  height: 60px;
+  top: -1px;
+  left: -1px;
+  background-image: url(../../src/assets/images/game/stock-wrap/angle-top-left.svg);
+}
+
+@mixin angle-bottom-right {
+  @include background-img-position;
+
+  content: '';
+  width: 105px;
+  height: 40px;
+  bottom: 0;
+  right: -1px;
+  background-image: url(../../src/assets/images/game/stock-wrap/angle-bottom-right.svg);
+}

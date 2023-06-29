@@ -27,19 +27,21 @@ export const MainInput: FC<TInputProps> = ({
   const DecorImage = useCallback(() => {
     return (
       <>
-        {align === 'left' ? (
+        {align === 'left' && (
           <img
             className={styles.bottom_right}
             src={inputUnderlineR}
             alt="стилизация input справа"
           />
-        ) : (
+        )}
+        {align === 'right' && (
           <img
             className={styles.bottom_left}
             src={inputUnderlineL}
             alt="стилизация input слева"
           />
         )}
+        {align === 'none' && <></>}
       </>
     )
   }, [align])

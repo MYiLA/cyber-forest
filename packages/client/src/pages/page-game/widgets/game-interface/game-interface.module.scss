@@ -1,0 +1,52 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.interface {
+  max-width: 1330px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info {
+  width: 400px;
+  margin-right: 26px;
+  flex-shrink: 0;
+}
+
+.progress {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.glories {
+  width: 150px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.interactive_wrap {
+  flex-grow: 1;
+}
+
+.stock_wrap {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid $color-white;
+  margin-bottom: 12px;
+  box-shadow: 0 0 15px -3px $color-white;
+  background: $game-gradient;
+
+  &::before {
+    @include angle-top-left;
+  }
+
+  &::after {
+    @include angle-bottom-right;
+  }
+}

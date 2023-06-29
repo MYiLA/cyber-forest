@@ -48,6 +48,11 @@ const routes = [
     layout: 'blank',
   },
   {
+    path: PATH.GAME,
+    element: <PageGame />,
+    layout: 'blank',
+  },
+  {
     path: PATH.ERROR,
     element: <PageError />,
     layout: 'blank',

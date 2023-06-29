@@ -1,6 +1,4 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
-import buttonLb from '@images/button-lb.svg'
-import buttonRt from '@images/button-rt.svg'
 import styles from './main-button.module.scss'
 import classNames from 'classnames'
 
@@ -18,8 +16,6 @@ export const MainButton: FC<TButtonProps> = ({
 }) => {
   return (
     <div className={classNames(styles.container, className)}>
-      <img className={styles.lb} src={buttonLb} />
-      <img className={styles.rt} src={buttonRt} />
       <button className={extraClassName} {...rest}>
         {children}
       </button>

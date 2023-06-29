@@ -1,26 +1,39 @@
+@import "@scss/_mixins.scss";
 @import "@scss/_variables.scss";
 
 .container {
-	border: 1px solid $color-white;
-	position: relative;
-	display: inline-block;
-	.lb {
-		position: absolute;
-		bottom: -1px;
-		left: -1px;
-	}
-	.rt {
-		position: absolute;
-		top: -1px;
-		right: -1px;
-	}
+  border: 1px solid $color-white;
+  position: relative;
+  display: inline-block;
 
-	button {
-		padding: 5px 10px;
-		background: none;
-		border: none;
-		cursor: pointer;
-		font-family: 'New Zelek', Times, serif;
-		color: $color-white;
-	}
+  button {
+    padding: 5px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: $font-accent;
+    color: $color-white;
+  }
+
+  &::before, &::after {
+    content: '';
+    width: 39px;
+    height: 7px;
+  }
+
+  &::before {
+    @include background-img-position;
+
+    bottom: -1px;
+    left: -1px;
+    background-image: url(./src/assets/images/button-lb.svg);
+  }
+
+  &::after {
+    @include background-img-position;
+
+    top: -1px;
+    right: -1px;
+    background-image: url(./src/assets/images/button-rt.svg);
+  }
 }
