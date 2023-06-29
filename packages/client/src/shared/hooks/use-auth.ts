@@ -12,6 +12,7 @@ import {
 } from '@store/reducers/user-reducer'
 import { UserLogin, UserRegister } from '@config/user-types'
 
+/** Хук для авторизации/логина/регистрации */
 export const useAuth = () => {
   const dispatch = useDispatch<Dispatch>()
   const navigate = useNavigate()
