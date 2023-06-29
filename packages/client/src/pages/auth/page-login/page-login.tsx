@@ -1,7 +1,6 @@
 import { FormEvent, Fragment } from 'react'
 import { Navigate, NavLink } from 'react-router-dom'
 import { Fields, Validators, useForm } from '@hooks/use-form'
-import { useAuth } from '@hooks/use-auth'
 import { UserLogin } from '@config/user-types'
 import { DialogWindow } from '@ui/dialog-window/dialog-window'
 import { MainInput } from '@ui/main-input/main-input'
@@ -10,6 +9,7 @@ import { PATH } from '@config/constants'
 import styles from './page-login.module.scss'
 import { useSelector } from 'react-redux'
 import { RootState } from '@store/store'
+import { useAuth } from '@hooks/use-auth'
 
 const validators: Validators = {
   login: {
