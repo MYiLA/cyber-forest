@@ -23,5 +23,6 @@ export default {
     '^@utils/(.*)$': '<rootDir>/src/shared/utils/$1',
     '^@scss/(.*)$': '<rootDir>/src/core/scss/$1',
     '^@images/(.*)$': '<rootDir>/src/assets/images/$1',
+    '^@fonts/(.*)$': '<rootDir>/src/assets/fonts/$1',
   },
 }

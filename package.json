@@ -28,7 +28,8 @@
     "@types/uuid": "^9.0.2",
     "eslint": "^8.43.0",
     "lerna": "^5.4.3",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "vite-plugin-static-copy": "^0.16.0"
   },
   "packageManager": "yarn@3.6.0"
 }

@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dotenv from 'dotenv'
 import { resolve } from 'node:path'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 dotenv.config()
 
 // https://vitejs.dev/config/
@@ -12,7 +13,17 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
-  plugins: [react()],
+  plugins: [
+    react(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: resolve(__dirname, './src/assets'),
+          dest: '',
+        },
+      ],
+    }),
+  ],
   build: {
     rollupOptions: {
       input: {
@@ -43,6 +54,7 @@ export default defineConfig({
       '@utils': resolve(__dirname, './src/shared/utils/'),
       '@scss': resolve(__dirname, './src/core/scss/'),
       '@images': resolve(__dirname, './src/assets/images/'),
+      '@fonts': resolve(__dirname, './src/assets/fonts/'),
     },
   },
 })

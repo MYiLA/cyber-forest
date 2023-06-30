@@ -17,7 +17,7 @@
     height: 274px;
     bottom: -10px;
     left: -7px;
-    background-image: url(./src/assets/images/game/chronicle/angle-bottom-left.svg);
+    background-image: url(@images/game/chronicle/angle-bottom-left.svg);
   }
 
   &::after {
@@ -28,7 +28,7 @@
     height: 90px;
     top: -1px;
     right: -1px;
-    background-image: url(./src/assets/images/game/chronicle/angle-top-right.svg);
+    background-image: url(@images/game/chronicle/angle-top-right.svg);
   }
 }
 

@@ -2,6 +2,6 @@ import { Player } from '../../type'
 
 export type ChronicleMessage = {
   id: number
-  player: Player
+  player: Partial<Player>
   desc: string
 }

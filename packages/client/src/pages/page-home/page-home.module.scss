@@ -66,14 +66,14 @@
         margin-right: 80px;
       }
       &:before {
-        content: url("../../assets/images/button-link-big-lb.svg");
+        content: url(@images/button-link-big-lb.svg);
         display: block;
         position: absolute;
         bottom: -9px;
         left: 0;
       }
       &:after {
-        content: url("../../assets/images/button-link-big-rt.svg");
+        content: url(@images/button-link-big-rt.svg);
         display: block;
         position: absolute;
         top: -15px;
