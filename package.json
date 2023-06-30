@@ -2,9 +2,8 @@
   "name": "client-server-template-with-vite",
   "private": true,
   "scripts": {
+    "start": "lerna run start --scope=server",
     "bootstrap": "yarn && node init.js && lerna clean && yarn && lerna bootstrap",
-    "sw:watch": "tsc -w --outDir ./packages/client/dist ./packages/client/src/service-worker.ts ",
-    "serve:client": "lerna run preview --scope=client",
     "build:client": "lerna run build --scope=client",
     "build:server": "lerna run build --scope=server",
     "build": "lerna run build",
@@ -14,7 +13,8 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
-    "preview": "lerna run preview"
+    "preview": "lerna run preview",
+    "preview:client": "lerna run preview --scope=client"
   },
   "license": "MIT",
   "workspaces": [
@@ -28,8 +28,7 @@
     "@types/uuid": "^9.0.2",
     "eslint": "^8.43.0",
     "lerna": "^5.4.3",
-    "prettier": "^2.8.8",
-    "vite-plugin-static-copy": "^0.16.0"
+    "prettier": "^2.8.8"
   },
   "packageManager": "yarn@3.6.0"
 }
