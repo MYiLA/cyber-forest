@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import dotenv from 'dotenv'
 import { resolve } from 'node:path'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 dotenv.config()
 
 // https://vitejs.dev/config/
@@ -13,27 +12,17 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
-  plugins: [
-    react(),
-    viteStaticCopy({
-      targets: [
-        {
-          src: resolve(__dirname, './src/assets'),
-          dest: '',
-        },
-      ],
-    }),
-  ],
+  plugins: [react()],
   build: {
     rollupOptions: {
       input: {
-        app: './index.html',
+        app: './index-ssr.html',
         'service-worker': './src/service-worker.ts',
       },
       output: {
         entryFileNames: assetInfo => {
           return assetInfo.name === 'service-worker'
-            ? '[name].js'
+            ? 'assets/[name].js'
             : 'assets/[name].[hash].js'
         },
       },
