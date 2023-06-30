@@ -30,7 +30,7 @@
 	.images_purple_404 {
 		height: 615px;
 		width: 757px;
-		background-image: url("../../assets/images/errors/animal-purple-404.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-purple-404.svg");
+		background-image: url(@images/errors/animal-purple-404.png),  url(@images/errors/cyberforest.png), url(@images/errors/circle-purple-404.svg);
 		background-position: 100px 170px, bottom, top center;
 		background-repeat: no-repeat, no-repeat, no-repeat;
 		h2 {
@@ -48,7 +48,7 @@
 	.images_purple_500 {
 		height: 615px;
 		width: 757px;
-		background-image: url("../../assets/images/errors/animal-purple-500.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-purple-500.svg");
+		background-image: url(@images/errors/animal-purple-500.png),  url(@images/errors/cyberforest.png), url(@images/errors/circle-purple-500.svg);
 		background-position: 140px 170px, bottom, top center;
 		background-repeat: no-repeat, no-repeat, no-repeat;
 		h2 {
@@ -60,7 +60,7 @@
 	.images_neon_404 {
 		height: 615px;
 		width: 757px;
-		background-image: url("../../assets/images/errors/animal-neon-404.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-neon-404.svg");
+		background-image: url(@images/errors/animal-neon-404.png),  url(@images/errors/cyberforest.png), url(@images/errors/circle-neon-404.svg);
 		background-position: 100px 160px, bottom, top center;
 		background-repeat: no-repeat, no-repeat, no-repeat;
 		h2 {
@@ -79,7 +79,7 @@
 	.images_neon_500 {
 		height: 615px;
 		width: 757px;
-		background-image: url("../../assets/images/errors/animal-neon-500.png"),  url("../../assets/images/errors/cyberforest.png"), url("../../assets/images/errors/circle-neon-500.svg");
+		background-image: url(@images/errors/animal-neon-500.png),  url(@images/errors/cyberforest.png), url(@images/errors/circle-neon-500.svg);
 		background-position: 110px 160px, bottom, top center;
 		background-repeat: no-repeat, no-repeat, no-repeat;
 		h2 {

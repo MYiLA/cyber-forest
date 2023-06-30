@@ -26,7 +26,7 @@
 
     bottom: -1px;
     left: -1px;
-    background-image: url(./src/assets/images/button-lb.svg);
+    background-image: url(@images/button-lb.svg);
   }
 
   &::after {
@@ -34,6 +34,6 @@
 
     top: -1px;
     right: -1px;
-    background-image: url(./src/assets/images/button-rt.svg);
+    background-image: url(@images/button-rt.svg);
   }
 }

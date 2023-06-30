@@ -89,13 +89,13 @@
 .btn_smile {
   right: 31px;
   background-size: 20px;
-  background-image: url(./src/assets/images/game/chat/smile.svg);
+  background-image: url(@images/game/chat/smile.svg);
 }
 
 .btn_send {
   right: 0;
   background-size: 12px;
-  background-image: url(./src/assets/images/game/chat/send.svg);
+  background-image: url(@images/game/chat/send.svg);
 }
 
 .btn_smile button, .btn_send button { 

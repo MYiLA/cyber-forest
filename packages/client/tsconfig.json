@@ -29,7 +29,8 @@
       "@ui/*": ["./src/shared/ui/*"],
       "@utils/*": ["./src/shared/utils/*"],
       "@scss/*": ["./src/core/scss/*"],
-      "@images/*": ["./src/assets/images/*"]
+      "@images/*": ["./src/assets/images/*"],
+      "@fonts/*": ["./src/assets/fonts/*"]
     }
   },
   "include": ["src"],

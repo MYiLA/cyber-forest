@@ -3,12 +3,12 @@
 
 @font-face {
   font-family: 'New Zelek';
-  src: url(./assets/fonts/New-Zelek.ttf);
+  src: url(@fonts/New-Zelek.ttf);
 }
 
 @font-face {
   font-family: 'Blender Pro';
-  src: url(./assets/fonts/BlenderPro-Medium.ttf);
+  src: url(@fonts/BlenderPro-Medium.ttf);
 }
 
 body {
@@ -75,12 +75,12 @@ a:hover {
 
 .container-neon {
   height: 100%;
-  background-image: url(./assets/images/bg-neon.jpg);
+  background-image: url(@images/bg-neon.jpg);
 }
 
 .container-purple {
   height: 100vh;
-  background-image: url(./assets/images/bg-purple.jpg);
+  background-image: url(@images/bg-purple.jpg);
 }
 
 .body-neon {

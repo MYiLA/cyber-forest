@@ -13,8 +13,8 @@ export const Message: React.FC<MessageProps> = ({ message }) => {
       <div className={styles.glory_wrap}>
         <GloryCounter
           key={`${player.type}-${player?.id}`}
-          gloryCount={player.gloryCount}
-          playerType={player.type}
+          gloryCount={player.gloryCount!}
+          playerType={player.type!}
         />
       </div>
       <p className={styles.desc}>{desc}</p>

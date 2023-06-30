@@ -45,4 +45,6 @@ export type Player = {
   [AreaType.Rest]: Dice[]
   /** Порядковый номер текущего хода. Так же это общее количество сделанных ходов за всю игру этим игроком*/
   movesCount: number
+  /** */
+  isActive: boolean
 }

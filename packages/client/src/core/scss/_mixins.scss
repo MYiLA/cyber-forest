@@ -37,7 +37,7 @@
   height: 60px;
   top: -1px;
   left: -1px;
-  background-image: url(../../src/assets/images/game/stock-wrap/angle-top-left.svg);
+  background-image: url(@images/game/stock-wrap/angle-top-left.svg);
 }
 
 @mixin angle-bottom-right {
@@ -48,5 +48,5 @@
   height: 40px;
   bottom: 0;
   right: -1px;
-  background-image: url(../../src/assets/images/game/stock-wrap/angle-bottom-right.svg);
+  background-image: url(@images/game/stock-wrap/angle-bottom-right.svg);
 }
