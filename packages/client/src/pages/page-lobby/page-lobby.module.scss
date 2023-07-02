@@ -1,0 +1,275 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 20px;
+
+  .window {
+    width: 74vw;
+    height: 55vh;
+
+    padding: 18px 30px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    &.purpur {
+      border: 1px solid #FFF;
+      background: linear-gradient(135deg, rgba(253, 0, 0, 0.05) 0%, rgba(183, 68, 68, 0.05) 51.04%, rgba(255, 255, 255, 0.05) 100%);
+      box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.50);
+    }
+    &.neon {
+      border: 1px solid #FFF;
+      background: linear-gradient(135deg, rgba(253, 0, 0, 0.05) 0%, rgba(183, 68, 68, 0.05) 51.04%, rgba(255, 255, 255, 0.05) 100%);
+      box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.50);
+    }
+    &:before {
+      content: url("../../assets/images/window-rt-large.svg");
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      pointer-events: none;
+    }
+    &:after {
+      content: url("../../assets/images/window-bl-large.svg");
+      display: block;
+      position: absolute;
+      bottom: -13px;
+      left: 2px;
+    }
+    &_header {
+      margin-bottom: 27px;
+    }
+    &_wrapper {
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 80%;
+      padding-right: 20px;
+    }
+  }
+  .forum {
+    width: 74vw;
+    height: 39vh;
+
+    margin-top: 23px;
+    padding: 45px 53px;
+
+    position: relative;
+
+    &.purpur {
+      border: 1px solid #FFF;
+      background: linear-gradient(135deg, rgba(253, 0, 0, 0.05) 0%, rgba(183, 68, 68, 0.05) 51.04%, rgba(255, 255, 255, 0.05) 100%);
+      box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.50);
+    }
+    &.neon {
+      border: 1px solid #FFF;
+      background: linear-gradient(135deg, rgba(253, 0, 0, 0.05) 0%, rgba(183, 68, 68, 0.05) 51.04%, rgba(255, 255, 255, 0.05) 100%);
+      box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.50);
+    }
+    &:before {
+      content: url("../../assets/images/window-lt-big.svg");
+      position: absolute;
+      top: -1px;
+      left: -1px;
+    }
+    &:after {
+      content: url("../../assets/images/window-rb-big.svg");
+      position: absolute;
+      right: -1px;
+      bottom: -5px;
+    }
+    &_search {
+      position: absolute;
+      top: 13px;
+      right: 63px;
+
+      width: 210px;
+      height: 25px;
+
+      border: 1px solid #FFF;
+
+      padding: 2px 7px;
+
+      color: #FFFFFF;
+      &.purpur {
+        background: rgba(187, 106, 234, 0.20);
+      }
+      &.neon {
+        background: #3FB7EA33;
+      }
+      &::placeholder {
+        color: #FFFFFF;
+        font-size: 14px;
+        font-family: Blender Pro;
+        font-weight: 500;
+        line-height: 14px;
+      }
+    }
+    &_input_wrapper {
+      position: absolute;
+      bottom: 17px;
+      width: 91%;
+      display: flex;
+      flex-direction: row;
+    }
+    &_input {
+      width: 100%;
+      height: 25px;
+
+      padding-left: 15px;
+
+      color: #FFFFFF;
+      font-weight: 500;
+      line-height: 14px;
+      font-size: 16px;
+
+      &::placeholder {
+        color: #FFF;
+        font-size: 16px;
+        font-family: Blender Pro;
+        font-weight: 500;
+        line-height: 14px;
+      }
+      &.purpur {
+        background: rgba(187, 106, 234, 0.20);
+      }
+      &.neon {
+        background: rgba(63, 183, 234, 0.20);
+      }
+      &_submit {
+        width: 176px;
+        height: 25px;
+
+        position: absolute;
+        right: 0;
+
+        color: #FFF;
+        font-size: 16px;
+        font-family: Blender Pro;
+        font-weight: 500;
+        line-height: 14px;
+        &_purpur {
+          background: rgba(187, 106, 234, 0.20);
+          border: none;
+          cursor: pointer;
+          &:hover {
+            box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.50);
+          }
+          &:disabled {
+            background: rgba(47, 28, 58, 0.2);
+            cursor: default;
+            &:hover {
+              box-shadow: none;
+            }
+          }
+        }
+        &_neon {
+          background: rgba(63, 183, 234, 0.40);
+          border: none;
+          cursor: pointer;
+          &:hover {
+            box-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.50);
+          }
+          &:disabled {
+            background: rgba(63, 183, 234, 0.20);
+            cursor: default;
+            &:hover {
+              box-shadow: none;
+            }
+          }
+        }
+      }
+    }
+  }
+  .user {
+    width: 350px;
+    height: 100vh;
+
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    display: flex;
+    flex-direction: column;
+    //justify-content: center;
+    align-items: center;
+    &_row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &_purpur {
+      background: #321642;
+    }
+    &_neon {
+      background: #1E3E45;
+      border: 1px solid #FFF;
+    }
+    &:before {
+      content: url("../../assets/images/window-vertical.svg");
+      display: block;
+      position: absolute;
+      bottom: 100px;
+      left: -4px;
+    }
+    &:after {
+      content: url("../../assets/images/window-lt-mini.svg");
+      display: block;
+      position: absolute;
+      top: -3px;
+      left: 0;
+    }
+    &_avatar {
+      margin-top: 35px;
+      width: 177px;
+      height: 177px;
+      border-radius: 100%;
+      border: 3px solid #FFF;
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+    }
+    &_flex {
+      display: flex;
+      flex-direction: row;
+    }
+    &_name {
+      margin-top: 24px;
+      margin-bottom: 24px;
+      color: #FFF;
+      text-align: center;
+      font-size: 20px;
+      font-family: New_Zelek;
+      text-transform: uppercase;
+      cursor: default;
+    }
+    &_settings {
+      margin-top: 0;
+      margin-left: 14px;
+      cursor: pointer;
+      display: block;
+    }
+    &_link {
+      margin-bottom: 0;
+      text-align: center;
+
+      font-family: New_Zelek;
+      color: #FFFFFF;
+      text-align: center;
+      font-size: 20px;
+      text-transform: uppercase;
+      cursor: pointer;
+      &.purpur {
+        &:hover {
+          color: #E2B0FF;
+        }
+      }
+      &.neon {
+        &:hover {
+          color: #7CF0F0;
+        }
+      }
+
+    }
+  }
+}

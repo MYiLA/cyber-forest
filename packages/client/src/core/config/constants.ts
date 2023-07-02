@@ -5,7 +5,7 @@ export const PATH = {
   FORGOT_PASS: '/forgot-password',
   RESET_PASS: '/reset-password',
   LOBBY: '/lobby',
-  TABLE: '/lobby/table',
+  TOPIC: '/lobby/topic/*',
   USER: '/user-data',
   HELP: '/lobby/help',
   ERROR: '/error',

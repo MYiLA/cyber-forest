@@ -1,0 +1,78 @@
+.forum {
+  position: relative;
+  &_wrapper {
+    width: 100%;
+    height: 115px;
+    cursor: default;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 8px 34px;
+
+    &.purpur {
+      background: rgba(187, 106, 234, 0.20);
+      &:hover {
+        background: rgba(187, 106, 234, 0.40);
+      }
+    }
+    &.neon {
+      background: rgba(63, 183, 234, 0.20);
+      &:hover {
+        background: rgba(63, 183, 234, 0.40);
+      ;
+      }
+    }
+  }
+  &_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      color: #FFF;
+      font-size: 14px;
+      font-family: New_Zelek;
+      text-transform: uppercase;
+    }
+    .date {
+      color: rgba(255, 255, 255, 0.80);
+      font-size: 15px;
+      font-family: Blender Pro;
+      font-weight: 500;
+    }
+  }
+  &_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    margin-top: 15px;
+    .image {
+      width: 40px;
+      height: 40px;
+      border: 1px solid #fff;
+      border-radius: 100%;
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+
+      margin-right: 12px;
+    }
+    .message {
+      font-size: 15px;
+      font-weight: 500;
+    }
+  }
+  &_open {
+    display: inline;
+    border: none;
+    background: transparent;
+    color: #fff;
+    text-align: right;
+    right: 32px;
+    bottom: 18px;
+
+    cursor: pointer;
+  }
+}
