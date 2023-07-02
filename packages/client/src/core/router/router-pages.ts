@@ -29,3 +29,9 @@ export const PageError = lazy(() =>
     default: module.PageError,
   }))
 )
+
+export const PageLobby = lazy(() =>
+  import('../../pages/page-lobby/page-lobby').then(module => ({
+    default: module.PageLobby,
+  }))
+)
