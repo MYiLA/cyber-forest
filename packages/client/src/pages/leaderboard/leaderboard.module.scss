@@ -1,0 +1,33 @@
+@import "@scss/variables";
+
+.leader_board {
+  padding-top: 65px;
+  position: relative;
+}
+
+.main_link {
+  color: #D285FF;
+  text-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.25);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-family: $font-accent;
+  text-transform: uppercase;
+  position: absolute;
+  left: 48px;
+  top: 65px;
+}
+
+.title {
+  color: #FFF;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 136%;
+  text-align: center;
+}
+
+.title_wrapper {
+  margin-bottom: 21px;
+}

@@ -11,6 +11,7 @@ export const PATH = {
   ERROR: '/error',
   ABOUT: '/about',
   GAME: '/game',
+  LEADER_BOARD: '/leader-board',
 }
 
 export enum Theme {
