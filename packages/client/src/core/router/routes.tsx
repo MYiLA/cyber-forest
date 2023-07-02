@@ -12,6 +12,7 @@ import { PATH } from '@config/constants'
 import { RootState } from '@store/store'
 import { BlankLayout } from '@layouts/blank-layout/blank-layout'
 import { GameLayout } from '@layouts/game-layout/game-layout'
+import { PageLeaderboard } from '@pages/leaderboard'
 
 const routes = [
   {
@@ -56,6 +57,12 @@ const routes = [
     path: PATH.ERROR,
     element: <PageError />,
     layout: 'blank',
+  },
+  {
+    path: PATH.LEADER_BOARD,
+    element: <PageLeaderboard />,
+    layout: 'blank',
+    protected: true,
   },
   {
     path: '*',
