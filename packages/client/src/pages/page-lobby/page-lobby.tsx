@@ -12,7 +12,7 @@ import { Rating } from '@pages/page-lobby/components/rating/rating'
 import { BattleSetting } from '@pages/page-lobby/components/battle-settings/battle-settings'
 import { ActiveTopicModal } from '@pages/page-lobby/components/active-forum-topic/active-forum-topic'
 import { forum_mock_topics, tables_mock } from '@pages/page-lobby/mocks'
-import classNames from 'classnames'
+import cn from 'classnames'
 import { IChatData } from '@pages/page-lobby/types'
 
 export const PageLobby = () => {
@@ -39,7 +39,7 @@ export const PageLobby = () => {
   return (
     <div className={styles.container}>
       <section
-        className={classNames(
+        className={cn(
           styles.window,
           themeName === Theme.Purple ? styles.purpur : styles.neon
         )}>
@@ -51,7 +51,7 @@ export const PageLobby = () => {
         </div>
       </section>
       <section
-        className={classNames(
+        className={cn(
           styles.forum,
           themeName === Theme.Purple ? styles.purpur : styles.neon
         )}>
@@ -61,7 +61,7 @@ export const PageLobby = () => {
             setSearchString(event.target.value)
           }
           placeholder={'Поиск по названию'}
-          className={classNames(
+          className={cn(
             styles.forum_search,
             themeName === Theme.Purple ? styles.purpur : styles.neon
           )}
@@ -71,7 +71,7 @@ export const PageLobby = () => {
         })}
         <div className={styles.forum_input_wrapper}>
           <input
-            className={classNames(
+            className={cn(
               styles.forum_input,
               themeName === Theme.Purple ? styles.purpur : styles.neon
             )}
@@ -87,7 +87,7 @@ export const PageLobby = () => {
             onClick={() => {
               console.log('topic added')
             }}
-            className={classNames(
+            className={cn(
               styles.forum_input_submit,
               themeName === Theme.Purple
                 ? styles.forum_input_submit_purpur
@@ -98,7 +98,7 @@ export const PageLobby = () => {
         </div>
       </section>
       <section
-        className={classNames(
+        className={cn(
           styles.user,
           themeName === Theme.Purple ? styles.user_purpur : styles.user_neon
         )}>
@@ -120,14 +120,14 @@ export const PageLobby = () => {
           </a>
         </div>
         <a
-          className={classNames(
+          className={cn(
             styles.user_link,
             themeName === Theme.Purple ? styles.purpur : styles.neon
           )}>
           как играть?
         </a>
         <a
-          className={classNames(
+          className={cn(
             styles.user_link,
             themeName === Theme.Purple ? styles.purpur : styles.neon
           )}>

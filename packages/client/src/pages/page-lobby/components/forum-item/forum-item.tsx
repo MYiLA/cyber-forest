@@ -4,7 +4,7 @@ import styles from './forum-item.module.scss'
 import { useTheme } from '@hooks/use-theme'
 import { dateFormatter } from '@utils/date-formatter'
 import { IChatData } from '@pages/page-lobby/types'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 export const ForumItem: React.FC<IChatData> = ({
   id,
@@ -23,7 +23,7 @@ export const ForumItem: React.FC<IChatData> = ({
 
   return (
     <div
-      className={classNames(styles.forum_wrapper, {
+      className={cn(styles.forum_wrapper, {
         [styles.purpur]: themeName === Theme.Purple,
         [styles.neon]: themeName !== Theme.Purple,
       })}>

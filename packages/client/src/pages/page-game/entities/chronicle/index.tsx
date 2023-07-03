@@ -1,13 +1,8 @@
-import { Player } from '../../type'
 import styles from './chronicle.module.scss'
 import { Message } from './components/message'
 import { MESSAGES } from './mock'
 
-type ChronicleProps = {
-  players: Player[]
-}
-
-export const Chronicle: React.FC<ChronicleProps> = () => {
+export const Chronicle = () => {
   return (
     <div className={styles.chronicle}>
       <ul className={styles.messages_list}>

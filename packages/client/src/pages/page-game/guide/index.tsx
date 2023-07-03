@@ -3,7 +3,7 @@ import { Modal } from '@ui/modal'
 import { FC, useState } from 'react'
 import { GuideProvider } from './context'
 import { Guides } from './guides'
-import s from './guide.module.scss'
+import styles from './guide.module.scss'
 
 type Props = {
   OpenComponent?: FC<{ onClick: () => void }>
@@ -21,7 +21,7 @@ export const Guide = ({ OpenComponent }: Props) => {
   const component = OpenComponent ? (
     <OpenComponent onClick={handleOpen} />
   ) : (
-    <button className={s.how_to_play_button} onClick={handleOpen}>
+    <button className={styles.how_to_play_button} onClick={handleOpen}>
       Как играть?
     </button>
   )

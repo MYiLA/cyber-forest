@@ -15,11 +15,11 @@ type GameInterfaceProp = {
   onChoosingCube?: (side: DiceSide, id: string) => void
 }
 
-export const GameInterface: React.FC<GameInterfaceProp> = ({
+export const GameInterface = ({
   players = [],
   currentPlayer,
   onChoosingCube,
-}) => {
+}: GameInterfaceProp) => {
   return (
     <div className={styles.interface}>
       <div className={styles.info}>
@@ -36,7 +36,7 @@ export const GameInterface: React.FC<GameInterfaceProp> = ({
           </ul>
           <TimeCounter />
         </div>
-        <Chronicle players={players} />
+        <Chronicle />
       </div>
 
       <div className={styles.interactive_wrap}>

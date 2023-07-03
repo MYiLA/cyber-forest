@@ -11,7 +11,7 @@ import { Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 import { TopicSubcomment } from '@pages/page-lobby/components/active-forum-topic/components/topic-subcomment/topic-subcomment'
 import { ITopicCommentComment } from '@pages/page-lobby/types'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 export const TopicComment: React.FC<ITopicComment> = ({
   comment_id,
@@ -84,7 +84,7 @@ export const TopicComment: React.FC<ITopicComment> = ({
               </button>
             </div>
             <input
-              className={classNames(styles.comment_response, {
+              className={cn(styles.comment_response, {
                 [styles.comment_response_purple]: themeName === Theme.Purple,
                 [styles.comment_response_neon]: themeName !== Theme.Purple,
               })}
@@ -95,7 +95,7 @@ export const TopicComment: React.FC<ITopicComment> = ({
               }}
             />
             <button
-              className={classNames(styles.comment_send, {
+              className={cn(styles.comment_send, {
                 [styles.comment_send_purple]: themeName === Theme.Purple,
                 [styles.comment_send_neon]: themeName !== Theme.Purple,
               })}

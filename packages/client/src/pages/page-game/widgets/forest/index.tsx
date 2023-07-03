@@ -1,81 +1,60 @@
 import styles from './forest.module.scss'
+import { useEffect, useRef, useState } from 'react'
+import cn from 'classnames'
+import { BigCard } from '@shared/ui/big-card'
+import { DICES_LIB } from '../../constants'
+import { DiceType } from '../game/constants'
+import { Dice } from '../../type'
+import { createForest } from '../../utils/create-forest'
+import { CardComponent } from '@shared/ui/card'
 
-import { MainButton } from '../../../../shared/ui/main-button/main-button'
+export const Forest = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [currentCard, setCurrentCard] = useState<Dice | undefined>(
+    DICES_LIB[DiceType.Cat]
+  )
+  const [dices, setDices] = useState<Dice[]>()
+  const ref = useRef<null | HTMLDivElement>(null)
+  const wrapClasses = cn(isOpen ? styles.open : '', styles.forest_wrap)
 
-export const Forest: React.FC = () => {
+  useEffect(() => {
+    if (!dices) {
+      // Генерируем карточки, если их нет ещё на поле игры
+      setDices(createForest())
+    }
+  }, [])
+
   return (
-    <div className={styles.forest_wrap}>
-      <button className={styles.forest_switch_btn} type="button">
-        Киберлес
-      </button>
-      <div className={styles.forest}>
-        <div className="forest_big_card big_card">
-          <div className="big_card_img_wrap">
-            <div className="big_card_energy_wrap">
-              <span className="big_card_energy">1</span>
-            </div>
-            <div className="big_card_glory_wrap">
-              <span className="big_card_glory">1</span>
-            </div>
-            <img className="big_card_img" src="" alt="Кот" />
-          </div>
-          <div className="big_card_info_wrap">
-            <div className="big_card_title_wrap">
-              <span className="big_card_title">Кот</span>
-              <MainButton
-                type="button"
-                extraClassName="ml-10 mr-10"
-                className="control_btn mt-10 mb-1 mr-5">
-                Готово
-              </MainButton>
-            </div>
-            <div className="big_card_desc_wrap">
-              <p className="big_card_desc"></p>
-              <p className="big_card_desc strong"></p>
-            </div>
-            <div className="big_card_dices_wrap">
-              <ul className="big_card_dices_list">
-                <li className="big_card_dice dice_energy">1</li>
-                <li className="big_card_dice dice_energy">1</li>
-                <li className="big_card_dice dice_energy">1</li>
-                <li className="big_card_dice dice_symbol">?</li>
-                <li className="big_card_dice dice_warrior">
-                  <div className="dice_info_wrap">
-                    <div className="dice_info_top">
-                      <span className="dice_level">1</span>
-                      <span className="dice_attack">1</span>
-                    </div>
-                    <div className="dice_info_bottom">
-                      <span className="dice_strong">*</span>
-                      <span className="dice_defense">1</span>
-                    </div>
-                  </div>
-                  <div className="dice_img_wrap">
-                    <img className="dice_img" src="" alt="Кот" />
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
+    <>
+      <div className={wrapClasses} ref={ref}>
+        <button
+          className={styles.forest_switch_btn}
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}>
+          Киберлес
+        </button>
+        <div className={styles.forest}>
+          <ul className={styles.cards_list}>
+            <li className={styles.big_card}>
+              {currentCard && <BigCard dice={currentCard} />}
+            </li>
+            {dices?.map(dice => (
+              <li key={dice.id} className={styles.card}>
+                <CardComponent
+                  energy={dice.cost}
+                  glory={dice.glory}
+                  img={dice.img}
+                  title={dice.title}
+                  onClick={() => setCurrentCard(dice)}
+                />
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="forest_cards">
-          <li className="forest_card card">
-            <div className="card_wrap">
-              <div className="card_img_wrap">
-                <img className="card_img" src="" alt="Кот" />
-              </div>
-              <div className="card_info_wrap">
-                <span className="card_title">Кот</span>
-                <span className="card_count">5</span>
-              </div>
-              <div className="card_info_wrap">
-                <span className="card_energy">1</span>
-                <span className="card_glory">1</span>
-              </div>
-            </div>
-          </li>
-        </ul>
       </div>
-    </div>
+      <div
+        className={styles.invisible_wrap}
+        onClick={() => setIsOpen(false)}></div>
+    </>
   )
 }
