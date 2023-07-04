@@ -2,7 +2,7 @@
   "compilerOptions": {
     "composite": true,
     "target": "ES2020",
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "sourceMap": true,
@@ -10,22 +10,19 @@
     "declarationMap": true,
     "removeComments": true,
     "strict": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": false,
-    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["ES2020", "esnext.asynciterable"],
     "types": ["node", "jest"],
     "baseUrl": ".",
-
     "paths": {
       "*": ["types/*"]
     },
-    "outDir": "dist",
-    "jsx":"react-jsx"
+    "outDir": "dist"
   }
 }

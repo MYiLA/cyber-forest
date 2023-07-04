@@ -1,11 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node ./dist/index.js",
-    "build":"vite build --ssr src/render.tsx --outDir dist && tsc --p ./tsconfig.prod.json",
+    "build": "tsc --p ./tsconfig.prod.json",
     "preview": "node ./dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.ts",
     "lint": "eslint .",

@@ -29,7 +29,7 @@ const initialForm: Fields = {
   password: '',
 }
 
-export const PageLogin = () => {
+const PageLogin = () => {
   const getUserState = (store: RootState) => store.user
   const { authorized } = useSelector(getUserState)
 
@@ -95,3 +95,5 @@ export const PageLogin = () => {
     </Fragment>
   )
 }
+
+export default PageLogin

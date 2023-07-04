@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { RootState } from '@store/store'
-import scrollbarNeon from '@scss/_scrollbar-neon.scss'
-import scrollbarPurple from '@scss/_scrollbar-purple.scss'
+import scrollbarNeon from '@scss/_scrollbar-neon.scss?inline'
+import scrollbarPurple from '@scss/_scrollbar-purple.scss?inline'
 import { Theme } from '@config/constants'
 
 const getTheme = (store: RootState) => store.theme
@@ -20,12 +20,15 @@ const scrollbars = {
 
 export const useTheme = () => {
   const themeSelector = useSelector(getTheme, themeIsEqual)
-  const style =
-    document.getElementById('main-scrollbar') || document.createElement('style')
-  if (!style.id) {
-    style.id = 'main-scrollbar'
-    document.head.appendChild(style)
+  if (typeof document !== 'undefined') {
+    const style =
+      document.getElementById('main-scrollbar') ||
+      document.createElement('style')
+    if (!style.id) {
+      style.id = 'main-scrollbar'
+      document.head.appendChild(style)
+    }
+    style.textContent = scrollbars[themeSelector.themeName]
   }
-  style.textContent = scrollbars[themeSelector.themeName]
   return themeSelector
 }

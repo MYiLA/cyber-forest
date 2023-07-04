@@ -4,7 +4,7 @@ import styles from './page-home.module.scss'
 import cn from 'classnames'
 import { useTheme } from '@hooks/use-theme'
 
-export const PageHome = () => {
+const PageHome = () => {
   const { themeName } = useTheme()
 
   return (
@@ -42,3 +42,5 @@ export const PageHome = () => {
     </div>
   )
 }
+
+export default PageHome

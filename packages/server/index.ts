@@ -1,37 +1,20 @@
-import fs from 'node:fs/promises'
+import dotenv from 'dotenv'
+import cors from 'cors'
+dotenv.config()
+
 import express from 'express'
-import path from 'path'
-import { fileURLToPath } from 'url'
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
-const PORT = process.env.PORT || 3001
-
-const clientDir = path.join(__dirname, '..', '..', 'client', 'dist')
-
-const templateDemo = await fs.readFile(`${clientDir}/index-ssr.html`, 'utf-8')
-const templateMain = await fs.readFile(`${clientDir}/index.html`, 'utf-8')
+// import { createClientAndConnect } from './db'
 
 const app = express()
+app.use(cors())
+const port = Number(process.env.SERVER_PORT) || 3001
 
-app.use('/assets', express.static(path.join(clientDir, 'assets')))
-app.get('/', async (_, res) => {
-  try {
-    // @ts-ignore
-    const render = (await import('./render.js')).render
-    const rendered = await render()
-    const html = templateDemo.replace(`<!--app-html-->`, rendered.html ?? '')
+// createClientAndConnect()
 
-    res.send(html)
-  } catch (e: unknown) {
-    res.status(500).end((e as Error).stack)
-  }
+app.get('/', (_, res) => {
+  res.json('👋 Howdy from the server :)')
 })
 
-app.get('*', (_, res) => {
-  res.send(templateMain)
-})
-
-app.listen(PORT, () => {
-  console.log(`Server started at http://localhost:${PORT}`)
+app.listen(port, () => {
+  console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
 })
