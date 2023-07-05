@@ -11,6 +11,7 @@ import { Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 import { TopicSubcomment } from '@pages/page-lobby/components/active-forum-topic/components/topic-subcomment/topic-subcomment'
 import { ITopicCommentComment } from '@pages/page-lobby/types'
+import classNames from 'classnames'
 
 export const TopicComment: React.FC<ITopicComment> = ({
   comment_id,
@@ -23,6 +24,34 @@ export const TopicComment: React.FC<ITopicComment> = ({
 }) => {
   const [comment, setComment] = useState<string | undefined>(undefined)
   const { themeName } = useTheme()
+
+  const getIcon = () => {
+    if (themeName === Theme.Purple) {
+      if (liked) {
+        return likePurple
+      } else {
+        return likeUnactivePurple
+      }
+    } else {
+      if (liked) {
+        return likeNeon
+      } else {
+        return likeUnactiveNeon
+      }
+    }
+  }
+
+  const getInputClasses = () => {
+    const input = document.querySelectorAll(`input.${styles.comment_response}`)[
+      comment_id
+    ]
+    if (comment) {
+      console.log('comment added')
+      input?.classList.remove(styles.active)
+    } else {
+      input?.classList.add(styles.active)
+    }
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -47,15 +76,7 @@ export const TopicComment: React.FC<ITopicComment> = ({
                 }}
                 className={styles.comment_like_btn}>
                 <img
-                  src={
-                    themeName === Theme.Purple
-                      ? liked
-                        ? likePurple
-                        : likeUnactivePurple
-                      : liked
-                      ? likeNeon
-                      : likeUnactiveNeon
-                  }
+                  src={getIcon()}
                   alt={'иконка "лайк"'}
                   className={styles.comment_like}
                 />
@@ -63,11 +84,12 @@ export const TopicComment: React.FC<ITopicComment> = ({
               </button>
             </div>
             <input
-              className={`${styles.comment_response} ${
+              className={classNames(
+                styles.comment_response,
                 themeName === Theme.Purple
                   ? styles.comment_response_purple
                   : styles.comment_response_neon
-              }`}
+              )}
               placeholder={'введите сообщение'}
               name={comment_id.toString()}
               onBlur={(event: BaseSyntheticEvent) => {
@@ -75,22 +97,13 @@ export const TopicComment: React.FC<ITopicComment> = ({
               }}
             />
             <button
-              className={`${styles.comment_send} ${
+              className={classNames(
+                styles.comment_send,
                 themeName === Theme.Purple
                   ? styles.comment_send_purple
                   : styles.comment_send_neon
-              }`}
-              onClick={() => {
-                const input = document.querySelectorAll(
-                  `input.${styles.comment_response}`
-                )[comment_id]
-                if (comment) {
-                  console.log('comment added')
-                  input?.classList.remove(styles.active)
-                } else {
-                  input?.classList.add(styles.active)
-                }
-              }}>
+              )}
+              onClick={getInputClasses}>
               ответить
             </button>
           </div>

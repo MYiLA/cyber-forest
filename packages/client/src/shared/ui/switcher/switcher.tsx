@@ -17,14 +17,7 @@ export const Switcher = ({ labels, onClick }: switcherProps): ReactElement => {
   const { themeName } = useTheme()
 
   useEffect(() => {
-    switch (active) {
-      case true:
-        setActiveLabel(labels[1])
-        break
-      case false:
-        setActiveLabel(labels[0])
-        break
-    }
+    active ? setActiveLabel(labels[1]) : setActiveLabel(labels[0])
   }, [active])
 
   useEffect(() => {

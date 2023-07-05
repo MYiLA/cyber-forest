@@ -16,12 +16,15 @@
   margin-top: 17px;
 
   z-index: 0;
+
   &.purpur {
     background: #BB6AEA33;
   }
+
   &.neon {
     background: #3FB7EA33;
   }
+
   &_title {
     width: 327px;
 
@@ -30,6 +33,7 @@
     font-family: New_Zelek;
     text-transform: uppercase;
   }
+
   &_users {
     display: flex;
     flex-direction: row;
@@ -52,6 +56,7 @@
       box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
     }
   }
+
   &_password {
     color: #FFFFFF;
     cursor: pointer;
@@ -59,6 +64,7 @@
       color: #FFFFFF;
     }
   }
+
   &_sign {
     width: 114.4px;
     height: 32.175px;
@@ -72,20 +78,24 @@
     text-transform: uppercase;
 
     position: relative;
+
     &.purple {
       border: 1px solid #FFF;
       background: rgba(187, 106, 234, 0.65);
     }
+
     &.neon {
       border: 1px solid #FFF;
       background: #3FB7EA65;
     }
+
     &::before {
       content: url("../../../../assets/images/button-lb.svg");
       position: absolute;
       left: 0;
       bottom: -5px;
     }
+
     &::after {
       content: url("../../../../assets/images/button-rt.svg");
       position: absolute;
@@ -93,5 +103,4 @@
       right: 0;
     }
   }
-
 }
