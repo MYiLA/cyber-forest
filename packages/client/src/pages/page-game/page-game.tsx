@@ -14,7 +14,7 @@ import { getInitialGameState } from './widgets/game/utils/get-initial-game-state
 import { useEffect, useState } from 'react'
 import { Dice, Player } from './type'
 
-export const PageGame: React.FC = () => {
+export const PageGame = () => {
   const [gameState, setGameState] = useState<GameState>(getInitialGameState({}))
   const [currentPlayer, setCurrentPlayer] = useState<Player>(
     gameState[PlayerType.Red]

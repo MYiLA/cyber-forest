@@ -1,0 +1,43 @@
+.guide_wrapper {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 975px;
+  transition: all .4s linear;
+  height: 100vh;
+  overflow: hidden;
+  border: 1px solid #FFF;
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.50);
+
+  &.purple {
+    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+  }
+
+  &.neon {
+    background: linear-gradient(135deg, #71AEA0 0%, #45404E 51.04%, #192349 100%);
+  }
+}
+
+.corner {
+  position: absolute;
+  &.top_right {
+    top: -1px;
+    right: -1px;
+  }
+  &.bottom_right {
+    bottom: 5px;
+    right: 0;
+  }
+  &.bottom_left {
+    left: -1px;
+    bottom: -1px;
+  }
+}
+
+.navigation {
+  position: absolute;
+  top: 284px;
+  left: -285px;
+  transform: rotateZ(-90deg);
+  z-index: 1;
+}
