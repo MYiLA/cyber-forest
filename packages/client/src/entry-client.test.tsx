@@ -1,6 +1,6 @@
-import App from './app'
 import { render } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
+import { MainButton } from '@ui/main-button/main-button'
 
 const appContent = '/'
 
@@ -10,7 +10,7 @@ const appContent = '/'
 
 test('Example test', async () => {
   await act(() => {
-    render(<App />)
+    render(<MainButton />)
   })
 
   expect(window.location.pathname).toEqual(appContent)

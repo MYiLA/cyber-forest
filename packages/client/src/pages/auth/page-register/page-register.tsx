@@ -66,7 +66,7 @@ const initialForm = {
   agreement: false,
 }
 
-export const PageRegister = () => {
+const PageRegister = () => {
   const getUserState = (store: RootState) => store.user
   const { authorized } = useSelector(getUserState)
 
@@ -206,3 +206,5 @@ export const PageRegister = () => {
     </Fragment>
   )
 }
+
+export default PageRegister

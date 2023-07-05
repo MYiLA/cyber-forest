@@ -1,6 +1,6 @@
 export function register() {
   window.addEventListener('load', () => {
-    const swUrl = './assets/service-worker.js'
+    const swUrl = './service-worker.js'
     navigator.serviceWorker
       .register(swUrl)
       .catch(() => console.log('Ошибка активации ServiceWorker'))

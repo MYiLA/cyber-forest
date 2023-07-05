@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx"
   },
-  "include": ["vite.config.ts"]
+  "include": [
+    "vite.config.ts",
+    "src/vite-env.d.ts",
+    "server.ts",
+    "service-worker.ts"
+  ],
 }

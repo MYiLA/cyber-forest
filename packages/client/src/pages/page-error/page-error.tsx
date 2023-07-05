@@ -9,7 +9,7 @@ const errorMessages: Record<string, string> = {
   500: 'Что-то пошло не так...',
 }
 
-export const PageError = () => {
+const PageError = () => {
   const { themeName } = useTheme()
   const location = useLocation()
 
@@ -31,3 +31,5 @@ export const PageError = () => {
     </div>
   )
 }
+
+export default PageError
