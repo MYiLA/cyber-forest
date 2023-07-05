@@ -1,24 +1,9 @@
-import { User } from '../../../../core/config/user-types'
 import { Theme } from '../../../../core/config/constants'
 import emptyChat from '../../../../assets/images/chat-avatar.png'
 import styles from './forum-item.module.scss'
 import { useTheme } from '@hooks/use-theme'
 import { dateFormatter } from '@utils/date-formatter'
-
-export interface IChatData {
-  id: number
-  title: string
-  avatar: string | null
-  unread_count: number
-  last_message: ILastMessage | undefined
-  onClick?: (id: number) => void
-}
-
-export interface ILastMessage {
-  user: User
-  time: string
-  content: string
-}
+import { IChatData } from '@pages/page-lobby/types'
 
 export const ForumItem: React.FC<IChatData> = ({
   id,
@@ -27,14 +12,19 @@ export const ForumItem: React.FC<IChatData> = ({
   onClick,
 }) => {
   const { themeName } = useTheme()
+  const userAvatar = last_message?.user.avatar
+    ? 'https://ya-praktikum.tech/api/v2/resources' + last_message.user.avatar
+    : emptyChat
+
+  const handleBtnClick = () => {
+    onClick ? onClick(id) : null
+  }
 
   return (
     <div
       className={`${styles.forum_wrapper} ${
         themeName === Theme.Purple ? styles.purpur : styles.neon
-      }`}
-      // style={{height: last_message? last_message.content.length * 3 : 50}}
-    >
+      }`}>
       <div className={styles.forum_header}>
         <h3 className={styles.title}>{title}</h3>
         {last_message ? (
@@ -46,12 +36,7 @@ export const ForumItem: React.FC<IChatData> = ({
       {last_message ? (
         <div className={styles.forum_body}>
           <img
-            src={
-              last_message.user.avatar
-                ? 'https://ya-praktikum.tech/api/v2/resources' +
-                  last_message.user.avatar
-                : emptyChat
-            }
+            src={userAvatar}
             alt={'аватар пользователя'}
             className={styles.image}
           />
@@ -65,11 +50,7 @@ export const ForumItem: React.FC<IChatData> = ({
           </span>
         </div>
       )}
-      <button
-        className={styles.forum_open}
-        onClick={() => {
-          onClick ? onClick(id) : null
-        }}>
+      <button className={styles.forum_open} onClick={handleBtnClick}>
         Просмотр темы
       </button>
     </div>

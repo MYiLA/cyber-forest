@@ -8,6 +8,8 @@ import { MainButton } from '@ui/main-button/main-button'
 import authApi from '@api/auth-api'
 import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'
+import classNames from 'classnames'
+import { validators } from '@pages/page-lobby/validators'
 
 const initialForm = {
   type: 'online',
@@ -17,29 +19,12 @@ const initialForm = {
   table_password: '',
 }
 
-const validators = {
-  players_count: {
-    required: true,
-    rule: /^[1234]{1}$/,
-    message: 'может играть до 4 человек',
-  },
-  type: {
-    required: true,
-    rule: /^(online|offline)$/,
-    message: '',
-  },
-  table_name: {
-    required: true,
-    rule: /^[a-zA-Z0-9]{1,20}$/,
-    message: '1-20 символов, буквы и цифры',
-  },
-}
-
 export const BattleSetting = () => {
   const { form, onChange, validate, onFocus, onBlur } = useForm(
     initialForm,
     validators
   )
+
   const { themeName } = useTheme()
 
   const onSubmit = (e: FormEvent) => {
@@ -55,9 +40,10 @@ export const BattleSetting = () => {
   return (
     <div className={styles.battle}>
       <h3
-        className={`${styles.battle_header} ${
+        className={classNames(
+          styles.battle_header,
           themeName === Theme.Purple ? styles.purpur : styles.neon
-        }`}>
+        )}>
         настройка битвы
       </h3>
       <form className={styles.form_wrapper}>

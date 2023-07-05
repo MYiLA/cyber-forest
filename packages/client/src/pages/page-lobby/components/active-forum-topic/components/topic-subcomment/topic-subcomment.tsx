@@ -9,14 +9,14 @@ export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
   time,
   content,
 }) => {
+  const UserAvatar = user?.avatar
+    ? 'https://ya-praktikum.tech/api/v2/resources' + user.avatar
+    : avatar
+
   return (
     <div className={styles.subcomment_wrapper}>
       <img
-        src={
-          user?.avatar
-            ? 'https://ya-praktikum.tech/api/v2/resources' + user.avatar
-            : avatar
-        }
+        src={UserAvatar}
         className={styles.subcomment_avatar}
         alt={'аватар пользователя'}
       />

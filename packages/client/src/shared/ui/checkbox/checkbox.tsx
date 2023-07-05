@@ -34,9 +34,7 @@ export const Checkbox = ({
         name={name}
         className={`${styles.input}`}
         defaultChecked={value}
-        onChange={(event: ChangeEvent<HTMLInputElement>) => {
-          onClick(event)
-        }}
+        onChange={onClick}
       />
     </div>
   )

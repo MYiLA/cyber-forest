@@ -1,4 +1,19 @@
-import { IUserData } from '@config/types'
+import { User } from '@config/user-types'
+
+export interface IChatData {
+  id: number
+  title: string
+  avatar: string | null
+  unread_count: number
+  last_message: ILastMessage | undefined
+  onClick?: (id: number) => void
+}
+
+export interface ILastMessage {
+  user: User
+  time: string
+  content: string
+}
 
 export interface IActiveForumTopicMessages {
   chat_id: number
@@ -31,19 +46,15 @@ export interface ITopicComment {
   content: string
   time: string
   type: string
-  user_data: IUserData
+  user_data: User
   likes: number
   liked: boolean
   comments?: ITopicCommentComment[]
 }
-// interface IUserData {
-// 	id: string,
-// 	avatar?: string,
-// 	displayName: string
-// }
+
 export interface ITopicCommentComment {
   time: string
   type: string
-  user: IUserData
+  user: User
   content: string
 }

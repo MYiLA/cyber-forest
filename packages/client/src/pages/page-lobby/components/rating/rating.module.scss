@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   &_title {
     display: block;
     margin: 0 auto;
@@ -11,13 +12,16 @@
     font-size: 20px;
     font-family: New_Zelek;
     text-transform: uppercase;
+
     &.purpur {
       color: #E2B0FF;
     }
+
     &.neon {
       color: #7CF0F0;
     }
   }
+
   &_place {
     margin-top: 8px;
     color: #FFF;
@@ -27,6 +31,7 @@
     font-weight: 500;
     text-transform: uppercase;
   }
+
   &_glory {
     margin-top: 3px;
     display: flex;

@@ -1,4 +1,5 @@
 .comment {
+
   &_wrapper {
     width: 100%;
     margin-top: 24px;
@@ -7,6 +8,7 @@
     justify-content: start;
     gap: 12px;
   }
+
   &_avatar {
     width: 45px;
     height: 45px;
@@ -14,11 +16,13 @@
     border: 1px solid #FFF;
     box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
   }
+
   &_body {
     display: flex;
     flex-direction: column;
     align-items: start;
   }
+
   &_header {
     display: flex;
     flex-direction: row;
@@ -26,6 +30,7 @@
     align-items: center;
     gap: 8px;
   }
+
   &_response {
     display: none;
     width: 500px;
@@ -48,13 +53,16 @@
     &_neon {
       background: #3FB7EA30;
     }
+
     &_purple {
       background: #BB6AEA33;
     }
+
     &.active {
       display: block;
     }
   }
+
   &_like_btn {
     display: flex;
     flex-direction: row;
@@ -71,6 +79,7 @@
     border: none;
     cursor: pointer;
   }
+
   &_send {
     width: 69px;
     height: 26px;
@@ -88,18 +97,23 @@
     &_purple {
       background: rgba(187, 106, 234, 0.20);
     }
+
     &_neon {
       background: rgba(63, 183, 234, 0.40);
     }
+
     &:hover {
       box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.50);
     }
   }
+
   &_comments {
     margin-left: 60px;
   }
 }
+
 .flex {
+
   &_row {
     margin-top: 10px;
     display: flex;
