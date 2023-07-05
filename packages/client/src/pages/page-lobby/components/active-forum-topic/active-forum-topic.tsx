@@ -4,7 +4,7 @@ import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'
 import { TopicComment } from '@pages/page-lobby/components/active-forum-topic/components/topic-comment/topic-comment'
 import { IActiveForumTopicProps, ITopicComment } from '@pages/page-lobby/types'
-import close from '../../../../assets/images/close.svg'
+import close from '@images/close.svg'
 import { topicData } from '@pages/page-lobby/mocks'
 
 export const ActiveTopicModal: React.FC<IActiveForumTopicProps> = ({

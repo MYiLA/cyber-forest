@@ -1,5 +1,3 @@
-// import { useSelector } from 'react-redux'
-// import store, { RootState } from '@store/store'\
 import styles from './rating.module.scss'
 import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'

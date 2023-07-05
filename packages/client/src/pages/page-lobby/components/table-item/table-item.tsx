@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
-import { User } from '../../../../core/config/user-types'
+import { User } from '@config/user-types'
 import userM from '../../../../assets/images/user-m.png'
 import styles from './table-item.module.scss'
 import { NavLink } from 'react-router-dom'
-import { PATH, Theme } from '../../../../core/config/constants'
+import { PATH, Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 import classNames from 'classnames'
 

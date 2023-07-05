@@ -1,5 +1,5 @@
-import { Theme } from '../../../../core/config/constants'
-import emptyChat from '../../../../assets/images/chat-avatar.png'
+import { Theme } from '@config/constants'
+import emptyChat from '@images/chat-avatar.png'
 import styles from './forum-item.module.scss'
 import { useTheme } from '@hooks/use-theme'
 import { dateFormatter } from '@utils/date-formatter'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { ITopicCommentComment } from '@pages/page-lobby/types'
 import styles from './topic-subcomment.module.scss'
-import avatar from '../../../../../../assets/images/chat-avatar.png'
+import avatar from '@images/chat-avatar.png'
 import { dateFormatter } from '@utils/date-formatter'
 
 export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
