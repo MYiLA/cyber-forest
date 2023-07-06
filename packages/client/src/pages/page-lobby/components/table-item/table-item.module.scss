@@ -1,0 +1,106 @@
+.table {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 45px;
+
+  position: relative;
+
+  width: 100%;
+  height: 44px;
+
+  padding: 0 17px;
+
+  margin-right: 20px;
+  margin-top: 17px;
+
+  z-index: 0;
+
+  &.purpur {
+    background: #BB6AEA33;
+  }
+
+  &.neon {
+    background: #3FB7EA33;
+  }
+
+  &_title {
+    width: 327px;
+
+    color: #FFF;
+    font-size: 14px;
+    font-family: New_Zelek;
+    text-transform: uppercase;
+  }
+
+  &_users {
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    left: 40%;
+
+    width: 177px;
+    height: 100%;
+
+    &_img {
+      width: 40px;
+      height: 40px;
+
+      margin-top: 2px;
+      margin-right: 5px;
+
+      border-radius: 50%;
+      border: 3px solid #FFF;
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+    }
+  }
+
+  &_password {
+    color: #FFFFFF;
+    cursor: pointer;
+    &::placeholder {
+      color: #FFFFFF;
+    }
+  }
+
+  &_sign {
+    width: 114.4px;
+    height: 32.175px;
+
+    padding-top: 7px;
+
+    color: #FFF;
+    text-align: center;
+    font-size: 14px;
+    font-family: New_Zelek;
+    text-transform: uppercase;
+
+    position: relative;
+
+    &.purple {
+      border: 1px solid #FFF;
+      background: rgba(187, 106, 234, 0.65);
+    }
+
+    &.neon {
+      border: 1px solid #FFF;
+      background: #3FB7EA65;
+    }
+
+    &::before {
+      content: url("../../../../assets/images/button-lb.svg");
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+    }
+
+    &::after {
+      content: url("../../../../assets/images/button-rt.svg");
+      position: absolute;
+      top: -5px;
+      right: 0;
+    }
+  }
+}

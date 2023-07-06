@@ -26,3 +26,9 @@ export const PageGame = await mainLazy(
 export const PageError = await mainLazy(
   () => import('@pages/page-error/page-error')
 )
+
+export const PageLobby = lazy(() =>
+  import('../../pages/page-lobby/page-lobby').then(module => ({
+    default: module.PageLobby,
+  }))
+)

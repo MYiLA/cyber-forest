@@ -5,6 +5,7 @@ import {
   PageError,
   PageGame,
   PageHome,
+  PageLobby,
   PageLogin,
   PageRegister,
 } from '@router/router-pages'
@@ -22,7 +23,7 @@ const routes = [
   },
   {
     path: PATH.LOBBY,
-    element: <PageGame />,
+    element: <PageLobby />,
     layout: 'game',
     protected: true,
   },
@@ -33,7 +34,7 @@ const routes = [
     protected: true,
   },
   {
-    path: PATH.TABLE,
+    path: PATH.TOPIC,
     element: <></>,
     layout: 'blank',
     protected: true,

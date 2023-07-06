@@ -30,5 +30,9 @@
     "lerna": "^5.4.3",
     "prettier": "^2.8.8"
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0",
+  "dependencies": {
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "classnames": "^2.3.2"
+  }
 }

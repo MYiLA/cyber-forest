@@ -1,0 +1,101 @@
+.wrapper {
+  position: relative;
+  margin: 0 auto;
+
+  .switch {
+    position: absolute;
+    top: 1px;
+    right: 120px;
+    display: inline-block;
+    width: 22px;
+    height: 11px;
+    bottom: 14px;
+  }
+
+  &_label {
+    width: 250px;
+    padding-left: 0px;
+    padding-bottom: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 14px;
+    font-family: New_Zelek;
+    line-height: 16px;
+
+    .unactive {
+
+      &_purpur {
+        color: #E2B0FF65;
+      }
+
+      &_neon {
+        color: #7CF0F065;
+      }
+    }
+
+    .active {
+      text-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.50);
+
+      &_purpur {
+        color: #E2B0FF;
+      }
+
+      &_neon {
+        color: #7CF0F0;
+      }
+    }
+  }
+
+  input {
+    display: none;
+
+    &:checked + .slider:before {
+      -webkit-transform: translateX(9px);
+      -ms-transform: translateX(9px);
+      transform: translateX(9px);
+    }
+  }
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 40px;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: none;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 9px;
+    border-radius: 40px;
+    border: 1px solid #FFFFFF;
+    left: 1px;
+    bottom: 1px;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+
+  &_purpur {
+    background-color: #BB6AEA66;
+
+    &:before {
+      background-color: #BB6AEA;
+    }
+  }
+
+  &_neon {
+    background-color: #7CF0F066;
+
+    &:before {
+      background-color: #7CF0F0;
+    }
+  }
+}

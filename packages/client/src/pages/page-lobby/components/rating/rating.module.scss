@@ -1,0 +1,50 @@
+.rating {
+  margin-top: 40px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  &_title {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+    font-family: New_Zelek;
+    text-transform: uppercase;
+
+    &.purpur {
+      color: #E2B0FF;
+    }
+
+    &.neon {
+      color: #7CF0F0;
+    }
+  }
+
+  &_place {
+    margin-top: 8px;
+    color: #FFF;
+    text-align: center;
+    font-size: 20px;
+    font-family: Blender Pro;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  &_glory {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    color: rgba(255, 255, 255, 0.50);
+    text-align: center;
+    font-size: 20px;
+    font-family: Blender Pro;
+    font-weight: 500;
+    text-transform: uppercase;
+
+    padding: 0 2px;
+  }
+}
