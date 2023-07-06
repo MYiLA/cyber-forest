@@ -1,12 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import svgr from 'vite-plugin-svgr'
-import dotenv from 'dotenv'
 import { resolve } from 'node:path'
+import dotenv from 'dotenv'
 dotenv.config()
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  esbuild: {
+    supported: {
+      'top-level-await': true,
+    },
+  },
   server: {
     port: Number(process.env.CLIENT_PORT) || 3000,
   },
@@ -15,17 +20,25 @@ export default defineConfig({
   },
   plugins: [react(), svgr()],
   build: {
+    minify: true,
     rollupOptions: {
       input: {
-        demo: './index-ssr.html',
         app: './index.html',
-        'service-worker': './src/service-worker.ts',
+        'service-worker': './service-worker.ts',
+        'entry-server': './src/entry-server.tsx',
       },
       output: {
         entryFileNames: assetInfo => {
-          return assetInfo.name === 'service-worker'
-            ? 'assets/[name].js'
-            : 'assets/[name].[hash].js'
+          switch (assetInfo.name) {
+            case 'service-worker':
+              return '[name].js'
+              break
+            case 'entry-server':
+              return '[name].js'
+              break
+            default:
+              return 'assets/[name].[hash].js'
+          }
         },
       },
     },

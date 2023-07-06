@@ -14,7 +14,7 @@
     "lint": "lerna run lint",
     "format": "lerna run format",
     "preview": "lerna run preview",
-    "preview:client": "lerna run preview --scope=client"
+    "ssr": "lerna run build --scope=client && lerna run ssr --scope=client"
   },
   "license": "MIT",
   "workspaces": [

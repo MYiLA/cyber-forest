@@ -53,6 +53,7 @@ const routes = [
     path: PATH.GAME,
     element: <PageGame />,
     layout: 'blank',
+    protected: true,
   },
   {
     path: PATH.ERROR,

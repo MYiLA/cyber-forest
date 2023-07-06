@@ -1,33 +1,30 @@
 import { lazy } from 'react'
 
-export const PageHome = lazy(() =>
-  import('@pages/page-home/page-home').then(module => ({
-    default: module.PageHome,
-  }))
+const mainLazy = import.meta.env.SSR
+  ? async (module: () => Awaited<any>) => {
+      const tmp = await module()
+      return tmp.default
+    }
+  : lazy
+
+export const PageHome = await mainLazy(
+  () => import('@pages/page-home/page-home')
 )
 
-export const PageRegister = lazy(() =>
-  import('@pages/auth/page-register/page-register').then(module => ({
-    default: module.PageRegister,
-  }))
+export const PageRegister = await mainLazy(
+  () => import('@pages/auth/page-register/page-register')
 )
 
-export const PageLogin = lazy(() =>
-  import('@pages/auth/page-login/page-login').then(module => ({
-    default: module.PageLogin,
-  }))
+export const PageLogin = await mainLazy(
+  () => import('@pages/auth/page-login/page-login')
 )
 
-export const PageGame = lazy(() =>
-  import('@pages/page-game/page-game').then(module => ({
-    default: module.PageGame,
-  }))
+export const PageGame = await mainLazy(
+  () => import('@pages/page-game/page-game')
 )
 
-export const PageError = lazy(() =>
-  import('@pages/page-error/page-error').then(module => ({
-    default: module.PageError,
-  }))
+export const PageError = await mainLazy(
+  () => import('@pages/page-error/page-error')
 )
 
 export const PageLobby = lazy(() =>

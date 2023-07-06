@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ApiAuth from '@api/auth-api'
-import { User, UserLogin, UserRegister } from '@config/user-types'
+import { fakeUser, User, UserLogin, UserRegister } from '@config/user-types'
 
 export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
   return ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
@@ -39,6 +39,14 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
+    ssrPrepare: () => {
+      return {
+        ...initialState,
+        authorized: true,
+        authChecked: true,
+        user: fakeUser,
+      }
+    },
     resetError: state => {
       return { ...state, error: null }
     },
@@ -112,5 +120,5 @@ export const userSlice = createSlice({
   },
 })
 
-export const { resetError } = userSlice.actions
+export const { resetError, ssrPrepare } = userSlice.actions
 export default userSlice.reducer

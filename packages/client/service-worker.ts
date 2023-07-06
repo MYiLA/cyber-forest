@@ -1,5 +1,5 @@
 interface ExtendableEvent extends Event {
-  waitUntil(fn: Promise<any>): void
+  waitUntil(fn: Promise<void | boolean[]>)
 }
 
 interface FetchEvent extends Event {
@@ -8,17 +8,10 @@ interface FetchEvent extends Event {
 }
 
 const CACHE_NAME = 'cyber-forest-cache'
-const URLS = [
-  '/',
-  '/login',
-  '/registration',
-  '/lobby',
-  '/lobby/table',
-  '/user-data',
-  '/error',
-]
+const URLS = ['/', '/error']
 
-this.addEventListener('install', (event: ExtendableEvent) => {
+self.addEventListener('install', (event: ExtendableEvent) => {
+  console.log('SW: installed')
   event.waitUntil(
     caches
       .open(CACHE_NAME)
@@ -31,15 +24,20 @@ this.addEventListener('install', (event: ExtendableEvent) => {
   )
 })
 
-this.addEventListener('activate', (event: ExtendableEvent) => {
+self.addEventListener('activate', (event: ExtendableEvent) => {
+  console.log('SW: activated')
   event.waitUntil(
     caches.keys().then(cacheNames => {
-      return Promise.all(cacheNames.map(name => caches.delete(name)))
+      return Promise.all(
+        cacheNames
+          .filter(name => name === CACHE_NAME)
+          .map(name => caches.delete(name))
+      )
     })
   )
 })
 
-this.addEventListener('fetch', (event: FetchEvent & ExtendableEvent) => {
+self.addEventListener('fetch', (event: FetchEvent & ExtendableEvent) => {
   event.respondWith(
     caches.match(event.request).then(response => {
       if (response) {
