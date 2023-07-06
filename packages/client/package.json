@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cross-env SW=off vite serve",
+    "dev": "vite serve",
     "build": "yarn run build:clt && yarn run build:srv",
     "build:clt": "vite build --ssrManifest --outDir dist/client",
     "build:srv": "vite build --ssr src/entry-server.tsx --outDir dist/server",
-    "ssr": "cross-env NODE_ENV=production ts-node server.ts",
+
+    "start": "cross-env NODE_ENV=production ts-node server.ts",
 
     "lint": "eslint .",
     "format": "prettier --write .",

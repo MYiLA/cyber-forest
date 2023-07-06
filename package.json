@@ -1,20 +1,29 @@
 {
-  "name": "client-server-template-with-vite",
+  "name": "cyberforest",
   "private": true,
   "scripts": {
-    "start": "lerna run start --scope=server",
-    "bootstrap": "yarn && node init.js && lerna clean && yarn && lerna bootstrap",
+    "bootstrap": "yarn && node init.js && lerna clean -y && yarn && lerna bootstrap",
+
     "build:client": "lerna run build --scope=client",
     "build:server": "lerna run build --scope=server",
     "build": "lerna run build",
+
     "dev:client": "lerna run dev --scope=client",
     "dev:server": "lerna run dev --scope=server",
     "dev": "lerna run dev",
+
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
     "preview": "lerna run preview",
-    "ssr": "lerna run build --scope=client && lerna run ssr --scope=client"
+
+    "start:client": "lerna run start --scope=client",
+    "start:server": "lerna run start --scope=server",
+    "start": "lerna run start --scope=client && lerna run start --scope=server",
+
+    "docker:client": "docker build -t cyberforest-client -f Dockerfile.client .",
+    "docker:server": "docker build -t cyberforest-server -f Dockerfile.server ."
+
   },
   "license": "MIT",
   "workspaces": [
