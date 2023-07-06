@@ -40,10 +40,10 @@ export const BattleSetting = () => {
   return (
     <div className={styles.battle}>
       <h3
-        className={classNames(
-          styles.battle_header,
-          themeName === Theme.Purple ? styles.purpur : styles.neon
-        )}>
+        className={classNames(styles.battle_header, {
+          [styles.purpur]: themeName === Theme.Purple,
+          [styles.neon]: themeName === Theme.Neon,
+        })}>
         настройка битвы
       </h3>
       <form className={styles.form_wrapper}>
@@ -101,11 +101,10 @@ export const BattleSetting = () => {
               (form.has_table_password ? !form.table_password : false)
             }
             onClick={onSubmit}
-            extraClassName={`${
-              themeName === Theme.Purple
-                ? styles.button_purpur
-                : styles.button_neon
-            }`}
+            extraClassName={classNames({
+              [styles.button_purpur]: themeName === Theme.Purple,
+              [styles.button_neon]: themeName !== Theme.Purple,
+            })}
             className="mr-5">
             создать битву
           </MainButton>
@@ -114,11 +113,10 @@ export const BattleSetting = () => {
             onClick={() => {
               authApi.userLogout()
             }}
-            extraClassName={`${
-              themeName === Theme.Purple
-                ? styles.button_purpur
-                : styles.button_neon
-            }`}
+            extraClassName={classNames({
+              [styles.button_purpur]: themeName === Theme.Purple,
+              [styles.button_neon]: themeName !== Theme.Purple,
+            })}
             className="mr-5">
             выход
           </MainButton>

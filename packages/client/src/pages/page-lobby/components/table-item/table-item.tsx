@@ -33,10 +33,10 @@ export const TableItem: React.FC<ITableItemProps> = ({
 
   return (
     <div
-      className={classNames(
-        styles.table,
-        themeName === Theme.Purple ? styles.purpur : styles.neon
-      )}>
+      className={classNames(styles.table, {
+        [styles.purpur]: themeName === Theme.Purple,
+        [styles.neon]: themeName !== Theme.Purple,
+      })}>
       <h3 className={styles.table_title}>{title}</h3>
       <div className={styles.table_users}>
         {usersImg.map(user => {
@@ -57,10 +57,10 @@ export const TableItem: React.FC<ITableItemProps> = ({
         />
       )}
       <NavLink
-        className={classNames(
-          styles.table_sign,
-          themeName === Theme.Purple ? styles.purple : styles.neon
-        )}
+        className={classNames(styles.table_sign, {
+          [styles.purpur]: themeName === Theme.Purple,
+          [styles.neon]: themeName !== Theme.Purple,
+        })}
         to={`${PATH.GAME}`}>
         зайти
       </NavLink>

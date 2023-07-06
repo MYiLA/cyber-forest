@@ -11,10 +11,10 @@ export const Rating = () => {
   return (
     <div className={styles.rating}>
       <h3
-        className={classNames(
-          styles.rating_title,
-          themeName === Theme.Purple ? styles.purpur : styles.neon
-        )}>
+        className={classNames(styles.rating_title, {
+          [styles.purpur]: themeName === Theme.Purple,
+          [styles.neon]: themeName !== Theme.Purple,
+        })}>
         рейтинг
       </h3>
       <span className={styles.rating_place}>

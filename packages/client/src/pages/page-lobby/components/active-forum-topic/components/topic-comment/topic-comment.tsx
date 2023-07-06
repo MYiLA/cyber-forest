@@ -84,12 +84,10 @@ export const TopicComment: React.FC<ITopicComment> = ({
               </button>
             </div>
             <input
-              className={classNames(
-                styles.comment_response,
-                themeName === Theme.Purple
-                  ? styles.comment_response_purple
-                  : styles.comment_response_neon
-              )}
+              className={classNames(styles.comment_response, {
+                [styles.comment_response_purple]: themeName === Theme.Purple,
+                [styles.comment_response_neon]: themeName !== Theme.Purple,
+              })}
               placeholder={'введите сообщение'}
               name={comment_id.toString()}
               onBlur={(event: BaseSyntheticEvent) => {
@@ -97,12 +95,10 @@ export const TopicComment: React.FC<ITopicComment> = ({
               }}
             />
             <button
-              className={classNames(
-                styles.comment_send,
-                themeName === Theme.Purple
-                  ? styles.comment_send_purple
-                  : styles.comment_send_neon
-              )}
+              className={classNames(styles.comment_send, {
+                [styles.comment_send_purple]: themeName === Theme.Purple,
+                [styles.comment_send_neon]: themeName !== Theme.Purple,
+              })}
               onClick={getInputClasses}>
               ответить
             </button>
