@@ -27,3 +27,9 @@ export const API_AUTH = {
   USER_LOGOUT: '/auth/logout',
   USER_INFO: '/auth/user',
 }
+
+export const API_USER = {
+  USER_AVATAR: 'user/profile/avatar',
+  USER_PASSWORD: 'user/profile/password',
+  USER_DATA: 'user/profile',
+}
