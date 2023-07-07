@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux'
 import { Dispatch } from '@store/store'
 import { useCallback, useEffect } from 'react'
-import { resetError } from '@store/reducers/user-reducer'
-import { User } from '@config/user-types'
 import {
+  resetError,
   userChangeAvatar,
   userChangeData,
-} from '@store/reducers/user-data-reducer'
+} from '@store/reducers/user-reducer'
+import { User } from '@config/user-types'
 
 export const useUserData = () => {
   const dispatch = useDispatch<Dispatch>()

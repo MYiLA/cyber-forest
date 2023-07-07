@@ -16,6 +16,8 @@ import classNames from 'classnames'
 import { IChatData } from '@pages/page-lobby/types'
 
 export const PageLobby = () => {
+  // когда забираешь целый объект стора, это увеличивает количество ререндеров страницы
+  // в твоем случае надо забирать только store.user - данные пользователя
   const { user } = useSelector((store: RootState) => store)
   const { themeName } = useTheme()
   const [searchString, setSearchString] = useState<string>('')
@@ -45,9 +47,9 @@ export const PageLobby = () => {
         )}>
         <h3 className={styles.window_header}>доступные битвы</h3>
         <div className={styles.window_wrapper}>
-          {tables_mock.map(table => {
-            return <TableItem {...table} />
-          })}
+          {tables_mock.map((table, index) => (
+            <TableItem key={index} {...table} />
+          ))}
         </div>
       </section>
       <section
@@ -66,9 +68,9 @@ export const PageLobby = () => {
             themeName === Theme.Purple ? styles.purpur : styles.neon
           )}
         />
-        {topicList.map(topic => {
-          return <ForumItem {...topic} onClick={setActiveTopicId} />
-        })}
+        {topicList.map((topic, index) => (
+          <ForumItem key={index} {...topic} onClick={setActiveTopicId} />
+        ))}
         <div className={styles.forum_input_wrapper}>
           <input
             className={classNames(
