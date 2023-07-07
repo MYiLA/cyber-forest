@@ -1,6 +1,11 @@
+import { DiceType } from '@shared/type'
 import { createDice } from '@pages/page-game/utils/create-dice'
-import { DEFAULT_SETTING, DiceType, PlayerType } from '../constants'
-import { GameState } from '../type'
+import {
+  AreaType,
+  DEFAULT_SETTING,
+  PlayerType,
+} from '../../pages/page-game/widgets/game/constants'
+import { GameState } from '../../pages/page-game/widgets/game/type'
 
 type getInitialGameStateProps = {
   playersCount?: number
@@ -20,7 +25,7 @@ export const getInitialGameState = ({
     .map(type => ({
       ...DEFAULT_SETTING.PLAYER,
       type,
-      stock: Array(4)
+      [AreaType.Stock]: Array(4)
         .fill(null)
         .map(() => createDice(DiceType.Cat)),
     }))

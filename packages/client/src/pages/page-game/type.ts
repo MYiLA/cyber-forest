@@ -1,5 +1,6 @@
 import { DiceSide } from './widgets/game/type'
-import { PlayerType, DiceType, AreaType } from './widgets/game/constants'
+import { PlayerType, AreaType } from './widgets/game/constants'
+import { DiceType } from '@shared/type'
 
 /** Способности */
 export type Ability = {
@@ -42,7 +43,7 @@ export type Player = {
   /** Количество славы */
   gloryCount: number
   /** Инвентарь */
-  stock: Dice[]
+  [AreaType.Stock]: Dice[]
   /** Зона атаки */
   [AreaType.Attack]: Dice[]
   /** Зона подготовки */
@@ -54,3 +55,11 @@ export type Player = {
   /** */
   isActive: boolean
 }
+
+export type ChoosingAreaCubeProps = {
+  area: AreaType
+  playerType: PlayerType
+  dice: Dice
+}
+
+export type ChoosingAreaCubeFunction = (props: ChoosingAreaCubeProps) => void

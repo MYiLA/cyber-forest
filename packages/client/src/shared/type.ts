@@ -1,3 +1,25 @@
+/** Типы кубиков */
+export enum DiceType {
+  /** Волк */
+  Wolf = 'Wolf',
+  /** Кот */
+  Cat = 'Cat',
+  /** Лиса */
+  Fox = 'Fox',
+  /** Змея */
+  Snake = 'Snake',
+  /** Медведь */
+  Bear = 'Bear',
+  /** Сова */
+  Owl = 'Owl',
+  /** Утка */
+  Duck = 'Duck',
+  /** Заяц */
+  Hare = 'Hare',
+  /** Жаба */
+  Toad = 'Toad',
+}
+
 /** Сторона энергии */
 export type DiceSideEnergy = {
   /** Цвет фона */
@@ -30,4 +52,12 @@ export type DiceSideSymbol = {
   textColor: string
   /** Особый символ способности */
   specialAbilitySymbol: string
+}
+
+/** Доступ для найма воинов */
+export type AccessHireWarrior = {
+  /** Тип воинов. Генерируется при запуске игры */
+  type: DiceType
+  /** Количество воинов, доступных для найма. Меняется в процессе игры */
+  count: number
 }

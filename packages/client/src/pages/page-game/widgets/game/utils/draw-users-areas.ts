@@ -16,19 +16,19 @@ const drawUserArea = ({
   ctx.fillStyle = `rgba(${RGB_COLOR[player]}, .03)`
   ctx.strokeStyle = `rgb(${RGB_COLOR[player]})`
 
-  Object.keys(AreaType).forEach(area => {
-    const typeArea = area as AreaType
+  Object.values(AreaType).forEach(area => {
+    if (area === AreaType.Stock) return
     ctx.strokeRect(
-      AREA_POSITION[player][typeArea].x,
-      AREA_POSITION[player][typeArea].y,
-      AREA_SIZE[typeArea].WIDTH,
-      AREA_SIZE[typeArea].HEIGHT
+      AREA_POSITION[player][area].x,
+      AREA_POSITION[player][area].y,
+      AREA_SIZE[area].WIDTH,
+      AREA_SIZE[area].HEIGHT
     )
     ctx.fillRect(
-      AREA_POSITION[player][typeArea].x,
-      AREA_POSITION[player][typeArea].y,
-      AREA_SIZE[typeArea].WIDTH,
-      AREA_SIZE[typeArea].HEIGHT
+      AREA_POSITION[player][area].x,
+      AREA_POSITION[player][area].y,
+      AREA_SIZE[area].WIDTH,
+      AREA_SIZE[area].HEIGHT
     )
   })
 }
@@ -37,8 +37,9 @@ export const drawUsersAreas = (
   ctx: CanvasRenderingContext2D,
   playersCount = 4
 ): void => {
-  if (playersCount < 2 || playersCount > 4)
+  if (playersCount < 2 || playersCount > 4) {
     throw new Error('drawUsersAreas: Игроков должно быть от 2 до 4 штук')
+  }
 
   // Рисую красное поле
   drawUserArea({

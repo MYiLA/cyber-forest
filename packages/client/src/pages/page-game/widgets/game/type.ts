@@ -7,11 +7,11 @@ export type DiceSide = DiceSideEnergy | DiceSideWarrior | DiceSideSymbol
 /** Состояние игры */
 export type GameState = {
   /** Состояние красного игрока. Он всегда должен быть */
-  [PlayerType.Red]: Player
+  [PlayerType.Red]: Player | null
   /** Состояние синего игрока. Он всегда должен быть */
-  [PlayerType.Blue]: Player
+  [PlayerType.Blue]: Player | null
   /** Состояние зелёного игрока */
-  [PlayerType.Green]?: Player
+  [PlayerType.Green]?: Player | null
   /** Состояние жёлтого игрока */
-  [PlayerType.Yellow]?: Player
+  [PlayerType.Yellow]?: Player | null
 }

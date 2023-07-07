@@ -1,7 +1,7 @@
 import styles from './dice-side.module.scss'
-import { isWarriorDiceSide } from '@shared/utils/isWarriorDiceSide'
-import { isEnergyDiceSide } from '@shared/utils/isEnergyDiceSide'
-import { isSymbolDiceSide } from '@shared/utils/isSymbolDiceSide'
+import { isWarriorDiceSide } from '@shared/utils/is-warrior-dice-side'
+import { isEnergyDiceSide } from '@shared/utils/is-energy-dice-side'
+import { isSymbolDiceSide } from '@shared/utils/is-symbol-dice-side'
 import { DiceSide } from '@pages/page-game/widgets/game/type'
 import { Energy } from '../energy'
 
