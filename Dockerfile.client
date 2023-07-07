@@ -1,26 +1,17 @@
-ARG NODE_VERSION=16
-ARG CLIENT_PORT=3001
+ARG CLIENT_PORT=3000
 
-FROM node:$NODE_VERSION-buster as base
+FROM node:18-alpine
 
 WORKDIR /app
 
-FROM base as builder
-
 COPY package.json yarn.lock ./
+
 RUN yarn install --frozen-lockfile
 
 COPY . .
 
-RUN yarn lerna bootstrap
-RUN rm -rf /app/packages/client/dist/ && yarn build --scope=client
-
-
-FROM nginx:latest as production
-WORKDIR /app
-
-COPY --from=builder /app/packages/client/dist/ /app/
-COPY --from=builder /app/packages/client/nginx.conf /etc/nginx/nginx.conf
+RUN yarn lerna bootstrap && yarn build:client
 
 EXPOSE $CLIENT_PORT
-CMD [ "nginx", "-g", "daemon off;" ]
+
+CMD [ "yarn", "run", "start:client" ]

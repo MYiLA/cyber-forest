@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "start": "yarn run build && node ./dist/index.js",
+
     "build": "tsc --p ./tsconfig.prod.json",
     "preview": "node ./dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon index.ts",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "jest ."
+  },
+  "nodemonConfig": {
+    "legacyWatch": true
   },
   "dependencies": {
     "cors": "^2.8.5",
