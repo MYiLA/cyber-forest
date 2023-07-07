@@ -14,7 +14,7 @@
   padding: 66px 46px;
 
   &_purple {
-    background: #8F6CBC4D;
+    background: rgba(143, 108, 188, 0.1);
   }
 
   &_neon {
@@ -35,6 +35,12 @@
     top: 2px;
     right: 2px;
     pointer-events: none;
+  }
+
+  .back {
+    position: absolute;
+    right: 32px;
+    top: 30px;
   }
 
   &_left {
@@ -234,6 +240,47 @@
         top: -5px;
         right: 0;
       }
+    }
+  }
+
+  .password {
+    margin-top: 3%;
+    width: 50%;
+    height: 70%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 0;
+    top: 100px;
+    padding: 0px 30px;
+    h3 {
+      margin-bottom: 21px;
+    }
+    &_submit {
+      width: 196px;
+      margin-left: 0;
+    }
+    &_error {
+      font-size: 12px;
+      font-family: Blender Pro;
+      font-weight: 500;
+
+      color: darkred;
+    }
+  }
+  .switcher {
+    width: 267px;
+    position: absolute;
+    bottom: 30px;
+    right: 0;
+    span {
+      width: 90px;
+    }
+    span:nth-child(2) {
+      text-align: right;
+    }
+    label {
+      margin-top: 5px;
     }
   }
 }

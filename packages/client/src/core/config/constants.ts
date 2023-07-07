@@ -30,6 +30,6 @@ export const API_AUTH = {
 
 export const API_USER = {
   USER_AVATAR: 'user/profile/avatar',
-  USER_PASSWORD: 'user/profile/password',
+  USER_PASSWORD: 'user/password',
   USER_DATA: 'user/profile',
 }

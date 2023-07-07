@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ApiAuth from '@api/auth-api'
-import { fakeUser, User, UserLogin, UserRegister } from '@config/user-types'
+import {
+  fakeUser,
+  User,
+  UserLogin,
+  UserPassword,
+  UserRegister,
+} from '@config/user-types'
 import UserApi from '@api/user-api'
 
 export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
@@ -33,6 +39,13 @@ export const userChangeAvatar = createAsyncThunk(
   'user/profile/avatar',
   (data: { avatar: object }) => {
     return UserApi.userChangeAvatar(data).then(() => ApiAuth.userGetInfo())
+  }
+)
+
+export const userChangePassword = createAsyncThunk(
+  'user/password',
+  (data: UserPassword) => {
+    return UserApi.userChangePassword(data).then(() => ApiAuth.userGetInfo())
   }
 )
 
@@ -69,12 +82,46 @@ export const userSlice = createSlice({
   extraReducers: builder => {
     builder
       /** Профиль пользователя */
-      // Здесь надо получить данные функции userChangeData и поменять стэйт (по образцу как сделано ниже)
-      // после этого, данные пользователя обновятся во всех компонентах где используются
+      .addCase(userChangeData.pending, state => {
+        return { ...state, loading: true }
+      })
+      .addCase(userChangeData.fulfilled, (state, action) => {
+        return {
+          ...initialState,
+          user: action.payload.data(),
+          authorized: true,
+          authChecked: true,
+        }
+      })
+      .addCase(userChangeAvatar.rejected, (state, action) => {
+        return { ...state, error: action.error.message as string }
+      })
 
       /** Аватар пользователя */
-      // Здесь надо получить данные функции userChangeAvatar и поменять стэйт (по образцу как сделано ниже)
-      // после этого, данные пользователя обновятся во всех компонентах где используются
+      .addCase(userChangeAvatar.pending, state => {
+        return { ...state, loading: true }
+      })
+      .addCase(userChangeAvatar.fulfilled, (state, action) => {
+        return {
+          ...initialState,
+          user: action.payload.data(),
+          authorized: true,
+          authChecked: true,
+        }
+      })
+      .addCase(userChangeData.rejected, (state, action) => {
+        return { ...state, error: action.error.message as string }
+      })
+      /** Смена пароля */
+
+      .addCase(userChangePassword.pending, state => {
+        return { ...state, loading: true }
+      })
+      .addCase(userChangePassword.rejected, (state, action) => {
+        console.log(action)
+
+        return { ...state, error: action.error.message as string }
+      })
 
       /** Логин пользователя */
       .addCase(userLogin.pending, state => {

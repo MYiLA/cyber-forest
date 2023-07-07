@@ -20,6 +20,7 @@ const scrollbars = {
 
 export const useTheme = () => {
   const themeSelector = useSelector(getTheme, themeIsEqual)
+
   if (typeof document !== 'undefined') {
     const style =
       document.getElementById('main-scrollbar') ||

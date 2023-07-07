@@ -33,7 +33,7 @@ class UserApi {
   }
 
   public userChangePassword(password: UserPassword) {
-    return this._axios.post(API_USER.USER_PASSWORD, password)
+    return this._axios.put(API_USER.USER_PASSWORD, password)
   }
 }
 
