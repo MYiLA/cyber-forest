@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ApiAuth from '@api/auth-api'
 import { fakeUser, User, UserLogin, UserRegister } from '@config/user-types'
+import UserApi from '@api/user-api'
 
 export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
   return ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
@@ -20,6 +21,20 @@ export const userRegister = createAsyncThunk(
 export const userGetInfo = createAsyncThunk('user/info', () => {
   return ApiAuth.userGetInfo()
 })
+
+export const userChangeData = createAsyncThunk(
+  'user/profile',
+  (data: UserRegister) => {
+    return UserApi.userChangeData(data).then(() => ApiAuth.userGetInfo())
+  }
+)
+
+export const userChangeAvatar = createAsyncThunk(
+  'user/profile/avatar',
+  (data: { avatar: object }) => {
+    return UserApi.userChangeAvatar(data).then(() => ApiAuth.userGetInfo())
+  }
+)
 
 const initialState: {
   authorized: boolean | null
@@ -53,6 +68,14 @@ export const userSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      /** Профиль пользователя */
+      // Здесь надо получить данные функции userChangeData и поменять стэйт (по образцу как сделано ниже)
+      // после этого, данные пользователя обновятся во всех компонентах где используются
+
+      /** Аватар пользователя */
+      // Здесь надо получить данные функции userChangeAvatar и поменять стэйт (по образцу как сделано ниже)
+      // после этого, данные пользователя обновятся во всех компонентах где используются
+
       /** Логин пользователя */
       .addCase(userLogin.pending, state => {
         return { ...state, loading: true }

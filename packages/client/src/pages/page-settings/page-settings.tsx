@@ -74,6 +74,7 @@ export const PageSettings = () => {
     if (e.target.value) {
       const formData = new FormData()
 
+      console.log(formData)
       formData.append('avatar', e.target.files[0])
 
       toChangeAvatar(formData as unknown as { avatar: object })
