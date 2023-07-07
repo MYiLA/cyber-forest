@@ -1,3 +1,6 @@
+import { isEnergyDiceSide } from '@shared/utils/isEnergyDiceSide'
+import { isSymbolDiceSide } from '@shared/utils/isSymbolDiceSide'
+import { isWarriorDiceSide } from '@shared/utils/isWarriorDiceSide'
 import {
   AreaType,
   AREA_SIZE,
@@ -5,25 +8,8 @@ import {
   DICE_SIZE,
   PlayerType,
 } from '../constants'
-import {
-  DiceSide,
-  DiceSideEnergy,
-  DiceSideSymbol,
-  DiceSideWarrior,
-} from '../type'
+import { DiceSide } from '../type'
 import { getAreaPosition } from './get-area-position'
-
-const isEnergy = (obj: any): obj is DiceSideEnergy => {
-  return obj.energyCount !== undefined
-}
-
-const isWarrior = (obj: any): obj is DiceSideWarrior => {
-  return obj.image !== undefined
-}
-
-const isSymbol = (obj: any): obj is DiceSideSymbol => {
-  return obj.specialAbilitySymbol !== undefined
-}
 
 const drawDiceSide = ({
   ctx,
@@ -37,17 +23,17 @@ const drawDiceSide = ({
   y: number
 }): void => {
   ctx.strokeStyle = `rgb(226, 176, 255)`
-  if (isEnergy(diceSide)) {
+  if (isEnergyDiceSide(diceSide)) {
     ctx.fillStyle = `rgb(${diceSide.color})`
 
     ctx.strokeRect(x, y, DICE_SIZE, DICE_SIZE)
     ctx.fillRect(x, y, DICE_SIZE, DICE_SIZE)
-  } else if (isWarrior(diceSide)) {
+  } else if (isWarriorDiceSide(diceSide)) {
     ctx.fillStyle = `rgb(41, 36, 52)`
 
     ctx.strokeRect(x, y, DICE_SIZE, DICE_SIZE)
     ctx.fillRect(x, y, DICE_SIZE, DICE_SIZE)
-  } else if (isSymbol(diceSide)) {
+  } else if (isSymbolDiceSide(diceSide)) {
     ctx.fillStyle = `rgb(${diceSide.color})`
 
     ctx.strokeRect(x, y, DICE_SIZE, DICE_SIZE)

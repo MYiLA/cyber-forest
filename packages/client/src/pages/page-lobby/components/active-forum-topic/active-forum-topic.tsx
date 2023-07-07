@@ -6,7 +6,7 @@ import { TopicComment } from '@pages/page-lobby/components/active-forum-topic/co
 import { IActiveForumTopicProps, ITopicComment } from '@pages/page-lobby/types'
 import close from '@images/close.svg'
 import { topicData } from '@pages/page-lobby/mocks'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 export const ActiveTopicModal: React.FC<IActiveForumTopicProps> = ({
   onClose,
@@ -15,12 +15,12 @@ export const ActiveTopicModal: React.FC<IActiveForumTopicProps> = ({
 
   return (
     <div
-      className={classNames(styles.layout, {
+      className={cn(styles.layout, {
         [styles.purple]: themeName === Theme.Purple,
         [styles.neon]: themeName !== Theme.Purple,
       })}>
       <div
-        className={classNames(styles.modal_wrapper, {
+        className={cn(styles.modal_wrapper, {
           [styles.modal_wrapper_purple]: themeName === Theme.Purple,
           [styles.modal_wrapper_neon]: themeName !== Theme.Purple,
         })}>

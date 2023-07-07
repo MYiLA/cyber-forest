@@ -1,5 +1,5 @@
+import { DiceSideComponent } from '@shared/ui/dice-side'
 import { getRandomElement } from '@shared/utils/getRandomElement'
-import { UnknownDiceSide } from '../../entities/unknown-dice-side'
 import { Dice } from '../../type'
 import { DiceSide } from '../../widgets/game/type'
 import styles from './stock.module.scss'
@@ -9,7 +9,7 @@ type StockProps = {
   onChoosingCubeProp?: (side: DiceSide, id: string) => void
 }
 
-export const Stock: React.FC<StockProps> = ({ dices, onChoosingCubeProp }) => {
+export const Stock = ({ dices, onChoosingCubeProp }: StockProps) => {
   const onChoosingCube = (shoosedDice: Dice) => {
     if (!onChoosingCubeProp) return
     onChoosingCubeProp(getRandomElement(shoosedDice.sides), shoosedDice.id)
@@ -22,7 +22,7 @@ export const Stock: React.FC<StockProps> = ({ dices, onChoosingCubeProp }) => {
             key={dice.id}
             className={styles.item}
             onClick={() => onChoosingCube(dice)}>
-            <UnknownDiceSide />
+            <DiceSideComponent />
           </li>
         ))}
       </ul>

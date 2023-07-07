@@ -8,7 +8,7 @@ import { MainButton } from '@ui/main-button/main-button'
 import authApi from '@api/auth-api'
 import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'
-import classNames from 'classnames'
+import cn from 'classnames'
 import { validators } from '@pages/page-lobby/validators'
 
 const initialForm = {
@@ -40,7 +40,7 @@ export const BattleSetting = () => {
   return (
     <div className={styles.battle}>
       <h3
-        className={classNames(styles.battle_header, {
+        className={cn(styles.battle_header, {
           [styles.purpur]: themeName === Theme.Purple,
           [styles.neon]: themeName === Theme.Neon,
         })}>
@@ -101,7 +101,7 @@ export const BattleSetting = () => {
               (form.has_table_password ? !form.table_password : false)
             }
             onClick={onSubmit}
-            extraClassName={classNames({
+            extraClassName={cn({
               [styles.button_purpur]: themeName === Theme.Purple,
               [styles.button_neon]: themeName !== Theme.Purple,
             })}
@@ -113,7 +113,7 @@ export const BattleSetting = () => {
             onClick={() => {
               authApi.userLogout()
             }}
-            extraClassName={classNames({
+            extraClassName={cn({
               [styles.button_purpur]: themeName === Theme.Purple,
               [styles.button_neon]: themeName !== Theme.Purple,
             })}

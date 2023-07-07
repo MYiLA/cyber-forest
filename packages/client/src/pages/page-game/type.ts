@@ -6,7 +6,7 @@ export type Ability = {
   /** Описание способности */
   desc: string
   /** Символ способности */
-  abilitySymbol: string
+  abilitySymbol?: string
 }
 
 /** Кубик */
@@ -25,6 +25,12 @@ export type Dice = {
   glory: number
   /** Действующая сторона */
   activeSide: DiceSide | null
+  /** Основное изображение */
+  img: string
+  /** Цвет подложки основного изображения */
+  bgImg: string
+  /** Имя воина */
+  title: string
 }
 
 /** Игрок */

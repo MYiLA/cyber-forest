@@ -1,0 +1,106 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.card_wrap {
+  @include glow-for-big;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 142px;
+  min-height: 198px;
+  padding: 10px;
+  padding-bottom: 16px;
+  font-family: $font-accent;
+
+  &::before, &::after {
+    @include background-img-position;
+
+    content: '';
+  }
+
+  &::after {
+    width: 143px;
+    height: 167px;
+    bottom: -7px;
+    left: -3px;
+    background-image: url(@images/game/forest/mini-card/angle-left-bottom-143-167.svg);
+  }
+
+  &::before {
+    width: 28px;
+    height: 54px;
+    top: -1px;
+    right: -1px;
+    background-image: url(@images/game/forest/mini-card/angle-right-top-28-54.svg);
+  }
+}
+
+.img_wrap {
+  @include glow-for-smile;
+
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+  height: 92px;
+  margin-bottom: 12px;
+  overflow: hidden;
+
+  &::before, &::after {
+    @include background-img-position;
+
+    content: '';
+  }
+
+  &::after {
+    width: 34px;
+    height: 27px;
+    bottom: -2px;
+    left: -2px;
+    background-image: url(@images/game/forest/mini-card/angle-img-left-bottom-34-27.svg);
+  }
+
+  &::before {
+    width: 24px;
+    height: 25px;
+    top: -1px;
+    right: -1px;
+    background-image: url(@images/game/forest/mini-card/angle-img-right-top-24-25.svg);
+  }
+}
+
+.img {
+  @include img-position
+}
+
+.info_top, .info_bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info_top {
+  flex-grow: 1;
+}
+
+.info_bottom {
+  flex-shrink: 0;
+}
+
+.energy_wrap, .glory_wrap {
+  display: flex;
+  align-items: center;
+}
+
+.energy, .glory {
+  margin-right: 6px;
+}
+
+.energy {
+  width: 18px;
+  height: 23px;
+}
+
+.glory {
+  width: 24px;
+  height: 23px;
+}

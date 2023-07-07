@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import cn from 'classnames'
-import s from './screen.module.scss'
+import styles from './screen.module.scss'
 import { Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 import winCornerLtImg from '@images/win-corner-lt.svg'
@@ -17,23 +17,23 @@ export const ScreenBlock = (props: Props) => {
   const { children, className } = props
   return (
     <div
-      className={cn(s.screen_wrapper, className, {
-        [s.purple]: themeName === Theme.Purple,
-        [s.neon]: themeName === Theme.Neon,
+      className={cn(styles.screen_wrapper, className, {
+        [styles.purple]: themeName === Theme.Purple,
+        [styles.neon]: themeName === Theme.Neon,
       })}>
       <img
         src={winCornerLtImg}
-        className={cn(s.border, s.border_lt)}
+        className={cn(styles.border, styles.border_lt)}
         alt={'win corner'}
       />
       <img
         src={winCornerLbImg}
-        className={cn(s.border, s.border_lb)}
+        className={cn(styles.border, styles.border_lb)}
         alt={'win corner'}
       />
       <img
         src={winCornerRtImg}
-        className={cn(s.border, s.border_rt)}
+        className={cn(styles.border, styles.border_rt)}
         alt={'win corner'}
       />
       {children}

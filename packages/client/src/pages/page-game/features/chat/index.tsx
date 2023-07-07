@@ -4,7 +4,7 @@ import { ChatMessageEntity } from '../../entities/chat-message'
 import styles from './chat.module.scss'
 import { MESSAGES } from './mock'
 
-export const Chat: React.FC = () => {
+export const Chat = () => {
   return (
     <div className={styles.chat}>
       <ul className={styles.message_list}>
