@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, FC, ReactNode } from 'react'
 import styles from './main-button.module.scss'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 interface TButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode
@@ -15,7 +15,7 @@ export const MainButton: FC<TButtonProps> = ({
   ...rest
 }) => {
   return (
-    <div className={classNames(styles.container, className)}>
+    <div className={cn(styles.container, className)}>
       <button className={extraClassName} {...rest}>
         {children}
       </button>

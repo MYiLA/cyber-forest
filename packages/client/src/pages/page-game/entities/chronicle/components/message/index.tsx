@@ -7,7 +7,7 @@ type MessageProps = {
   message: ChronicleMessage
 }
 
-export const Message: React.FC<MessageProps> = ({ message }) => {
+export const Message = ({ message }: MessageProps) => {
   const { player, desc } = message
   return (
     <>

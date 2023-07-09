@@ -8,7 +8,7 @@ import {
   useRef,
   useState,
 } from 'react'
-import s from './modal.module.scss'
+import styles from './modal.module.scss'
 import cn from 'classnames'
 
 export type ModalProps = {
@@ -79,7 +79,7 @@ export const Modal = (props: ModalProps) => {
             {...rootProps}
             onClick={handleClick}
             ref={ref}
-            className={cn(s.backdrop_root, rootProps?.className)}
+            className={cn(styles.backdrop_root, rootProps?.className)}
             style={closeStyle}>
             {children}
           </div>,

@@ -2,7 +2,7 @@ import styles from './rating.module.scss'
 import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'
 import { mock_rating } from '@pages/page-lobby/mocks'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 export const Rating = () => {
   const { themeName } = useTheme()
@@ -10,7 +10,7 @@ export const Rating = () => {
   return (
     <div className={styles.rating}>
       <h3
-        className={classNames(styles.rating_title, {
+        className={cn(styles.rating_title, {
           [styles.purpur]: themeName === Theme.Purple,
           [styles.neon]: themeName !== Theme.Purple,
         })}>

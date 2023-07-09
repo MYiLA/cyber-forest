@@ -1,4 +1,4 @@
-import s from './leaders.module.scss'
+import styles from './leaders.module.scss'
 import { UserLeaderDto } from '../types'
 
 type Props = {
@@ -10,12 +10,12 @@ export const UserRow = (props: Props) => {
     user: { name, points, avatar },
   } = props
   return (
-    <div className={s.user_row}>
-      <img src={avatar} className={s.avatar} alt={`${name} avatar`} />
-      <div className={s.name_wrapper}>
+    <div className={styles.user_row}>
+      <img src={avatar} className={styles.avatar} alt={`${name} avatar`} />
+      <div className={styles.name_wrapper}>
         <h4>{name}</h4>
       </div>
-      <div className={s.points_wrapper}>
+      <div className={styles.points_wrapper}>
         <h4>{points}</h4>
       </div>
     </div>

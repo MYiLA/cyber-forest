@@ -2,7 +2,7 @@ import styles from './main-input.module.scss'
 import inputUnderlineR from '@images/input-underline-r.svg'
 import inputUnderlineL from '@images/input-underline-l.svg'
 import { FC, Fragment, InputHTMLAttributes, useCallback } from 'react'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 interface TInputProps extends InputHTMLAttributes<HTMLInputElement> {
   name?: string
@@ -49,7 +49,7 @@ export const MainInput: FC<TInputProps> = ({
   return (
     <Fragment>
       {type === 'checkbox' ? (
-        <div className={classNames(styles.custom_checkbox, className)}>
+        <div className={cn(styles.custom_checkbox, className)}>
           <input
             type={type}
             name={name}
@@ -61,7 +61,7 @@ export const MainInput: FC<TInputProps> = ({
         </div>
       ) : (
         <div
-          className={classNames(
+          className={cn(
             styles.container,
             className,
             align === 'right' ? styles.right_direction : ''

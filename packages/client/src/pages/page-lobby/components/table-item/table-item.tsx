@@ -5,7 +5,7 @@ import styles from './table-item.module.scss'
 import { NavLink } from 'react-router-dom'
 import { PATH, Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
-import classNames from 'classnames'
+import cn from 'classnames'
 
 interface ITableItemProps {
   id: number
@@ -33,7 +33,7 @@ export const TableItem: React.FC<ITableItemProps> = ({
 
   return (
     <div
-      className={classNames(styles.table, {
+      className={cn(styles.table, {
         [styles.purpur]: themeName === Theme.Purple,
         [styles.neon]: themeName !== Theme.Purple,
       })}>
@@ -56,7 +56,7 @@ export const TableItem: React.FC<ITableItemProps> = ({
         />
       )}
       <NavLink
-        className={classNames(styles.table_sign, {
+        className={cn(styles.table_sign, {
           [styles.purpur]: themeName === Theme.Purple,
           [styles.neon]: themeName !== Theme.Purple,
         })}

@@ -41,8 +41,8 @@
       content: '';
       top: 50%;
       transform: translateY(-50%);
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background-image: url(@images/game/stock-wrap/dice.svg);
       transition: transform .2s;
     }
@@ -52,7 +52,7 @@
     }
 
     &:hover::after {
-      transform: translateY(-50%) scale(1.2);
+      transform: translateY(-50%) translateX(4px) scale(1.2);
     }
   }
 }

@@ -5,9 +5,7 @@ type ChatMessageEntityProps = {
   message: ChatMessage
 }
 
-export const ChatMessageEntity: React.FC<ChatMessageEntityProps> = ({
-  message,
-}) => {
+export const ChatMessageEntity = ({ message }: ChatMessageEntityProps) => {
   return (
     <div className={styles.message_wrap}>
       <div className={styles.avatar}>
