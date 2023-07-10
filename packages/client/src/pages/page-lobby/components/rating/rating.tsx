@@ -5,7 +5,6 @@ import { mock_rating } from '@pages/page-lobby/mocks'
 import cn from 'classnames'
 
 export const Rating = () => {
-  // const { rating } = useSelector((store: RootState) => store)
   const { themeName } = useTheme()
 
   return (

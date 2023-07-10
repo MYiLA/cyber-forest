@@ -36,3 +36,8 @@ export type UserRegister = {
   email: string
   phone: string
 }
+
+export type UserPassword = {
+  oldPassword: string
+  newPassword: string
+}

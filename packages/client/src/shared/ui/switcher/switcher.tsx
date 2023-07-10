@@ -69,12 +69,12 @@ export const Switcher = ({ labels, onClick }: switcherProps): ReactElement => {
             setActive(!active)
           }}
         />
-        <span
+        <div
           className={`${styles.slider} ${
             themeName === Theme.Purple
               ? styles.slider_purpur
               : styles.slider_neon
-          }`}></span>
+          }`}></div>
       </label>
     </div>
   )

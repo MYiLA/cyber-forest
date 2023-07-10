@@ -8,6 +8,7 @@ import {
   PageLobby,
   PageLogin,
   PageRegister,
+  PageSettings,
 } from '@router/router-pages'
 import { PATH } from '@config/constants'
 import { RootState } from '@store/store'
@@ -20,6 +21,12 @@ const routes = [
     path: PATH.HOME,
     element: <PageHome />,
     layout: 'game',
+  },
+  {
+    path: PATH.USER,
+    element: <PageSettings />,
+    layout: 'game',
+    protected: true,
   },
   {
     path: PATH.LOBBY,

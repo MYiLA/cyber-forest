@@ -32,3 +32,9 @@ export const PageLobby = lazy(() =>
     default: module.PageLobby,
   }))
 )
+
+export const PageSettings = lazy(() =>
+  import('@pages/page-settings/page-settings').then(module => ({
+    default: module.PageSettings,
+  }))
+)

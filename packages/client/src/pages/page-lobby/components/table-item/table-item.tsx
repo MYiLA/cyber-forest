@@ -39,15 +39,14 @@ export const TableItem: React.FC<ITableItemProps> = ({
       })}>
       <h3 className={styles.table_title}>{title}</h3>
       <div className={styles.table_users}>
-        {usersImg.map(user => {
-          return (
-            <img
-              src={user}
-              alt={'аватар пользователя'}
-              className={styles.table_users_img}
-            />
-          )
-        })}
+        {usersImg.map((user, index) => (
+          <img
+            key={index}
+            src={user}
+            alt={'аватар пользователя'}
+            className={styles.table_users_img}
+          />
+        ))}
       </div>
       {password && (
         <input
