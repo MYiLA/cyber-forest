@@ -104,7 +104,7 @@ export const userSlice = createSlice({
       .addCase(userChangeAvatar.fulfilled, (state, action) => {
         return {
           ...initialState,
-          user: action.payload.data(),
+          user: action.payload.data,
           authorized: true,
           authChecked: true,
         }

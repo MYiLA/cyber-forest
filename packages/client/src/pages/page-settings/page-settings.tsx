@@ -10,10 +10,15 @@ import { Switcher } from '@ui/switcher/switcher'
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames'
+import { useSelector } from 'react-redux'
+import { RootState } from '@store/store'
 
 export const PageSettings = () => {
   const { themeName } = useTheme()
   const [theme, setTheme] = useState(Theme.Purple)
+
+  const user = useSelector((state: RootState) => state.user.user)
+
   const onSwitch = () => {
     setTheme(theme === Theme.Purple ? Theme.Neon : Theme.Purple)
   }
@@ -39,7 +44,7 @@ export const PageSettings = () => {
           className={styles.wrapper_right}
         />
         <h3 className={styles.header}>настройки аккаунта</h3>
-        <PersonalForm />
+        <PersonalForm {...user!} />
         <ChangePasswordForm />
         <div className={styles.switcher}>
           <Switcher
