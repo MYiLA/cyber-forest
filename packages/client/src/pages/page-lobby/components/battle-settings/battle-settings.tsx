@@ -81,6 +81,7 @@ export const BattleSetting = () => {
           onClick={onChange}
         />
         <MainInput
+          autoComplete={'off'}
           name="table_password"
           placeholder="Пароль"
           value={form.table_password as string}
@@ -88,7 +89,6 @@ export const BattleSetting = () => {
           type={'password'}
           disabled={!form.has_table_password as boolean}
           className={styles.battle_inputs}
-          // error={validate.table_password.error}
           onFocus={onFocus}
           onBlur={onBlur}
         />

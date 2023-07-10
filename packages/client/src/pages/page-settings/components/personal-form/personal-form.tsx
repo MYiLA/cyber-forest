@@ -2,14 +2,12 @@ import styles from '@pages/page-settings/page-settings.module.scss'
 import { MainInput } from '@ui/main-input/main-input'
 import classNames from 'classnames'
 import { Theme } from '@config/constants'
-import avatar from '@images/no-avatar.jpg'
+import standardAvatar from '@images/no-avatar.jpg'
 import camera from '@images/camera.svg'
 import { useTheme } from '@hooks/use-theme'
-import { useSelector } from 'react-redux'
-import { RootState } from '@store/store'
 import { Fields, useForm } from '@hooks/use-form'
 import { useUserData } from '@hooks/use-user-data'
-import { BaseSyntheticEvent, FormEvent } from 'react'
+import { BaseSyntheticEvent, FC, FormEvent } from 'react'
 import { User } from '@config/user-types'
 
 const validators = {
@@ -40,19 +38,27 @@ const validators = {
   },
 }
 
-export const PersonalForm = () => {
+export const PersonalForm: FC<User> = ({
+  first_name,
+  second_name,
+  display_name,
+  id,
+  avatar,
+  phone,
+  login,
+  email,
+}) => {
   const { themeName } = useTheme()
-  const { user } = useSelector((store: RootState) => store.user)
 
   const initialForm = {
-    first_name: user?.first_name || '',
-    second_name: user?.second_name || '',
-    email: user?.email || '',
-    phone: user?.phone || '',
-    display_name: user?.display_name || '',
-    login: user?.login || '',
-    avatar: user?.avatar || '',
-    id: user?.id,
+    first_name: first_name || '',
+    second_name: second_name || '',
+    email: email || '',
+    phone: phone || '',
+    display_name: display_name || '',
+    login: login || '',
+    avatar: avatar || '',
+    id: id,
   }
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
@@ -132,7 +138,7 @@ export const PersonalForm = () => {
         onBlur={onBlur}
       />
       <div className={styles.personal_id}>
-        <span>{user?.id}</span>
+        <span>{id}</span>
         <h3
           className={classNames({
             [styles.personal_id_purple]: themeName === Theme.Purple,
@@ -147,9 +153,9 @@ export const PersonalForm = () => {
           <figure className={styles.personal_figure}>
             <img
               src={
-                user?.avatar
-                  ? 'https://ya-praktikum.tech/api/v2/resources' + user?.avatar
-                  : avatar
+                avatar
+                  ? 'https://ya-praktikum.tech/api/v2/resources' + avatar
+                  : standardAvatar
               }
               className={styles.personal_avatar}
               alt="аватар"

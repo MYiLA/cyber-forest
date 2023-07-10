@@ -1,21 +1,23 @@
 import styles from './rating.module.scss'
 import { useTheme } from '@hooks/use-theme'
-import { Theme } from '@config/constants'
+import { PATH, Theme } from '@config/constants'
 import { mock_rating } from '@pages/page-lobby/mocks'
 import cn from 'classnames'
+import { NavLink } from 'react-router-dom'
 
 export const Rating = () => {
   const { themeName } = useTheme()
 
   return (
     <div className={styles.rating}>
-      <h3
+      <NavLink
+        to={PATH.LEADER_BOARD}
         className={cn(styles.rating_title, {
           [styles.purpur]: themeName === Theme.Purple,
           [styles.neon]: themeName !== Theme.Purple,
         })}>
         рейтинг
-      </h3>
+      </NavLink>
       <span className={styles.rating_place}>
         {mock_rating.place} место в ТОП100
       </span>

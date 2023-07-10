@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import { createStore, RootState } from '@store/store'
 import { Provider } from 'react-redux'
@@ -8,6 +8,7 @@ import { AuthProvider } from '@core/auth-provider/auth-provider'
 import xssFilters from 'xss-filters'
 import * as serviceWorkerRegistration from './service-worker-registration'
 import './index.scss'
+import { toggleFullScreen } from '@utils/full-screen-fn'
 
 const container = document.getElementById('root')
 
@@ -26,6 +27,20 @@ export const store = createStore(
 )
 
 const MainApp = () => {
+  const fullScreenListener = (e: KeyboardEvent) => {
+    if (e.key === 'F9') {
+      toggleFullScreen()
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keyup', fullScreenListener)
+
+    return function clean() {
+      window.removeEventListener('keyup', fullScreenListener)
+    }
+  }, [])
+
   return (
     <React.StrictMode>
       <Provider store={store}>
