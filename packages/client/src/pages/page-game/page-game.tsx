@@ -13,6 +13,7 @@ import { DiceSide, GameState } from './widgets/game/type'
 import { getInitialGameState } from './widgets/game/utils/get-initial-game-state'
 import { useEffect, useState } from 'react'
 import { Dice, Player } from './type'
+import { FullScreenBtn } from '@ui/full-creen-btn/full-screen-btn'
 
 const PageGame = () => {
   const [gameState, setGameState] = useState<GameState>(getInitialGameState({}))
@@ -84,6 +85,7 @@ const PageGame = () => {
           currentPlayer={currentPlayer}
           onChoosingCube={onChoosingCube}
         />
+        <FullScreenBtn active={true} extraClass={styles.fullscreen} />
         <Forest />
       </div>
     </div>

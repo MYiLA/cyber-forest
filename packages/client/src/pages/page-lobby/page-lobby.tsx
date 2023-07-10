@@ -16,6 +16,7 @@ import cn from 'classnames'
 import { IChatData } from '@pages/page-lobby/types'
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames'
+import { FullScreenBtn } from '@ui/full-creen-btn/full-screen-btn'
 
 export const PageLobby = () => {
   const { user } = useSelector((store: RootState) => store.user)
@@ -102,6 +103,7 @@ export const PageLobby = () => {
           [styles.user_purpur]: themeName === Theme.Purple,
           [styles.user_neon]: themeName === Theme.Neon,
         })}>
+        <FullScreenBtn active={true} />
         <img
           src={
             user?.avatar
@@ -119,20 +121,21 @@ export const PageLobby = () => {
             <img src={settings} alt={'настройки'} />
           </NavLink>
         </div>
-        <a
-          className={classNames(styles.user_link, {
-            [styles.purpur]: themeName === Theme.Purple,
-            [styles.neon]: themeName === Theme.Neon,
-          })}>
-          как играть?
-        </a>
-        <a
-          className={classNames(styles.user_link, {
-            [styles.purpur]: themeName === Theme.Purple,
-            [styles.neon]: themeName === Theme.Neon,
-          })}>
-          бестиарий
-        </a>
+        {/*пока не реализованы страницы убрала ссылки*/}
+        {/*<a */}
+        {/*  className={classNames(styles.user_link, {*/}
+        {/*    [styles.purpur]: themeName === Theme.Purple,*/}
+        {/*    [styles.neon]: themeName === Theme.Neon,*/}
+        {/*  })}>*/}
+        {/*  как играть?*/}
+        {/*</a>*/}
+        {/*<a*/}
+        {/*  className={classNames(styles.user_link, {*/}
+        {/*    [styles.purpur]: themeName === Theme.Purple,*/}
+        {/*    [styles.neon]: themeName === Theme.Neon,*/}
+        {/*  })}>*/}
+        {/*  бестиарий*/}
+        {/*</a>*/}
         <Rating />
         <BattleSetting />
         {activeTopicId ? (
