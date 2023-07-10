@@ -15,6 +15,7 @@ import { forum_mock_topics, tables_mock } from '@pages/page-lobby/mocks'
 import cn from 'classnames'
 import { IChatData } from '@pages/page-lobby/types'
 import { NavLink } from 'react-router-dom'
+import classNames from 'classnames'
 
 export const PageLobby = () => {
   const { user } = useSelector((store: RootState) => store.user)
