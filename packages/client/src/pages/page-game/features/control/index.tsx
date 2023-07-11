@@ -13,10 +13,19 @@ const OpenGuideButton = ({ onClick }: OpenButtonProps) => {
   )
 }
 
-export const Control = () => {
+type ControlProps = {
+  onDone?: () => void
+}
+
+export const Control = ({ onDone }: ControlProps) => {
+  const onDoneHandler = () => {
+    if (!onDone) return
+    onDone()
+  }
+
   return (
     <div className={styles.control}>
-      <MainButton type="button" className={styles.btn}>
+      <MainButton type="button" className={styles.btn} onClick={onDoneHandler}>
         Готово
       </MainButton>
       <MainButton type="button" className={styles.btn}>

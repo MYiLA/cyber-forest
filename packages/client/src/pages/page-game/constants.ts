@@ -8,7 +8,7 @@ import duck from '@images/warriors/duck.png'
 import hare from '@images/warriors/hare.png'
 import toad from '@images/warriors/toad.png'
 import { Dice } from './type'
-import { DiceType } from './widgets/game/constants'
+import { DiceType } from '@shared/type'
 
 export const COLOR = {
   [DiceType.Cat]: {

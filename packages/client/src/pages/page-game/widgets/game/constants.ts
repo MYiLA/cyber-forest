@@ -23,6 +23,8 @@ export enum PhaseType {
   Defense = 'Defense',
   /** Ожидание только в онлайн-игре */
   Waiting = 'Waiting',
+  /** Подсчёт результатов битвы */
+  ResultBattle = 'ResultBattle',
 }
 
 /** Цвет игрока */
@@ -41,6 +43,8 @@ export enum AreaType {
   Preparation = 'Preparation',
   /** Зона отдыха */
   Rest = 'Rest',
+  /** Инвентарь */
+  Stock = 'Stock',
 }
 
 export enum DiceSideType {
@@ -68,6 +72,7 @@ export const AREA_SIZE = {
 
 export const DICE_SIZE = 60
 export const DICE_INDENT = 6
+export const DICE_NUMBER_INDENT = 10
 
 /** Общие Размеры */
 export const SIZE = {
@@ -145,28 +150,6 @@ export const AREA_POSITION = {
   },
 }
 
-/** Типы кубиков */
-export enum DiceType {
-  /** Волк */
-  Wolf = 'Wolf',
-  /** Кот */
-  Cat = 'Cat',
-  /** Лиса */
-  Fox = 'Fox',
-  /** Змея */
-  Snake = 'Snake',
-  /** Медведь */
-  Bear = 'Bear',
-  /** Сова */
-  Owl = 'Owl',
-  /** Утка */
-  Duck = 'Duck',
-  /** Заяц */
-  Hare = 'Hare',
-  /** Жаба */
-  Toad = 'Toad',
-}
-
 /** Тип игры */
 export enum GameType {
   /** Оффлайн */
@@ -184,9 +167,14 @@ export const DEFAULT_SETTING = {
     [AreaType.Attack]: [],
     [AreaType.Preparation]: [],
     [AreaType.Rest]: [],
+    [AreaType.Stock]: [],
     movesCount: 0,
   },
   START_CUBE_LIMIT: 2,
   FUTURE_CUBE_LIMIT: 3,
   CARDS_TYPES_COUNT: 7,
+  MAX_HIRE_WARRIOR_COUNT: 5,
+  MIN_START_ENERGY: 2,
+  MAX_START_ENERGY: 6,
+  HIRE_LIMIT: 1,
 }

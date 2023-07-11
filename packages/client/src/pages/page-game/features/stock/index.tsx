@@ -1,5 +1,5 @@
 import { DiceSideComponent } from '@shared/ui/dice-side'
-import { getRandomElement } from '@shared/utils/getRandomElement'
+import { getRandomElement } from '@shared/utils/get-random-element'
 import { Dice } from '../../type'
 import { DiceSide } from '../../widgets/game/type'
 import styles from './stock.module.scss'
@@ -14,6 +14,7 @@ export const Stock = ({ dices, onChoosingCubeProp }: StockProps) => {
     if (!onChoosingCubeProp) return
     onChoosingCubeProp(getRandomElement(shoosedDice.sides), shoosedDice.id)
   }
+
   return (
     <div className={styles.stock}>
       <ul className={styles.list}>

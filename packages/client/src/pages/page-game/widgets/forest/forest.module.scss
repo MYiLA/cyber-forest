@@ -2,7 +2,7 @@
 @import "@scss/_mixins.scss";
 
 .invisible_wrap {
-  z-index: 1201;
+  z-index: 1200;
   position: absolute;
   background-color: transparent;
   width: 100vw;
@@ -16,7 +16,7 @@
 .forest_wrap {
   @include glow-for-big;
 
-  z-index: 1202;
+  z-index: 1201;
   position: absolute;
   right: 0;
   top: 50px;

@@ -1,15 +1,14 @@
-import { isEnergyDiceSide } from '@shared/utils/isEnergyDiceSide'
-import { isSymbolDiceSide } from '@shared/utils/isSymbolDiceSide'
-import { isWarriorDiceSide } from '@shared/utils/isWarriorDiceSide'
+import { isEnergyDiceSide } from '@shared/utils/is-energy-dice-side'
+import { isSymbolDiceSide } from '@shared/utils/is-symbol-dice-side'
+import { isWarriorDiceSide } from '@shared/utils/is-warrior-dice-side'
 import {
   AreaType,
-  AREA_SIZE,
-  DICE_INDENT,
+  DICE_NUMBER_INDENT,
   DICE_SIZE,
   PlayerType,
 } from '../constants'
 import { DiceSide } from '../type'
-import { getAreaPosition } from './get-area-position'
+import { getDicePosition } from './get-dice-position'
 
 const drawDiceSide = ({
   ctx,
@@ -33,6 +32,37 @@ const drawDiceSide = ({
 
     ctx.strokeRect(x, y, DICE_SIZE, DICE_SIZE)
     ctx.fillRect(x, y, DICE_SIZE, DICE_SIZE)
+    // Отрисовка показателей
+    // Цвет и стиль текста
+    ctx.fillStyle = '#FFF'
+    ctx.font = 'regular 16px Times' // 'New Zelek', Times, serif
+    ctx.textAlign = 'right'
+    // Отрисовка уровня
+    const level = String(diceSide.level)
+    ctx.fillText(level, x + DICE_NUMBER_INDENT, y + DICE_NUMBER_INDENT)
+    // Отрисовка спецсимвола
+    const abilitySymbol = diceSide.abilitySymbol ?? ''
+    ctx.fillText(
+      abilitySymbol,
+      x + DICE_NUMBER_INDENT,
+      y + DICE_SIZE - DICE_NUMBER_INDENT
+    )
+
+    ctx.textAlign = 'left'
+    // Отрисовка атаки
+    const attack = String(diceSide.attack)
+    ctx.fillText(
+      attack,
+      x + DICE_SIZE - DICE_NUMBER_INDENT,
+      y + DICE_NUMBER_INDENT
+    )
+    // Отрисовка защиты
+    const defense = String(diceSide.defense)
+    ctx.fillText(
+      defense,
+      x + DICE_SIZE - DICE_NUMBER_INDENT,
+      y + DICE_SIZE - DICE_NUMBER_INDENT
+    )
   } else if (isSymbolDiceSide(diceSide)) {
     ctx.fillStyle = `rgb(${diceSide.color})`
 
@@ -52,24 +82,8 @@ export const drawDicesSides = ({
   player: PlayerType
   area: AreaType
 }): void => {
-  const { x, y } = getAreaPosition(player, area)
-
-  let startX = x + AREA_SIZE.INDENT
-  let startY = y + AREA_SIZE.INDENT
-
   sides.forEach((diceSide, index) => {
-    drawDiceSide({ ctx, diceSide, x: startX, y: startY })
-    startX += DICE_SIZE + DICE_INDENT
-
-    // Переход на следующую строку
-    if (
-      (area === AreaType.Rest &&
-        (index === 4 || index === 9 || index === 14)) ||
-      (area === AreaType.Preparation &&
-        (index === 3 || index === 7 || index === 11))
-    ) {
-      startY += DICE_SIZE + DICE_INDENT
-      startX = x + AREA_SIZE.INDENT
-    }
+    const { minX, minY } = getDicePosition({ area, player, diceIndex: index })
+    drawDiceSide({ ctx, diceSide, x: minX, y: minY })
   })
 }
