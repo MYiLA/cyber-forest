@@ -1,0 +1,67 @@
+.comment {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  height: 30px;
+  padding-top: 10px;
+
+  &_response {
+    display: none;
+    width: 500px;
+    height: 26px;
+    position: relative;
+
+    margin-left: 15px;
+
+    color: #FFF;
+    font-size: 14px;
+    font-family: Blender Pro;
+    font-weight: 500;
+    line-height: 14px;
+    padding-left: 15px;
+
+    &::placeholder {
+      color: #FFFFFF70;
+    }
+
+    &_neon {
+      background: #3FB7EA30;
+    }
+
+    &_purple {
+      background: #BB6AEA33;
+    }
+
+    &.active {
+      display: block;
+    }
+  }
+
+  &_send {
+    width: 69px;
+    height: 26px;
+    border-radius: 3px;
+    border: none;
+
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 14px;
+    font-family: Blender Pro;
+    font-weight: 500;
+    line-height: 14px;
+
+    cursor: pointer;
+
+    &_purple {
+      background: rgba(187, 106, 234, 0.20);
+    }
+
+    &_neon {
+      background: rgba(63, 183, 234, 0.40);
+    }
+
+    &:hover {
+      box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.50);
+    }
+  }
+}

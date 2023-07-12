@@ -47,6 +47,11 @@
     .button_neon {
       background: rgba(63, 183, 234, 0.65);
     }
+
+    .button_offline {
+      display: block;
+      margin: 0 auto !important;
+    }
   }
 
   &_checkbox {

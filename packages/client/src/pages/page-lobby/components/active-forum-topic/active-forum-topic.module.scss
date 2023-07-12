@@ -116,6 +116,15 @@
       font-weight: 500;
       line-height: 100%;
     }
+    &_input {
+      //width: 200px;
+      margin-top: 15px;
+
+    }
+    &_comment {
+      margin-top: 15px;
+      width: 150px;
+    }
   }
 }
 

@@ -1,6 +1,5 @@
 import { ITopicComment } from '@pages/page-lobby/types'
 import styles from './topic-comment.module.scss'
-import { BaseSyntheticEvent, useState } from 'react'
 import user_mock from '@images/chat-avatar.png'
 import { dateFormatter } from '@utils/date-formatter'
 import likeUnactiveNeon from '@images/like-unactive-neon.svg'
@@ -11,7 +10,7 @@ import { Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 import { TopicSubcomment } from '@pages/page-lobby/components/active-forum-topic/components/topic-subcomment/topic-subcomment'
 import { ITopicCommentComment } from '@pages/page-lobby/types'
-import cn from 'classnames'
+import { TopicInput } from '@pages/page-lobby/components/active-forum-topic/components/topic-input/topic-input'
 
 export const TopicComment: React.FC<ITopicComment> = ({
   comment_id,
@@ -22,7 +21,6 @@ export const TopicComment: React.FC<ITopicComment> = ({
   liked,
   comments,
 }) => {
-  const [comment, setComment] = useState<string | undefined>(undefined)
   const { themeName } = useTheme()
 
   const getIcon = () => {
@@ -38,18 +36,6 @@ export const TopicComment: React.FC<ITopicComment> = ({
       } else {
         return likeUnactiveNeon
       }
-    }
-  }
-
-  const getInputClasses = () => {
-    const input = document.querySelectorAll(`input.${styles.comment_response}`)[
-      comment_id
-    ]
-    if (comment) {
-      console.log('comment added')
-      input?.classList.remove(styles.active)
-    } else {
-      input?.classList.add(styles.active)
     }
   }
 
@@ -83,25 +69,7 @@ export const TopicComment: React.FC<ITopicComment> = ({
                 <span>{likes}</span>
               </button>
             </div>
-            <input
-              className={cn(styles.comment_response, {
-                [styles.comment_response_purple]: themeName === Theme.Purple,
-                [styles.comment_response_neon]: themeName !== Theme.Purple,
-              })}
-              placeholder={'введите сообщение'}
-              name={comment_id.toString()}
-              onBlur={(event: BaseSyntheticEvent) => {
-                setComment(event.target.value)
-              }}
-            />
-            <button
-              className={cn(styles.comment_send, {
-                [styles.comment_send_purple]: themeName === Theme.Purple,
-                [styles.comment_send_neon]: themeName !== Theme.Purple,
-              })}
-              onClick={getInputClasses}>
-              ответить
-            </button>
+            <TopicInput inputName={comment_id.toString()} />
           </div>
         </div>
       </div>
