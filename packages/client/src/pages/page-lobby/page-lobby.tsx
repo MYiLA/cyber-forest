@@ -17,12 +17,14 @@ import { IChatData } from '@pages/page-lobby/types'
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames'
 import { FullScreenBtn } from '@ui/full-creen-btn/full-screen-btn'
+import { NewTopicForm } from '@pages/page-lobby/components/new-topic-form/new-topic-form'
 
 export const PageLobby = () => {
   const { user } = useSelector((store: RootState) => store.user)
   const { themeName } = useTheme()
   const [searchString, setSearchString] = useState<string>('')
   const [newTopic, setNewTopic] = useState<string | null>(null)
+  const [newTopicForm, setNewTopicForm] = useState<boolean>(false)
   const [topicList, setTopicList] = useState(forum_mock_topics)
   const [activeTopicId, setActiveTopicId] = useState(0)
 
@@ -37,6 +39,12 @@ export const PageLobby = () => {
     } else if (!value) {
       setTopicList(forum_mock_topics)
     }
+  }
+
+  function onNewTopicClose() {
+    setNewTopic(null)
+
+    setNewTopicForm(!newTopicForm)
   }
 
   return (
@@ -79,8 +87,9 @@ export const PageLobby = () => {
               themeName === Theme.Purple ? styles.purpur : styles.neon
             )}
             onBlur={(event: BaseSyntheticEvent) => {
-              console.log('new topic name', event.target.value)
-              setNewTopic(event.target.value)
+              if (event.target.value) {
+                setNewTopic(event.target.value)
+              }
             }}
             placeholder={'Введите тему для обсуждения'}
           />
@@ -88,6 +97,7 @@ export const PageLobby = () => {
             type={'submit'}
             disabled={!newTopic}
             onClick={() => {
+              setNewTopicForm(!newTopicForm)
               console.log('topic added')
             }}
             className={classNames(styles.forum_input_submit, {
@@ -147,6 +157,9 @@ export const PageLobby = () => {
           />
         ) : null}
       </section>
+      {newTopicForm && newTopic && (
+        <NewTopicForm title={newTopic} onClose={onNewTopicClose} />
+      )}
     </div>
   )
 }

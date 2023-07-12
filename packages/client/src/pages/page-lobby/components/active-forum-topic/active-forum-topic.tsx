@@ -7,8 +7,10 @@ import { IActiveForumTopicProps, ITopicComment } from '@pages/page-lobby/types'
 import close from '@images/close.svg'
 import { topicData } from '@pages/page-lobby/mocks'
 import cn from 'classnames'
+import { TopicInput } from '@pages/page-lobby/components/active-forum-topic/components/topic-input/topic-input'
 
 export const ActiveTopicModal: React.FC<IActiveForumTopicProps> = ({
+  id,
   onClose,
 }) => {
   const { themeName } = useTheme()
@@ -44,6 +46,12 @@ export const ActiveTopicModal: React.FC<IActiveForumTopicProps> = ({
               в этой теме еще нет комментариев.
             </span>
           )}
+          <TopicInput
+            inputName={id.toString()}
+            buttonLabel={'Добавить комментарий'}
+            inputClasses={styles.topic_input}
+            buttonClasses={styles.topic_comment}
+          />
         </div>
       </div>
     </div>
