@@ -1,6 +1,5 @@
 import styles from './page-lobby.module.scss'
 import { useSelector } from 'react-redux'
-import { TableItem } from './components/table-item/table-item'
 import React, { BaseSyntheticEvent, useEffect, useState } from 'react'
 import { ForumItem } from './components/forum-item/forum-item'
 import avatar from '@images/chat-avatar.png'
@@ -11,7 +10,7 @@ import settings from '@images/settings.svg'
 import { Rating } from '@pages/page-lobby/components/rating/rating'
 import { BattleSetting } from '@pages/page-lobby/components/battle-settings/battle-settings'
 import { ActiveTopicModal } from '@pages/page-lobby/components/active-forum-topic/active-forum-topic'
-import { forum_mock_topics, tables_mock } from '@pages/page-lobby/mocks'
+import { forum_mock_topics } from '@pages/page-lobby/mocks'
 import cn from 'classnames'
 import { IChatData } from '@pages/page-lobby/types'
 import { NavLink } from 'react-router-dom'
@@ -56,9 +55,17 @@ export const PageLobby = () => {
         )}>
         <h3 className={styles.window_header}>доступные битвы</h3>
         <div className={styles.window_wrapper}>
-          {tables_mock.map((table, index) => (
-            <TableItem key={index} {...table} />
-          ))}
+          <h3
+            style={{
+              marginTop: '15%',
+              textAlign: 'center',
+              fontFamily: 'Blender Pro',
+            }}>
+            Раздел находится в разработке
+          </h3>
+          {/*{tables_mock.map((table, index) => (*/}
+          {/*  <TableItem key={index} {...table} />*/}
+          {/*))}*/}
         </div>
       </section>
       <section

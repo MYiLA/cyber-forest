@@ -38,6 +38,7 @@ export type Dice = {
 export type Player = {
   /** Айди юзера, если есть аккаунт */
   id?: string
+  name: string
   /** Тип игрока */
   type: PlayerType
   /** Количество славы */
