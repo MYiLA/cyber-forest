@@ -13,15 +13,9 @@ export const getNextPlayerType = (
     case PlayerType.Red:
       return PlayerType.Blue
     case PlayerType.Blue:
-      if (playersCount === 2) {
-        return PlayerType.Red
-      }
-      return PlayerType.Yellow
+      return playersCount === 2 ? PlayerType.Red : PlayerType.Yellow
     case PlayerType.Yellow:
-      if (playersCount === 3) {
-        return PlayerType.Red
-      }
-      return PlayerType.Green
+      return playersCount === 3 ? PlayerType.Red : PlayerType.Green
     case PlayerType.Green:
       return PlayerType.Red
     default:
