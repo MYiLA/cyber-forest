@@ -5,11 +5,14 @@ import foxImg from './images/cyber-fox.png'
 import styles from './wineer-screen.module.scss'
 import cn from 'classnames'
 import { ScreenBlock } from '../screen-block'
-import { BackToLobbyButton } from '../back-to-lobby-button'
+import { Player } from '@pages/page-game/type'
+import { NavLink } from 'react-router-dom'
+import { PATH } from '@config/constants'
 
-export const WinnerScreen = () => {
+export const WinnerScreen = (winner: Player | undefined) => {
   const [open, setOpen] = useState(true)
   const handleClose = () => setOpen(false)
+
   return (
     <Modal open={open} onClose={handleClose}>
       <ScreenBlock className={styles.winner_screen}>
@@ -24,13 +27,20 @@ export const WinnerScreen = () => {
             alt="Cyber Eagle"
           />
           <div className={styles.score_info}>
-            <h4 className={cn(styles.score_info__title)}>ваш рейтинг</h4>
-            <p>51 место в топ100</p>
+            <h4 className={cn(styles.score_info__title)}>
+              победитель - {winner?.name}
+            </h4>
+            {winner?.movesCount && <p>победа за {winner.movesCount} шагов</p>}
             <div className={styles.score_info__glory}>
               <p>слава</p>
-              <p>1023</p>
+              <p>{winner?.gloryCount}</p>
             </div>
-            <BackToLobbyButton className={styles.score_info__button} />
+            {/*TODO: временно - ссылка на рейтинг пользователей*/}
+            {/*<BackToLobbyButton className={styles.score_info__button} />*/}
+            <NavLink to={PATH.LEADER_BOARD} className={styles.navigation}>
+              просмотр рейтинга
+            </NavLink>
+            <NavLink to={PATH.LOBBY}> выйти в меню </NavLink>
           </div>
           <img src={foxImg} className={styles.score_image} alt="Cyber Fox" />
         </div>
