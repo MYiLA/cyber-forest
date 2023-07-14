@@ -192,6 +192,7 @@ const PageGame = () => {
       // Если сумма защит противника меньше либо равна сумме атак игрока
       if (defense <= attack) {
         const attackDices = gameState?.[warriors.type]?.[AreaType.Attack]
+        // Противник повержен
         if (!attackDices) return
         // Все его воины переходят в зону отдыха
         dispatch(
@@ -221,10 +222,9 @@ const PageGame = () => {
 
       // Если защита самого сильного воина противника больше атаки игрока
       if (bestDefense > attack) {
-        // то атака успешно отражена
+        // То атака успешно отражена
         return
       }
-
       // Если защита самого сильного воина противника меньше либо равна атаке игрока
       if (bestDefense <= attack) {
         // TODO: Тут должен быть переход в фазу защиты и игроку даётся выбрать самому,
@@ -237,7 +237,8 @@ const PageGame = () => {
           const warrior = sortedWarriors[i]
           const defense = Number(warrior?.side.defense)
           // Если защита воина меньше, чем атака, то воин получает ранение
-          if (defense <= attackPower) {
+          // В сравнении учавствует и защита сильнейшего воина, так как он может защитить слабого напарника
+          if (defense <= attackPower && bestDefense <= attackPower) {
             const dice = warrior?.dice
             if (!dice) return
             // Атака уменьшается на показатель защиты воина
@@ -258,11 +259,10 @@ const PageGame = () => {
               })
             )
           } else {
-            // Если защита воина больше, чем атака, то воин выживает
+            // Иначе воин выживает
             attackPower = 0
           }
         }
-        return
       }
     })
     // После атак ход переходит следующему игроку
