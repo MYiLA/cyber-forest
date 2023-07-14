@@ -1,10 +1,12 @@
+@import "@scss/_mixins.scss";
+
 .screen_wrapper {
   border: 1px solid #FFF;
   width: 670px;
   position: relative;
 
   &.purple {
-    background: $game-gradient;
+    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
   }
 
   &.neon {

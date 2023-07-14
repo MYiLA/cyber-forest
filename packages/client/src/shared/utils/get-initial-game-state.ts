@@ -9,10 +9,12 @@ import { GameState } from '../../pages/page-game/widgets/game/type'
 
 type getInitialGameStateProps = {
   playersCount?: number
+  users: string[]
 }
 
 export const getInitialGameState = ({
   playersCount = DEFAULT_SETTING.PLAYERS_COUNT,
+  users,
 }: getInitialGameStateProps): GameState => {
   const playersTypes = [
     PlayerType.Red,
@@ -22,8 +24,9 @@ export const getInitialGameState = ({
   ].slice(0, playersCount)
 
   const mappingPlayers = playersTypes
-    .map(type => ({
+    .map((type, index) => ({
       ...DEFAULT_SETTING.PLAYER,
+      name: users[index],
       type,
       [AreaType.Stock]: Array(4)
         .fill(null)

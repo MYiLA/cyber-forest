@@ -32,8 +32,6 @@ export const BattleSetting = () => {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
-
-    console.log(form)
   }
 
   const getSwitcherValue = (value: string) => {
