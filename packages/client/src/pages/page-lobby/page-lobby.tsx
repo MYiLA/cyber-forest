@@ -139,14 +139,15 @@ export const PageLobby = () => {
             <img src={settings} alt={'настройки'} />
           </NavLink>
         </div>
+        <NavLink
+          to={PATH.ABOUT}
+          className={classNames(styles.user_link, {
+            [styles.purpur]: themeName === Theme.Purple,
+            [styles.neon]: themeName === Theme.Neon,
+          })}>
+          информация об игре
+        </NavLink>
         {/*TODO: пока не реализованы страницы, добавить по мере реализации*/}
-        {/*<a */}
-        {/*  className={classNames(styles.user_link, {*/}
-        {/*    [styles.purpur]: themeName === Theme.Purple,*/}
-        {/*    [styles.neon]: themeName === Theme.Neon,*/}
-        {/*  })}>*/}
-        {/*  как играть?*/}
-        {/*</a>*/}
         {/*<a*/}
         {/*  className={classNames(styles.user_link, {*/}
         {/*    [styles.purpur]: themeName === Theme.Purple,*/}

@@ -11,6 +11,10 @@ export const PageHome = await mainLazy(
   () => import('@pages/page-home/page-home')
 )
 
+export const PageInfo = await mainLazy(
+  () => import('@pages/page-info/page-info')
+)
+
 export const PageRegister = await mainLazy(
   () => import('@pages/auth/page-register/page-register')
 )
