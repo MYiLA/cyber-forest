@@ -18,7 +18,6 @@ export const drawUserEnergy = ({
   const y = maxY - AREA_SIZE.INDENT
   // Цвет и стиль текста
   ctx.fillStyle = '#FFF'
-  ctx.font = 'regular 16px Times' // 'New Zelek', Times, serif
   ctx.textAlign = 'right'
   // Отрисовка
   ctx.fillText(`Сила: ${energy}`, x, y)
