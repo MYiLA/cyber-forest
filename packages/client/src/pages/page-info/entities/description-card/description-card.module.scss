@@ -1,0 +1,32 @@
+.card {
+  width: 220px;
+  height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &_img {
+    border-radius: 100px;
+
+    width: 120px;
+    height: 120px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 3px solid #FFF;
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.50);
+
+  }
+
+  &_text {
+    color: #FFF;
+    text-align: center;
+    font-family: Blender Pro;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+  }
+}

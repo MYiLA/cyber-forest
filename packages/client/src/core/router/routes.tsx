@@ -5,6 +5,7 @@ import {
   PageError,
   PageGame,
   PageHome,
+  PageInfo,
   PageLobby,
   PageLogin,
   PageRegister,
@@ -21,6 +22,12 @@ const routes = [
     path: PATH.HOME,
     element: <PageHome />,
     layout: 'game',
+  },
+  {
+    path: PATH.ABOUT,
+    element: <PageInfo />,
+    layout: 'game',
+    protected: false,
   },
   {
     path: PATH.USER,
