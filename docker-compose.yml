@@ -1,13 +1,44 @@
 # В файле docker-compose — клиент,сервер и база данных.
-version: '3.9'
+version: '3.3'
 
 services:
-  client:
-    container_name: client
-    image: cyberforest-client
+  nginx:
+    container_name: cyb-nginx
+    image: cyb-nginx
+    build: ./nginx
+    restart: always
+    volumes:
+      - ./ssl:/ssl
+      - ./ssl/certbot/conf:/etc/letsencrypt
+      - ./ssl/certbot/www:/var/www/certbot
+    links:
+      - client:client
+      - server:server
+#      - pgadmin:pgadmin
+    ports:
+      - "80:80"
+      - "443:443"
     networks:
       - cyb-net
-      - server-net
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    depends_on:
+      - client
+      - server
+      - postgres
+#      - pgadmin
+
+  certbot:
+    image: certbot/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    volumes:
+      - ./ssl/certbot/conf:/etc/letsencrypt
+      - ./ssl/certbot/www:/var/www/certbot
+
+  client:
+    container_name: cyb-client
+    image: cyb-client
+    networks:
+      - cyb-net
     restart: always
     build:
       context: .
@@ -21,17 +52,15 @@ services:
     environment:
       - CLIENT_PORT=${CLIENT_PORT}
       - SERVER_PORT=${SERVER_PORT}
-    command: yarn start:client
+    command: yarn run start:client
     depends_on:
       - server
 
   server:
-    container_name: server
-    image: cyberforest-server
+    container_name: cyb-server
+    image: cyb-server
     networks:
       - cyb-net
-      - server-net
-      - pg-net
     restart: always
     build:
       context: .
@@ -45,48 +74,48 @@ services:
     environment:
       SERVER_PORT: ${SERVER_PORT}
     command: yarn run start:server
+    volumes:
+      - ./uploads:/app/packages/server/uploads:rw
     depends_on:
       - postgres
 
   postgres:
-    container_name: postgres
+    container_name: cyb-postgres
     image: postgres:15-alpine
     networks:
       - cyb-net
-      - server-net
-      - pg-net
     restart: always
     ports:
       - '${POSTGRES_LOCAL_PORT}:${POSTGRES_PORT}'
     env_file:
       - .env
     environment:
+      TZ: "Europe/Moscow"
       PG_DATA: /var/lib/postgresql/data/
     volumes:
       - ./tmp/pgdata:/var/lib/postgresql/data/
 
-  pgadmin:
-    container_name: pgadmin
-    image: dpage/pgadmin4
-    networks:
-      - cyb-net
-      - pg-net
-    restart: always
-    ports:
-      - '${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}'
-    env_file:
-      - .env
-    environment:
-      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 0
-    volumes:
-      - ./tmp/pgadmin:/var/lib/pgadmin
-    depends_on:
-      - postgres
+# не нужен, но может пригодиться
+#  pgadmin:
+#    container_name: cyb-pgadmin
+#    image: dpage/pgadmin4
+#    user: root
+#    networks:
+#      - cyb-net
+#    restart: always
+#    ports:
+#      - '${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}'
+#    env_file:
+#      - .env
+#    environment:
+#      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 0
+#    volumes:
+#      - ./tmp/pgadmin:/var/lib/pgadmin
+#      - ./ssl/cert.pem:/certs/server.cert
+#      - ./ssl/privkey.pem:/certs/server.key
+#    depends_on:
+#      - postgres
 
 networks:
   cyb-net:
-    driver: bridge
-  pg-net:
-    driver: bridge
-  server-net:
     driver: bridge

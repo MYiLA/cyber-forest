@@ -31,8 +31,16 @@ class AuthApi {
     return this._axios.post(API_AUTH.USER_LOGOUT)
   }
 
-  public userGetInfo() {
-    return this._axios.get(API_AUTH.USER_INFO)
+  public userGetInfo(cookies: Record<string, string> | null = null) {
+    const request =
+      cookies && cookies.authCookie
+        ? this._axios.get(API_AUTH.USER_INFO, {
+            headers: {
+              Cookie: `authCookie=${cookies.authCookie};`,
+            },
+          })
+        : this._axios.get(API_AUTH.USER_INFO)
+    return request
   }
 
   public userRegister(data: UserRegister) {

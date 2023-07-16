@@ -19,7 +19,9 @@ export enum Theme {
   Purple = 'purple',
 }
 
-export const API_URL = 'https://ya-praktikum.tech/api/v2'
+// export const API_URL = 'https://ya-praktikum.tech/api/v2'
+// export const API_URL = 'http://localhost:3001/api'
+export const API_URL = 'https://cyberforest.ru/api'
 
 export const API_AUTH = {
   USER_LOGIN: '/auth/signin',

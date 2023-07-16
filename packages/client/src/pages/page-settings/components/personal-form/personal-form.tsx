@@ -1,7 +1,7 @@
 import styles from '@pages/page-settings/page-settings.module.scss'
 import { MainInput } from '@ui/main-input/main-input'
 import classNames from 'classnames'
-import { Theme } from '@config/constants'
+import { API_URL, Theme } from '@config/constants'
 import standardAvatar from '@images/no-avatar.jpg'
 import camera from '@images/camera.svg'
 import { useTheme } from '@hooks/use-theme'
@@ -152,11 +152,7 @@ export const PersonalForm: FC<User> = ({
           <input type="file" onInput={onFileInput} />
           <figure className={styles.personal_figure}>
             <img
-              src={
-                avatar
-                  ? 'https://ya-praktikum.tech/api/v2/resources' + avatar
-                  : standardAvatar
-              }
+              src={avatar ? `${API_URL}/resources` + avatar : standardAvatar}
               className={styles.personal_avatar}
               alt="аватар"
             />

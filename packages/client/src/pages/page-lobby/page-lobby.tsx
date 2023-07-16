@@ -5,7 +5,7 @@ import { ForumItem } from './components/forum-item/forum-item'
 import avatar from '@images/chat-avatar.png'
 import { RootState } from '@store/store'
 import { useTheme } from '@hooks/use-theme'
-import { PATH, Theme } from '@config/constants'
+import { PATH, API_URL, Theme } from '@config/constants'
 import settings from '@images/settings.svg'
 import { Rating } from '@pages/page-lobby/components/rating/rating'
 import { BattleSetting } from '@pages/page-lobby/components/battle-settings/battle-settings'
@@ -125,7 +125,7 @@ export const PageLobby = () => {
         <img
           src={
             user?.avatar
-              ? 'https://ya-praktikum.tech/api/v2/resources' + user.avatar
+              ? `${API_URL}/resources` + user?.avatar
               : avatar
           }
           alt={'аватар пользователя'}

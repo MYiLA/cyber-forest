@@ -1,4 +1,4 @@
-import { Theme } from '@config/constants'
+import { API_URL, Theme } from '@config/constants'
 import emptyChat from '@images/chat-avatar.png'
 import styles from './forum-item.module.scss'
 import { useTheme } from '@hooks/use-theme'
@@ -14,7 +14,7 @@ export const ForumItem: React.FC<IChatData> = ({
 }) => {
   const { themeName } = useTheme()
   const userAvatar = last_message?.user.avatar
-    ? 'https://ya-praktikum.tech/api/v2/resources' + last_message.user.avatar
+    ? `${API_URL}/resources` + last_message.user.avatar
     : emptyChat
 
   const handleBtnClick = () => {

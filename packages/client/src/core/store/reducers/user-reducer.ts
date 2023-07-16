@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ApiAuth from '@api/auth-api'
 import {
-  fakeUser,
   User,
   UserLogin,
   UserPassword,
@@ -24,9 +23,12 @@ export const userRegister = createAsyncThunk(
   }
 )
 
-export const userGetInfo = createAsyncThunk('user/info', () => {
-  return ApiAuth.userGetInfo()
-})
+export const userGetInfo = createAsyncThunk(
+  'user/info',
+  (cookies: Record<string, string> | null = null) => {
+    return ApiAuth.userGetInfo(cookies)
+  }
+)
 
 export const userChangeData = createAsyncThunk(
   'user/profile',
@@ -67,14 +69,6 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    ssrPrepare: () => {
-      return {
-        ...initialState,
-        authorized: true,
-        authChecked: true,
-        user: fakeUser,
-      }
-    },
     resetError: state => {
       return { ...state, error: null }
     },
@@ -190,5 +184,5 @@ export const userSlice = createSlice({
   },
 })
 
-export const { resetError, ssrPrepare } = userSlice.actions
+export const { resetError } = userSlice.actions
 export default userSlice.reducer

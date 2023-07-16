@@ -1,6 +1,6 @@
 const magic = '🪄'
 
-const cast = (spell: string, item: any) => {
+const cast = (spell: string, item: string) => {
   if (spell.startsWith(magic)) {
     return '🐷'
   }

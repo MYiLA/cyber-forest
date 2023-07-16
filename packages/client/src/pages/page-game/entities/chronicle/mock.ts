@@ -1,12 +1,13 @@
-import { PlayerType } from '../../widgets/game/constants'
 import { ChronicleMessage } from './type'
+import { PlayerType } from '@pages/page-game/widgets/game/constants'
 
 export const MESSAGES: ChronicleMessage[] = [
   {
     id: 1,
     player: {
       id: '1',
-      type: PlayerType.Red,
+      // SSR считает что PlayerType это тип, поэтому не может взять из него значения
+      type: { ...PlayerType }.Red,
       gloryCount: 0,
     },
     desc: 'Игрок 1 нанял зайца и выставил усиленного медведя на поле боя. Медведь нанёс всем зверям 8 урона',
@@ -15,7 +16,8 @@ export const MESSAGES: ChronicleMessage[] = [
     id: 2,
     player: {
       id: '2',
-      type: PlayerType.Yellow,
+      // SSR считает что PlayerType это тип, поэтому не может взять из него значения
+      type: { ...PlayerType }.Yellow,
       gloryCount: 20,
     },
     desc: 'Лиса игрока 2 отправляется на отдых',
@@ -24,7 +26,8 @@ export const MESSAGES: ChronicleMessage[] = [
     id: 3,
     player: {
       id: '3',
-      type: PlayerType.Green,
+      // SSR считает что PlayerType это тип, поэтому не может взять из него значения
+      type: { ...PlayerType }.Green,
       gloryCount: 20,
     },
     desc: 'Жаба игрока 3 отправляется на отдых',

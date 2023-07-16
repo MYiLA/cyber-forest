@@ -11,6 +11,7 @@ import { useTheme } from '@hooks/use-theme'
 import { TopicSubcomment } from '@pages/page-lobby/components/active-forum-topic/components/topic-subcomment/topic-subcomment'
 import { ITopicCommentComment } from '@pages/page-lobby/types'
 import { TopicInput } from '@pages/page-lobby/components/active-forum-topic/components/topic-input/topic-input'
+import React from 'react'
 
 export const TopicComment: React.FC<ITopicComment> = ({
   comment_id,
@@ -75,8 +76,8 @@ export const TopicComment: React.FC<ITopicComment> = ({
       </div>
       {comments && comments[0] && (
         <div className={styles.comment_comments}>
-          {comments.map((comm: ITopicCommentComment) => (
-            <TopicSubcomment {...comm} />
+          {comments.map((comm: ITopicCommentComment, index: number) => (
+            <TopicSubcomment key={index} {...comm} />
           ))}
         </div>
       )}

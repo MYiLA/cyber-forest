@@ -2,9 +2,14 @@ import * as fs from 'node:fs/promises'
 import express from 'express'
 import { createServer as createSsrServer } from 'vite'
 import * as path from 'path'
+import * as http from 'http'
+import * as https from 'https'
+import { fileURLToPath } from 'url'
+import cookieParser from 'cookie-parser'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const isProduction = process.env.NODE_ENV === 'production'
-const PORT = process.env.CLIENT_PORT || 3000
 
 const getStyleSheets = async () => {
   try {
@@ -32,6 +37,7 @@ async function createServer() {
     : undefined
 
   const app = express()
+  app.use(cookieParser())
 
   const vite = await createSsrServer({
     server: { middlewareMode: true },
@@ -56,8 +62,8 @@ async function createServer() {
         render = (await vite.ssrLoadModule('./dist/server/entry-server.js'))
           .render
       }
-
-      const rendered = await render(url, ssrManifest)
+      const cookies = req.cookies
+      const rendered = await render(url, cookies, ssrManifest)
 
       const stylesSheets = isProduction ? await getStyleSheets() : ''
       const html = template
@@ -73,8 +79,37 @@ async function createServer() {
     }
   })
 
-  app.listen(PORT, () => {
-    console.log(`Server started at http://localhost:${PORT}`)
+  const PORT = Number(process.env.CLIENT_PORT || 3000)
+  const HOST = isProduction ? 'cyberforest.ru' : 'localhost'
+
+  const server = isProduction
+    ? https.createServer(
+        {
+          key: await fs.readFile(
+            path.join(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'ssl/certbot/conf/live/cyberforest.ru/privkey.pem'
+            )
+          ),
+          cert: await fs.readFile(
+            path.join(
+              __dirname,
+              '..',
+              '..',
+              '..',
+              'ssl/certbot/conf/live/cyberforest.ru/cert.pem'
+            )
+          ),
+        },
+        app
+      )
+    : http.createServer(app)
+
+  server.listen(PORT, () => {
+    console.log(`Server started at ${HOST}:${PORT}`)
   })
 }
 

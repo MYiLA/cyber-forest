@@ -3,7 +3,7 @@ import { User } from '@config/user-types'
 import userM from '../../../../assets/images/user-m.png'
 import styles from './table-item.module.scss'
 import { NavLink } from 'react-router-dom'
-import { PATH, Theme } from '@config/constants'
+import { API_URL, PATH, Theme } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 import cn from 'classnames'
 
@@ -23,9 +23,7 @@ export const TableItem: React.FC<ITableItemProps> = ({
 
   function getUsersImg(users: User[]) {
     return users.map(user => {
-      return user.avatar
-        ? 'https://ya-praktikum.tech/api/v2/resources' + user.avatar
-        : userM
+      return user.avatar ? `${API_URL}/resources` + user.avatar : userM
     })
   }
 

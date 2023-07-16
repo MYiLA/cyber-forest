@@ -3,6 +3,7 @@ import { ITopicCommentComment } from '@pages/page-lobby/types'
 import styles from './topic-subcomment.module.scss'
 import avatar from '@images/chat-avatar.png'
 import { dateFormatter } from '@utils/date-formatter'
+import { API_URL } from '@config/constants'
 
 export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
   user,
@@ -10,7 +11,7 @@ export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
   content,
 }) => {
   const userAvatar = user?.avatar
-    ? 'https://ya-praktikum.tech/api/v2/resources' + user.avatar
+    ? `${API_URL}/resources` + user.avatar
     : avatar
 
   return (

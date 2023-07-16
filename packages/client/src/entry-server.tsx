@@ -4,15 +4,13 @@ import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom/server'
 import { AuthProvider } from '@core/auth-provider/auth-provider'
 import { MainRouter } from '@router/main-router'
-import { ssrPrepare, userGetInfo } from '@store/reducers/user-reducer'
+import { userGetInfo } from '@store/reducers/user-reducer'
 import { createStore } from '@store/store'
 import xssFilters from 'xss-filters'
 
-export async function render(url: string) {
+export async function render(url: string, cookies: Record<string, string>) {
   const store = createStore({})
-  await store.dispatch(userGetInfo())
-  await store.dispatch(ssrPrepare())
-
+  await store.dispatch(userGetInfo(cookies))
   const html = ReactDOMServer.renderToString(
     <React.StrictMode>
       <Provider store={store}>
