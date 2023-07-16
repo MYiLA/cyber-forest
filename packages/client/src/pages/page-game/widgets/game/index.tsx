@@ -1,19 +1,13 @@
 import styles from './game.module.scss'
 import { FC, MouseEventHandler, Ref, useEffect, useMemo, useRef } from 'react'
 import { AreaType, PlayerType, SIZE } from './constants'
-import {
-  drawUsersAreas,
-  drawDicesSides,
-  getCursorPosition,
-  getPlayerByPoint,
-  getAreaByPoint,
-  drawUserEnergy,
-} from './utils'
+import { getCursorPosition, getPlayerByPoint, getAreaByPoint } from './utils'
 import { GameState } from './type'
 import { Dice } from '../../type'
 import { getDiceByPoint } from './utils/get-dice-by-point'
 import { RootState } from '@core/store/store'
 import { useSelector } from 'react-redux'
+import { clearContext } from '@pages/page-game/widgets/game/utils/clear-context'
 
 type GameProps = {
   gameState: GameState
@@ -47,45 +41,13 @@ export const Game: FC<GameProps> = ({
       throw new Error('PlayAreas: ctx === null')
     }
     // Очистка холста перед отрисовкой
-    ctx.clearRect(0, 0, SIZE.GAME.WIDTH, SIZE.GAME.HEIGHT)
-
-    // Отрисовка полей для игроков (1 слой)
-    drawUsersAreas(ctx, playersCount)
-
-    // Отрисовка энергии текущего игрока (2 слой)
-    drawUserEnergy({
+    clearContext({
       ctx,
-      energy: currentPlayerEnergy,
-      player: currentPlayerType,
-    })
-
-    // Отрисовка кубиков для каждой зоны каждого игрока (3 слой)
-    players.forEach(playerType => {
-      ;[AreaType.Rest, AreaType.Preparation, AreaType.Attack].forEach(
-        areaType => {
-          const dices = gameState?.[playerType]?.[areaType]
-          if (!dices)
-            throw new Error(
-              'Game: gameState?.[playerType]?.[areaType] is undefined'
-            )
-
-          const sides = dices.map(dice => {
-            const { activeSide } = dice
-            if (!activeSide)
-              throw new Error(
-                'Game: На отрисовку отдан кубик БЕЗ активной стороны'
-              )
-            return activeSide
-          })
-
-          drawDicesSides({
-            ctx,
-            sides,
-            area: areaType,
-            player: playerType,
-          })
-        }
-      )
+      gameState,
+      players,
+      playersCount,
+      currentPlayerType,
+      currentPlayerEnergy,
     })
   }, [gameState, canvas, currentPlayerEnergy])
 

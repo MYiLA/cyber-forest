@@ -7,6 +7,13 @@
   background-color: rgba(#1F0E44, .7);
 }
 
+.background {
+  opacity: 0.15;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
 .game {
   position: relative;
   width: 1406px;

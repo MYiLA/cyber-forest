@@ -1,5 +1,6 @@
 // TODO: Порефакторить Файл. Слишком много строк
 import styles from './page-game.module.scss'
+import background from '@images/game/background.jpg'
 import { Game } from './widgets/game'
 import { Forest } from './widgets/forest'
 import { GameInterface } from './widgets/game-interface'
@@ -605,6 +606,7 @@ const PageGame = () => {
 
   return (
     <div className={styles.wrap}>
+      <img src={background} className={styles.background} />
       {loadingBanner && <Loader />}
       {winner && <WinnerScreen {...winner} />}
       <div className={styles.game}>
