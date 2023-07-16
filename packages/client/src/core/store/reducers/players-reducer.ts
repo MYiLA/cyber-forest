@@ -2,7 +2,7 @@ import { getInitialGameState } from '@shared/utils/get-initial-game-state'
 import { PlayerType } from '@pages/page-game/widgets/game/constants'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { GameState } from '@pages/page-game/widgets/game/type'
-import { IncreaseGloryPayload, DicesInAreaPayload } from './type'
+import { IncreaseGloryPayload, DicesInAreaPayload, PayloadStart } from './type'
 
 const initialState: GameState = {
   [PlayerType.Red]: null,
@@ -14,9 +14,10 @@ export const playersSlice = createSlice({
   initialState,
   reducers: {
     /** Начало игры. Создание игроков и зон */
-    gameStart: (state, action: PayloadAction<number>) => {
+    gameStart: (state, action: PayloadAction<PayloadStart>) => {
       const initialGameState = getInitialGameState({
-        playersCount: action.payload,
+        playersCount: action.payload.playersCount,
+        users: action.payload.users,
       })
       return {
         ...initialGameState,

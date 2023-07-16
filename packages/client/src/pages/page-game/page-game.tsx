@@ -7,7 +7,7 @@ import { GameInterface } from './widgets/game-interface'
 import { AreaType, DEFAULT_SETTING, PhaseType } from './widgets/game/constants'
 import { DiceSide } from './widgets/game/type'
 import { useEffect, useState } from 'react'
-import { ChoosingAreaCubeFunction, Dice } from './type'
+import { ChoosingAreaCubeFunction, Dice, Player } from './type'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch, RootState } from '@store/store'
 import { gameSlice } from '@core/store/reducers/game-reducer'
@@ -17,6 +17,9 @@ import { isEnergyDiceSide } from '@shared/utils/is-energy-dice-side'
 import { isWarriorDiceSide } from '@shared/utils/is-warrior-dice-side'
 import { getNextPlayerType } from './utils/get-next-player-type'
 import { FullScreenBtn } from '@ui/full-creen-btn/full-screen-btn'
+import { useGameStart } from '@hooks/use-game-start'
+import { Loader } from '@ui/loader'
+import { WinnerScreen } from '@pages/page-game/screen'
 
 const getGameState = (store: RootState) => store.game
 const getPlayersState = (store: RootState) => store.players
@@ -24,10 +27,19 @@ const getPlayersState = (store: RootState) => store.players
 const PageGame = () => {
   const dispatch = useDispatch<Dispatch>()
 
-  const { currentPlayerType, currentPhase, currentPlayerEnergy } =
-    useSelector(getGameState)
+  const {
+    currentPlayerType,
+    currentPhase,
+    currentPlayerEnergy,
+    maxGlory,
+    loading,
+  } = useSelector(getGameState)
   const gameState = useSelector(getPlayersState)
   const currentPlayer = gameState[currentPlayerType]
+
+  const [loadingBanner, setLoadingBanner] = useState(loading)
+
+  const { toSetGamePhase } = useGameStart()
 
   const [stockCubeLimitCount, setStockCubeLimitCount] = useState(
     DEFAULT_SETTING.START_CUBE_LIMIT
@@ -36,18 +48,9 @@ const PageGame = () => {
     DEFAULT_SETTING.HIRE_LIMIT
   )
   const [playersCount, setPlayersCount] = useState(
-    DEFAULT_SETTING.PLAYERS_COUNT
+    Object.keys(gameState).length
   )
-
-  // Функция запускает игру
-  const startGame = () => {
-    /** Подготавливает данные игры */
-    dispatch(gameSlice.actions.gameStart())
-    /** Подготавливает данные игоков */
-    dispatch(playersSlice.actions.gameStart(DEFAULT_SETTING.PLAYERS_COUNT))
-    /** Переходим из фазы ожидания в фазу инвентаря */
-    dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Stock))
-  }
+  const [winner, setWinner] = useState<Player | null>(null)
 
   // Передать ход следующему игроку
   const goNextPlayerTurn = () => {
@@ -64,10 +67,9 @@ const PageGame = () => {
     window.alert(`Ход переходит к игроку ${nextPlayer}`)
   }
 
-  // TODO: временно функция старта игры запускается сдесь, просто при загрузке страницы.
-  // В задаче по началу/концу игры эту функцию надо вынести возможно в отдельный хук + добавить возможность менять настройки при запуске
+  // TODO: временно работает с таймером, чтобы показать, что есть анимация загрузки
   useEffect(() => {
-    startGame()
+    setTimeout(() => toSetGamePhase(PhaseType.Stock), 3000)
   }, [])
 
   // Обработка фазы Инвентаря
@@ -108,6 +110,11 @@ const PageGame = () => {
     // Добавляем текущему игроку энергию на ход
     dispatch(gameSlice.actions.createCurrentPlayerEnergy())
   }, [currentPhase])
+
+  // обработка загрузки данных для игры
+  useEffect(() => {
+    setLoadingBanner(loading)
+  }, [loading])
 
   // Если лимит кубиков исчерпан, то переходим в фазу подготовки
   useEffect(() => {
@@ -193,6 +200,7 @@ const PageGame = () => {
       // Если сумма защит противника меньше либо равна сумме атак игрока
       if (defense <= attack) {
         const attackDices = gameState?.[warriors.type]?.[AreaType.Attack]
+        // Противник повержен
         if (!attackDices) return
         // Все его воины переходят в зону отдыха
         dispatch(
@@ -222,10 +230,9 @@ const PageGame = () => {
 
       // Если защита самого сильного воина противника больше атаки игрока
       if (bestDefense > attack) {
-        // то атака успешно отражена
+        // То атака успешно отражена
         return
       }
-
       // Если защита самого сильного воина противника меньше либо равна атаке игрока
       if (bestDefense <= attack) {
         // TODO: Тут должен быть переход в фазу защиты и игроку даётся выбрать самому,
@@ -238,7 +245,8 @@ const PageGame = () => {
           const warrior = sortedWarriors[i]
           const defense = Number(warrior?.side.defense)
           // Если защита воина меньше, чем атака, то воин получает ранение
-          if (defense <= attackPower) {
+          // В сравнении учавствует и защита сильнейшего воина, так как он может защитить слабого напарника
+          if (defense <= attackPower && bestDefense <= attackPower) {
             const dice = warrior?.dice
             if (!dice) return
             // Атака уменьшается на показатель защиты воина
@@ -259,11 +267,10 @@ const PageGame = () => {
               })
             )
           } else {
-            // Если защита воина больше, чем атака, то воин выживает
+            // Иначе воин выживает
             attackPower = 0
           }
         }
-        return
       }
     })
     // После атак ход переходит следующему игроку
@@ -344,6 +351,13 @@ const PageGame = () => {
       0
     )
   }, [currentPhase])
+
+  // Обработка окончания игры
+  useEffect(() => {
+    if (currentPlayer?.gloryCount && currentPlayer?.gloryCount >= maxGlory) {
+      setWinner(currentPlayer)
+    }
+  }, [currentPlayer])
 
   // Обработчик клика на кубик внутри инвентаря
   const onChoosingStockCube = (side: DiceSide, id: string) => {
@@ -431,7 +445,6 @@ const PageGame = () => {
             )
             return
           }
-
           // То вызываем воина на поле боя
           dispatch(
             playersSlice.actions.addDicesInArea({
@@ -594,6 +607,8 @@ const PageGame = () => {
   return (
     <div className={styles.wrap}>
       <img src={background} className={styles.background} />
+      {loadingBanner && <Loader />}
+      {winner && <WinnerScreen {...winner} />}
       <div className={styles.game}>
         {currentPlayer && (
           <>

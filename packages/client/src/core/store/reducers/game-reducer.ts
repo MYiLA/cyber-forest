@@ -17,11 +17,17 @@ const initialState: {
   currentPhase: PhaseType
   /** Список типов воинов, доступных для найма */
   accessHireWarriors: AccessHireWarrior[]
+  /** Максимальная слава для завершения игры */
+  maxGlory: number
+  /** Загрузка данных для игры */
+  loading: boolean
 } = {
   currentPlayerType: PlayerType.Red,
   currentPlayerEnergy: 0,
   currentPhase: PhaseType.Waiting,
   accessHireWarriors: [],
+  maxGlory: 25,
+  loading: false,
 }
 
 export const gameSlice = createSlice({
@@ -33,6 +39,7 @@ export const gameSlice = createSlice({
       return {
         ...initialState,
         accessHireWarriors: getAccessHireWarriors(),
+        loading: true,
       }
     },
 
@@ -49,6 +56,16 @@ export const gameSlice = createSlice({
       return {
         ...state,
         currentPhase: action.payload,
+        loading: false,
+      }
+    },
+
+    /** Установить кастомное число очков славы для победы (оффлайн опция) */
+    setMaxGlory: (state, action: PayloadAction<number>) => {
+      return {
+        ...state,
+        maxGlory: action.payload,
+        loading: true,
       }
     },
 
