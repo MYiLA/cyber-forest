@@ -1,3 +1,7 @@
+// Проверка авторизации по cookie
+// если пользователь авторизован, то в Request добавляется userId
+// Чтобы в дальнейшем не обращаться каждый раз к базе
+// Если не авторизован, то ошибка 401 UnauthorizedError
 import { NextFunction, Response } from 'express'
 import { ApiError } from '../exceptions/api-error'
 import { User } from '../features/user/user-model'
