@@ -1,0 +1,55 @@
+{
+	"entryFile": "./src/index.ts",
+	"noImplicitAdditionalProperties": "throw-on-extras",
+	"controllerPathGlobs": ["src/features/**/*-controller.ts"],
+	"spec": {
+		"outputDirectory": "swagger",
+		"specVersion": 3,
+		"basePath": "api",
+		"name" : "API CyberForest",
+		"description": "API для игры CyberForest",
+		"spec": {
+			"servers": [
+				{
+					"url": "https://cyberforest.ru/api"
+				},
+				{
+					"url": "http://localhost:3001/api"
+				}
+			]
+		},
+		"tags": [{
+			"name": "Auth",
+			"description": "Авторизации"
+		},{
+			"name": "Users",
+			"description": "Пользователь"
+		},{
+			"name": "Leaderboard",
+			"description": "Таблица лидеров"
+		},{
+			"name": "Resources",
+			"description": "Файлы"
+		},{
+			"name": "Forum.Topic",
+			"description": "Темы форума"
+		},{
+			"name": "Forum.Comment",
+			"description": "Комментарии в темах форума"
+		},{
+			"name": "Forum.Reply",
+			"description": "Ответы на комментарии"
+		},{
+			"name": "Forum.Reaction",
+			"description": "Реакции (лайки) на комментарии / ответы"
+		}],
+		"responses": {
+			"204": {
+				"description": "sdfsdfgdfg"
+			}
+		}
+	},
+	"routes": {
+		"routesDir": "swagger"
+	}
+}

@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { MainRouter } from '@router/main-router'
 import { AuthProvider } from '@core/auth-provider/auth-provider'
 import xssFilters from 'xss-filters'
-import * as serviceWorkerRegistration from './service-worker-registration'
+// import * as serviceWorkerRegistration from './service-worker-registration'
 import './index.scss'
 import { toggleFullScreen } from '@utils/full-screen-fn'
 
@@ -62,6 +62,6 @@ if (import.meta.hot) {
   ReactDOM.hydrateRoot(container as HTMLElement, <MainApp />)
 }
 
-import.meta.env.DEV
-  ? serviceWorkerRegistration.unregister()
-  : serviceWorkerRegistration.register()
+// import.meta.env.DEV
+//   ? serviceWorkerRegistration.unregister()
+//   : serviceWorkerRegistration.register()

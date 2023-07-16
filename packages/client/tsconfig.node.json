@@ -2,7 +2,7 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "module": "CommonJS",
+    "module": "ESNext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "jsx": "react-jsx"
@@ -10,7 +10,7 @@
   "include": [
     "vite.config.ts",
     "src/vite-env.d.ts",
-    "server.ts",
-    "service-worker.ts"
+    "service-worker.ts",
+    "server.ts"
   ],
 }
