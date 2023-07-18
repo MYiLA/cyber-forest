@@ -26,6 +26,7 @@ app.use(
       'null',
       'http://localhost:3000',
       'http://localhost:3001',
+      'https://localhost:3000',
       'https://cyberforest.ru',
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',

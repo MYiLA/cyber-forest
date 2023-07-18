@@ -40,6 +40,7 @@ export interface UserDto extends UserCreateRequest {
   readonly id: number
   readonly display_name: string
   readonly avatar: string
+  /** поле для хранения настроек пользователя, в том числе темы */
   readonly settings: DataObject
 }
 

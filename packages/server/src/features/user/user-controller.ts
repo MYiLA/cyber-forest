@@ -29,7 +29,11 @@ import { CustomRequest, OK } from '../../config/types-constants'
 @Response(404, 'Результатов не найдено')
 @Response(500, 'Что-то пошло не так')
 class UserController extends Controller {
-  /** @summary Изменение профиля пользователя */
+  /**
+   * Достаточно передавать только те поля, по которым требуются изменения
+   *
+   * например для изменения настроек пользователя (допустим темы) достаточно передать поле settings
+   * @summary Изменение профиля пользователя */
   @Put('/profile')
   public async updateProfile(
     @Body() body: UserUpdateProfileRequest,
