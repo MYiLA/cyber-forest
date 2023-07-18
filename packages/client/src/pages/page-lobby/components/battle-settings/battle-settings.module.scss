@@ -62,3 +62,9 @@
     padding: 0px 55px;
   }
 }
+
+.wrapper {
+  display: grid;
+  grid-template-rows: repeat(5, 45px) 30px;
+  grid-gap: 10px;
+}

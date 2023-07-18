@@ -48,6 +48,14 @@
   background: linear-gradient(135deg, rgba(44, 29, 66, 0.70) 0%, rgba(69, 54, 93, 0.70) 51.04%, rgba(74, 41, 87, 0.70) 100%) !important;
   box-shadow: 0px 0px 20px 0px rgba(255, 255, 255, 0.50);
 
+  .back {
+    display: block;
+    position: absolute;
+
+    right: 30px;
+    top: 25px;
+  }
+
   .description {
     color: #FFF;
     font-family: Blender Pro;
@@ -77,7 +85,8 @@
       display: grid;
       grid-template-columns: 580px 580px;
       grid-template-rows: 173px;
-      grid-gap: 30px;
+      grid-column-gap: 30px;
+      grid-row-gap: 20px;
     }
 
     &_section {
@@ -101,7 +110,7 @@
 
         border: 1px solid #FFF;
         background: #BB6AEA;
-        box-shadow: 0px 0px 2px 1px rgba(255, 255, 255, 0.25);
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.25);
       }
     }
 
@@ -122,6 +131,7 @@
       font-style: normal;
       font-weight: 500;
 
+      cursor: pointer;
     }
   }
 }

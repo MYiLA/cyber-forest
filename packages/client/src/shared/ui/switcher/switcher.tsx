@@ -63,7 +63,6 @@ export const Switcher = ({ labels, onClick }: switcherProps): ReactElement => {
       <label className={styles.switch}>
         <input
           type="checkbox"
-          // defaultChecked={active}
           onInput={(e: BaseSyntheticEvent) => {
             e.preventDefault()
             setActive(!active)
@@ -74,7 +73,8 @@ export const Switcher = ({ labels, onClick }: switcherProps): ReactElement => {
             themeName === Theme.Purple
               ? styles.slider_purpur
               : styles.slider_neon
-          }`}></div>
+          }`}
+        />
       </label>
     </div>
   )
