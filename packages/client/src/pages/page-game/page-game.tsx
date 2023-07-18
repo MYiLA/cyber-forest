@@ -20,6 +20,8 @@ import { FullScreenBtn } from '@ui/full-creen-btn/full-screen-btn'
 import { useGameStart } from '@hooks/use-game-start'
 import { Loader } from '@ui/loader'
 import { WinnerScreen } from '@pages/page-game/screen'
+import { useNavigate } from 'react-router-dom'
+import { PATH } from '@config/constants'
 
 const getGameState = (store: RootState) => store.game
 const getPlayersState = (store: RootState) => store.players
@@ -52,6 +54,9 @@ const PageGame = () => {
   const [playersCount, setPlayersCount] = useState(
     Object.keys(gameState).length
   )
+
+  const toNavigate = useNavigate()
+
   const [winner, setWinner] = useState<Player | null>(null)
 
   // Передать ход следующему игроку
@@ -71,6 +76,10 @@ const PageGame = () => {
 
   // TODO: временно работает с таймером, чтобы показать, что есть анимация загрузки
   useEffect(() => {
+    if (!currentPlayer) {
+      toNavigate(PATH.LOBBY)
+    }
+
     setTimeout(() => toSetGamePhase(PhaseType.Stock), 3000)
   }, [])
 
