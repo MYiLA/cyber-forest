@@ -73,7 +73,7 @@ export const ChangePasswordForm = () => {
 
   return (
     <form className={styles.password}>
-      <h3 className={styles.personal_header}>личные данные</h3>
+      <h3 className={styles.personal_header}> Смена пароля </h3>
       <MainInput
         name="oldPassword"
         placeholder="старый пароль"

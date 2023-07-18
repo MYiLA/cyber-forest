@@ -7,9 +7,14 @@ export const DescriptionGameTab = () => {
     <>
       <div className={styles.description}>
         Киберлес - это захватывающая игра по мотиву серии настольных игр
-        Quarriors(ссылка на описание настолки), где ваша победа зависит от удачи
-        и умения тактически мыслить. Под вашим руководством в бою сойдутся
-        модифицированные звери киберлеса.
+        <a
+          href={'https://www.mosigra.ru/Quarriors/rules/'}
+          style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+          {' '}
+          Quarriors
+        </a>
+        , где ваша победа зависит от удачи и умения тактически мыслить. Под
+        вашим руководством в бою сойдутся модифицированные звери киберлеса.
       </div>
       <div className={styles.description} style={{ marginTop: '10px' }}>
         Гайд по игре можно найти в основном меню - лобби, доступном после

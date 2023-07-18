@@ -24,22 +24,22 @@ const initialForm: {
 const validators = {
   user1: {
     required: true,
-    rule: /^[a-zA-Z0-9]{1,20}$/,
+    rule: /^[a-zA-Zа-яА-Я0-9]{1,10}$/,
     message: '1-20 символов, буквы и цифры',
   },
   user2: {
     required: true,
-    rule: /^[a-zA-Z0-9]{1,20}$/,
+    rule: /^[a-zA-Zа-яА-Я0-9]{1,10}$/,
     message: '1-20 символов, буквы и цифры',
   },
   user3: {
     required: false,
-    rule: /^[a-zA-Z0-9]{1,20}$/,
+    rule: /^[a-zA-Zа-яА-Я0-9]{1,10}$/,
     message: '1-20 символов, буквы и цифры',
   },
   user4: {
     required: false,
-    rule: /^[a-zA-Z0-9]{1,20}$/,
+    rule: /^[a-zA-Zа-яА-Я0-9]{1,10}$/,
     message: '1-20 символов, буквы и цифры',
   },
   max_glory: {
@@ -76,12 +76,14 @@ export const OfflineUsersForm = () => {
       playersCount: players.length,
       users: players as string[],
     })
+
     toSetGameMaxGlory(Number(form.max_glory))
+
     toGamePathNavigate(PATH.GAME)
   }
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <MainInput
         name="user1"
         placeholder="игрок 1"
@@ -152,6 +154,6 @@ export const OfflineUsersForm = () => {
           создать битву
         </MainButton>
       </div>
-    </>
+    </div>
   )
 }

@@ -34,13 +34,14 @@ const PageGame = () => {
     maxGlory,
     loading,
   } = useSelector(getGameState)
+
   const gameState = useSelector(getPlayersState)
 
   const currentPlayer = gameState[currentPlayerType]
 
   const [loadingBanner, setLoadingBanner] = useState(loading)
 
-  const { toSetGamePhase, toStartGame, toGetPlayersData } = useGameStart()
+  const { toSetGamePhase } = useGameStart()
 
   const [stockCubeLimitCount, setStockCubeLimitCount] = useState(
     DEFAULT_SETTING.START_CUBE_LIMIT
@@ -70,11 +71,6 @@ const PageGame = () => {
 
   // TODO: временно работает с таймером, чтобы показать, что есть анимация загрузки
   useEffect(() => {
-    toStartGame()
-    toGetPlayersData({
-      playersCount: 4,
-      users: ['First', 'Second', 'Third', 'Fourth'],
-    })
     setTimeout(() => toSetGamePhase(PhaseType.Stock), 3000)
   }, [])
 
