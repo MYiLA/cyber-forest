@@ -1,9 +1,9 @@
-import React from 'react'
-import { ITopicCommentComment } from '@pages/page-lobby/types'
-import styles from './topic-subcomment.module.scss'
-import avatar from '@images/chat-avatar.png'
-import { dateFormatter } from '@utils/date-formatter'
-import { API_URL } from '@config/constants'
+import React from "react";
+import { ITopicCommentComment } from "@pages/page-lobby/types";
+import avatar from "@images/chat-avatar.png";
+import { dateFormatter } from "@utils/date-formatter";
+import { API_URL } from "@config/constants";
+import styles from "./topic-subcomment.module.scss";
 
 export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
   user,
@@ -11,15 +11,15 @@ export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
   content,
 }) => {
   const userAvatar = user?.avatar
-    ? `${API_URL}/resources` + user.avatar
-    : avatar
+    ? `${API_URL}/resources${user.avatar}`
+    : avatar;
 
   return (
     <div className={styles.subcomment_wrapper}>
       <img
         src={userAvatar}
         className={styles.subcomment_avatar}
-        alt={'аватар пользователя'}
+        alt="аватар пользователя"
       />
       <div className={styles.subcomment_body}>
         <div className={styles.subcomment_header}>
@@ -29,5 +29,5 @@ export const TopicSubcomment: React.FC<ITopicCommentComment> = ({
         <span>{content}</span>
       </div>
     </div>
-  )
-}
+  );
+};

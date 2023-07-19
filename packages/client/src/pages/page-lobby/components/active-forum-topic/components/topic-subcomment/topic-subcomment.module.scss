@@ -1,5 +1,4 @@
 .subcomment {
-
   &_wrapper {
     margin-top: 10px;
 
@@ -13,12 +12,11 @@
     width: 33px;
     height: 33px;
     border-radius: 100px;
-    border: 1px solid #FFF;
-    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
   }
 
   &_header {
-
     .name {
       text-align: right;
       font-size: 14px;
@@ -28,16 +26,16 @@
       margin-right: 5px;
 
       &_neon {
-        color: #7CF0F0;
+        color: #7cf0f0;
       }
 
       &_purple {
-        color: #E2B0FF;
+        color: #e2b0ff;
       }
     }
 
     .time {
-      color: rgba(255, 255, 255, 0.80);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 15px;
       font-family: Blender Pro;
       font-weight: 500;

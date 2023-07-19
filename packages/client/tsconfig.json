@@ -12,12 +12,12 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "strictNullChecks":true,
+    "strictNullChecks": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "outDir":"dist",
-    "allowJs":true,
-    "checkJs":false,
+    "outDir": "dist",
+    "allowJs": true,
+    "checkJs": false,
     "paths": {
       "@/*": ["./src/*"],
       "@api/*": ["./src/core/api/*"],
@@ -37,7 +37,7 @@
     }
   },
   "include": ["src"],
-  "exclude":["service-worker.ts"],
+  "exclude": ["service-worker.ts"],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node",
@@ -46,9 +46,6 @@
       "esModuleInterop": true
     }
   },
+
   "references": [{ "path": "./tsconfig.node.json" }]
 }
-
-
-
-

@@ -18,4 +18,4 @@ export const energySvg = `
 </filter>
 </defs>
 </svg>
-`
+`;

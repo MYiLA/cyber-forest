@@ -1,39 +1,43 @@
-import styles from './switcher.module.scss'
-import { ReactElement, useEffect, useState } from 'react'
-import { useTheme } from '@hooks/use-theme'
-import { Theme } from '@config/constants'
+import { ReactElement, useEffect, useState } from "react";
+import { useTheme } from "@hooks/use-theme";
+import { Theme } from "@config/constants";
+import styles from "./switcher.module.scss";
 
-interface switcherProps {
-  labels: string[]
-  state: boolean
-  onClick: (value: string) => void
+interface SwitcherProps {
+  labels: string[];
+  state: boolean;
+  onClick: (value: string) => void;
 }
 
 export const Switcher = ({
   labels,
   state,
   onClick,
-}: switcherProps): ReactElement => {
-  const [active, setActive] = useState(state)
-  const [active_label, setActiveLabel] = useState(
+}: SwitcherProps): ReactElement => {
+  const [active, setActive] = useState(state);
+  const [activeLabel, setActiveLabel] = useState(
     active ? labels[0] : labels[1]
-  )
-  const { themeName } = useTheme()
+  );
+  const { themeName } = useTheme();
 
   useEffect(() => {
-    active ? setActiveLabel(labels[1]) : setActiveLabel(labels[0])
-  }, [active])
+    if (active) {
+      setActiveLabel(labels[1]);
+    } else {
+      setActiveLabel(labels[0]);
+    }
+  }, [active]);
 
   useEffect(() => {
-    onClick(active_label)
-  }, [active_label])
+    onClick(activeLabel);
+  }, [activeLabel]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.wrapper_label}>
         <span
           className={
-            active_label === labels[0]
+            activeLabel === labels[0]
               ? `${styles.active} ${
                   themeName === Theme.Purple
                     ? styles.active_purpur
@@ -44,12 +48,13 @@ export const Switcher = ({
                     ? styles.unactive_purpur
                     : styles.unactive_neon
                 }`
-          }>
+          }
+        >
           {labels[0]}
         </span>
         <span
           className={
-            active_label === labels[1]
+            activeLabel === labels[1]
               ? `${styles.active} ${
                   themeName === Theme.Purple
                     ? styles.active_purpur
@@ -60,7 +65,8 @@ export const Switcher = ({
                     ? styles.unactive_purpur
                     : styles.unactive_neon
                 }`
-          }>
+          }
+        >
           {labels[1]}
         </span>
       </div>
@@ -79,5 +85,5 @@ export const Switcher = ({
         />
       </label>
     </div>
-  )
-}
+  );
+};

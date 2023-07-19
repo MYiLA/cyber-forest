@@ -1,3 +1,2 @@
-export const dateFormatter = (date: string) => {
-  return date.split('.')[0].replaceAll('-', '/').replace('T', ', ')
-}
+export const dateFormatter = (date: string) =>
+  date.split(".")[0].replaceAll("-", "/").replace("T", ", ");

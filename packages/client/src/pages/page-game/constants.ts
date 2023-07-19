@@ -1,58 +1,58 @@
-import cat from '@images/warriors/cat.png'
-import wolf from '@images/warriors/wolf.png'
-import snake from '@images/warriors/snake.png'
-import fox from '@images/warriors/fox.png'
-import bear from '@images/warriors/bear.png'
-import owl from '@images/warriors/owl.png'
-import duck from '@images/warriors/duck.png'
-import hare from '@images/warriors/hare.png'
-import toad from '@images/warriors/toad.png'
-import { Dice } from './type'
-import { DiceType } from '@shared/type'
+import cat from "@images/warriors/cat.png";
+import wolf from "@images/warriors/wolf.png";
+import snake from "@images/warriors/snake.png";
+import fox from "@images/warriors/fox.png";
+import bear from "@images/warriors/bear.png";
+import owl from "@images/warriors/owl.png";
+import duck from "@images/warriors/duck.png";
+import hare from "@images/warriors/hare.png";
+import toad from "@images/warriors/toad.png";
+import { DiceType } from "@shared/type";
+import { Dice } from "./type";
 
 export const COLOR = {
   [DiceType.Cat]: {
-    color: '213, 150, 37',
-    textColor: '42, 46, 56',
+    color: "213, 150, 37",
+    textColor: "42, 46, 56",
   },
   [DiceType.Wolf]: {
-    color: '41, 36, 52',
-    textColor: '247, 112, 126',
+    color: "41, 36, 52",
+    textColor: "247, 112, 126",
   },
   [DiceType.Snake]: {
-    color: '32, 32, 47',
-    textColor: '197, 167, 28',
+    color: "32, 32, 47",
+    textColor: "197, 167, 28",
   },
   [DiceType.Fox]: {
-    color: '210, 105, 69',
-    textColor: '37, 48, 63',
+    color: "210, 105, 69",
+    textColor: "37, 48, 63",
   },
   [DiceType.Bear]: {
-    color: '50, 26, 48',
-    textColor: '31, 255, 248',
+    color: "50, 26, 48",
+    textColor: "31, 255, 248",
   },
   [DiceType.Owl]: {
-    color: '202, 138, 113',
-    textColor: '47, 46, 64',
+    color: "202, 138, 113",
+    textColor: "47, 46, 64",
   },
   [DiceType.Duck]: {
-    color: '82, 104, 116',
-    textColor: '202, 179, 40',
+    color: "82, 104, 116",
+    textColor: "202, 179, 40",
   },
   [DiceType.Hare]: {
-    color: '46, 68, 86',
-    textColor: '145, 145, 137',
+    color: "46, 68, 86",
+    textColor: "145, 145, 137",
   },
   [DiceType.Toad]: {
-    color: '65, 168, 120',
-    textColor: '50, 43, 75',
+    color: "65, 168, 120",
+    textColor: "50, 43, 75",
   },
-}
+};
 
 // Библиотека видов воинов. Индекс играет роль порядкового номера добавления нового типа воина.
 export const DICES_LIB: Record<string, Dice> = {
   [DiceType.Cat]: {
-    id: '1',
+    id: "1",
     type: DiceType.Cat,
     sides: [
       {
@@ -69,7 +69,7 @@ export const DICES_LIB: Record<string, Dice> = {
       },
       {
         ...COLOR[DiceType.Cat],
-        specialAbilitySymbol: '?',
+        specialAbilitySymbol: "?",
       },
       {
         image: cat,
@@ -86,8 +86,8 @@ export const DICES_LIB: Record<string, Dice> = {
     ],
     abilities: [
       {
-        desc: 'Перебросьте этот кубик + 1 кубик на ваш выбор из зоны подготовки',
-        abilitySymbol: '?',
+        desc: "Перебросьте этот кубик + 1 кубик на ваш выбор из зоны подготовки",
+        abilitySymbol: "?",
       },
     ],
     cost: 1,
@@ -95,10 +95,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: cat,
     bgImg: COLOR[DiceType.Cat].color,
-    title: 'Кот',
+    title: "Кот",
   },
   [DiceType.Duck]: {
-    id: '2',
+    id: "2",
     type: DiceType.Duck,
     sides: [
       {
@@ -124,7 +124,7 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 2,
         defense: 2,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: duck,
@@ -135,8 +135,8 @@ export const DICES_LIB: Record<string, Dice> = {
     ],
     abilities: [
       {
-        desc: 'Когда утку ранили и она отправилась на отдых, вы можете сразу её переместить в зону подготовки',
-        abilitySymbol: '*',
+        desc: "Когда утку ранили и она отправилась на отдых, вы можете сразу её переместить в зону подготовки",
+        abilitySymbol: "*",
       },
     ],
     cost: 3,
@@ -144,10 +144,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: duck,
     bgImg: COLOR[DiceType.Duck].color,
-    title: 'Утка',
+    title: "Утка",
   },
   [DiceType.Hare]: {
-    id: '3',
+    id: "3",
     type: DiceType.Hare,
     sides: [
       {
@@ -163,14 +163,14 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 1,
         defense: 3,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: hare,
         attack: 1,
         defense: 3,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: hare,
@@ -200,7 +200,7 @@ export const DICES_LIB: Record<string, Dice> = {
           Если таких зверей несколько, атакующий игрок выбирает, 
           кого именно отправить на отдых.
         `,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
     ],
     cost: 5,
@@ -208,10 +208,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: hare,
     bgImg: COLOR[DiceType.Hare].color,
-    title: 'Заяц',
+    title: "Заяц",
   },
   [DiceType.Toad]: {
-    id: '4',
+    id: "4",
     type: DiceType.Toad,
     sides: [
       {
@@ -239,24 +239,24 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 4,
         defense: 3,
         level: 2,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: toad,
         attack: 4,
         defense: 3,
         level: 2,
-        abilitySymbol: '**',
+        abilitySymbol: "**",
       },
     ],
     abilities: [
       {
-        desc: 'Каждый раз, когда вас атакуют, вы можете переместить любого вашего одного воина из зоны отдыха в инвентарь',
-        abilitySymbol: '*',
+        desc: "Каждый раз, когда вас атакуют, вы можете переместить любого вашего одного воина из зоны отдыха в инвентарь",
+        abilitySymbol: "*",
       },
       {
-        desc: 'Каждый раз, когда вас атакуют, ваши противники могут переместить любого своего одного воина из зоны отдыха в инвентарь',
-        abilitySymbol: '**',
+        desc: "Каждый раз, когда вас атакуют, ваши противники могут переместить любого своего одного воина из зоны отдыха в инвентарь",
+        abilitySymbol: "**",
       },
     ],
     cost: 2,
@@ -264,10 +264,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: toad,
     bgImg: COLOR[DiceType.Toad].color,
-    title: 'Жаба',
+    title: "Жаба",
   },
   [DiceType.Snake]: {
-    id: '5',
+    id: "5",
     type: DiceType.Snake,
     sides: [
       {
@@ -293,23 +293,23 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 4,
         defense: 3,
         level: 2,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: snake,
         attack: 6,
         defense: 4,
         level: 3,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
     ],
     abilities: [
       {
-        desc: 'Если змея отправлена на отдых из-за ранения,  сила атаки противника снижается до 0',
+        desc: "Если змея отправлена на отдых из-за ранения,  сила атаки противника снижается до 0",
       },
       {
-        desc: 'У этой змеи нет усиленного умения',
-        abilitySymbol: '*',
+        desc: "У этой змеи нет усиленного умения",
+        abilitySymbol: "*",
       },
     ],
     cost: 6,
@@ -317,10 +317,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: snake,
     bgImg: COLOR[DiceType.Snake].color,
-    title: 'Змея',
+    title: "Змея",
   },
   [DiceType.Fox]: {
-    id: '6',
+    id: "6",
     type: DiceType.Fox,
     sides: [
       {
@@ -346,7 +346,7 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 3,
         defense: 5,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: fox,
@@ -357,11 +357,11 @@ export const DICES_LIB: Record<string, Dice> = {
     ],
     abilities: [
       {
-        desc: 'Когда лис вызван на поле боя, вы можете немедленно перебросить 1 воина в вашей зоне подготовки. Если у вас выпадет воин, то вы можете его вызвать на поле боя бесплатно',
+        desc: "Когда лис вызван на поле боя, вы можете немедленно перебросить 1 воина в вашей зоне подготовки. Если у вас выпадет воин, то вы можете его вызвать на поле боя бесплатно",
       },
       {
-        desc: 'У этого лиса нет усиленного умения',
-        abilitySymbol: '*',
+        desc: "У этого лиса нет усиленного умения",
+        abilitySymbol: "*",
       },
     ],
     cost: 5,
@@ -369,10 +369,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: fox,
     bgImg: COLOR[DiceType.Fox].color,
-    title: 'Лис',
+    title: "Лис",
   },
   [DiceType.Owl]: {
-    id: '7',
+    id: "7",
     type: DiceType.Owl,
     sides: [
       {
@@ -398,7 +398,7 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 4,
         defense: 4,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: owl,
@@ -409,11 +409,11 @@ export const DICES_LIB: Record<string, Dice> = {
     ],
     abilities: [
       {
-        desc: 'Если филин остался в зоне атаки до конца боя, вы можете перебросить один кубик воина в вашей зоне подготовки  или попытаться увеличить вашу силу',
+        desc: "Если филин остался в зоне атаки до конца боя, вы можете перебросить один кубик воина в вашей зоне подготовки  или попытаться увеличить вашу силу",
       },
       {
-        desc: 'Вместо вышеуказанного вы можете перебросить двух воинов в вашей зоне подготовки или попытаться увеличить силу',
-        abilitySymbol: '*',
+        desc: "Вместо вышеуказанного вы можете перебросить двух воинов в вашей зоне подготовки или попытаться увеличить силу",
+        abilitySymbol: "*",
       },
     ],
     cost: 5,
@@ -421,10 +421,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: owl,
     bgImg: COLOR[DiceType.Owl].color,
-    title: 'Филин',
+    title: "Филин",
   },
   [DiceType.Wolf]: {
-    id: '8',
+    id: "8",
     type: DiceType.Wolf,
     sides: [
       {
@@ -446,30 +446,30 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 3,
         defense: 3,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: wolf,
         attack: 4,
         defense: 4,
         level: 2,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: wolf,
         attack: 8,
         defense: 6,
         level: 3,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
     ],
     abilities: [
       {
-        desc: 'Все ваши воины 1 уровня получают +2 к атаке и +2 к защите, пока волк сражается рядом с ними',
+        desc: "Все ваши воины 1 уровня получают +2 к атаке и +2 к защите, пока волк сражается рядом с ними",
       },
       {
-        desc: 'Дополнительно ВСЕ ваши воины получают + 2 к атаке, +2 к защите',
-        abilitySymbol: '*',
+        desc: "Дополнительно ВСЕ ваши воины получают + 2 к атаке, +2 к защите",
+        abilitySymbol: "*",
       },
     ],
     cost: 7,
@@ -477,10 +477,10 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: wolf,
     bgImg: COLOR[DiceType.Wolf].color,
-    title: 'Волк',
+    title: "Волк",
   },
   [DiceType.Bear]: {
-    id: '9',
+    id: "9",
     type: DiceType.Bear,
     sides: [
       {
@@ -502,7 +502,7 @@ export const DICES_LIB: Record<string, Dice> = {
         attack: 3,
         defense: 5,
         level: 1,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
       {
         image: bear,
@@ -523,7 +523,7 @@ export const DICES_LIB: Record<string, Dice> = {
           Усиленный медведь получает +1 к атаке. 
           Даёт игрогу на 1 славу больше, если он остаётся в зоне атаки до конца боя
         `,
-        abilitySymbol: '*',
+        abilitySymbol: "*",
       },
     ],
     cost: 7,
@@ -531,6 +531,6 @@ export const DICES_LIB: Record<string, Dice> = {
     activeSide: null,
     img: bear,
     bgImg: COLOR[DiceType.Bear].color,
-    title: 'Медведь',
+    title: "Медведь",
   },
-}
+};

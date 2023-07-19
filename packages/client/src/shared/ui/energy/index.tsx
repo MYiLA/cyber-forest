@@ -1,10 +1,10 @@
 type EnergyProps = {
-  width?: number
-  height?: number
-  className?: string
-}
+  width?: number;
+  height?: number;
+  className?: string;
+};
 
-export const Energy = ({ className, height, width }: EnergyProps) => {
+export function Energy({ className, height, width }: EnergyProps) {
   return (
     <svg
       className={className}
@@ -12,7 +12,8 @@ export const Energy = ({ className, height, width }: EnergyProps) => {
       height={height}
       viewBox="0 0 26 33"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -20,5 +21,5 @@ export const Energy = ({ className, height, width }: EnergyProps) => {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }

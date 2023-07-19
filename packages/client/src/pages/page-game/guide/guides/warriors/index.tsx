@@ -1,13 +1,13 @@
-import { DescriptionBlock } from '../description-block'
-import catCard from '../assets/mini-cat.png'
-import wolfCard from '../assets/wolf-card.png'
-import wolfDesc from '../assets/wolf-desc.png'
-import powerCard from '../assets/power-card.png'
-import styles from './warriors.module.scss'
-import { ReactComponent as Arrow } from '../assets/arrow.svg'
-import cn from 'classnames'
+import cn from "classnames";
+import { DescriptionBlock } from "../description-block";
+import catCard from "../assets/mini-cat.png";
+import wolfCard from "../assets/wolf-card.png";
+import wolfDesc from "../assets/wolf-desc.png";
+import powerCard from "../assets/power-card.png";
+import styles from "./warriors.module.scss";
+import { ReactComponent as Arrow } from "../assets/arrow.svg";
 
-export const Warriors = () => {
+export function Warriors() {
   return (
     <div className={styles.warriors}>
       <Arrow className={cn(styles.arrow, styles.arrow_1)} />
@@ -48,5 +48,5 @@ export const Warriors = () => {
         className={styles.description}
       />
     </div>
-  )
+  );
 }

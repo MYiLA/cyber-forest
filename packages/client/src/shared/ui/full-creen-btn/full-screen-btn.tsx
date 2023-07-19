@@ -1,38 +1,34 @@
-import { FC, useState } from 'react'
-import styles from './full-screen-btn.module.scss'
-import image from '@images/full-screen.svg'
+import { FC, useState } from "react";
+import image from "@images/full-screen.svg";
+import styles from "./full-screen-btn.module.scss";
+import { getRequestMethod } from "./get-request-method";
 
 type FullScreenBtnProps = {
-  active: boolean
-  extraClass?: string
-}
+  active: boolean;
+  extraClass?: string;
+};
 
 export const FullScreenBtn: FC<FullScreenBtnProps> = ({
   active,
   extraClass,
 }) => {
-  const [fullScreen, setFullScreen] = useState(active)
+  const [fullScreen, setFullScreen] = useState(active);
 
   const onClick = () => {
-    const requestMethod =
-      document.documentElement.requestFullscreen ||
-      document.documentElement.webkitRequestFullscreen ||
-      document.documentElement.webkitRequestFullScreen ||
-      document.documentElement.mozRequestFullScreen ||
-      document.documentElement.msRequestFullscreen
+    const requestMethod = getRequestMethod();
 
     if (fullScreen && requestMethod) {
-      requestMethod.apply(document.documentElement)
+      requestMethod.apply(document.documentElement);
     } else {
-      document.exitFullscreen()
+      document.exitFullscreen();
     }
 
-    setFullScreen(!fullScreen)
-  }
+    setFullScreen(!fullScreen);
+  };
 
   return (
     <button className={`${styles.button} ${extraClass}`} onClick={onClick}>
-      <img src={image} alt={'иконка полный экран'} />
+      <img src={image} alt="иконка полный экран" />
     </button>
-  )
-}
+  );
+};

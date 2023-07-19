@@ -13,19 +13,18 @@
     padding: 8px 34px;
 
     &.purpur {
-      background: rgba(187, 106, 234, 0.20);
+      background: rgba(187, 106, 234, 0.2);
 
       &:hover {
-        background: rgba(187, 106, 234, 0.40);
+        background: rgba(187, 106, 234, 0.4);
       }
     }
 
     &.neon {
-      background: rgba(63, 183, 234, 0.20);
+      background: rgba(63, 183, 234, 0.2);
 
       &:hover {
-        background: rgba(63, 183, 234, 0.40);
-      ;
+        background: rgba(63, 183, 234, 0.4);
       }
     }
   }
@@ -37,14 +36,14 @@
     align-items: center;
 
     .title {
-      color: #FFF;
+      color: #fff;
       font-size: 14px;
       font-family: New_Zelek;
       text-transform: uppercase;
     }
 
     .date {
-      color: rgba(255, 255, 255, 0.80);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 15px;
       font-family: Blender Pro;
       font-weight: 500;
@@ -64,7 +63,7 @@
       height: 40px;
       border: 1px solid #fff;
       border-radius: 100%;
-      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
 
       margin-right: 12px;
     }

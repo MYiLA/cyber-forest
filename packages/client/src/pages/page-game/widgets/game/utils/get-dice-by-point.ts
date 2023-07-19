@@ -1,6 +1,6 @@
-import { Dice } from '@pages/page-game/type'
-import { AreaType, PlayerType } from '../constants'
-import { getDicePosition } from './get-dice-position'
+import { Dice } from "@pages/page-game/type";
+import { AreaType, PlayerType } from "../constants";
+import { getDicePosition } from "./get-dice-position";
 
 export const getDiceByPoint = ({
   playerType,
@@ -9,11 +9,11 @@ export const getDiceByPoint = ({
   x,
   y,
 }: {
-  playerType: PlayerType
-  area: AreaType
-  x: number
-  y: number
-  dices: Dice[]
+  playerType: PlayerType;
+  area: AreaType;
+  x: number;
+  y: number;
+  dices: Dice[];
 }): Dice | undefined => {
   // Находим кубик, внутри которого находятся переданные координаты
   const result = dices.find((dice, index) => {
@@ -21,11 +21,11 @@ export const getDiceByPoint = ({
       area,
       player: playerType,
       diceIndex: index,
-    })
+    });
     if (x >= minX && x <= maxX && y >= minY && y <= maxY) {
-      return true
+      return true;
     }
-  })
+  });
 
-  return result
-}
+  return result;
+};

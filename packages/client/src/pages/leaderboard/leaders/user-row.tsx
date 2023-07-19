@@ -1,14 +1,14 @@
-import styles from './leaders.module.scss'
-import { UserLeaderDto } from '../types'
+import styles from "./leaders.module.scss";
+import { UserLeaderDto } from "../types";
 
 type Props = {
-  user: UserLeaderDto
-}
+  user: UserLeaderDto;
+};
 
-export const UserRow = (props: Props) => {
+export function UserRow(props: Props) {
   const {
     user: { name, points, avatar },
-  } = props
+  } = props;
   return (
     <div className={styles.user_row}>
       <img src={avatar} className={styles.avatar} alt={`${name} avatar`} />
@@ -19,5 +19,5 @@ export const UserRow = (props: Props) => {
         <h4>{points}</h4>
       </div>
     </div>
-  )
+  );
 }

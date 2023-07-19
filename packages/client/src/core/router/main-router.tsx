@@ -1,10 +1,10 @@
-import { Suspense } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
-import { getRoutes } from '@router/routes'
-import { Loading } from '@ui/loading/loading'
+import { Suspense } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { getRoutes } from "@router/routes";
+import { Loading } from "@ui/loading/loading";
 
-export const MainRouter = () => {
-  const location = useLocation()
+export function MainRouter() {
+  const location = useLocation();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -14,5 +14,5 @@ export const MainRouter = () => {
         ))}
       </Routes>
     </Suspense>
-  )
+  );
 }

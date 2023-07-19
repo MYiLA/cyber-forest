@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {}
+const initialState = {};
 
 export const forumSlice = createSlice({
-  name: 'forum',
+  name: "forum",
   initialState,
   reducers: {},
-})
+});
 
-export default forumSlice.reducer
+export default forumSlice.reducer;

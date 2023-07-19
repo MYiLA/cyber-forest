@@ -1,27 +1,27 @@
-import { DiceType } from '@shared/type'
-import { createDice } from '@pages/page-game/utils/create-dice'
+import { DiceType } from "@shared/type";
+import { createDice } from "@pages/page-game/utils/create-dice";
 import {
   AreaType,
   DEFAULT_SETTING,
   PlayerType,
-} from '../../pages/page-game/widgets/game/constants'
-import { GameState } from '../../pages/page-game/widgets/game/type'
+} from "@pages/page-game/widgets/game/constants";
+import { GameState } from "@pages/page-game/widgets/game/type";
 
-type getInitialGameStateProps = {
-  playersCount?: number
-  users: string[]
-}
+type GetInitialGameStateProps = {
+  playersCount?: number;
+  users: string[];
+};
 
 export const getInitialGameState = ({
   playersCount = DEFAULT_SETTING.PLAYERS_COUNT,
   users,
-}: getInitialGameStateProps): GameState => {
+}: GetInitialGameStateProps): GameState => {
   const playersTypes = [
     PlayerType.Red,
     PlayerType.Blue,
     PlayerType.Yellow,
     PlayerType.Green,
-  ].slice(0, playersCount)
+  ].slice(0, playersCount);
 
   const mappingPlayers = playersTypes
     .map((type, index) => ({
@@ -32,7 +32,7 @@ export const getInitialGameState = ({
         .fill(null)
         .map(() => createDice(DiceType.Cat)),
     }))
-    .reduce((acc, player) => ({ ...acc, [player.type]: player }), {})
+    .reduce((acc, player) => ({ ...acc, [player.type]: player }), {});
 
-  return mappingPlayers as GameState
-}
+  return mappingPlayers as GameState;
+};

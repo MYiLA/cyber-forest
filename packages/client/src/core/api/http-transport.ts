@@ -1,5 +1,5 @@
-import axios, { Axios } from 'axios'
-import { API_URL } from '@config/constants'
+import axios, { Axios } from "axios";
+import { API_URL } from "@config/constants";
 
 export class HttpTransport {
   constructor(
@@ -10,15 +10,14 @@ export class HttpTransport {
     })
   ) {
     this._axios.interceptors.response.use(
-      response => response,
-      error => {
-        return Promise.reject(
+      (response) => response,
+      (error) =>
+        Promise.reject(
           (error.response &&
             error.response.data &&
             error.response.data.reason) ||
-            'Something wrong'
+            "Something wrong"
         )
-      }
-    )
+    );
   }
 }

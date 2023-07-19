@@ -1,14 +1,14 @@
-import { GloryCounter } from '@pages/page-game/entities/glory-counter'
-import { ChronicleMessage } from '../../type'
-import styles from './message.module.scss'
-import React from 'react'
+import { GloryCounter } from "@pages/page-game/entities/glory-counter";
+import React from "react";
+import { ChronicleMessage } from "../../type";
+import styles from "./message.module.scss";
 
 type MessageProps = {
-  message: ChronicleMessage
-}
+  message: ChronicleMessage;
+};
 
-export const Message = ({ message }: MessageProps) => {
-  const { player, desc } = message
+export function Message({ message }: MessageProps) {
+  const { player, desc } = message;
   return (
     <>
       <div className={styles.glory_wrap}>
@@ -20,5 +20,5 @@ export const Message = ({ message }: MessageProps) => {
       </div>
       <p className={styles.desc}>{desc}</p>
     </>
-  )
+  );
 }

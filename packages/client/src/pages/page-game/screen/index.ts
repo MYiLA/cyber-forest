@@ -1,2 +1,2 @@
-export { WinnerScreen } from './winner-screen'
-export { LooseScreen } from './loose-screen'
+export { WinnerScreen } from "./winner-screen";
+export { LooseScreen } from "./loose-screen";

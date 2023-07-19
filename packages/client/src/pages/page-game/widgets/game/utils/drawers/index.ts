@@ -1,2 +1,2 @@
-export { drawWarrior } from './draw-warrior'
-export { drawEnergy } from './draw-energy'
+export { drawWarrior } from "./draw-warrior";
+export { drawEnergy } from "./draw-energy";

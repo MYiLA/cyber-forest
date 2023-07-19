@@ -1,63 +1,63 @@
 /** Типы кубиков */
 export enum DiceType {
   /** Волк */
-  Wolf = 'Wolf',
+  Wolf = "Wolf",
   /** Кот */
-  Cat = 'Cat',
+  Cat = "Cat",
   /** Лиса */
-  Fox = 'Fox',
+  Fox = "Fox",
   /** Змея */
-  Snake = 'Snake',
+  Snake = "Snake",
   /** Медведь */
-  Bear = 'Bear',
+  Bear = "Bear",
   /** Сова */
-  Owl = 'Owl',
+  Owl = "Owl",
   /** Утка */
-  Duck = 'Duck',
+  Duck = "Duck",
   /** Заяц */
-  Hare = 'Hare',
+  Hare = "Hare",
   /** Жаба */
-  Toad = 'Toad',
+  Toad = "Toad",
 }
 
 /** Сторона энергии */
 export type DiceSideEnergy = {
   /** Цвет фона */
-  color: string
+  color: string;
   /** Цвет текста */
-  textColor: string
+  textColor: string;
   /** Количество энергии */
-  energyCount: number
-}
+  energyCount: number;
+};
 
 /** Сторона воина */
 export type DiceSideWarrior = {
   /** Изображение воина */
-  image: string
+  image: string;
   /** Значение атаки */
-  attack: number
+  attack: number;
   /** Значение защиты */
-  defense: number
+  defense: number;
   /** Уровень */
-  level: number
+  level: number;
   /** Символ способности */
-  abilitySymbol?: string
-}
+  abilitySymbol?: string;
+};
 
 /** Сторона особого символа */
 export type DiceSideSymbol = {
   /** Цвет фона */
-  color: string
+  color: string;
   /** Цвет текста */
-  textColor: string
+  textColor: string;
   /** Особый символ способности */
-  specialAbilitySymbol: string
-}
+  specialAbilitySymbol: string;
+};
 
 /** Доступ для найма воинов */
 export type AccessHireWarrior = {
   /** Тип воинов. Генерируется при запуске игры */
-  type: DiceType
+  type: DiceType;
   /** Количество воинов, доступных для найма. Меняется в процессе игры */
-  count: number
-}
+  count: number;
+};

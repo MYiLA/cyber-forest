@@ -1,46 +1,40 @@
 @import "@scss/variables";
 
-
 .window {
-	padding: 10px;
-	.inside_one {
-		padding: 12px 15px 12px 15px;
-		position: relative;
-		width: 100%;
-		height: 100%;
-		background: $dialog-gradient;
-		border: 1px solid $color-white;
-		.lt {
-			position: absolute;
-			top: 10px;
-			left: -10px
-		}
-		.lb {
-			position: absolute;
-			bottom: -1px;
-			left: -1px;
-		}
-		.rt {
-			position: absolute;
-			right: -1px;
-			top: -1px;
-		}
-		.rb {
-			position: absolute;
-			bottom: -12px;
-			right: 10px
-		}
-		.content {
-			min-height: 300px;
-			min-width: 320px;
-			height: 100%;
-			width: 100%;
-			overflow: hidden;
-		}
-	}
+  padding: 10px;
+  .inside_one {
+    padding: 12px 15px 12px 15px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: $dialog-gradient;
+    border: 1px solid $color-white;
+    .lt {
+      position: absolute;
+      top: 10px;
+      left: -10px;
+    }
+    .lb {
+      position: absolute;
+      bottom: -1px;
+      left: -1px;
+    }
+    .rt {
+      position: absolute;
+      right: -1px;
+      top: -1px;
+    }
+    .rb {
+      position: absolute;
+      bottom: -12px;
+      right: 10px;
+    }
+    .content {
+      min-height: 300px;
+      min-width: 320px;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+  }
 }
-
-
-
-
-

@@ -1,17 +1,17 @@
-import { Modal } from '@ui/modal'
-import { useState } from 'react'
-import eagleImg from './images/cyber-eagle.png'
-import foxImg from './images/cyber-fox.png'
-import styles from './wineer-screen.module.scss'
-import cn from 'classnames'
-import { ScreenBlock } from '../screen-block'
-import { Player } from '@pages/page-game/type'
-import { NavLink } from 'react-router-dom'
-import { PATH } from '@config/constants'
+import { Modal } from "@ui/modal";
+import { useState } from "react";
+import cn from "classnames";
+import { Player } from "@pages/page-game/type";
+import { NavLink } from "react-router-dom";
+import { PATH } from "@config/constants";
+import eagleImg from "./images/cyber-eagle.png";
+import foxImg from "./images/cyber-fox.png";
+import styles from "./wineer-screen.module.scss";
+import { ScreenBlock } from "../screen-block";
 
 export const WinnerScreen = (winner: Player | undefined) => {
-  const [open, setOpen] = useState(true)
-  const handleClose = () => setOpen(false)
+  const [open, setOpen] = useState(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <Modal open={open} onClose={handleClose}>
@@ -31,14 +31,14 @@ export const WinnerScreen = (winner: Player | undefined) => {
               победитель - {winner?.name}
             </h4>
             {winner?.movesCount && (
-              <p>победа за {winner.movesCount} шага(ов)</p>
+              <p>победа за {winner?.movesCount} шага(ов)</p>
             )}
             <div className={styles.score_info__glory}>
               <p>слава</p>
               <p>{winner?.gloryCount}</p>
             </div>
-            {/*TODO: временно - ссылка на рейтинг пользователей*/}
-            {/*<BackToLobbyButton className={styles.score_info__button} />*/}
+            {/* TODO: временно - ссылка на рейтинг пользователей */}
+            {/* <BackToLobbyButton className={styles.score_info__button} /> */}
             <NavLink to={PATH.LEADER_BOARD} className={styles.navigation}>
               просмотр рейтинга
             </NavLink>
@@ -48,5 +48,5 @@ export const WinnerScreen = (winner: Player | undefined) => {
         </div>
       </ScreenBlock>
     </Modal>
-  )
-}
+  );
+};

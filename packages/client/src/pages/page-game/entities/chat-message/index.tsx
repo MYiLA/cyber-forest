@@ -1,11 +1,11 @@
-import { ChatMessage } from '../../features/chat/type'
-import styles from './chat-message-entity.module.scss'
+import { ChatMessage } from "../../features/chat/type";
+import styles from "./chat-message-entity.module.scss";
 
 type ChatMessageEntityProps = {
-  message: ChatMessage
-}
+  message: ChatMessage;
+};
 
-export const ChatMessageEntity = ({ message }: ChatMessageEntityProps) => {
+export function ChatMessageEntity({ message }: ChatMessageEntityProps) {
   return (
     <div className={styles.message_wrap}>
       <div className={styles.avatar}>
@@ -19,5 +19,5 @@ export const ChatMessageEntity = ({ message }: ChatMessageEntityProps) => {
         <p className={styles.text}>{message.text}</p>
       </div>
     </div>
-  )
+  );
 }

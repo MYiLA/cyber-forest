@@ -1,14 +1,14 @@
-import prepareCard from '../assets/prepare-card.png'
-import transparentForest from '../assets/transparent-cyber-forest.png'
-import cyberForest from '../assets/cyber-forest.png'
-import cyberCats from '../assets/cyber-cats.png'
-import bottomPartCard from '../assets/bottom-part-card.png'
-import { ReactComponent as Arrow } from '../assets/arrow.svg'
-import { DescriptionBlock } from '../description-block'
-import styles from './hiring.module.scss'
-import cn from 'classnames'
+import cn from "classnames";
+import prepareCard from "../assets/prepare-card.png";
+import transparentForest from "../assets/transparent-cyber-forest.png";
+import cyberForest from "../assets/cyber-forest.png";
+import cyberCats from "../assets/cyber-cats.png";
+import bottomPartCard from "../assets/bottom-part-card.png";
+import { ReactComponent as Arrow } from "../assets/arrow.svg";
+import { DescriptionBlock } from "../description-block";
+import styles from "./hiring.module.scss";
 
-export const Hiring = () => {
+export function Hiring() {
   return (
     <div className={styles.hiring}>
       <Arrow className={cn(styles.arrow, styles.arrow_1)} />
@@ -59,5 +59,5 @@ export const Hiring = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }

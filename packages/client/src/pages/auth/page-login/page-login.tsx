@@ -1,54 +1,54 @@
-import { FormEvent, Fragment } from 'react'
-import { Navigate, NavLink } from 'react-router-dom'
-import { Fields, Validators, useForm } from '@hooks/use-form'
-import { UserLogin } from '@config/user-types'
-import { DialogWindow } from '@ui/dialog-window/dialog-window'
-import { MainInput } from '@ui/main-input/main-input'
-import { MainButton } from '@ui/main-button/main-button'
-import { PATH } from '@config/constants'
-import styles from './page-login.module.scss'
-import { useSelector } from 'react-redux'
-import { RootState } from '@store/store'
-import { useAuth } from '@hooks/use-auth'
+import { FormEvent, Fragment } from "react";
+import { Navigate, NavLink } from "react-router-dom";
+import { Fields, Validators, useForm } from "@hooks/use-form";
+import { UserLogin } from "@config/user-types";
+import { DialogWindow } from "@ui/dialog-window/dialog-window";
+import { MainInput } from "@ui/main-input/main-input";
+import { MainButton } from "@ui/main-button/main-button";
+import { PATH } from "@config/constants";
+import { useSelector } from "react-redux";
+import { RootState } from "@store/store";
+import { useAuth } from "@hooks/use-auth";
+import styles from "./page-login.module.scss";
 
 const validators: Validators = {
   login: {
     required: true,
     rule: /^(?![\d+]+$)[a-zа-я0-9+_-]{3,20}$/gi,
-    message: '3-20 символов без пробелов, буквы обязательно',
+    message: "3-20 символов без пробелов, буквы обязательно",
   },
   password: {
     required: true,
     rule: /^(?=.*\d)(?=.*[A-Z])\S{8,40}$/g,
-    message: '8-40 символов, обязательны цифры и заглавные буквы',
+    message: "8-40 символов, обязательны цифры и заглавные буквы",
   },
-}
+};
 
 const initialForm: Fields = {
-  login: '',
-  password: '',
-}
+  login: "",
+  password: "",
+};
 
-const PageLogin = () => {
-  const getUserState = (store: RootState) => store.user
-  const { authorized } = useSelector(getUserState)
+function PageLogin() {
+  const getUserState = (store: RootState) => store.user;
+  const { authorized } = useSelector(getUserState);
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
-    useForm(initialForm, validators)
+    useForm(initialForm, validators);
 
-  const { toLogin, error } = useAuth()
+  const { toLogin, error } = useAuth();
 
   const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (validateAllFields()) {
-      toLogin(form as UserLogin)
+      toLogin(form as UserLogin);
     }
-  }
+  };
 
   return (
-    <Fragment>
+    <>
       {authorized ? (
-        <Navigate to={PATH.LOBBY} replace={true} />
+        <Navigate to={PATH.LOBBY} replace />
       ) : (
         <div className={styles.container}>
           <DialogWindow>
@@ -81,7 +81,8 @@ const PageLogin = () => {
                   <MainButton
                     type="submit"
                     extraClassName="ml-10 mr-10"
-                    className="mr-5">
+                    className="mr-5"
+                  >
                     Войти
                   </MainButton>
                   <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
@@ -92,8 +93,8 @@ const PageLogin = () => {
           </DialogWindow>
         </div>
       )}
-    </Fragment>
-  )
+    </>
+  );
 }
 
-export default PageLogin
+export default PageLogin;

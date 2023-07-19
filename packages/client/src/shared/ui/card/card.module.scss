@@ -13,10 +13,11 @@
   padding-bottom: 16px;
   font-family: $font-accent;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     @include background-img-position;
 
-    content: '';
+    content: "";
   }
 
   &::after {
@@ -46,10 +47,11 @@
   margin-bottom: 12px;
   overflow: hidden;
 
-  &::before, &::after {
+  &::before,
+  &::after {
     @include background-img-position;
 
-    content: '';
+    content: "";
   }
 
   &::after {
@@ -70,10 +72,11 @@
 }
 
 .img {
-  @include img-position
+  @include img-position;
 }
 
-.info_top, .info_bottom {
+.info_top,
+.info_bottom {
   display: flex;
   justify-content: space-between;
 }
@@ -86,12 +89,14 @@
   flex-shrink: 0;
 }
 
-.energy_wrap, .glory_wrap {
+.energy_wrap,
+.glory_wrap {
   display: flex;
   align-items: center;
 }
 
-.energy, .glory {
+.energy,
+.glory {
   margin-right: 6px;
 }
 

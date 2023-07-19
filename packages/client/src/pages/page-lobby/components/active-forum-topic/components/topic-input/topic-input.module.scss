@@ -14,7 +14,7 @@
 
     margin-left: 15px;
 
-    color: #FFF;
+    color: #fff;
     font-size: 14px;
     font-family: Blender Pro;
     font-weight: 500;
@@ -22,15 +22,15 @@
     padding-left: 15px;
 
     &::placeholder {
-      color: #FFFFFF70;
+      color: #ffffff70;
     }
 
     &_neon {
-      background: #3FB7EA30;
+      background: #3fb7ea30;
     }
 
     &_purple {
-      background: #BB6AEA33;
+      background: #bb6aea33;
     }
 
     &.active {
@@ -44,7 +44,7 @@
     border-radius: 3px;
     border: none;
 
-    color: rgba(255, 255, 255, 0.70);
+    color: rgba(255, 255, 255, 0.7);
     font-size: 14px;
     font-family: Blender Pro;
     font-weight: 500;
@@ -53,15 +53,15 @@
     cursor: pointer;
 
     &_purple {
-      background: rgba(187, 106, 234, 0.20);
+      background: rgba(187, 106, 234, 0.2);
     }
 
     &_neon {
-      background: rgba(63, 183, 234, 0.40);
+      background: rgba(63, 183, 234, 0.4);
     }
 
     &:hover {
-      box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.50);
+      box-shadow: 0px 0px 3px 0px rgba(255, 255, 255, 0.5);
     }
   }
 }
