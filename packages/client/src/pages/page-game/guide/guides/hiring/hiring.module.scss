@@ -22,7 +22,6 @@
 
 .prepare_card {
   width: 257px;
-  height: 145px;
 }
 
 .middle_desc {
@@ -84,13 +83,13 @@
     transform: rotateZ(90deg);
     clip-path: inset(1px 1px 70px 1px);
     top: 235px;
-    left: 632px;
+    left: 640px;
 
   }
 
   &_4 {
     transform: rotateZ(180deg);
-    top: 333px;
+    top: 310px;
     left: 384px;
     clip-path: inset(0 0 15px 0);
   }
@@ -105,7 +104,7 @@
   &_6 {
     transform: rotateZ(180deg);
     clip-path: inset(1px 1px 92px 1px);
-    top: 465px;
+    top: 462px;
     left: 781px;
   }
 }

@@ -1,7 +1,6 @@
 import { ReactNode, useEffect, useRef } from 'react'
 import { useTheme } from '@hooks/use-theme'
 import { ReactComponent as TopRightCorner } from './corners/top-right-corner.svg'
-import { ReactComponent as BottomRightCorner } from './corners/bottom-right-corner.svg'
 import { ReactComponent as BottomLeftCorner } from './corners/bottom-left-corner.svg'
 import cn from 'classnames'
 import styles from './guide-block.module.scss'
@@ -44,7 +43,6 @@ export const GuideBlock = (props: Props) => {
         [styles.purple]: themeName === Theme.Purple,
       })}>
       <TopRightCorner className={cn(styles.corner, styles.top_right)} />
-      <BottomRightCorner className={cn(styles.corner, styles.bottom_right)} />
       <BottomLeftCorner className={cn(styles.corner, styles.bottom_left)} />
       <Navigation className={styles.navigation} />
       {children}

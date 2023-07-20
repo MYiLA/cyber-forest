@@ -30,7 +30,9 @@ export const WinnerScreen = (winner: Player | undefined) => {
             <h4 className={cn(styles.score_info__title)}>
               победитель - {winner?.name}
             </h4>
-            {winner?.movesCount && <p>победа за {winner.movesCount} шагов</p>}
+            {winner?.movesCount && (
+              <p>победа за {winner.movesCount} шага(ов)</p>
+            )}
             <div className={styles.score_info__glory}>
               <p>слава</p>
               <p>{winner?.gloryCount}</p>
