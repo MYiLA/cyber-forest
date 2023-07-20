@@ -25,8 +25,8 @@ type OpenBtnProps = {
 }
 const OpenGuideButton = ({ onClick }: OpenBtnProps) => {
   return (
-    <MainButton className={styles.button} onClick={onClick}>
-      Как играть
+    <MainButton className={styles.button_link} onClick={onClick}>
+      Как играть ?
     </MainButton>
   )
 }

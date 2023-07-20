@@ -7,7 +7,7 @@ import { MESSAGES } from './mock'
 export const Chat = () => {
   return (
     <div className={styles.chat}>
-      <ul className={styles.message_list}>
+      <ul className={styles.messages_list}>
         {MESSAGES.map(message => (
           <li key={message.id}>
             <ChatMessageEntity message={message} />

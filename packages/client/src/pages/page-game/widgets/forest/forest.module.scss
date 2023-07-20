@@ -5,8 +5,8 @@
   z-index: 1200;
   position: absolute;
   background-color: transparent;
-  width: 100vw;
-  height: calc(100vh - 16px);
+  width: 100%;
+  height: calc(100% - 32px);
   left: 0;
   top: 16px;
   pointer-events: none;
@@ -21,7 +21,7 @@
   right: 0;
   top: 16px;
   width: 50px;
-  height: calc(100vh - 16px);
+  height: calc(100% - 32px);
   background-color: #2F1E45;
 
   transition: width 0.6s;

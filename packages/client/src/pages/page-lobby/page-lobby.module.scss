@@ -217,8 +217,9 @@
 
     display: flex;
     flex-direction: column;
-    //justify-content: center;
     align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
 
     &_row {
       display: flex;
@@ -268,7 +269,7 @@
 
     &_name {
       margin-top: 24px;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
       color: #FFF;
       text-align: center;
       font-size: 20px;
@@ -285,7 +286,7 @@
     }
 
     &_link {
-      margin-bottom: 0;
+      margin-bottom: 12px;
       text-align: center;
 
       font-family: New_Zelek;
@@ -311,6 +312,22 @@
   }
 }
 
-.button {
+.button_link {
   margin-top: 5px;
+  border: none;
+  margin-bottom: 24px;
+
+  button {
+    font-size: 20px;
+    margin-top: 0;
+    padding: 0;
+  }
+
+  &::before {
+    content: none;
+  }
+
+  &::after {
+    content: none;
+  }
 }

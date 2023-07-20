@@ -46,14 +46,14 @@ export const BattleSetting = () => {
 
   return (
     <div className={styles.battle}>
-      <h3
-        className={cn(styles.battle_header, {
-          [styles.purpur]: themeName === Theme.Purple,
-          [styles.neon]: themeName === Theme.Neon,
-        })}>
-        настройка битвы
-      </h3>
       <form className={styles.form_wrapper}>
+        <h3
+          className={cn(styles.battle_header, {
+            [styles.purpur]: themeName === Theme.Purple,
+            [styles.neon]: themeName === Theme.Neon,
+          })}>
+          настройка битвы
+        </h3>
         <Switcher
           labels={['онлайн', 'оффлайн']}
           state={!online}

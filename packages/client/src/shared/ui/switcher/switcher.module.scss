@@ -1,6 +1,7 @@
 .wrapper {
   position: relative;
   margin: 0 auto;
+  margin-bottom: 24px;
 
   .switch {
     position: absolute;
@@ -15,7 +16,6 @@
   &_label {
     width: 250px;
     padding-left: 0px;
-    padding-bottom: 12px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
