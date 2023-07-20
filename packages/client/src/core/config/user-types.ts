@@ -1,3 +1,7 @@
+export type UserSettings = {
+  theme: string
+}
+
 export type User = {
   id?: number
   first_name: string
@@ -7,6 +11,7 @@ export type User = {
   avatar?: string
   email: string
   phone: string
+  settings?: UserSettings | null
 }
 
 export type UserLogin = {

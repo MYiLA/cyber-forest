@@ -13,7 +13,7 @@ authRouter.post(
     try {
       const { id, authCookie } = await AuthController.signup(req.body)
       res.cookie('authCookie', authCookie, {
-        maxAge: 365 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         sameSite: 'none',
         secure: true,
@@ -32,12 +32,12 @@ authRouter.post(
     try {
       const authCookie = await AuthController.signin(req.body)
       res.cookie('authCookie', authCookie, {
-        maxAge: 365 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
         httpOnly: true,
         sameSite: 'none',
         secure: true,
       })
-      return res.send(OK)
+      return res.send({ authCookie })
     } catch (e) {
       return next(e)
     }
@@ -61,7 +61,11 @@ authRouter.post(
   '/logout',
   AuthMiddleware,
   (req: CustomRequest, res: Response) => {
-    res.clearCookie('authCookie')
+    res.clearCookie('authCookie', {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    })
     return res.send(OK)
   }
 )

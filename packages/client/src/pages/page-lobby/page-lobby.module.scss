@@ -207,7 +207,8 @@
   }
 
   .user {
-    width: 350px;
+    overflow-y: scroll;
+    width: 370px;
     height: 100vh;
 
     position: fixed;

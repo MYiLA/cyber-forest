@@ -75,6 +75,11 @@ const routes = [
     layout: 'blank',
   },
   {
+    path: PATH.ERROR500,
+    element: <PageError error={'500'} />,
+    layout: 'blank',
+  },
+  {
     path: PATH.LEADER_BOARD,
     element: <PageLeaderboard />,
     layout: 'blank',

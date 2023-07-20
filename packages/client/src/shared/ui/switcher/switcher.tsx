@@ -1,5 +1,5 @@
 import styles from './switcher.module.scss'
-import { BaseSyntheticEvent, ReactElement, useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'
 
@@ -9,8 +9,12 @@ interface switcherProps {
   onClick: (value: string) => void
 }
 
-export const Switcher = ({ labels, onClick }: switcherProps): ReactElement => {
-  const [active, setActive] = useState(false)
+export const Switcher = ({
+  labels,
+  state,
+  onClick,
+}: switcherProps): ReactElement => {
+  const [active, setActive] = useState(state)
   const [active_label, setActiveLabel] = useState(
     active ? labels[0] : labels[1]
   )
@@ -63,10 +67,8 @@ export const Switcher = ({ labels, onClick }: switcherProps): ReactElement => {
       <label className={styles.switch}>
         <input
           type="checkbox"
-          onInput={(e: BaseSyntheticEvent) => {
-            e.preventDefault()
-            setActive(!active)
-          }}
+          checked={active}
+          onChange={() => setActive(!active)}
         />
         <div
           className={`${styles.slider} ${

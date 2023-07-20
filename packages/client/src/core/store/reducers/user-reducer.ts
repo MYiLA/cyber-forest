@@ -1,11 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import ApiAuth from '@api/auth-api'
-import {
-  User,
-  UserLogin,
-  UserPassword,
-  UserRegister,
-} from '@config/user-types'
+import { User, UserLogin, UserPassword, UserRegister } from '@config/user-types'
 import UserApi from '@api/user-api'
 
 export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
@@ -82,7 +77,7 @@ export const userSlice = createSlice({
       .addCase(userChangeData.fulfilled, (state, action) => {
         return {
           ...initialState,
-          user: action.payload.data(),
+          user: action.payload.data,
           authorized: true,
           authChecked: true,
         }
@@ -112,8 +107,6 @@ export const userSlice = createSlice({
         return { ...state, loading: true }
       })
       .addCase(userChangePassword.rejected, (state, action) => {
-        console.log(action)
-
         return { ...state, error: action.error.message as string }
       })
 
@@ -125,6 +118,9 @@ export const userSlice = createSlice({
         return { ...state, error: action.error.message as string }
       })
       .addCase(userLogin.fulfilled, (state, action) => {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('userData', JSON.stringify(action.payload.data))
+        }
         return {
           ...initialState,
           user: action.payload.data,
@@ -134,14 +130,21 @@ export const userSlice = createSlice({
       })
 
       /** Выход пользователя */
-      .addCase(userLogout.pending, () => {
-        return { ...initialState, loading: true }
+      .addCase(userLogout.pending, state => {
+        console.log('logout pending')
+        return { ...state, loading: true }
       })
-      .addCase(userLogout.rejected, (state, action) => {
-        return { ...initialState, error: action.error.message as string }
+      .addCase(userLogout.rejected, state => {
+        console.log('logout reject')
+        return {
+          ...state,
+          loading: false,
+        }
       })
       .addCase(userLogout.fulfilled, () => {
-        return { ...initialState }
+        console.log('logout filled')
+        localStorage.removeItem('userData')
+        return { ...initialState, authChecked: true }
       })
 
       /** Информация о пользователя */
@@ -155,6 +158,9 @@ export const userSlice = createSlice({
         }
       })
       .addCase(userGetInfo.fulfilled, (state, action) => {
+        if (typeof localStorage !== 'undefined') {
+          localStorage.setItem('userData', JSON.stringify(action.payload.data))
+        }
         return {
           ...state,
           loading: false,
@@ -173,6 +179,7 @@ export const userSlice = createSlice({
         return { ...initialState, error: action.error.message as string }
       })
       .addCase(userRegister.fulfilled, (state, action) => {
+        localStorage.setItem('userData', JSON.stringify(action.payload.data))
         return {
           ...state,
           user: action.payload.data,

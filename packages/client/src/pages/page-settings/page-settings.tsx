@@ -7,20 +7,19 @@ import back from '../../assets/images/back.svg'
 import { PersonalForm } from '@pages/page-settings/components/personal-form/personal-form'
 import { ChangePasswordForm } from '@pages/page-settings/components/change-password-form/change-password-form'
 import { Switcher } from '@ui/switcher/switcher'
-import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import classNames from 'classnames'
-import { useSelector } from 'react-redux'
-import { RootState } from '@store/store'
+import { useDispatch, useSelector } from 'react-redux'
+import { Dispatch, RootState } from '@store/store'
+import { setTheme } from '@store/reducers/theme-reducer'
 
 export const PageSettings = () => {
   const { themeName } = useTheme()
-  const [theme, setTheme] = useState(Theme.Purple)
-
+  const dispatch = useDispatch<Dispatch>()
   const user = useSelector((state: RootState) => state.user.user)
 
-  const onSwitch = () => {
-    setTheme(theme === Theme.Purple ? Theme.Neon : Theme.Purple)
+  const changeTheme = () => {
+    dispatch(setTheme(themeName === Theme.Purple ? Theme.Neon : Theme.Purple))
   }
 
   return (
@@ -50,7 +49,7 @@ export const PageSettings = () => {
           <Switcher
             labels={['пурпурная тема', 'тема неоновая']}
             state={false}
-            onClick={onSwitch}
+            onClick={changeTheme}
           />
         </div>
       </div>

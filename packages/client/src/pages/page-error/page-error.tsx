@@ -1,6 +1,6 @@
 import styles from './page-error.module.scss'
 
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { PATH } from '@config/constants'
 import { useTheme } from '@hooks/use-theme'
 
@@ -9,11 +9,8 @@ const errorMessages: Record<string, string> = {
   500: 'Что-то пошло не так...',
 }
 
-const PageError = () => {
+const PageError = ({ error = '404' }) => {
   const { themeName } = useTheme()
-  const location = useLocation()
-
-  const error = (location.state && location.state.error) || '404'
 
   return (
     <div className={styles.container}>

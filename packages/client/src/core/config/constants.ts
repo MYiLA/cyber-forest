@@ -9,6 +9,7 @@ export const PATH = {
   USER: '/user-data',
   HELP: '/lobby/help',
   ERROR: '/error',
+  ERROR500: '/error/500',
   ABOUT: '/about',
   GAME: '/game',
   LEADER_BOARD: '/leader-board',

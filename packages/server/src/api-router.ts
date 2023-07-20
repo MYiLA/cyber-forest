@@ -29,7 +29,7 @@ apiRouter.use('/auth', authRouter)
 apiRouter.use('/chats', AuthMiddleware, chatsRouter)
 apiRouter.use('/leaderboard', AuthMiddleware, leaderboardRouter)
 apiRouter.use('/user', AuthMiddleware, userRouter)
-apiRouter.use('/resources', AuthMiddleware, resourcesRouter)
+apiRouter.use('/resources', resourcesRouter)
 apiRouter.use('/forum', AuthMiddleware, forumRouter)
 
 apiRouter.use('*', () => {

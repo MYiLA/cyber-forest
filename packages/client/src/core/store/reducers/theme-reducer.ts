@@ -19,8 +19,14 @@ export const themeSlice = createSlice({
         themeName: state.themeName === Theme.Purple ? Theme.Neon : Theme.Purple,
       }
     },
+    setTheme: (state, action) => {
+      return {
+        ...state,
+        themeName: action.payload,
+      }
+    },
   },
 })
 
-export const { toggleTheme } = themeSlice.actions
+export const { toggleTheme, setTheme } = themeSlice.actions
 export default themeSlice.reducer
