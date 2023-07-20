@@ -46,21 +46,12 @@ export const clearContext = (params: Params) => {
         const dices = gameState?.[playerType]?.[areaType]
         if (!dices)
           throw new Error(
-            'Game: gameState?.[playerType]?.[areaType] is undefined'
+            `Game: gameState?.[${playerType}]?.[${areaType}] is undefined`
           )
-
-        const sides = dices.map(dice => {
-          const { activeSide } = dice
-          if (!activeSide)
-            throw new Error(
-              'Game: На отрисовку отдан кубик БЕЗ активной стороны'
-            )
-          return activeSide
-        })
 
         drawDicesSides({
           ctx,
-          sides,
+          dices,
           area: areaType,
           player: playerType,
         })

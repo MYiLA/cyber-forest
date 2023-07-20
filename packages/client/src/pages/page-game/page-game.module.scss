@@ -17,14 +17,15 @@
 .game {
   position: relative;
   width: 1406px;
-  height: 100%;
-  max-height: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  min-height: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
   padding-right: 70px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 .fullscreen {
+  z-index: 1300;
   right: 55px !important;
+  top: 25px;
 }
