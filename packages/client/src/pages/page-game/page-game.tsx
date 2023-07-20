@@ -181,12 +181,15 @@ const PageGame = () => {
         }
       })
       .filter(item => !!item)
-
+    // TODO: Логирование фазы атаки пока сделана через консоль-лог. В будущем нужно переделать вывод сообщений в хронику
+    console.log('ФАЗА АТАКИ')
+    console.log('otherPlayersArmies', otherPlayersArmies)
     // Если в зоне атаки текущего игрока нет воинов, или у защищающихся игроков нет воинов
     if (
       !currentPlayerArmy.length ||
       !otherPlayersArmies.some(army => army?.army.length)
     ) {
+      console.log('НЕТ ВОИНОВ')
       // То ход сразу переходит к следующему игроку
       goNextPlayerTurn()
       return
@@ -197,10 +200,12 @@ const PageGame = () => {
       (acc, warrior) => acc + Number(warrior?.attack),
       0
     )
-
+    console.log('Сила атаки текущего игрока', attack)
     // TODO: Порефакторить эту часть. Слишком большая вложенность
     // Атакуем силой атаки текущего игрока каждого противника
     otherPlayersArmies.forEach(warriors => {
+      console.log('Противник', warriors)
+      console.log('Нет воинов?', !warriors?.army?.length)
       // Если у противника нет воинов - ничего не делаем
       if (!warriors?.army?.length) return
       // Считаем общую защиту противника
@@ -208,6 +213,8 @@ const PageGame = () => {
         (acc, warrior) => acc + Number(warrior?.side.defense),
         0
       )
+      console.log('Защита противника', defense)
+      console.log('Противник повержен? defense <= attack', defense <= attack)
       // Если сумма защит противника меньше либо равна сумме атак игрока
       if (defense <= attack) {
         const attackDices = gameState?.[warriors.type]?.[AreaType.Attack]
@@ -236,14 +243,18 @@ const PageGame = () => {
         (warrior1, warrior2) =>
           Number(warrior2?.side.defense) - Number(warrior1?.side.defense)
       )
+      console.log('сортировка воинов защиты', sortedWarriors)
       // Вычисляем защиту самого сильного воина противника
       const bestDefense = Number(sortedWarriors[0]?.side.defense)
+      console.log('Лучшая защита противника', bestDefense)
+      console.log('Атака отражена? bestDefense > attack', bestDefense > attack)
 
       // Если защита самого сильного воина противника больше атаки игрока
       if (bestDefense > attack) {
         // То атака успешно отражена
         return
       }
+      console.log('Сложная ситуация?', bestDefense <= attack)
       // Если защита самого сильного воина противника меньше либо равна атаке игрока
       if (bestDefense <= attack) {
         // TODO: Тут должен быть переход в фазу защиты и игроку даётся выбрать самому,
@@ -251,10 +262,21 @@ const PageGame = () => {
 
         // В процессе боя сила атаки падает после ранения каждого воина на силу его защиты
         let attackPower = attack
+        console.log('attackPower', attackPower)
         // Каждый воин противника получает ранение последовательно, начиная с того воина, чья защита меньше всего
         for (let i = sortedWarriors.length - 1; attackPower > 0; i--) {
           const warrior = sortedWarriors[i]
           const defense = Number(warrior?.side.defense)
+          console.log(
+            'Воин получает ранение? defense <= attackPower',
+            defense,
+            attackPower,
+            defense <= attackPower
+          )
+          console.log(
+            'Воина защитил его самый сильный напарник?',
+            bestDefense > attackPower
+          )
           // Если защита воина меньше, чем атака, то воин получает ранение
           // В сравнении учавствует и защита сильнейшего воина, так как он может защитить слабого напарника
           if (defense <= attackPower && bestDefense <= attackPower) {
@@ -282,6 +304,9 @@ const PageGame = () => {
             attackPower = 0
           }
         }
+        console.log(
+          `БОЙ с воинами ${warriors.type} окончен. attackPower = ${attackPower}`
+        )
       }
     })
     // После атак ход переходит следующему игроку
@@ -385,6 +410,7 @@ const PageGame = () => {
     // Информируем игрока, что лимит выбора кубиков исчерпан
     if (stockCubeLimitCount === 0) {
       window.alert('На этом ходу больше нельзя тянуть кубики из инвентаря')
+      return
     }
 
     const dice = {

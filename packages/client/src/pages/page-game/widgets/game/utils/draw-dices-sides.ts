@@ -1,24 +1,27 @@
 import { AreaType, PlayerType } from '../constants'
-import { DiceSide } from '../type'
 import { getDicePosition } from './get-dice-position'
 import { rollDice } from '@pages/page-game/widgets/game/utils/animation'
+import { Dice } from '@pages/page-game/type'
 
 export const drawDicesSides = ({
   ctx,
-  sides,
+  dices,
   player,
   area,
 }: {
   ctx: CanvasRenderingContext2D
-  sides: DiceSide[]
+  dices: Dice[]
   player: PlayerType
   area: AreaType
 }): void => {
-  sides.forEach((diceSide, index) => {
+  dices.forEach(({ sides, activeSide }, index) => {
+    if (activeSide === null)
+      throw new Error('drawDicesSides: activeSide === null')
     const { minX, minY } = getDicePosition({ area, player, diceIndex: index })
     rollDice(`${minX}${minY}`, {
       area,
-      lastSide: diceSide,
+      lastSide: activeSide,
+      sides,
       ctx,
       minX,
       minY,

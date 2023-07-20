@@ -6,14 +6,14 @@
   display: flex;
   flex-direction: column;
   width: 148px;
-  padding: 16px;
-  padding-bottom: 0;
+  padding: 8px;
+  padding-bottom: 12px;
 }
 
 .btn {
   width: 100%;
   text-align: center;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   background-color: rgba(#BB6AEA, .85);
 }
 
@@ -30,7 +30,7 @@
 
   & button {
     position: relative;
-    padding: 24px;
+    padding: 9px;
     padding-right: 45px;
     margin-left: auto;
     transition: text-shadow .2s;
@@ -40,7 +40,7 @@
 
       content: '';
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(0.8);
       width: 50px;
       height: 50px;
       background-image: url(@images/game/stock-wrap/dice.svg);
@@ -52,7 +52,7 @@
     }
 
     &:hover::after {
-      transform: translateY(-50%) translateX(4px) scale(1.2);
+      transform: translateY(-50%) scale(1);
     }
   }
 }
