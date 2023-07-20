@@ -17,6 +17,19 @@ import { NavLink } from 'react-router-dom'
 import classNames from 'classnames'
 import { FullScreenBtn } from '@ui/full-creen-btn/full-screen-btn'
 import { NewTopicForm } from '@pages/page-lobby/components/new-topic-form/new-topic-form'
+import { Guide } from '@pages/page-game/guide'
+import { MainButton } from '@ui/main-button/main-button'
+
+type OpenBtnProps = {
+  onClick: () => void
+}
+const OpenGuideButton = ({ onClick }: OpenBtnProps) => {
+  return (
+    <MainButton className={styles.button} onClick={onClick}>
+      Как играть
+    </MainButton>
+  )
+}
 
 export const PageLobby = () => {
   const { user } = useSelector((store: RootState) => store.user)
@@ -123,11 +136,7 @@ export const PageLobby = () => {
         })}>
         <FullScreenBtn active={true} />
         <img
-          src={
-            user?.avatar
-              ? `${API_URL}/resources` + user?.avatar
-              : avatar
-          }
+          src={user?.avatar ? `${API_URL}/resources` + user?.avatar : avatar}
           alt={'аватар пользователя'}
           className={styles.user_avatar}
         />
@@ -147,6 +156,7 @@ export const PageLobby = () => {
           })}>
           информация об игре
         </NavLink>
+        <Guide OpenComponent={OpenGuideButton} />
         {/*TODO: пока не реализованы страницы, добавить по мере реализации*/}
         {/*<a*/}
         {/*  className={classNames(styles.user_link, {*/}
