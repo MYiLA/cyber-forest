@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react'
 import svgr from 'vite-plugin-svgr'
 import { resolve } from 'node:path'
 import dotenv from 'dotenv'
@@ -20,6 +20,7 @@ export default defineConfig({
   },
   plugins: [react(), svgr()],
   build: {
+    manifest: true,
     minify: true,
     rollupOptions: {
       input: {

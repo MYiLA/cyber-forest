@@ -7,6 +7,9 @@ import { PATH, Theme } from '@config/constants'
 import { MainButton } from '@ui/main-button/main-button'
 import { useGameStart } from '@hooks/use-game-start'
 import { FormEvent } from 'react'
+import { userLogout } from '@store/reducers/user-reducer'
+import { useDispatch } from 'react-redux'
+import { Dispatch } from '@store/store'
 
 const initialForm: {
   user1: string
@@ -56,6 +59,8 @@ export const OfflineUsersForm = () => {
   )
 
   const { themeName } = useTheme()
+
+  const dispatch = useDispatch<Dispatch>()
 
   const {
     toStartGame,
@@ -137,6 +142,7 @@ export const OfflineUsersForm = () => {
 
       <div
         style={{
+          width: '100%',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
@@ -152,6 +158,17 @@ export const OfflineUsersForm = () => {
           style={{ display: 'block', margin: '0 auto' }}
           className="mr-5">
           создать битву
+        </MainButton>
+        <MainButton
+          type="button"
+          onClick={() => {
+            dispatch(userLogout())
+          }}
+          extraClassName={cn({
+            [styles.button_purpur]: themeName === Theme.Purple,
+            [styles.button_neon]: themeName !== Theme.Purple,
+          })}>
+          выход
         </MainButton>
       </div>
     </div>

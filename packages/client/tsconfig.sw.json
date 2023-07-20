@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target":"ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "outDir": "dist/client",
+    "lib": ["WebWorker", "ESNext", "DOM"]
+  },
+  "include": [
+    "service-worker.ts"
+  ]
+}

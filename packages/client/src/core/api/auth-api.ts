@@ -1,37 +1,37 @@
-import axios, { Axios } from 'axios'
-import { API_AUTH, API_URL } from '@config/constants'
-import { UserLogin, UserRegister } from '@config/user-types'
+import { API_AUTH } from '@config/constants'
+import { User, UserLogin, UserRegister } from '@config/user-types'
+import { HttpTransport } from '@api/http-transport'
 
-class AuthApi {
-  private _axios: Axios
+class AuthApi extends HttpTransport {
   constructor() {
-    this._axios = axios.create({
-      baseURL: API_URL,
-      timeout: 1000,
-      withCredentials: true,
-    })
-    this._axios.interceptors.response.use(
-      response => response,
-      error => {
-        return Promise.reject(
-          (error.response &&
-            error.response.data &&
-            error.response.data.reason) ||
-            'Something wrong'
-        )
-      }
-    )
+    super()
   }
 
   public userLogin(data: UserLogin) {
-    return this._axios.post(API_AUTH.USER_LOGIN, data)
+    return this._axios.post(API_AUTH.USER_LOGIN, data).then(res => {
+      document.cookie = `authCookie=${
+        res.data.authCookie
+      }; Path=/; Expires=${new Date(Date.now() + 60 * 24 * 60 * 60 * 1000)}`
+    })
   }
 
   public userLogout() {
-    return this._axios.post(API_AUTH.USER_LOGOUT)
+    return this._axios.post(API_AUTH.USER_LOGOUT).then(() => {
+      document.cookie = `authCookie=${null}; max-age=-1`
+    })
   }
 
-  public userGetInfo(cookies: Record<string, string> | null = null) {
+  public userGetInfo(
+    cookies: Record<string, string> | null = null
+  ): Promise<{ data: User }> {
+    if (typeof localStorage !== 'undefined') {
+      const userData = localStorage.getItem('userData')
+      if (userData !== null) {
+        return new Promise(resolve => {
+          return resolve({ data: JSON.parse(userData) })
+        })
+      }
+    }
     const request =
       cookies && cookies.authCookie
         ? this._axios.get(API_AUTH.USER_INFO, {

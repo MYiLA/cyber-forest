@@ -5,12 +5,14 @@ import { Switcher } from '@ui/switcher/switcher'
 import { MainInput } from '@ui/main-input/main-input'
 import { Checkbox } from '@ui/checkbox/checkbox'
 import { MainButton } from '@ui/main-button/main-button'
-import authApi from '@api/auth-api'
 import { useTheme } from '@hooks/use-theme'
 import { Theme } from '@config/constants'
 import cn from 'classnames'
 import { validators } from '@pages/page-lobby/validators'
 import { OfflineUsersForm } from '@pages/page-lobby/components/battle-settings/offline-users-form/offline-users-form'
+import { useDispatch } from 'react-redux'
+import { Dispatch } from '@store/store'
+import { userLogout } from '@store/reducers/user-reducer'
 
 const initialForm = {
   type: 'online',
@@ -26,9 +28,11 @@ export const BattleSetting = () => {
     validators
   )
 
-  const [online, setOnline] = useState(true)
+  const [online, setOnline] = useState(false)
 
   const { themeName } = useTheme()
+
+  const dispatch = useDispatch<Dispatch>()
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -51,8 +55,8 @@ export const BattleSetting = () => {
       </h3>
       <form className={styles.form_wrapper}>
         <Switcher
-          labels={['онлайн', 'офллайн']}
-          state={true}
+          labels={['онлайн', 'оффлайн']}
+          state={!online}
           onClick={getSwitcherValue}
         />
         {online && (
@@ -71,7 +75,6 @@ export const BattleSetting = () => {
               name="players_count"
               placeholder="Количество игроков"
               value={form.players_count as string}
-              type={'number'}
               onChange={onChange}
               className={styles.battle_inputs}
               error={validate.players_count.error}
@@ -116,13 +119,12 @@ export const BattleSetting = () => {
               <MainButton
                 type="button"
                 onClick={() => {
-                  authApi.userLogout()
+                  dispatch(userLogout())
                 }}
                 extraClassName={cn({
                   [styles.button_purpur]: themeName === Theme.Purple,
                   [styles.button_neon]: themeName !== Theme.Purple,
-                })}
-                className="mr-5">
+                })}>
                 выход
               </MainButton>
             </div>

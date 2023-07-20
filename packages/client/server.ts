@@ -10,6 +10,7 @@ import cookieParser from 'cookie-parser'
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 const isProduction = process.env.NODE_ENV === 'production'
+const isLocal = process.env.NODE_DEST === 'local'
 
 const getStyleSheets = async () => {
   try {
@@ -80,33 +81,34 @@ async function createServer() {
   })
 
   const PORT = Number(process.env.CLIENT_PORT || 3000)
-  const HOST = isProduction ? 'cyberforest.ru' : 'localhost'
+  const HOST = isProduction && !isLocal ? 'cyberforest.ru' : 'localhost'
 
-  const server = isProduction
-    ? https.createServer(
-        {
-          key: await fs.readFile(
-            path.join(
-              __dirname,
-              '..',
-              '..',
-              '..',
-              'ssl/certbot/conf/live/cyberforest.ru/privkey.pem'
-            )
-          ),
-          cert: await fs.readFile(
-            path.join(
-              __dirname,
-              '..',
-              '..',
-              '..',
-              'ssl/certbot/conf/live/cyberforest.ru/cert.pem'
-            )
-          ),
-        },
-        app
-      )
-    : http.createServer(app)
+  const server =
+    isProduction && !isLocal
+      ? https.createServer(
+          {
+            key: await fs.readFile(
+              path.join(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'ssl/certbot/conf/live/cyberforest.ru/privkey.pem'
+              )
+            ),
+            cert: await fs.readFile(
+              path.join(
+                __dirname,
+                '..',
+                '..',
+                '..',
+                'ssl/certbot/conf/live/cyberforest.ru/cert.pem'
+              )
+            ),
+          },
+          app
+        )
+      : http.createServer(app)
 
   server.listen(PORT, () => {
     console.log(`Server started at ${HOST}:${PORT}`)

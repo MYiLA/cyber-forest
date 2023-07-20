@@ -21,6 +21,7 @@
     "preview": "lerna run preview",
 
     "start:client": "lerna run start --scope=client",
+    "start:client:local": "lerna run start:local --scope=client",
     "start:server": "lerna run start --scope=server",
     "start": "lerna run start",
 

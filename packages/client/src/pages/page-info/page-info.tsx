@@ -21,7 +21,7 @@ const PageInfo = () => {
           [styles.header_neon]: themeName === Theme.Neon,
         })}>
         киберлес
-        {activeTab === 1 && <span>разработчики</span>}
+        {activeTab === 1 && <span>&nbsp;разработчики</span>}
       </h3>
       <DialogWindow extraClass={styles.wrapper}>
         <NavLink to={PATH.LOBBY} className={styles.back}>

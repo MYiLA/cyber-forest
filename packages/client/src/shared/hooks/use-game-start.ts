@@ -39,7 +39,7 @@ export const useGameStart = () => {
 
   const toGamePathNavigate = useCallback(
     (path: string) => navigate(path),
-    [dispatch]
+    [navigate]
   )
 
   return {

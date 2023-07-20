@@ -6,7 +6,6 @@ import { AuthProvider } from '@core/auth-provider/auth-provider'
 import { MainRouter } from '@router/main-router'
 import { userGetInfo } from '@store/reducers/user-reducer'
 import { createStore } from '@store/store'
-import xssFilters from 'xss-filters'
 
 export async function render(url: string, cookies: Record<string, string>) {
   const store = createStore({})
@@ -23,14 +22,13 @@ export async function render(url: string, cookies: Record<string, string>) {
     </React.StrictMode>
   )
 
-  const head = ''
-
   const state = `
     <script>
-        window.__PREPARED_STATE__ = ${xssFilters.inHTMLData(
-          JSON.stringify(store.getState()).replace(/</g, '\\u003c')
+        window.__PREPARED_STATE__ = ${JSON.stringify(store.getState()).replace(
+          /</g,
+          '\\u003c'
         )}
     </script>`
 
-  return { html, state, head }
+  return { html, state, head: '' }
 }

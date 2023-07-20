@@ -8,12 +8,14 @@
     "build:clt": "vite build --ssrManifest --outDir dist/client",
     "build:srv": "vite build --ssr src/entry-server.tsx --outDir dist/server && cross-env NODE_ENV=production tsc -p tsconfig.server.json",
     "start": "cross-env NODE_ENV=production node ./dist/server.js",
+    "start:local": "cross-env NODE_ENV=production NODE_DEST=local node ./dist/server.js",
     "ssr": "cross-env NODE_ENV=development nodemon server.ts",
-
     "lint": "eslint .",
     "format": "prettier --write .",
     "ts:check": "tsc --skipLibCheck --noEmit --project tsconfig.json",
-    "test": "jest ./"
+    "test": "jest ./",
+
+    "sw": "tsc --p tsconfig.sw.json --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.5",
@@ -21,6 +23,8 @@
     "classnames": "^2.3.2",
     "dotenv": "^16.0.2",
     "eslint-config-prettier": "^8.5.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "prettier": "^2.7.1",
     "react": "^18.2.0",
@@ -56,7 +60,8 @@
     "prettier": "^2.7.1",
     "ts-jest": "^28.0.8",
     "typescript": "^4.8.2",
-    "vite": "^4.3.9"
+    "vite": "^4.3.9",
+    "vite-plugin-pwa": "^0.16.4"
   },
   "license": "MIT"
 }
