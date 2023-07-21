@@ -1,0 +1,44 @@
+@import "@scss/_variables.scss";
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	.inside {
+		width: 750px;
+		padding: 20px 0;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		text-align: center;
+
+		.inputs_list {
+			width: 650px;
+			text-align: left;
+		}
+
+		.inputs {
+			width: 290px;
+			display: inline-flex;
+			margin: 15px;
+		}
+	}
+	.error {
+		margin-top: 10px;
+		color: $color-error;
+		text-align: center;
+	}
+
+	.agreement {
+		margin-top: 12px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.agreement_error {
+		color: $color-error;
+	}
+}

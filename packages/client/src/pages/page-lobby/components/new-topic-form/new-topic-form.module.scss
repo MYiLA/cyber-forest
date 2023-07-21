@@ -1,0 +1,54 @@
+.text_input {
+  position: relative;
+
+  display: block;
+  width: 80%;
+  min-height: 70%;
+
+  border: 1px solid #FFFFFF40;
+
+  margin: 15px auto;
+  padding: 15px;
+
+  color: #FFF;
+
+  font-family: Blender Pro;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 100%;
+
+  &_label {
+    color: #fff;
+    margin: 10px 60px;
+    text-align: center;
+    font-family: New_Zelek;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+  }
+}
+
+.button {
+  width: 175px;
+
+  color: #FFF;
+  text-align: center;
+  font-family: New_Zelek;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-transform: uppercase;
+  &_purple {
+    background: rgba(187, 106, 234, 0.65) !important;
+  }
+  &_neon {
+    background: rgba(63, 183, 234, 0.65) !important;
+  }
+  &_container {
+    margin-left: 60%;
+  }
+}

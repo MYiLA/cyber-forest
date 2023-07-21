@@ -3,9 +3,8 @@
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": false,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
@@ -13,9 +12,43 @@
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "strictNullChecks":true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "outDir":"dist",
+    "allowJs":true,
+    "checkJs":false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@api/*": ["./src/core/api/*"],
+      "@config/*": ["./src/core/config/*"],
+      "@core/*": ["./src/core/*"],
+      "@router/*": ["./src/core/router/*"],
+      "@store/*": ["./src/core/store/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@hooks/*": ["./src/shared/hooks/*"],
+      "@layouts/*": ["./src/shared/layouts/*"],
+      "@ui/*": ["./src/shared/ui/*"],
+      "@utils/*": ["./src/shared/utils/*"],
+      "@scss/*": ["./src/core/scss/*"],
+      "@images/*": ["./src/assets/images/*"],
+      "@fonts/*": ["./src/assets/fonts/*"]
+    }
   },
   "include": ["src"],
+  "exclude":["service-worker.ts"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node",
+    "compilerOptions": {
+      "module": "ESNext",
+      "esModuleInterop": true
+    }
+  },
   "references": [{ "path": "./tsconfig.node.json" }]
 }
+
+
+
+

@@ -1,0 +1,103 @@
+$default-space: 15px;
+$default-font-size: 14px;
+
+.warriors {
+  padding: 10px 170px;
+  overflow-y: auto;
+  height: 100%;
+  position: relative;
+}
+
+.cat_card_desc {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.top_mini_desc {
+  width: 148px;
+  font-size: $default-font-size;
+}
+
+.power_card {
+  margin-top: $default-space;
+}
+
+.top_right_desc {
+  display: flex;
+  flex-direction: column;
+  gap: $default-space;
+}
+
+.cat_card {
+  width: 140px;
+  height: 130px;
+}
+
+.description {
+  margin-top: $default-space;
+  font-size: $default-font-size;
+}
+
+.middle_images {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $default-space;
+}
+
+.arrow {
+  position: absolute;
+
+  &_1 {
+    top: -33px;
+    left: 351px;
+    clip-path: inset(1px 1px 13px 1px);
+    transform: rotateZ(90deg);
+  }
+
+  &_2 {
+    top: -32px;
+    left: 588px;
+    clip-path: inset(1px 1px 11px 1px);
+    transform: rotateZ(-90deg);
+  }
+
+  &_3 {
+    top: 54px;
+    left: 588px;
+    clip-path: inset(1px 1px 11px 1px);
+    transform: rotateZ(-90deg);
+  }
+
+  &_4 {
+    top: 360px;
+    left: 189px;
+    clip-path: inset(1px 1px 66px 1px);
+  }
+
+  &_5 {
+    top: 378px;
+    left: 647px;
+    clip-path: inset(1px 1px 83px 1px);
+  }
+
+  &_6 {
+    top: 500px;
+    left: 441px;
+    clip-path: inset(1px 1px 45px 1px);
+    transform: rotateZ(180deg);
+  }
+
+  &_7 {
+    top: 500px;
+    left: 500px;
+    clip-path: inset(1px 1px 45px 1px);
+    transform: rotateZ(180deg);
+  }
+
+  &_8 {
+    top: 659px;
+    left: 380px;
+    clip-path: inset(1px 1px 48px 1px);
+  }
+}

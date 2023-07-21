@@ -1,42 +1,121 @@
-version: "3.9"
+# В файле docker-compose — клиент,сервер и база данных.
+version: '3.3'
 
 services:
-    client:
-        container_name: prakticum-client
-        image: prakticum-client
-        build:
-            context: .
-            dockerfile: Dockerfile.client
-            args:
-              CLIENT_PORT: ${CLIENT_PORT}
-        restart: always
-        ports:
-            - "${CLIENT_PORT}:80"
-        environment:
-          - CLIENT_PORT=${CLIENT_PORT}
-          - SERVER_PORT=${SERVER_PORT}
-    server:
-        container_name: prakticum-server
-        image: prackicum-server
-        build:
-            context: .
-            dockerfile: Dockerfile.server
-            args:
-              SERVER_PORT: ${SERVER_PORT}
-        restart: always
-        ports:
-            - "${SERVER_PORT}:${SERVER_PORT}"
-        environment:
-          SERVER_PORT: ${SERVER_PORT}
+  nginx:
+    container_name: cyb-nginx
+    image: cyb-nginx
+    build: ./nginx
+    restart: always
+    volumes:
+      - ./ssl:/ssl
+      - ./ssl/certbot/conf:/etc/letsencrypt
+      - ./ssl/certbot/www:/var/www/certbot
+    links:
+      - client:client
+      - server:server
+#      - pgadmin:pgadmin
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - cyb-net
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    depends_on:
+      - client
+      - server
+      - postgres
+#      - pgadmin
 
-    postgres:
-      image: postgres:14     
-      ports:
-        - "${POSTGRES_PORT}:${POSTGRES_PORT}"
-      environment:
-        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-        POSTGRES_USER: ${POSTGRES_USER}
-        POSTGRES_DB: ${POSTGRES_DB}
-      volumes:
-        - ./tmp/pgdata:/var/lib/postgresql/data
+  certbot:
+    image: certbot/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    volumes:
+      - ./ssl/certbot/conf:/etc/letsencrypt
+      - ./ssl/certbot/www:/var/www/certbot
 
+  client:
+    container_name: cyb-client
+    image: cyb-client
+    networks:
+      - cyb-net
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile.client
+      args:
+        CLIENT_PORT: ${CLIENT_PORT}
+    ports:
+      - '${CLIENT_PORT}:${CLIENT_PORT}'
+    env_file:
+      - .env
+    environment:
+      - CLIENT_PORT=${CLIENT_PORT}
+      - SERVER_PORT=${SERVER_PORT}
+    command: yarn run start:client
+    depends_on:
+      - server
+
+  server:
+    container_name: cyb-server
+    image: cyb-server
+    networks:
+      - cyb-net
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile.server
+      args:
+        SERVER_PORT: ${SERVER_PORT}
+    ports:
+      - '${SERVER_PORT}:${SERVER_PORT}'
+    env_file:
+      - .env
+    environment:
+      SERVER_PORT: ${SERVER_PORT}
+    command: yarn run start:server
+    volumes:
+      - ./uploads:/app/packages/server/uploads:rw
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: cyb-postgres
+    image: postgres:15-alpine
+    networks:
+      - cyb-net
+    restart: always
+    ports:
+      - '${POSTGRES_LOCAL_PORT}:${POSTGRES_PORT}'
+    env_file:
+      - .env
+    environment:
+      TZ: "Europe/Moscow"
+      PG_DATA: /var/lib/postgresql/data/
+    volumes:
+      - ./tmp/pgdata:/var/lib/postgresql/data/
+
+# не нужен, но может пригодиться
+#  pgadmin:
+#    container_name: cyb-pgadmin
+#    image: dpage/pgadmin4
+#    user: root
+#    networks:
+#      - cyb-net
+#    restart: always
+#    ports:
+#      - '${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}'
+#    env_file:
+#      - .env
+#    environment:
+#      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 0
+#    volumes:
+#      - ./tmp/pgadmin:/var/lib/pgadmin
+#      - ./ssl/cert.pem:/certs/server.cert
+#      - ./ssl/privkey.pem:/certs/server.key
+#    depends_on:
+#      - postgres
+
+networks:
+  cyb-net:
+    driver: bridge

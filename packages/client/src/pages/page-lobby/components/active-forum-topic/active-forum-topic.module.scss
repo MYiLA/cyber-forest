@@ -1,0 +1,134 @@
+.layout {
+  position: fixed;
+  width: 76vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+
+  z-index: 1000;
+
+  &.purple {
+    background: rgba(44, 29, 66, 0.5);
+  }
+
+  &.neon {
+    background: rgba(29, 66, 66, 0.5);
+  }
+
+  .modal {
+    position: relative;
+
+    &_close {
+      position: absolute;
+      right: 35px;
+      top: 30px;
+      background: transparent;
+      border: none;
+
+      cursor: pointer;
+    }
+
+    &_wrapper {
+      position: relative;
+      display: block;
+      width: 830px;
+      height: 714px;
+      margin: 5vh auto;
+      border: 1px solid #FFFFFF;
+
+      &_purple {
+        background: #2C1D42;
+      }
+
+      &_neon {
+        background: #1d4242;
+      }
+
+      &::before {
+        content: url("../../../../assets/images/window-bl-large.svg");
+        position: absolute;
+        left: 0;
+        bottom: -15px;
+        pointer-events: none;
+      }
+
+      &::after {
+        content: url("../../../../assets/images/window-rt-large.svg");
+        position: absolute;
+        top: 0;
+        right: 0;
+        pointer-events: none;
+      }
+    }
+
+    &_header {
+      width: 467px;
+      text-align: center;
+      margin: 26px auto;
+      color: #FFF;
+      text-align: center;
+      font-size: 32px;
+      font-family: New_Zelek;
+      text-transform: uppercase;
+    }
+  }
+
+  .topic {
+    display: block;
+    width: 738px;
+    max-height: 555px;
+    overflow-y: scroll;
+    padding: 18px 24px;
+    margin: 0 auto;
+    margin: 15px 50px;
+
+    &_purple {
+      background: #BB6AEA30;
+    }
+
+    &_neon {
+      background: #71AEA030;
+    }
+
+    &_descr {
+      position: relative;
+      color: #FFF;
+      font-size: 15px;
+      font-family: Blender Pro;
+      font-weight: 500;
+      line-height: 100%;
+
+      &::after {
+        position: absolute;
+        bottom: -10px;
+        left: 10px;
+        content: "";
+        width: 675px;
+        height: 1px;
+        background: #FFFFFF50;
+      }
+    }
+
+    &_empty {
+      color: rgba(255, 255, 255, 0.80);
+      font-size: 15px;
+      font-family: Blender Pro;
+      font-weight: 500;
+      line-height: 100%;
+    }
+    &_input {
+      //width: 200px;
+      margin-top: 15px;
+
+    }
+    &_comment {
+      margin-top: 15px;
+      width: 150px;
+    }
+  }
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+}

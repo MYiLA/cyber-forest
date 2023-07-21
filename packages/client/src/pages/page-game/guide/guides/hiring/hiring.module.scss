@@ -1,0 +1,110 @@
+.hiring {
+  padding: 10px 130px;
+  overflow-y: auto;
+  height: 100%;
+  position: relative;
+}
+
+
+.desc_block {
+  font-size: 14px;
+}
+
+.top_desc {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+
+  &_block {
+    margin-top: 25px;
+  }
+}
+
+.prepare_card {
+  width: 257px;
+}
+
+.middle_desc {
+  display: flex;
+  gap: 40px;
+  margin-top: 15px;
+
+
+  .push_text {
+    margin-left: 73px;
+    width: 310px;
+  }
+
+  &_right_bottom {
+    margin-top: 25px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: -40px;
+  }
+}
+
+.bottom_desc {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+
+  &_block {
+    width: 350px;
+  }
+
+  &_right {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 40px;
+  }
+}
+
+.arrow {
+  position: absolute;
+  z-index: 1;
+
+  &_1 {
+    transform: rotateZ(-90deg);
+    clip-path: inset(1px 1px 76px 1px);
+    top: 69px;
+    left: 416px;
+  }
+
+  &_2 {
+    transform: rotateZ(-90deg);
+    top: 122px;
+    left: 346px;
+  }
+
+  &_3 {
+    transform: rotateZ(90deg);
+    clip-path: inset(1px 1px 70px 1px);
+    top: 235px;
+    left: 640px;
+
+  }
+
+  &_4 {
+    transform: rotateZ(180deg);
+    top: 310px;
+    left: 384px;
+    clip-path: inset(0 0 15px 0);
+  }
+
+  &_5 {
+    transform: rotateZ(-90deg);
+    clip-path: inset(1px 1px 73px 1px);
+    top: 450px;
+    left: 476px;
+  }
+
+  &_6 {
+    transform: rotateZ(180deg);
+    clip-path: inset(1px 1px 92px 1px);
+    top: 462px;
+    left: 781px;
+  }
+}

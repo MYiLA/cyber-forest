@@ -1,0 +1,39 @@
+@import "@scss/_variables.scss";
+
+.stock {
+  flex-grow: 1;
+  padding-left: 12px;
+  padding-top: 8px;
+  padding-right: 0;
+  padding-bottom: 6px;
+}
+
+.list {
+  width: 100%;
+  height: 90px;
+  overflow-y: scroll;
+  padding: 0;
+  padding-top: 7px;
+  padding-left: 7px;
+  margin: 0;
+  list-style: none;
+}
+
+.item {
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 8px;
+  margin-bottom: 8px;
+
+  transition: transform;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+
+.title {
+  margin-left: 7px;
+  font-family: $font-accent;
+  font-size: 14px;
+}

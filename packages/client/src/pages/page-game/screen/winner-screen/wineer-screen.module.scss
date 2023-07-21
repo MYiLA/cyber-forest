@@ -1,0 +1,74 @@
+.winner_screen {
+  padding: 68px 25px 72px;
+}
+
+.congratulation {
+  &_wrapper {
+    text-transform: uppercase;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  &_top {
+    font-size: 24px;
+    line-height: 115%;
+  }
+
+  &_bottom {
+    font-size: 40px;
+    line-height: 115%;
+  }
+}
+
+.score {
+  &_wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  &_image {
+    width: 200px;
+    height: 224px;
+    object-fit: contain;
+  }
+
+  &_info {
+    padding-top: 49px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &__button {
+      margin-top: 54px;
+    }
+
+    &__title {
+      color: #E2B0FF;
+      font-size: 20px;
+    }
+
+    &__position {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    &__glory {
+      color: rgba(255, 255, 255, 0.50);
+      font-size: 20px;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      gap: 46px;
+    }
+  }
+}
+
+.navigation {
+  display: block;
+  margin: 30px auto;
+  padding: 5px;
+  border: 1px solid #FFF;
+  background: rgba(187, 106, 234, 0.65);
+
+  width: 180px;
+}

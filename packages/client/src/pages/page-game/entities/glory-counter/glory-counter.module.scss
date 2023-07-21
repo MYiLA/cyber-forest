@@ -1,0 +1,45 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.glory {
+  @include glow-for-smile;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  min-height: 30px;
+  font-family: $font-accent;
+  font-size: 14px;
+
+  &::after {
+    content: '';
+    width: 15px;
+    height: 5px;
+    position: absolute;
+    right: 0;
+    top: -1px;
+    background-image: url(@images/game/glory.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+  }
+
+  &.red {
+    background-image: linear-gradient(136deg, $player-red 0%, rgba($player-red, 0) 90%);
+  }
+
+  &.blue {
+    background-image: linear-gradient(136deg, $player-blue 0%, rgba($player-blue, 0) 90%);
+  }
+
+  &.yellow {
+    background-image: linear-gradient(136deg, $player-yellow 0%, rgba($player-yellow, 0) 90%);
+  }
+
+  &.green {
+    background-image: linear-gradient(136deg, $player-green 0%, rgba($player-green, 0) 90%);
+  }
+}

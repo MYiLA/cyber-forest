@@ -1,6 +1,12 @@
 node_modules/
 .env
+.env.prod
 .idea
 .vscode
+.DS_Store
+.yarn
 dist
+dev-dist
 tmp
+swagger
+uploads

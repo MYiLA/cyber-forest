@@ -1,0 +1,71 @@
+.battle {
+  margin: 0 auto;
+  margin-bottom: 24px;
+
+  &_header {
+    text-align: center;
+    color: #E2B0FF;
+    font-size: 20px;
+
+    &.purpur {
+      color: #E2B0FF;
+    }
+
+    &.neon {
+      color: #7CF0F0;
+    }
+  }
+
+  &_inputs {
+    display: block;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+
+  &_buttons {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+    justify-content: space-around;
+
+    button {
+      color: #FFF;
+      text-align: center;
+      font-size: 12px;
+      font-family: New_Zelek;
+      text-transform: uppercase;
+
+      &:disabled {
+        cursor: default;
+        background: rgba(47, 28, 58, 0.2) !important;
+      }
+    }
+
+    .button_purpur {
+      background: #BB6AEAA6 !important;
+    }
+
+    .button_neon {
+      background: rgba(63, 183, 234, 0.65);
+    }
+
+    .button_offline {
+      display: block;
+      margin: 0 auto !important;
+    }
+  }
+
+  &_checkbox {
+    text-align: center;
+  }
+
+  .form_wrapper {
+    padding: 0px 55px;
+  }
+}
+
+.wrapper {
+  display: grid;
+  //grid-template-rows: repeat(5, 45px) 30px;
+  grid-gap: 10px;
+}

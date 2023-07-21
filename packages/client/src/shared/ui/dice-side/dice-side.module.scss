@@ -1,0 +1,76 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.dice_energy, .dice_symbol, .dice_unknown, .dice_warrior {
+  @include glow-for-smile;
+
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-color: #E2B0FF;
+}
+
+.info_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(#2C1E43, 0.2);
+}
+
+.info_top, .info_bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.info_top {
+  flex-grow: 1;
+}
+
+.info_bottom {
+  flex-shrink: 0;
+}
+
+.img_wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.img {
+  @include img-position
+}
+
+.dice_energy {
+  position: relative;
+  padding: 9px;
+  font-family: $font-accent;
+  font-size: 20px;
+}
+
+.energy {
+  position: absolute;
+  width: 25px;
+  height: 32px;
+  right: 7px;
+  bottom: 9px;
+}
+
+.dice_symbol {
+  @include content-center;
+
+  font-family: $font-accent;
+  font-size: 40px;
+}
+
+.dice_unknown {
+  @include content-center;
+
+  font-size: 40px;
+  background-color: rgba(#BB6AEA, .2);
+}

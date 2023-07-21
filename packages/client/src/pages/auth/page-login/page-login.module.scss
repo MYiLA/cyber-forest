@@ -1,0 +1,34 @@
+@import "@scss/_variables.scss";
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	.inside {
+		padding: 40px 100px;
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+
+		.inputs {
+			width: 305px;
+			margin: 25px;
+		}
+
+		.form_buttons {
+			margin-top: 40px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.error {
+			margin-top: 10px;
+			color: $color-error;
+			text-align: center;
+		}
+	}
+}
+

@@ -1,0 +1,64 @@
+.comment {
+
+  &_wrapper {
+    width: 100%;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    gap: 12px;
+  }
+
+  &_avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 100px;
+    border: 1px solid #FFF;
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+  }
+
+  &_body {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  &_header {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &_like_btn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 7px;
+
+    background: transparent;
+    color: #FFFFFF;
+
+    font-size: 15px;
+    font-family: Blender Pro;
+    font-weight: 500;
+
+    border: none;
+    cursor: pointer;
+  }
+
+  &_comments {
+    margin-left: 60px;
+  }
+}
+
+.flex {
+
+  &_row {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+}

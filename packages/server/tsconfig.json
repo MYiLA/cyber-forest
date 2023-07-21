@@ -1,29 +1,31 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "target": "es2019",
+    "target": "ESNext",
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false,
     "removeComments": true,
     "strict": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
-    "lib": ["es2019", "esnext.asynciterable"],
-    "types": ["node", "jest"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "baseUrl": ".",
+    "lib": ["ESNext", "esnext.asynciterable"],
+    "types": ["node", "jest"],
     "paths": {
       "*": ["types/*"]
     },
     "outDir": "dist"
-  }
+  },
+  "include": ["src"],
+  "exclude":["public"]
 }

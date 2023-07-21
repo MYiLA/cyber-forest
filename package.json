@@ -1,16 +1,33 @@
 {
-  "name": "client-server-template-with-vite",
+  "name": "cyberforest",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn && node init.js && lerna clean && yarn && lerna bootstrap",
+    "bootstrap": "yarn && node init.js && lerna clean -y && yarn && lerna bootstrap",
+
+    "build:client": "lerna run build --scope=client",
+    "build:server": "lerna run build --scope=server",
     "build": "lerna run build",
-    "dev:client": "lerna run dev  --scope=client",
+
+    "dev:client": "lerna run dev --scope=client",
+    "dev:ssr": "lerna run ssr --scope=client",
     "dev:server": "lerna run dev --scope=server",
     "dev": "lerna run dev",
+
+    "deploy": "rsync -av --exclude={'node_modules','dist','.git','tmp','uploads','.idea','ssl'} . root@cyberforest.ru:/home/cyb/",
+
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
-    "preview": "lerna run preview"
+    "preview": "lerna run preview",
+
+    "start:client": "lerna run start --scope=client",
+    "start:client:local": "lerna run start:local --scope=client",
+    "start:server": "lerna run start --scope=server",
+    "start": "lerna run start",
+
+    "docker:client": "docker build -t cyberforest-client -f Dockerfile.client .",
+    "docker:server": "docker build -t cyberforest-server -f Dockerfile.server ."
+
   },
   "license": "MIT",
   "workspaces": [
@@ -21,6 +38,11 @@
   },
   "devDependencies": {
     "@evilmartians/lefthook": "^1.3.9",
-    "lerna": "^5.4.3"
+    "eslint": "^8.43.0",
+    "lerna": "^5.4.3",
+    "prettier": "^2.8.8"
+  },
+  "packageManager": "yarn@3.6.0",
+  "dependencies": {
   }
 }

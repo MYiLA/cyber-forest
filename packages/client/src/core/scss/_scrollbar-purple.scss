@@ -1,0 +1,10 @@
+@import "@scss/_variables.scss";
+
+*::-webkit-scrollbar {
+	width: 6px;
+	background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: $scrollbar-purple-color;
+}

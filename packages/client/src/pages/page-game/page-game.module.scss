@@ -1,0 +1,24 @@
+@import "@scss/_mixins.scss";
+
+.wrap {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(#1F0E44, .7);
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.game {
+  position: relative;
+  width: 1406px;;
+  margin: 0 auto;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-right: 70px;
+}
+
+.fullscreen {
+  z-index: 1300;
+  right: 55px !important;
+  top: 25px;
+}
