@@ -4,12 +4,12 @@ type LazyResult = LazyExoticComponent<ComponentType<Record<string, unknown>>>;
 
 const mainLazy = import.meta.env.SSR
   ? async (module: () => Awaited<object>) => {
-      const tmp = await module();
-      if ("default" in tmp) {
-        return tmp.default;
-      }
-      return lazy;
+    const tmp = await module();
+    if ("default" in tmp) {
+      return tmp.default;
     }
+    return lazy;
+  }
   : lazy;
 
 export const PageHome = (await mainLazy(

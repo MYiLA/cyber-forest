@@ -25,9 +25,9 @@ export async function render(url: string, cookies: Record<string, string>) {
   const state = `
     <script>
         window.__PREPARED_STATE__ = ${JSON.stringify(store.getState()).replace(
-          /</g,
-          "\\u003c"
-        )}
+    /</g,
+    "\\u003c"
+  )}
     </script>`;
 
   return { html, state, head: "" };

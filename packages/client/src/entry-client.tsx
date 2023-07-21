@@ -66,12 +66,23 @@ if (import.meta.hot) {
   ReactDOM.hydrateRoot(container as HTMLElement, <MainApp />);
 }
 
-if ("serviceWorker" in navigator && !import.meta.env.DEV) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("/service-worker.js", { scope: "/" })
-      .then(() => {
-        console.log("Service worker registered");
-      });
-  });
+if ("serviceWorker" in navigator) {
+  if (!import.meta.env.DEV) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/service-worker.js", { scope: "/" })
+        .then(() => {
+          console.log("Service worker registered");
+        });
+    });
+  } else {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+      // eslint-disable-next-line no-restricted-syntax
+      for (const registration of registrations) {
+        registration.unregister().then(() => {
+          console.log("Service worker unregistered");
+        });
+      }
+    });
+  }
 }

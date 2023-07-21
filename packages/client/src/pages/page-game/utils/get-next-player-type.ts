@@ -10,15 +10,15 @@ export const getNextPlayerType = (
     );
   }
   switch (currentPlayer) {
-    case PlayerType.Red:
-      return PlayerType.Blue;
-    case PlayerType.Blue:
-      return playersCount === 2 ? PlayerType.Red : PlayerType.Yellow;
-    case PlayerType.Yellow:
-      return playersCount === 3 ? PlayerType.Red : PlayerType.Green;
-    case PlayerType.Green:
-      return PlayerType.Red;
-    default:
-      throw new Error("getNextPlayerType: не найдет такой тип игрока");
+  case PlayerType.Red:
+    return PlayerType.Blue;
+  case PlayerType.Blue:
+    return playersCount === 2 ? PlayerType.Red : PlayerType.Yellow;
+  case PlayerType.Yellow:
+    return playersCount === 3 ? PlayerType.Red : PlayerType.Green;
+  case PlayerType.Green:
+    return PlayerType.Red;
+  default:
+    throw new Error("getNextPlayerType: не найдет такой тип игрока");
   }
 };

@@ -38,10 +38,18 @@ export const Control = ({ onDone }: ControlProps) => {
 
   return (
     <div className={styles.control}>
-      <MainButton type="button" className={styles.btn} onClick={onDoneHandler}>
+      <MainButton
+        data-testid="ready"
+        type="button"
+        className={styles.btn}
+        onClick={onDoneHandler}>
         Готово
       </MainButton>
-      <MainButton type="button" className={styles.btn} onClick={handleLoose}>
+      <MainButton
+        data-testid="loose"
+        type="button"
+        className={styles.btn}
+        onClick={handleLoose}>
         Сдаться
       </MainButton>
       <Guide OpenComponent={OpenGuideButton} />

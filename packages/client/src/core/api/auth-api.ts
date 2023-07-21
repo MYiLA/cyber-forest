@@ -28,14 +28,16 @@ class AuthApi extends HttpTransport {
         });
       }
     }
-    const request =
-      cookies && cookies.authCookie
-        ? this._axios.get(API_AUTH.USER_INFO, {
-            headers: {
-              Cookie: `authCookie=${cookies.authCookie};`,
-            },
-          })
-        : this._axios.get(API_AUTH.USER_INFO);
+
+    let request;
+    if (cookies && cookies.authCookie) {
+      request = this._axios.get(API_AUTH.USER_INFO, {
+        headers: { Cookie: `authCookie=${cookies.authCookie};` },
+      });
+    } else {
+      request = this._axios.get(API_AUTH.USER_INFO);
+    }
+
     return request;
   }
 

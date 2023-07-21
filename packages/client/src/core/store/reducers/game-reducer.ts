@@ -93,9 +93,9 @@ export const gameSlice = createSlice({
         accessHireWarriors: state.accessHireWarriors.map((item) =>
           item.type === type
             ? {
-                type: item.type,
-                count: item.count + count,
-              }
+              type: item.type,
+              count: item.count + count,
+            }
             : item
         ),
       };
@@ -112,9 +112,9 @@ export const gameSlice = createSlice({
         accessHireWarriors: state.accessHireWarriors.map((item) =>
           item.type === type
             ? {
-                type: item.type,
-                count: item.count - count,
-              }
+              type: item.type,
+              count: item.count - count,
+            }
             : item
         ),
       };

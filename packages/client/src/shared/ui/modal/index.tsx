@@ -60,7 +60,7 @@ export function Modal(props: ModalProps) {
   };
 
   useEffect(() => {
-    let timoutId: NodeJS.Timeout;
+    let timoutId: ReturnType<typeof setTimeout>
     if (open) {
       openModal();
     } else {
