@@ -1,114 +1,110 @@
 @import "@scss/_variables.scss";
 .container {
-	position: relative;
-	margin-bottom: 12px;
-	margin-top: 12px;
-	.bottom_right {
-		position: absolute;
-		right: 0;
-		bottom: -10px;
-	}
-	.bottom_left {
-		position: absolute;
-		left: 0px;
-		bottom: -9px;
-	}
+  position: relative;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  .bottom_right {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+  }
+  .bottom_left {
+    position: absolute;
+    left: 0px;
+    bottom: -9px;
+  }
 
-	.placeholder {
-		left: 0px;
-		top: 3px;
-		color: $color-white;
-		font-size: 20px;
-		pointer-events: none;
-		position: absolute;
-		transform-origin: 0 0;
-		transition: transform 200ms, color 200ms;
-	}
+  .placeholder {
+    left: 0px;
+    top: 3px;
+    color: $color-white;
+    font-size: 20px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 0;
+    transition: transform 200ms, color 200ms;
+  }
 
-	input {
-		padding: 3px;
-		font-size: 20px;
-		width: 100%;
-		border-bottom: 1px solid $color-white;
-		color: $color-white;
+  input {
+    padding: 3px;
+    font-size: 20px;
+    width: 100%;
+    border-bottom: 1px solid $color-white;
+    color: $color-white;
 
-		&::placeholder {
-			color: $color-gray;
-		}
+    &::placeholder {
+      color: $color-gray;
+    }
 
-		&:focus {
-			//border-bottom: 2px solid var(--primary-color);
-			//background-color: white;
-		}
+    &:focus {
+      //border-bottom: 2px solid var(--primary-color);
+      //background-color: white;
+    }
 
-		&:focus ~ .placeholder,
-		&:not(:placeholder-shown) ~ .placeholder {
-			transform: translateY(-15px) scale(0.6);
-			color: $color-white;
-		}
-	}
+    &:focus ~ .placeholder,
+    &:not(:placeholder-shown) ~ .placeholder {
+      transform: translateY(-15px) scale(0.6);
+      color: $color-white;
+    }
+  }
 
-	.error {
-		font-size: 12px;
-		position: absolute;
-		bottom: -18px;
-		color: $color-error;
-		width: 100%;
-	}
-
-
+  .error {
+    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    color: $color-error;
+    width: 100%;
+  }
 }
 
 .right_direction {
-	.placeholder {
-		text-align: right;
-		right: 0px;
-		transform-origin: 100% 0;
-	}
-	input {
-		text-align: right;
-	}
-	.error {
-		text-align: right;
-	}
+  .placeholder {
+    text-align: right;
+    right: 0px;
+    transform-origin: 100% 0;
+  }
+  input {
+    text-align: right;
+  }
+  .error {
+    text-align: right;
+  }
 }
 
-
-
 .custom_checkbox {
-	width: 20px;
-	position: relative;
-	margin: 5px;
-	label {
-		width: 20px;
-		height: 20px;
-		cursor: pointer;
-		position: absolute;
-		top: 0;
-		left: 0;
-		border: 1px solid $color-white;
-		&:after {
-			content: '';
-			width: 9px;
-			height: 4px;
-			position: absolute;
-			top: 4px;
-			left: 4px;
-			border: 3px solid $color-white;
-			border-top: none;
-			border-right: none;
-			background: transparent;
-			opacity: 0;
-			transform: rotate(-45deg);
-		}
-		&:hover::after {
-			opacity: 0.3;
-		}
-	}
-	input[type=checkbox] {
-		visibility: hidden;
-		&:checked + label:after {
-			opacity: 1;
-		}
-	}
+  width: 20px;
+  position: relative;
+  margin: 5px;
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $color-white;
+    &:after {
+      content: "";
+      width: 9px;
+      height: 4px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid $color-white;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+  input[type="checkbox"] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
 }

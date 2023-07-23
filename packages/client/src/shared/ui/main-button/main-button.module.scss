@@ -15,8 +15,9 @@
     color: $color-white;
   }
 
-  &::before, &::after {
-    content: '';
+  &::before,
+  &::after {
+    content: "";
     width: 39px;
     height: 7px;
   }

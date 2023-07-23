@@ -2,12 +2,12 @@
 @import "@scss/_box.scss";
 
 @font-face {
-  font-family: 'New Zelek';
+  font-family: "New Zelek";
   src: url(@fonts/New-Zelek.ttf);
 }
 
 @font-face {
-  font-family: 'Blender Pro';
+  font-family: "Blender Pro";
   src: url(@fonts/BlenderPro-Medium.ttf);
 }
 
@@ -26,7 +26,8 @@ body,
   box-sizing: border-box;
 }
 
-input, textarea {
+input,
+textarea {
   margin: 0;
   border: 0;
   border: none;
@@ -34,7 +35,8 @@ input, textarea {
   font-family: $font-main;
 }
 
-input:focus, textarea:focus {
+input:focus,
+textarea:focus {
   outline: 0;
 }
 
@@ -43,7 +45,7 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-text-fill-color: $color-white !important;
-  transition: background-color 9999s ease-in-out 0s
+  transition: background-color 9999s ease-in-out 0s;
 }
 
 h1,

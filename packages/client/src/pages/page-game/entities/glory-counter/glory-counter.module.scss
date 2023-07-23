@@ -14,7 +14,7 @@
   font-size: 14px;
 
   &::after {
-    content: '';
+    content: "";
     width: 15px;
     height: 5px;
     position: absolute;
@@ -24,22 +24,37 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    
   }
 
   &.red {
-    background-image: linear-gradient(136deg, $player-red 0%, rgba($player-red, 0) 90%);
+    background-image: linear-gradient(
+      136deg,
+      $player-red 0%,
+      rgba($player-red, 0) 90%
+    );
   }
 
   &.blue {
-    background-image: linear-gradient(136deg, $player-blue 0%, rgba($player-blue, 0) 90%);
+    background-image: linear-gradient(
+      136deg,
+      $player-blue 0%,
+      rgba($player-blue, 0) 90%
+    );
   }
 
   &.yellow {
-    background-image: linear-gradient(136deg, $player-yellow 0%, rgba($player-yellow, 0) 90%);
+    background-image: linear-gradient(
+      136deg,
+      $player-yellow 0%,
+      rgba($player-yellow, 0) 90%
+    );
   }
 
   &.green {
-    background-image: linear-gradient(136deg, $player-green 0%, rgba($player-green, 0) 90%);
+    background-image: linear-gradient(
+      136deg,
+      $player-green 0%,
+      rgba($player-green, 0) 90%
+    );
   }
 }

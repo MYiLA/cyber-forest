@@ -2,55 +2,55 @@
 /** Тип игрока */
 export enum PlayerType {
   /** Красный игрок (первый) */
-  Red = 'Red',
+  Red = "Red",
   /** Синий игрок (второй) */
-  Blue = 'Blue',
+  Blue = "Blue",
   /** Желтый игрок (третий) */
-  Yellow = 'Yellow',
+  Yellow = "Yellow",
   /** Зелёный игрок (четвёртый) */
-  Green = 'Green',
+  Green = "Green",
 }
 
 /** Фазы игры */
 export enum PhaseType {
   /** Наполнение инвентаря, выбор воинов из инвентаря */
-  Stock = 'Stock',
+  Stock = "Stock",
   /** Наём воинов в киберлесу и призыв воинов из зоны подготовки в зону атаки */
-  PreparationAndHiring = 'PreparationAndHiring',
+  PreparationAndHiring = "PreparationAndHiring",
   /** Атака текущего игрока */
-  Attack = 'Attack',
+  Attack = "Attack",
   /** Защита при спорной ситуации */
-  Defense = 'Defense',
+  Defense = "Defense",
   /** Ожидание только в онлайн-игре */
-  Waiting = 'Waiting',
+  Waiting = "Waiting",
   /** Подсчёт результатов битвы */
-  ResultBattle = 'ResultBattle',
+  ResultBattle = "ResultBattle",
 }
 
 /** Цвет игрока */
 export const RGB_COLOR = {
-  [PlayerType.Red]: '255, 75, 75',
-  [PlayerType.Blue]: '124, 240, 240',
-  [PlayerType.Yellow]: '251, 229, 33',
-  [PlayerType.Green]: '0, 255, 10',
-}
+  [PlayerType.Red]: "255, 75, 75",
+  [PlayerType.Blue]: "124, 240, 240",
+  [PlayerType.Yellow]: "251, 229, 33",
+  [PlayerType.Green]: "0, 255, 10",
+};
 
 /** Тип игровой зоны */
 export enum AreaType {
   /** Зона атаки */
-  Attack = 'Attack',
+  Attack = "Attack",
   /** Зона подготовки */
-  Preparation = 'Preparation',
+  Preparation = "Preparation",
   /** Зона отдыха */
-  Rest = 'Rest',
+  Rest = "Rest",
   /** Инвентарь */
-  Stock = 'Stock',
+  Stock = "Stock",
 }
 
 export enum DiceSideType {
-  Energy = 'Energy',
-  Monster = 'Monster',
-  Symbol = 'Symbol',
+  Energy = "Energy",
+  Monster = "Monster",
+  Symbol = "Symbol",
 }
 
 /** Размер игровой зоны */
@@ -68,11 +68,11 @@ export const AREA_SIZE = {
     HEIGHT: 100,
   },
   INDENT: 12,
-}
+};
 
-export const DICE_SIZE = 60
-export const DICE_INDENT = 6
-export const DICE_NUMBER_INDENT = 10
+export const DICE_SIZE = 60;
+export const DICE_INDENT = 6;
+export const DICE_NUMBER_INDENT = 10;
 
 /** Общие Размеры */
 export const SIZE = {
@@ -88,7 +88,7 @@ export const SIZE = {
       AREA_SIZE.INDENT,
     HEIGHT: AREA_SIZE[AreaType.Rest].HEIGHT,
   },
-}
+};
 
 /** Координаты игровой зоны */
 export const AREA_POSITION = {
@@ -148,14 +148,14 @@ export const AREA_POSITION = {
       y: SIZE.GAME.HEIGHT - SIZE.FULL_USER_AREA.HEIGHT,
     },
   },
-}
+};
 
 /** Тип игры */
 export enum GameType {
   /** Оффлайн */
-  Offline = 'Offline',
+  Offline = "Offline",
   /** Онлайн */
-  Online = 'Online',
+  Online = "Online",
 }
 
 /** Дефолтные настройки игры */
@@ -177,4 +177,4 @@ export const DEFAULT_SETTING = {
   MIN_START_ENERGY: 2,
   MAX_START_ENERGY: 6,
   HIRE_LIMIT: 1,
-}
+};

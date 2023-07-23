@@ -1,32 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { Theme } from '@config/constants'
+import { createSlice } from "@reduxjs/toolkit";
+import { Theme } from "@config/constants";
 
 type ThemeState = {
-  themeName: Theme
-}
+  themeName: Theme;
+};
 
 const initialState = {
   themeName: Theme.Purple,
-} as ThemeState
+} as ThemeState;
 
 export const themeSlice = createSlice({
-  name: 'theme',
+  name: "theme",
   initialState,
   reducers: {
-    toggleTheme: state => {
-      return {
-        ...state,
-        themeName: state.themeName === Theme.Purple ? Theme.Neon : Theme.Purple,
-      }
-    },
-    setTheme: (state, action) => {
-      return {
-        ...state,
-        themeName: action.payload,
-      }
-    },
+    toggleTheme: (state) => ({
+      ...state,
+      themeName: state.themeName === Theme.Purple ? Theme.Neon : Theme.Purple,
+    }),
+    setTheme: (state, action) => ({
+      ...state,
+      themeName: action.payload,
+    }),
   },
-})
+});
 
-export const { toggleTheme, setTheme } = themeSlice.actions
-export default themeSlice.reducer
+export const { toggleTheme, setTheme } = themeSlice.actions;
+export default themeSlice.reducer;

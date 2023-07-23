@@ -1,4 +1,4 @@
-import { PlayerType } from '../widgets/game/constants'
+import { PlayerType } from "../widgets/game/constants";
 
 export const getNextPlayerType = (
   currentPlayer: PlayerType,
@@ -6,19 +6,19 @@ export const getNextPlayerType = (
 ) => {
   if (playersCount < 2 || playersCount > 4) {
     throw new Error(
-      'getNextPlayerType: общее количество игроков не должно быть меньше 2 и больше 4'
-    )
+      "getNextPlayerType: общее количество игроков не должно быть меньше 2 и больше 4"
+    );
   }
   switch (currentPlayer) {
     case PlayerType.Red:
-      return PlayerType.Blue
+      return PlayerType.Blue;
     case PlayerType.Blue:
-      return playersCount === 2 ? PlayerType.Red : PlayerType.Yellow
+      return playersCount === 2 ? PlayerType.Red : PlayerType.Yellow;
     case PlayerType.Yellow:
-      return playersCount === 3 ? PlayerType.Red : PlayerType.Green
+      return playersCount === 3 ? PlayerType.Red : PlayerType.Green;
     case PlayerType.Green:
-      return PlayerType.Red
+      return PlayerType.Red;
     default:
-      throw new Error('getNextPlayerType: не найдет такой тип игрока')
+      throw new Error("getNextPlayerType: не найдет такой тип игрока");
   }
-}
+};

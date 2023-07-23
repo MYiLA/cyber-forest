@@ -1,12 +1,12 @@
-import styles from './chronicle.module.scss'
-import { Message } from './components/message'
-import { MESSAGES } from './mock'
+import styles from "./chronicle.module.scss";
+import { Message } from "./components/message";
+import { MESSAGES } from "./mock";
 
-export const Chronicle = () => {
+export function Chronicle() {
   return (
     <div className={styles.chronicle}>
       <ul className={styles.messages_list}>
-        {MESSAGES.map(message => (
+        {MESSAGES.map((message) => (
           <li key={message.id} className={styles.message_wrap}>
             <Message message={message} />
           </li>
@@ -14,5 +14,5 @@ export const Chronicle = () => {
       </ul>
       <span className={styles.title}>Хроника</span>
     </div>
-  )
+  );
 }

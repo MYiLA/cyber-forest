@@ -1,0 +1,5 @@
+vite.config.ts
+jest.config.js
+server.ts
+service-worker.ts
+*.d.ts

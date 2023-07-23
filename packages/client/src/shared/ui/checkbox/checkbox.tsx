@@ -1,24 +1,24 @@
-import styles from './checkbox.module.scss'
-import { ChangeEvent } from 'react'
-import { useTheme } from '@hooks/use-theme'
-import { Theme } from '@config/constants'
+import { ChangeEvent } from "react";
+import { useTheme } from "@hooks/use-theme";
+import { Theme } from "@config/constants";
+import styles from "./checkbox.module.scss";
 
 interface CheckboxProps {
-  label: string
-  classname?: string
-  name: string
-  value: boolean
-  onClick: (e: ChangeEvent<HTMLInputElement>) => void
+  label: string;
+  classname?: string;
+  name: string;
+  value: boolean;
+  onClick: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Checkbox = ({
+export function Checkbox({
   label,
   classname,
   name,
   value,
   onClick,
-}: CheckboxProps) => {
-  const { themeName } = useTheme()
+}: CheckboxProps) {
+  const { themeName } = useTheme();
 
   return (
     <div className={classname}>
@@ -26,16 +26,17 @@ export const Checkbox = ({
         className={`${styles.label}  ${
           themeName === Theme.Purple ? styles.purpur : styles.neon
         }`}
-        htmlFor="checkbox">
+        htmlFor="checkbox"
+      >
         {label}
       </label>
       <input
         type="checkbox"
         name={name}
-        className={`${styles.input}`}
+        className={styles.input}
         defaultChecked={value}
         onChange={onClick}
       />
     </div>
-  )
+  );
 }

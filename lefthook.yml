@@ -3,7 +3,7 @@ pre-commit:
   commands:
     lint:
       glob: '*.{ts,tsx}'
-      run: yarn eslint {staged_files}
+      run: yarn eslint {staged_files} --fix
     prettier:
       glob: '*.{ts,tsx,css}'
       run: yarn prettier -w {staged_files}

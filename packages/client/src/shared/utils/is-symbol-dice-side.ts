@@ -1,5 +1,7 @@
-import { DiceSideSymbol } from '../type'
+import { DiceSideSymbol } from "../type";
 
-export const isSymbolDiceSide = (obj: any): obj is DiceSideSymbol => {
-  return obj?.specialAbilitySymbol !== undefined
-}
+export const isSymbolDiceSide = (obj: unknown): obj is DiceSideSymbol =>
+  typeof obj === "object" &&
+  obj !== null &&
+  "specialAbilitySymbol" in obj &&
+  obj?.specialAbilitySymbol !== undefined;

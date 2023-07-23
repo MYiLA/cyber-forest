@@ -1,50 +1,52 @@
-import React, { BaseSyntheticEvent, FC } from 'react'
-import cn from 'classnames'
-import commonStyles from '@pages/page-lobby/components/active-forum-topic/active-forum-topic.module.scss'
-import { Theme } from '@config/constants'
-import { useTheme } from '@hooks/use-theme'
-import styles from './new-topic-form.module.scss'
-import close from '@images/close.svg'
-import { useForm } from '@hooks/use-form'
-import { MainButton } from '@ui/main-button/main-button'
+import React, { BaseSyntheticEvent, FC } from "react";
+import cn from "classnames";
+import commonStyles from "@pages/page-lobby/components/active-forum-topic/active-forum-topic.module.scss";
+import { Theme } from "@config/constants";
+import { useTheme } from "@hooks/use-theme";
+import close from "@images/close.svg";
+import { useForm } from "@hooks/use-form";
+import { MainButton } from "@ui/main-button/main-button";
+import styles from "./new-topic-form.module.scss";
 
 type NewTopicFormProps = {
-  title: string
-  onClose: () => void
-}
+  title: string;
+  onClose: () => void;
+};
 
 const validators = {
   description: {
     required: true,
-    rule: '/^.+$/\n',
-    message: 'описание не должно быть пустым',
+    rule: "/^.+$/\n",
+    message: "описание не должно быть пустым",
   },
-}
+};
 
 export const NewTopicForm: FC<NewTopicFormProps> = ({ title, onClose }) => {
-  const { themeName } = useTheme()
+  const { themeName } = useTheme();
 
   const initialForm = {
-    title: title,
-    description: '',
-  }
+    title,
+    description: "",
+  };
 
-  const { form, onChange, onFocus, onBlur } = useForm(initialForm, validators)
+  const { form, onChange, onFocus, onBlur } = useForm(initialForm, validators);
 
   return (
     <div
       className={cn(commonStyles.layout, {
         [commonStyles.purple]: themeName === Theme.Purple,
         [commonStyles.neon]: themeName !== Theme.Purple,
-      })}>
+      })}
+    >
       <div
-        style={{ width: 600, height: 500, position: 'relative' }}
+        style={{ width: 600, height: 500, position: "relative" }}
         className={cn(commonStyles.modal_wrapper, {
           [commonStyles.modal_wrapper_purple]: themeName === Theme.Purple,
           [commonStyles.modal_wrapper_neon]: themeName !== Theme.Purple,
-        })}>
+        })}
+      >
         <button className={commonStyles.modal_close} onClick={onClose}>
-          <img src={close} alt={'иконка закрытия'} />
+          <img src={close} alt="иконка закрытия" />
         </button>
         <h3 className={commonStyles.modal_header}>{title}</h3>
         <form>
@@ -62,19 +64,20 @@ export const NewTopicForm: FC<NewTopicFormProps> = ({ title, onClose }) => {
           <MainButton
             type="button"
             onClick={() => {
-              console.log(form)
-              onClose()
+              console.log(form);
+              onClose();
             }}
             disabled={!form.description}
             extraClassName={cn(styles.button, {
               [styles.button_purple]: themeName === Theme.Purple,
               [styles.button_neon]: themeName !== Theme.Purple,
             })}
-            className={styles.button_container}>
+            className={styles.button_container}
+          >
             создать
           </MainButton>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};

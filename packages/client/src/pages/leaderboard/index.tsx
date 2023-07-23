@@ -1,10 +1,10 @@
-import styles from './leaderboard.module.scss'
-import { Link } from 'react-router-dom'
-import { PATH } from '@config/constants'
-import { Leaders } from './leaders'
-import { leadersMock } from './mock'
+import { Link } from "react-router-dom";
+import { PATH } from "@config/constants";
+import styles from "./leaderboard.module.scss";
+import { Leaders } from "./leaders";
+import { leadersMock } from "./mock";
 
-export const PageLeaderboard = () => {
+export function PageLeaderboard() {
   return (
     <section className={styles.leader_board}>
       <Link to={PATH.LOBBY} className={styles.main_link}>
@@ -16,5 +16,5 @@ export const PageLeaderboard = () => {
       </div>
       <Leaders leaders={leadersMock} />
     </section>
-  )
+  );
 }

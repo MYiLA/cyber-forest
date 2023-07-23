@@ -1,17 +1,16 @@
-import { ITopicComment } from '@pages/page-lobby/types'
-import styles from './topic-comment.module.scss'
-import user_mock from '@images/chat-avatar.png'
-import { dateFormatter } from '@utils/date-formatter'
-import likeUnactiveNeon from '@images/like-unactive-neon.svg'
-import likePurple from '@images/like.svg'
-import likeUnactivePurple from '@images/like-unactive-purple.svg'
-import likeNeon from '@images/like-neon.svg'
-import { Theme } from '@config/constants'
-import { useTheme } from '@hooks/use-theme'
-import { TopicSubcomment } from '@pages/page-lobby/components/active-forum-topic/components/topic-subcomment/topic-subcomment'
-import { ITopicCommentComment } from '@pages/page-lobby/types'
-import { TopicInput } from '@pages/page-lobby/components/active-forum-topic/components/topic-input/topic-input'
-import React from 'react'
+import { ITopicComment, ITopicCommentComment } from "@pages/page-lobby/types";
+import user_mock from "@images/chat-avatar.png";
+import { dateFormatter } from "@utils/date-formatter";
+import likeUnactiveNeon from "@images/like-unactive-neon.svg";
+import likePurple from "@images/like.svg";
+import likeUnactivePurple from "@images/like-unactive-purple.svg";
+import likeNeon from "@images/like-neon.svg";
+import { Theme } from "@config/constants";
+import { useTheme } from "@hooks/use-theme";
+import { TopicSubcomment } from "@pages/page-lobby/components/active-forum-topic/components/topic-subcomment/topic-subcomment";
+import { TopicInput } from "@pages/page-lobby/components/active-forum-topic/components/topic-input/topic-input";
+import React from "react";
+import styles from "./topic-comment.module.scss";
 
 export const TopicComment: React.FC<ITopicComment> = ({
   comment_id,
@@ -22,31 +21,28 @@ export const TopicComment: React.FC<ITopicComment> = ({
   liked,
   comments,
 }) => {
-  const { themeName } = useTheme()
+  const { themeName } = useTheme();
 
   const getIcon = () => {
     if (themeName === Theme.Purple) {
       if (liked) {
-        return likePurple
-      } else {
-        return likeUnactivePurple
+        return likePurple;
       }
-    } else {
-      if (liked) {
-        return likeNeon
-      } else {
-        return likeUnactiveNeon
-      }
+      return likeUnactivePurple;
     }
-  }
+    if (liked) {
+      return likeNeon;
+    }
+    return likeUnactiveNeon;
+  };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div style={{ display: "flex", flexDirection: "column" }}>
       <div key={comment_id} className={styles.comment_wrapper}>
         <img
           src={user_data?.avatar || user_mock}
           className={styles.comment_avatar}
-          alt={'аватар пользователя'}
+          alt="аватар пользователя"
         />
         <div className={styles.comment_body}>
           <div className={styles.comment_header}>
@@ -57,11 +53,12 @@ export const TopicComment: React.FC<ITopicComment> = ({
           <div className={styles.flex_row}>
             <div>
               <button
-                type={'button'}
+                type="button"
                 onClick={() => {
-                  console.log('like added')
+                  console.log("like added");
                 }}
-                className={styles.comment_like_btn}>
+                className={styles.comment_like_btn}
+              >
                 <img
                   src={getIcon()}
                   alt={'иконка "лайк"'}
@@ -82,5 +79,5 @@ export const TopicComment: React.FC<ITopicComment> = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};

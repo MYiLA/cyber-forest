@@ -1,14 +1,14 @@
-import catCard from '../assets/cat-card.png'
-import catScale from '../assets/cat-scale.png'
-import miniCat from '../assets/mini-cat.png'
-import prepareCard from '../assets/prepare-card.png'
-import powerCard from '../assets/power-card.png'
-import { ReactComponent as Arrow } from '../assets/arrow.svg'
-import styles from './power.module.scss'
-import { DescriptionBlock } from '../description-block'
-import cn from 'classnames'
+import cn from "classnames";
+import catCard from "../assets/cat-card.png";
+import catScale from "../assets/cat-scale.png";
+import miniCat from "../assets/mini-cat.png";
+import prepareCard from "../assets/prepare-card.png";
+import powerCard from "../assets/power-card.png";
+import { ReactComponent as Arrow } from "../assets/arrow.svg";
+import styles from "./power.module.scss";
+import { DescriptionBlock } from "../description-block";
 
-export const Power = () => {
+export function Power() {
   return (
     <div className={styles.power}>
       <Arrow className={cn(styles.arrow, styles.arrow_1)} />
@@ -46,5 +46,5 @@ export const Power = () => {
         alt="power card"
       />
     </div>
-  )
+  );
 }

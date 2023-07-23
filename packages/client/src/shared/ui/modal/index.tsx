@@ -1,4 +1,4 @@
-import { createPortal } from 'react-dom'
+import { createPortal } from "react-dom";
 import {
   DetailedHTMLProps,
   HTMLAttributes,
@@ -7,69 +7,69 @@ import {
   useEffect,
   useRef,
   useState,
-} from 'react'
-import styles from './modal.module.scss'
-import cn from 'classnames'
+} from "react";
+import cn from "classnames";
+import styles from "./modal.module.scss";
 
 export type ModalProps = {
-  onClose?: (e: MouseEvent<HTMLDivElement> | KeyboardEvent) => void
-  children: ReactNode
-  open: boolean
-  closeDelay?: number
+  onClose?: (e: MouseEvent<HTMLDivElement> | KeyboardEvent) => void;
+  children: ReactNode;
+  open: boolean;
+  closeDelay?: number;
   slotProps?: {
-    root?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-  }
-}
-const ANIMATION_DURATION_MS = 193
+    root?: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+  };
+};
+const ANIMATION_DURATION_MS = 193;
 
 const closeStyle = {
-  opacity: '0',
+  opacity: "0",
   transition: `opacity ${ANIMATION_DURATION_MS}ms cubic-bezier(0.4, 0, 0.2, 1) 0ms`,
-  visibility: 'hidden' as const,
-}
+  visibility: "hidden" as const,
+};
 
-export const Modal = (props: ModalProps) => {
-  const { onClose, closeDelay = 0, open, children, slotProps } = props
-  const rootProps = slotProps?.root
-  const [isOpen, setIsOpen] = useState(open)
-  const ref = useRef<null | HTMLDivElement>(null)
+export function Modal(props: ModalProps) {
+  const { onClose, closeDelay = 0, open, children, slotProps } = props;
+  const rootProps = slotProps?.root;
+  const [isOpen, setIsOpen] = useState(open);
+  const ref = useRef<null | HTMLDivElement>(null);
   const handleClick = (e: MouseEvent<HTMLDivElement>) => {
-    if (ref.current !== e.target) return
-    rootProps?.onClick?.(e)
-    onClose?.(e)
-  }
+    if (ref.current !== e.target) return;
+    rootProps?.onClick?.(e);
+    onClose?.(e);
+  };
 
   const openModal = () => {
-    setIsOpen(true)
+    setIsOpen(true);
     setTimeout(() => {
-      const el = ref.current
-      if (!el) return
-      el.style.visibility = 'visible'
-      el.style.opacity = '1'
-    }, 100)
-  }
+      const el = ref.current;
+      if (!el) return;
+      el.style.visibility = "visible";
+      el.style.opacity = "1";
+    }, 100);
+  };
 
   const closeModal = () => {
-    const el = ref.current
-    if (!el) return
-    el.style.opacity = '0'
+    const el = ref.current;
+    if (!el) return;
+    el.style.opacity = "0";
     setTimeout(() => {
-      el.style.visibility = 'visible'
-      setIsOpen(false)
-    }, ANIMATION_DURATION_MS)
-  }
+      el.style.visibility = "visible";
+      setIsOpen(false);
+    }, ANIMATION_DURATION_MS);
+  };
 
   useEffect(() => {
-    let timoutId: NodeJS.Timeout
+    let timoutId: NodeJS.Timeout;
     if (open) {
-      openModal()
+      openModal();
     } else {
       timoutId = setTimeout(() => {
-        closeModal()
-      }, closeDelay)
+        closeModal();
+      }, closeDelay);
     }
-    return () => clearTimeout(timoutId)
-  }, [open])
+    return () => clearTimeout(timoutId);
+  }, [open]);
 
   return (
     <>
@@ -80,11 +80,12 @@ export const Modal = (props: ModalProps) => {
             onClick={handleClick}
             ref={ref}
             className={cn(styles.backdrop_root, rootProps?.className)}
-            style={closeStyle}>
+            style={closeStyle}
+          >
             {children}
           </div>,
           document.body
         )}
     </>
-  )
+  );
 }

@@ -34,10 +34,10 @@
       width: 830px;
       height: 714px;
       margin: 5vh auto;
-      border: 1px solid #FFFFFF;
+      border: 1px solid #ffffff;
 
       &_purple {
-        background: #2C1D42;
+        background: #2c1d42;
       }
 
       &_neon {
@@ -65,7 +65,7 @@
       width: 467px;
       text-align: center;
       margin: 26px auto;
-      color: #FFF;
+      color: #fff;
       text-align: center;
       font-size: 32px;
       font-family: New_Zelek;
@@ -83,16 +83,16 @@
     margin: 15px 50px;
 
     &_purple {
-      background: #BB6AEA30;
+      background: #bb6aea30;
     }
 
     &_neon {
-      background: #71AEA030;
+      background: #71aea030;
     }
 
     &_descr {
       position: relative;
-      color: #FFF;
+      color: #fff;
       font-size: 15px;
       font-family: Blender Pro;
       font-weight: 500;
@@ -105,12 +105,12 @@
         content: "";
         width: 675px;
         height: 1px;
-        background: #FFFFFF50;
+        background: #ffffff50;
       }
     }
 
     &_empty {
-      color: rgba(255, 255, 255, 0.80);
+      color: rgba(255, 255, 255, 0.8);
       font-size: 15px;
       font-family: Blender Pro;
       font-weight: 500;
@@ -119,7 +119,6 @@
     &_input {
       //width: 200px;
       margin-top: 15px;
-
     }
     &_comment {
       margin-top: 15px;

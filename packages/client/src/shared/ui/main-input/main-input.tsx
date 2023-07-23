@@ -1,54 +1,55 @@
-import styles from './main-input.module.scss'
-import inputUnderlineR from '@images/input-underline-r.svg'
-import inputUnderlineL from '@images/input-underline-l.svg'
-import { FC, Fragment, InputHTMLAttributes, useCallback } from 'react'
-import cn from 'classnames'
+import inputUnderlineR from "@images/input-underline-r.svg";
+import inputUnderlineL from "@images/input-underline-l.svg";
+import { FC, Fragment, InputHTMLAttributes, useCallback } from "react";
+import cn from "classnames";
+import styles from "./main-input.module.scss";
 
 interface TInputProps extends InputHTMLAttributes<HTMLInputElement> {
-  name?: string
-  placeholder?: string
-  type?: string
-  extraClassName?: string
-  error?: string | null
-  className?: string
-  align?: string
+  name?: string;
+  placeholder?: string;
+  type?: string;
+  extraClassName?: string;
+  error?: string | null;
+  className?: string;
+  align?: string;
 }
 
 export const MainInput: FC<TInputProps> = ({
   extraClassName,
   name,
   placeholder,
-  type = 'text',
+  type = "text",
   error = null,
   className,
-  align = 'left',
+  align = "left",
   ...rest
 }) => {
-  const DecorImage = useCallback(() => {
-    return (
+  const DecorImage = useCallback(
+    () => (
       <>
-        {align === 'left' && (
+        {align === "left" && (
           <img
             className={styles.bottom_right}
             src={inputUnderlineR}
             alt="стилизация input справа"
           />
         )}
-        {align === 'right' && (
+        {align === "right" && (
           <img
             className={styles.bottom_left}
             src={inputUnderlineL}
             alt="стилизация input слева"
           />
         )}
-        {align === 'none' && <></>}
+        {align === "none" && <></>}
       </>
-    )
-  }, [align])
+    ),
+    [align]
+  );
 
   return (
-    <Fragment>
-      {type === 'checkbox' ? (
+    <>
+      {type === "checkbox" ? (
         <div className={cn(styles.custom_checkbox, className)}>
           <input
             type={type}
@@ -57,15 +58,16 @@ export const MainInput: FC<TInputProps> = ({
             {...rest}
             id="customCheckbox"
           />
-          <label htmlFor="customCheckbox"></label>
+          <label htmlFor="customCheckbox" />
         </div>
       ) : (
         <div
           className={cn(
             styles.container,
             className,
-            align === 'right' ? styles.right_direction : ''
-          )}>
+            align === "right" ? styles.right_direction : ""
+          )}
+        >
           <DecorImage />
           <input
             name={name}
@@ -78,6 +80,6 @@ export const MainInput: FC<TInputProps> = ({
           {error && <div className={styles.error}>{error}</div>}
         </div>
       )}
-    </Fragment>
-  )
-}
+    </>
+  );
+};

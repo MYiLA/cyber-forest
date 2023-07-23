@@ -1,165 +1,157 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import ApiAuth from '@api/auth-api'
-import { User, UserLogin, UserPassword, UserRegister } from '@config/user-types'
-import UserApi from '@api/user-api'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import ApiAuth from "@api/auth-api";
+import {
+  User,
+  UserLogin,
+  UserPassword,
+  UserRegister,
+} from "@config/user-types";
+import UserApi from "@api/user-api";
 
-export const userLogin = createAsyncThunk('user/login', (data: UserLogin) => {
-  return ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
-})
+export const userLogin = createAsyncThunk("user/login", (data: UserLogin) =>
+  ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
+);
 
-export const userLogout = createAsyncThunk('user/logout', () => {
-  return ApiAuth.userLogout()
-})
+export const userLogout = createAsyncThunk("user/logout", () =>
+  ApiAuth.userLogout()
+);
 
 export const userRegister = createAsyncThunk(
-  'user/register',
-  (data: UserRegister) => {
-    return ApiAuth.userRegister(data).then(() => ApiAuth.userGetInfo())
-  }
-)
+  "user/register",
+  (data: UserRegister) =>
+    ApiAuth.userRegister(data).then(() => ApiAuth.userGetInfo())
+);
 
 export const userGetInfo = createAsyncThunk(
-  'user/info',
-  (cookies: Record<string, string> | null = null) => {
-    return ApiAuth.userGetInfo(cookies)
-  }
-)
+  "user/info",
+  (cookies: Record<string, string> | null = null) =>
+    ApiAuth.userGetInfo(cookies)
+);
 
 export const userChangeData = createAsyncThunk(
-  'user/profile',
-  (data: UserRegister) => {
-    return UserApi.userChangeData(data).then(() => ApiAuth.userGetInfo())
-  }
-)
+  "user/profile",
+  (data: UserRegister) =>
+    UserApi.userChangeData(data).then(() => ApiAuth.userGetInfo())
+);
 
 export const userChangeAvatar = createAsyncThunk(
-  'user/profile/avatar',
-  (data: { avatar: object }) => {
-    return UserApi.userChangeAvatar(data).then(() => ApiAuth.userGetInfo())
-  }
-)
+  "user/profile/avatar",
+  (data: { avatar: object }) =>
+    UserApi.userChangeAvatar(data).then(() => ApiAuth.userGetInfo())
+);
 
 export const userChangePassword = createAsyncThunk(
-  'user/password',
-  (data: UserPassword) => {
-    return UserApi.userChangePassword(data).then(() => ApiAuth.userGetInfo())
-  }
-)
+  "user/password",
+  (data: UserPassword) =>
+    UserApi.userChangePassword(data).then(() => ApiAuth.userGetInfo())
+);
 
 const initialState: {
-  authorized: boolean | null
-  loading: boolean
-  error: string | null
-  authChecked: boolean
-  user: User | null
+  authorized: boolean | null;
+  loading: boolean;
+  error: string | null;
+  authChecked: boolean;
+  user: User | null;
 } = {
   authorized: false,
   loading: false,
   error: null,
   authChecked: false,
   user: null,
-}
+};
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
-    resetError: state => {
-      return { ...state, error: null }
-    },
+    resetError: (state) => ({ ...state, error: null }),
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       /** Профиль пользователя */
-      .addCase(userChangeData.pending, state => {
-        return { ...state, loading: true }
-      })
-      .addCase(userChangeData.fulfilled, (state, action) => {
-        return {
-          ...initialState,
-          user: action.payload.data,
-          authorized: true,
-          authChecked: true,
-        }
-      })
-      .addCase(userChangeAvatar.rejected, (state, action) => {
-        return { ...state, error: action.error.message as string }
-      })
+      .addCase(userChangeData.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userChangeData.fulfilled, (state, action) => ({
+        ...initialState,
+        user: action.payload.data,
+        authorized: true,
+        authChecked: true,
+      }))
+      .addCase(userChangeAvatar.rejected, (state, action) => ({
+        ...state,
+        error: action.error.message as string,
+      }))
 
       /** Аватар пользователя */
-      .addCase(userChangeAvatar.pending, state => {
-        return { ...state, loading: true }
-      })
-      .addCase(userChangeAvatar.fulfilled, (state, action) => {
-        return {
-          ...initialState,
-          user: action.payload.data,
-          authorized: true,
-          authChecked: true,
-        }
-      })
-      .addCase(userChangeData.rejected, (state, action) => {
-        return { ...state, error: action.error.message as string }
-      })
+      .addCase(userChangeAvatar.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(userChangeAvatar.fulfilled, (state, action) => ({
+        ...initialState,
+        user: action.payload.data,
+        authorized: true,
+        authChecked: true,
+      }))
+      .addCase(userChangeData.rejected, (state, action) => ({
+        ...state,
+        error: action.error.message as string,
+      }))
       /** Смена пароля */
 
-      .addCase(userChangePassword.pending, state => {
-        return { ...state, loading: true }
-      })
-      .addCase(userChangePassword.rejected, (state, action) => {
-        return { ...state, error: action.error.message as string }
-      })
+      .addCase(userChangePassword.pending, (state) => ({
+        ...state,
+        loading: true,
+      }))
+      .addCase(userChangePassword.rejected, (state, action) => ({
+        ...state,
+        error: action.error.message as string,
+      }))
 
       /** Логин пользователя */
-      .addCase(userLogin.pending, state => {
-        return { ...state, loading: true }
-      })
-      .addCase(userLogin.rejected, (state, action) => {
-        return { ...state, error: action.error.message as string }
-      })
+      .addCase(userLogin.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userLogin.rejected, (state, action) => ({
+        ...state,
+        error: action.error.message as string,
+      }))
       .addCase(userLogin.fulfilled, (state, action) => {
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('userData', JSON.stringify(action.payload.data))
+        if (typeof localStorage !== "undefined") {
+          localStorage.setItem("userData", JSON.stringify(action.payload.data));
         }
         return {
           ...initialState,
           user: action.payload.data,
           authorized: true,
           authChecked: true,
-        }
+        };
       })
 
       /** Выход пользователя */
-      .addCase(userLogout.pending, state => {
-        console.log('logout pending')
-        return { ...state, loading: true }
+      .addCase(userLogout.pending, (state) => {
+        console.log("logout pending");
+        return { ...state, loading: true };
       })
-      .addCase(userLogout.rejected, state => {
-        console.log('logout reject')
+      .addCase(userLogout.rejected, (state) => {
+        console.log("logout reject");
         return {
           ...state,
           loading: false,
-        }
+        };
       })
       .addCase(userLogout.fulfilled, () => {
-        console.log('logout filled')
-        localStorage.removeItem('userData')
-        return { ...initialState, authChecked: true }
+        console.log("logout filled");
+        localStorage.removeItem("userData");
+        return { ...initialState, authChecked: true };
       })
 
       /** Информация о пользователя */
-      .addCase(userGetInfo.pending, state => {
-        return { ...state, loading: true }
-      })
-      .addCase(userGetInfo.rejected, () => {
-        return {
-          ...initialState,
-          authChecked: true,
-        }
-      })
+      .addCase(userGetInfo.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userGetInfo.rejected, () => ({
+        ...initialState,
+        authChecked: true,
+      }))
       .addCase(userGetInfo.fulfilled, (state, action) => {
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('userData', JSON.stringify(action.payload.data))
+        if (typeof localStorage !== "undefined") {
+          localStorage.setItem("userData", JSON.stringify(action.payload.data));
         }
         return {
           ...state,
@@ -168,28 +160,27 @@ export const userSlice = createSlice({
           error: null,
           user: action.payload.data,
           authChecked: true,
-        }
+        };
       })
 
       /** Регистрация пользователя */
-      .addCase(userRegister.pending, state => {
-        return { ...state, loading: true }
-      })
-      .addCase(userRegister.rejected, (state, action) => {
-        return { ...initialState, error: action.error.message as string }
-      })
+      .addCase(userRegister.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userRegister.rejected, (state, action) => ({
+        ...initialState,
+        error: action.error.message as string,
+      }))
       .addCase(userRegister.fulfilled, (state, action) => {
-        localStorage.setItem('userData', JSON.stringify(action.payload.data))
+        localStorage.setItem("userData", JSON.stringify(action.payload.data));
         return {
           ...state,
           user: action.payload.data,
           loading: false,
           authChecked: true,
           authorized: true,
-        }
-      })
+        };
+      });
   },
-})
+});
 
-export const { resetError } = userSlice.actions
-export default userSlice.reducer
+export const { resetError } = userSlice.actions;
+export default userSlice.reducer;
