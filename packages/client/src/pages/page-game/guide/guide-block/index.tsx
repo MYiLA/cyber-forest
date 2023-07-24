@@ -17,9 +17,9 @@ export const GuideBlock = (props: Props) => {
   const { themeName } = useTheme();
   const ref = useRef<null | HTMLDivElement>(null);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    let timeout: NodeJS.Timeout;
+    const el = ref.current
+    if (!el) return
+    let timeout: ReturnType<typeof setTimeout>
     if (open) {
       timeout = setTimeout(() => {
         el.style.transform = "translateX(0)";

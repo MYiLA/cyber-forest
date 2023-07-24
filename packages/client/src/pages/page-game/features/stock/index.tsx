@@ -18,8 +18,9 @@ export function Stock({ dices, onChoosingCubeProp }: StockProps) {
   return (
     <div className={styles.stock}>
       <ul className={styles.list}>
-        {dices.map((dice) => (
+        {dices.map((dice, index) => (
           <li
+            data-testid={`dice-test-${index}`}
             key={dice.id}
             className={styles.item}
             onClick={() => onChoosingCube(dice)}

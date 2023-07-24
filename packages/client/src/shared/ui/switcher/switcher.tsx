@@ -39,15 +39,15 @@ export const Switcher = ({
           className={
             activeLabel === labels[0]
               ? `${styles.active} ${
-                  themeName === Theme.Purple
-                    ? styles.active_purpur
-                    : styles.active_neon
-                }`
+                themeName === Theme.Purple
+                  ? styles.active_purpur
+                  : styles.active_neon
+              }`
               : `${styles.unactive} ${
-                  themeName === Theme.Purple
-                    ? styles.unactive_purpur
-                    : styles.unactive_neon
-                }`
+                themeName === Theme.Purple
+                  ? styles.unactive_purpur
+                  : styles.unactive_neon
+              }`
           }
         >
           {labels[0]}
@@ -56,15 +56,15 @@ export const Switcher = ({
           className={
             activeLabel === labels[1]
               ? `${styles.active} ${
-                  themeName === Theme.Purple
-                    ? styles.active_purpur
-                    : styles.active_neon
-                }`
+                themeName === Theme.Purple
+                  ? styles.active_purpur
+                  : styles.active_neon
+              }`
               : `${styles.unactive} ${
-                  themeName === Theme.Purple
-                    ? styles.unactive_purpur
-                    : styles.unactive_neon
-                }`
+                themeName === Theme.Purple
+                  ? styles.unactive_purpur
+                  : styles.unactive_neon
+              }`
           }
         >
           {labels[1]}
