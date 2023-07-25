@@ -211,7 +211,7 @@ class UserController extends Controller {
     ): Promise<UserDto> {
         // получение Id юзера из запроса для передачи в сервис  
         const userId = req.userId || 0
-        // вызов сервсиа по обработке фнукционала изменения данных профиля клиента  
+        // вызов сервиса по обработке функционала изменения данных профиля клиента  
         return UserService.updateProfile(body, userId)
     }
     
