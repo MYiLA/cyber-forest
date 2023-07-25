@@ -9,6 +9,7 @@ import {
   ReactionComment,
   ReactionReply,
 } from '../features/forum/reaction/reaction-models'
+import { Emoji } from '../features/forum/emoji/emoji-model'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -42,6 +43,7 @@ const db = new Sequelize({
     Reply,
     ReactionComment,
     ReactionReply,
+    Emoji,
   ],
 })
 

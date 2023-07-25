@@ -7,13 +7,23 @@ import {
 import { ApiError } from '../../../exceptions/api-error'
 import { OK } from '../../../config/types-constants'
 import { Op } from 'sequelize'
+import { EmojiDto, EmojiRow } from '../emoji/emoji-model'
 
 class TopicService {
-  public async getTopics(dto: TopicsRequest): Promise<TopicDto[]> {
+  public async getTopics(
+    dto: TopicsRequest,
+    userId: number
+  ): Promise<TopicDto[]> {
     return await Topic.findAll({
       offset: dto.cursor,
-      limit: dto.limit,
-    })
+      limit: dto.limit <= 100 ? dto.limit : 100,
+      order: [['createdAt', 'DESC']],
+    }).then(res =>
+      res.map(row => ({
+        ...row.get({ plain: true }),
+        emojis: this._calcEmojis(row.get({ plain: true }).emojis, userId),
+      }))
+    )
   }
 
   public async addTopic(
@@ -47,6 +57,31 @@ class TopicService {
       where: { title: { [Op.like]: `%${query}%` } },
       limit: 10,
     })
+  }
+
+  private _calcEmojis(
+    data: EmojiRow[] | EmojiDto[],
+    userId: number
+  ): EmojiDto[] {
+    const tmp: Record<string, { qty: number; users: Array<number> }> = {}
+
+    ;(data as EmojiRow[]).forEach((item: EmojiRow) => {
+      if (tmp[item.emoji]) {
+        tmp[item.emoji].qty++
+        tmp[item.emoji].users.push(item.userId)
+      } else {
+        tmp[item.emoji] = { qty: 1, users: [item.userId] }
+      }
+    })
+    const result = []
+    for (const [key, value] of Object.entries(tmp)) {
+      result.push({
+        emoji: key,
+        qty: value.qty,
+        reacted: value.users.includes(userId) ? true : false,
+      })
+    }
+    return result
   }
 }
 
