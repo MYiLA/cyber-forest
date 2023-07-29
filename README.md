@@ -1,3 +1,5 @@
+![Киберлес](https://github.com/MYiLA/cyber-forest/raw/dev/packages/client/src/assets/images/promo.png)
+
 ### Как запускать?
 
 1. Убедитесь что у вас установлен `node` и `docker`
