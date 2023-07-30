@@ -20,7 +20,10 @@
 		},
 		"tags": [{
 			"name": "Auth",
-			"description": "Авторизации"
+			"description": "Авторизация"
+		},{
+			"name": "OAuth",
+			"description": "OAuth авторизация"
 		},{
 			"name": "Users",
 			"description": "Пользователь"
