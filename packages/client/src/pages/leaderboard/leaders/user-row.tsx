@@ -1,13 +1,13 @@
+import { Leader } from "@store/reducers/leaderboard-reducer";
 import styles from "./leaders.module.scss";
-import { UserLeaderDto } from "../types";
 
 type Props = {
-  user: UserLeaderDto;
+  user: Leader;
 };
 
 export function UserRow(props: Props) {
   const {
-    user: { name, points, avatar },
+    user: { name, score, avatar },
   } = props;
   return (
     <div className={styles.user_row}>
@@ -16,7 +16,7 @@ export function UserRow(props: Props) {
         <h4>{name}</h4>
       </div>
       <div className={styles.points_wrapper}>
-        <h4>{points}</h4>
+        <h4>{score}</h4>
       </div>
     </div>
   );

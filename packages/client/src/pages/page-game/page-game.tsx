@@ -13,6 +13,7 @@ import { Loader } from "@ui/loader";
 import { WinnerScreen } from "@pages/page-game/screen";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@config/constants";
+import { addUserScore } from "@store/reducers/leaderboard-reducer";
 import { getNextPlayerType } from "./utils/get-next-player-type";
 import { ChoosingAreaCubeFunction, Dice, Player } from "./type";
 import { DiceSide } from "./widgets/game/type";
@@ -388,6 +389,16 @@ const PageGame = () => {
   useEffect(() => {
     if (currentPlayer?.gloryCount && currentPlayer?.gloryCount >= maxGlory) {
       setWinner(currentPlayer);
+      Object.values(gameState).forEach((player) => {
+        if (!player) return;
+        dispatch(
+          addUserScore({
+            name: player.name,
+            score: player.gloryCount,
+            id: player.id || 0,
+          })
+        );
+      });
     }
   }, [currentPlayer]);
 
@@ -447,74 +458,76 @@ const PageGame = () => {
     if (!side) return;
     // TODO: Временно информирование игрока по фазам сделано через алерты.
     // В будущем это будет визуализировано интуитивно понятными анимациями, дизейблами и тултипами
+    /* eslint-disable indent */
     switch (currentPhase) {
-    case PhaseType.Waiting:
-      window.alert("Нужно подождать окончания анимации или другого игрока");
-      break;
+      case PhaseType.Waiting:
+        window.alert("Нужно подождать окончания анимации или другого игрока");
+        break;
 
-    case PhaseType.Stock:
-      window.alert(
-        `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
-      );
-      break;
+      case PhaseType.Stock:
+        window.alert(
+          `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
+        );
+        break;
 
-    case PhaseType.PreparationAndHiring:
-      // Игрок может вызвать в зону боя выпавших воинов из зоны подготовки за энергию
-      if (
-        side &&
+      case PhaseType.PreparationAndHiring:
+        // Игрок может вызвать в зону боя выпавших воинов из зоны подготовки за энергию
+        if (
+          side &&
           // Если этот кубик в зоне подготовки текущего игрока
           currentPlayerType === playerType &&
           area === AreaType.Preparation
-      ) {
-        // Если данный кубик не воин, то информируем игрока
-        if (!isWarriorDiceSide(side)) {
-          window.alert(`Вызвать на поле боя можно только воина`);
-          return;
-        }
-        // Если игроку не хватает энергии для вызова воина, то информируем игрока
-        if (side.level > currentPlayerEnergy) {
-          window.alert(
-            `Не хватает энергии для вызова на бой данного существа. У вас ${currentPlayerEnergy} а необходимо ${side.level}`
+        ) {
+          // Если данный кубик не воин, то информируем игрока
+          if (!isWarriorDiceSide(side)) {
+            window.alert(`Вызвать на поле боя можно только воина`);
+            return;
+          }
+          // Если игроку не хватает энергии для вызова воина, то информируем игрока
+          if (side.level > currentPlayerEnergy) {
+            window.alert(
+              `Не хватает энергии для вызова на бой данного существа. У вас ${currentPlayerEnergy} а необходимо ${side.level}`
+            );
+            return;
+          }
+          // То вызываем воина на поле боя
+          dispatch(
+            playersSlice.actions.addDicesInArea({
+              areaType: AreaType.Attack,
+              playerType: currentPlayerType,
+              dices: [dice],
+            })
           );
-          return;
+          dispatch(
+            playersSlice.actions.deleteDicesInArea({
+              areaType: AreaType.Preparation,
+              playerType: currentPlayerType,
+              dices: [dice],
+            })
+          );
+          // Если количество оставшейся энергии равна стоимости воина, то сразу переходим в фазу атаки
+          if (side.level === currentPlayerEnergy) {
+            dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Attack));
+          }
+          // Вычитаем стоимость воина из текущего количества энергии игрока
+          dispatch(gameSlice.actions.decreaseCurrentPlayerEnergy(side.level));
         }
-        // То вызываем воина на поле боя
-        dispatch(
-          playersSlice.actions.addDicesInArea({
-            areaType: AreaType.Attack,
-            playerType: currentPlayerType,
-            dices: [dice],
-          })
+        break;
+
+      case PhaseType.Attack:
+        window.alert(
+          `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
         );
-        dispatch(
-          playersSlice.actions.deleteDicesInArea({
-            areaType: AreaType.Preparation,
-            playerType: currentPlayerType,
-            dices: [dice],
-          })
-        );
-        // Если количество оставшейся энергии равна стоимости воина, то сразу переходим в фазу атаки
-        if (side.level === currentPlayerEnergy) {
-          dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Attack));
-        }
-        // Вычитаем стоимость воина из текущего количества энергии игрока
-        dispatch(gameSlice.actions.decreaseCurrentPlayerEnergy(side.level));
-      }
-      break;
+        break;
 
-    case PhaseType.Attack:
-      window.alert(
-        `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
-      );
-      break;
+      case PhaseType.Defense:
+        // TODO: Реализовать разрешение спорных защит
+        // Если в защите остался один кубик или очки атаки противника иссякли, то ход переходит следующему игроку на фазу инвентаря
+        break;
 
-    case PhaseType.Defense:
-      // TODO: Реализовать разрешение спорных защит
-      // Если в защите остался один кубик или очки атаки противника иссякли, то ход переходит следующему игроку на фазу инвентаря
-      break;
-
-    default:
+      default:
     }
+    /* eslint-enable indent */
   };
 
   // Обработчик клика на кнопку "Готово"
@@ -522,38 +535,40 @@ const PageGame = () => {
     if (!currentPlayer) return;
     // TODO: Временно информирование игрока по фазам сделано через алерты.
     // В будущем это будет визуализировано интуитивно понятными анимациями, дизейблами и тултипами
+    /* eslint-disable indent */
     switch (currentPhase) {
-    case PhaseType.Waiting:
-      window.alert(
-        `Игрок ${currentPlayerType}, нужно подождать окончания анимации или другого игрока`
-      );
-      break;
+      case PhaseType.Waiting:
+        window.alert(
+          `Игрок ${currentPlayerType}, нужно подождать окончания анимации или другого игрока`
+        );
+        break;
 
-    case PhaseType.Stock:
-      window.alert(
-        `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
-      );
-      break;
+      case PhaseType.Stock:
+        window.alert(
+          `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
+        );
+        break;
 
-    case PhaseType.PreparationAndHiring:
-      // Переходим на фазу атаки
-      dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Attack));
-      break;
+      case PhaseType.PreparationAndHiring:
+        // Переходим на фазу атаки
+        dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Attack));
+        break;
 
-    case PhaseType.Attack:
-      window.alert(
-        `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
-      );
-      break;
+      case PhaseType.Attack:
+        window.alert(
+          `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
+        );
+        break;
 
-    case PhaseType.Defense:
-      window.alert(
-        `Игрок ${currentPlayerType}, выберите, какой из ваших воинов в зоне боя защищается первый`
-      );
-      break;
+      case PhaseType.Defense:
+        window.alert(
+          `Игрок ${currentPlayerType}, выберите, какой из ваших воинов в зоне боя защищается первый`
+        );
+        break;
 
-    default:
+      default:
     }
+    /* eslint-enable indent */
   };
 
   // Обработчик клика на кнопку "Найм"
@@ -563,75 +578,77 @@ const PageGame = () => {
 
     // TODO: Временно информирование игрока по фазам сделано через алерты.
     // В будущем это будет визуализировано интуитивно понятными анимациями, дизейблами и тултипами
+    /* eslint-disable indent */
     switch (currentPhase) {
-    case PhaseType.Waiting:
-      window.alert("Ждём окончания анимации или другого игрока");
-      break;
+      case PhaseType.Waiting:
+        window.alert("Ждём окончания анимации или другого игрока");
+        break;
 
-    case PhaseType.Stock:
-      window.alert(
-        `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
-      );
-      break;
-
-    case PhaseType.PreparationAndHiring:
-      // Проверяем, исчерпан ли лимит по найму воинов в киберлесе
-      if (hireLimitCount === 0) {
-        // Если исчерпан - информируем об этом игрока
+      case PhaseType.Stock:
         window.alert(
-          `За один ход в Киберлесе можно нанять только ${DEFAULT_SETTING.HIRE_LIMIT} воина(ов)`
+          `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
         );
-        return;
-      }
-      // Проверяем, хватает ли игроку энергии на покупку
-      if (currentPlayerEnergy < warrior.cost) {
-        // Если не хватает - информируем игрока об этом
+        break;
+
+      case PhaseType.PreparationAndHiring:
+        // Проверяем, исчерпан ли лимит по найму воинов в киберлесе
+        if (hireLimitCount === 0) {
+          // Если исчерпан - информируем об этом игрока
+          window.alert(
+            `За один ход в Киберлесе можно нанять только ${DEFAULT_SETTING.HIRE_LIMIT} воина(ов)`
+          );
+          return;
+        }
+        // Проверяем, хватает ли игроку энергии на покупку
+        if (currentPlayerEnergy < warrior.cost) {
+          // Если не хватает - информируем игрока об этом
+          window.alert(
+            `Игрок ${currentPlayerType}, вам не хватает очков энергии. У вас ${currentPlayerEnergy} энергии, а на найм необходимо ${warrior.cost}`
+          );
+          return;
+        }
+        // Если энергии хватает, то переносим воина в зону отдыха игрока
+        dispatch(
+          playersSlice.actions.addDicesInArea({
+            areaType: AreaType.Rest,
+            playerType: currentPlayerType,
+            dices: [warrior],
+          })
+        );
+        // Если количество оставшейся энергии равна стоимости воина, то сразу переходим в фазу атаки
+        if (warrior.cost === currentPlayerEnergy) {
+          dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Attack));
+        }
+        // Вычитаем стоимость воина из текущего количества энергии игрока
+        dispatch(gameSlice.actions.decreaseCurrentPlayerEnergy(warrior.cost));
+        // Уменьшаем счётчик нанятого воина в киберлесу
+        dispatch(
+          gameSlice.actions.decreaseAccessHireWarriors({
+            count: 1,
+            type: warrior.type,
+          })
+        );
+        // Уменьшаем лимит по найму воинов в киберлесе
+        setHireLimitCount(hireLimitCount - 1);
+        // Информируем игрока, что воин успешно нанят
+        window.alert(`Игрок ${currentPlayerType} нанял ${warrior.type}`);
+        break;
+
+      case PhaseType.Attack:
         window.alert(
-          `Игрок ${currentPlayerType}, вам не хватает очков энергии. У вас ${currentPlayerEnergy} энергии, а на найм необходимо ${warrior.cost}`
+          `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
         );
-        return;
-      }
-      // Если энергии хватает, то переносим воина в зону отдыха игрока
-      dispatch(
-        playersSlice.actions.addDicesInArea({
-          areaType: AreaType.Rest,
-          playerType: currentPlayerType,
-          dices: [warrior],
-        })
-      );
-      // Если количество оставшейся энергии равна стоимости воина, то сразу переходим в фазу атаки
-      if (warrior.cost === currentPlayerEnergy) {
-        dispatch(gameSlice.actions.setCurrentPhase(PhaseType.Attack));
-      }
-      // Вычитаем стоимость воина из текущего количества энергии игрока
-      dispatch(gameSlice.actions.decreaseCurrentPlayerEnergy(warrior.cost));
-      // Уменьшаем счётчик нанятого воина в киберлесу
-      dispatch(
-        gameSlice.actions.decreaseAccessHireWarriors({
-          count: 1,
-          type: warrior.type,
-        })
-      );
-      // Уменьшаем лимит по найму воинов в киберлесе
-      setHireLimitCount(hireLimitCount - 1);
-      // Информируем игрока, что воин успешно нанят
-      window.alert(`Игрок ${currentPlayerType} нанял ${warrior.type}`);
-      break;
+        break;
 
-    case PhaseType.Attack:
-      window.alert(
-        `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
-      );
-      break;
+      case PhaseType.Defense:
+        window.alert(
+          `Игрок ${currentPlayerType}, выберите пожалуйста, какой из ваших воинов в зоне боя защищается первый`
+        );
+        break;
 
-    case PhaseType.Defense:
-      window.alert(
-        `Игрок ${currentPlayerType}, выберите пожалуйста, какой из ваших воинов в зоне боя защищается первый`
-      );
-      break;
-
-    default:
+      default:
     }
+    /* eslint-enable indent */
   };
   return (
     <div className={styles.wrap}>

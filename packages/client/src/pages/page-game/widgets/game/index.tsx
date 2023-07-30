@@ -96,7 +96,6 @@ export const Game: FC<GameProps> = ({
       });
     }
   };
-  console.log("canvas");
   return (
     <div className={styles.play_area_wrap}>
       <canvas
