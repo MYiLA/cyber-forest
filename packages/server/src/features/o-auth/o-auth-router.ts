@@ -8,8 +8,14 @@ oAuthRouter.post(
   '/yandex',
   async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-      const response = await OAuthController.yandex(req.body)
-      return res.send(response)
+      const authCookie = await OAuthController.yandex(req.body)
+      res.cookie('authCookie', authCookie, {
+        expires: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000),
+        httpOnly: true,
+        sameSite: 'none',
+        secure: true,
+      })
+      return res.send({ authCookie })
     } catch (e) {
       return next(e)
     }
