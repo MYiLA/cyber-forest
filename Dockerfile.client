@@ -1,6 +1,6 @@
 ARG CLIENT_PORT=3000
 
-FROM node:18-alpine
+FROM node:18
 
 WORKDIR /app
 
