@@ -1,5 +1,5 @@
-import { FormEvent, Fragment } from "react";
-import { Navigate, NavLink } from "react-router-dom";
+import { FormEvent, Fragment, useEffect } from "react";
+import { Navigate, NavLink, useParams } from "react-router-dom";
 import { Fields, Validators, useForm } from "@hooks/use-form";
 import { UserLogin } from "@config/user-types";
 import { DialogWindow } from "@ui/dialog-window/dialog-window";
@@ -9,6 +9,7 @@ import { PATH } from "@config/constants";
 import { useSelector } from "react-redux";
 import { RootState } from "@store/store";
 import { useAuth } from "@hooks/use-auth";
+// import ya from "@images/yandex.svg"
 import styles from "./page-login.module.scss";
 
 const validators: Validators = {
@@ -32,11 +33,19 @@ const initialForm: Fields = {
 function PageLogin() {
   const getUserState = (store: RootState) => store.user;
   const { authorized } = useSelector(getUserState);
+  const { code } = useParams();
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators);
 
   const { toLogin, error } = useAuth();
+
+  useEffect(() => {
+    if (code) {
+      console.log(code);
+    }
+    console.log(code);
+  });
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -88,6 +97,15 @@ function PageLogin() {
                   <NavLink to={PATH.REGISTER}>Зарегистрироваться</NavLink>
                 </div>
               </form>
+              <a
+                className={styles.oauth_btn}
+                href={`https://oauth.yandex.ru/authorize?response_type=code&client_id=b78539a1fbf841339d5d675c7f64f954${
+                  process.env.NODE_ENV === "development" &&
+                  "&redirect_uri=http://localhost:3000/login"
+                }`}
+              >
+                <span>Войти с Яндeкс ID</span>
+              </a>
               {error && <div className={styles.error}>{error}</div>}
             </div>
           </DialogWindow>

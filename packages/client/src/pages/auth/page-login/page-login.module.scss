@@ -20,7 +20,7 @@
     .form_buttons {
       margin-top: 40px;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
 
@@ -29,5 +29,44 @@
       color: $color-error;
       text-align: center;
     }
+  }
+
+  .oauth_btn {
+    margin-top: 20px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+
+    display: flex;
+    align-items: center;
+
+    span {
+      color: #FFF;
+      font-family: "New Zelek";
+      font-size: 14px;
+      font-style: normal;
+
+      text-transform: uppercase;
+
+      &:hover {
+        text-shadow: #DFADFF 1px 0 10px;;
+      }
+    }
+
+    &_img {
+      display: block;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+
+      margin-left: 15px;
+
+      background: transparent;
+      border: 1px solid $color-white;
+
+      z-index: 1000;
+    }
+
   }
 }
