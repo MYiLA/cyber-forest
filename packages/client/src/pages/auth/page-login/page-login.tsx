@@ -1,5 +1,5 @@
-import { FormEvent, Fragment, useEffect } from "react";
-import { Navigate, NavLink, useParams } from "react-router-dom";
+import { FormEvent, useEffect } from "react";
+import { Navigate, NavLink, useSearchParams } from "react-router-dom";
 import { Fields, Validators, useForm } from "@hooks/use-form";
 import { UserLogin } from "@config/user-types";
 import { DialogWindow } from "@ui/dialog-window/dialog-window";
@@ -33,7 +33,10 @@ const initialForm: Fields = {
 function PageLogin() {
   const getUserState = (store: RootState) => store.user;
   const { authorized } = useSelector(getUserState);
-  const { code } = useParams();
+
+  const [searchParams] = useSearchParams();
+  // в code будет либо код, либо null
+  const code = searchParams.get("code");
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators);
@@ -43,9 +46,10 @@ function PageLogin() {
   useEffect(() => {
     if (code) {
       console.log(code);
+    } else {
+      console.log("no code");
     }
-    console.log(code);
-  });
+  }, [code]);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();

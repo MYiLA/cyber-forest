@@ -54,11 +54,6 @@ const routes = [
     protected: true,
   },
   {
-    path: PATH.OAUTH_LOGIN,
-    element: <PageLogin />,
-    layout: "blank",
-  },
-  {
     path: PATH.LOGIN,
     element: <PageLogin />,
     layout: "blank",
