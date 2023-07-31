@@ -1,5 +1,5 @@
-import { FormEvent, Fragment } from "react";
-import { Navigate, NavLink } from "react-router-dom";
+import { FormEvent, Fragment, useEffect } from "react";
+import { Navigate, NavLink, useSearchParams } from "react-router-dom";
 import { Fields, Validators, useForm } from "@hooks/use-form";
 import { UserLogin } from "@config/user-types";
 import { DialogWindow } from "@ui/dialog-window/dialog-window";
@@ -32,11 +32,19 @@ const initialForm: Fields = {
 function PageLogin() {
   const getUserState = (store: RootState) => store.user;
   const { authorized } = useSelector(getUserState);
+  const [searchParams] = useSearchParams();
+  const code = searchParams.get("code");
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
     useForm(initialForm, validators);
 
-  const { toLogin, error } = useAuth();
+  const { toLogin, error, toOauthLogin } = useAuth();
+
+  useEffect(() => {
+    if (code) {
+      toOauthLogin(+code);
+    }
+  }, [code]);
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -44,6 +52,10 @@ function PageLogin() {
       toLogin(form as UserLogin);
     }
   };
+
+  if (code && !authorized) {
+    return null;
+  }
 
   return (
     <>
