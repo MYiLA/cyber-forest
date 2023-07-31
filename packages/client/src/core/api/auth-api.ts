@@ -44,6 +44,10 @@ class AuthApi extends HttpTransport {
   public userRegister(data: UserRegister) {
     return this._axios.post(API_AUTH.USER_REGISTER, data);
   }
+
+  public userOauthLogin(code: number) {
+    return this._axios.post(API_AUTH.USER_OAUTH_LOGIN, { code });
+  }
 }
 
 export default new AuthApi();

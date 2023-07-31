@@ -12,6 +12,10 @@ export const userLogin = createAsyncThunk("user/login", (data: UserLogin) =>
   ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
 );
 
+export const userOauthLogin = createAsyncThunk("user/oauth", (code: number) => {
+  ApiAuth.userOauthLogin(code).then(() => ApiAuth.userGetInfo());
+});
+
 export const userLogout = createAsyncThunk("user/logout", () =>
   ApiAuth.userLogout()
 );
@@ -124,6 +128,12 @@ export const userSlice = createSlice({
           authChecked: true,
         };
       })
+      /** Oauth авторизация */
+      .addCase(userOauthLogin.fulfilled, (state) => ({
+        ...state,
+        loading: false,
+        authorized: true,
+      }))
 
       /** Выход пользователя */
       .addCase(userLogout.pending, (state) => {
@@ -150,6 +160,7 @@ export const userSlice = createSlice({
         authChecked: true,
       }))
       .addCase(userGetInfo.fulfilled, (state, action) => {
+        console.log(action, "get info");
         if (typeof localStorage !== "undefined") {
           localStorage.setItem("userData", JSON.stringify(action.payload.data));
         }

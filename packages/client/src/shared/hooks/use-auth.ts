@@ -9,6 +9,7 @@ import {
   userLogout,
   userRegister,
   resetError,
+  userOauthLogin,
 } from "@store/reducers/user-reducer";
 import { UserLogin, UserRegister } from "@config/user-types";
 
@@ -60,6 +61,13 @@ export const useAuth = () => {
     [needRedirect, dispatch]
   );
 
+  const toOauthLogin = useCallback(
+    (code: number) => {
+      dispatch(userOauthLogin(code));
+    },
+    [needRedirect, dispatch]
+  );
+
   return {
     error,
     authorized,
@@ -68,5 +76,6 @@ export const useAuth = () => {
     toLogout,
     checkAuth,
     authChecked,
+    toOauthLogin,
   };
 };
