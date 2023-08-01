@@ -65,7 +65,7 @@ export const useAuth = () => {
     (code: number) => {
       dispatch(userOauthLogin(code));
     },
-    [needRedirect, dispatch]
+    [dispatch]
   );
 
   return {

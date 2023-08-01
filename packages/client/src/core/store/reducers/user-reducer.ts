@@ -12,9 +12,9 @@ export const userLogin = createAsyncThunk("user/login", (data: UserLogin) =>
   ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
 );
 
-export const userOauthLogin = createAsyncThunk("user/oauth", (code: number) => {
-  ApiAuth.userOauthLogin(code).then(() => ApiAuth.userGetInfo());
-});
+export const userOauthLogin = createAsyncThunk("user/oauth", (code: number) =>
+  ApiAuth.userOauthLogin(code).then(() => ApiAuth.userGetInfo())
+);
 
 export const userLogout = createAsyncThunk("user/logout", () =>
   ApiAuth.userLogout()
@@ -128,12 +128,24 @@ export const userSlice = createSlice({
           authChecked: true,
         };
       })
+
       /** Oauth авторизация */
-      .addCase(userOauthLogin.fulfilled, (state) => ({
+      .addCase(userOauthLogin.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userOauthLogin.rejected, (state, action) => ({
         ...state,
-        loading: false,
-        authorized: true,
+        error: action.error.message as string,
       }))
+      .addCase(userOauthLogin.fulfilled, (state, action) => {
+        if (typeof localStorage !== "undefined") {
+          localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        }
+        return {
+          ...initialState,
+          user: action.payload.data,
+          authorized: true,
+          authChecked: true,
+        };
+      })
 
       /** Выход пользователя */
       .addCase(userLogout.pending, (state) => {

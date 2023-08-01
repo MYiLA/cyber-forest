@@ -43,7 +43,7 @@ function PageLogin() {
 
   useEffect(() => {
     if (code) {
-      toOauthLogin(Number(code));
+      toOauthLogin(+code);
     }
   }, [code]);
 
@@ -53,6 +53,10 @@ function PageLogin() {
       toLogin(form as UserLogin);
     }
   };
+
+  if (code && !authorized) {
+    return null;
+  }
 
   return (
     <>
