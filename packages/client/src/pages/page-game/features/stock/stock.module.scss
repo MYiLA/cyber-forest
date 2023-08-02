@@ -2,6 +2,8 @@
 
 .stock {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   padding-left: 12px;
   padding-top: 8px;
   padding-right: 0;
@@ -9,6 +11,7 @@
 }
 
 .list {
+  flex-grow: 1;
   width: 100%;
   height: 90px;
   overflow-y: scroll;
@@ -36,4 +39,10 @@
   margin-left: 7px;
   font-family: $font-accent;
   font-size: 14px;
+}
+
+.stock.offline {
+  .list {
+    height: 258px;
+  }
 }

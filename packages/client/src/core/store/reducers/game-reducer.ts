@@ -1,6 +1,7 @@
 import { getAccessHireWarriors } from "@shared/utils/get-access-hire-warriors";
 import {
   DEFAULT_SETTING,
+  GameType,
   PhaseType,
   PlayerType,
 } from "@pages/page-game/widgets/game/constants";
@@ -9,6 +10,8 @@ import { AccessHireWarrior } from "@shared/type";
 import { getRandomIntegerInRange } from "@shared/utils/get-random-integer-in-range";
 
 const initialState: {
+  /** Тип игры. По-умолчанию оффлайн */
+  gameType: GameType;
   /** Тип игрока, который сейчас ходит */
   currentPlayerType: PlayerType;
   /** Энергия игрока, который сейчас ходит */
@@ -28,6 +31,7 @@ const initialState: {
   accessHireWarriors: [],
   maxGlory: 25,
   loading: false,
+  gameType: GameType.Offline,
 };
 
 export const gameSlice = createSlice({
@@ -93,9 +97,9 @@ export const gameSlice = createSlice({
         accessHireWarriors: state.accessHireWarriors.map((item) =>
           item.type === type
             ? {
-              type: item.type,
-              count: item.count + count,
-            }
+                type: item.type,
+                count: item.count + count,
+              }
             : item
         ),
       };
@@ -112,9 +116,9 @@ export const gameSlice = createSlice({
         accessHireWarriors: state.accessHireWarriors.map((item) =>
           item.type === type
             ? {
-              type: item.type,
-              count: item.count - count,
-            }
+                type: item.type,
+                count: item.count - count,
+              }
             : item
         ),
       };

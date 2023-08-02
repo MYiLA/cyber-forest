@@ -30,8 +30,7 @@ describe("Test Game engine", () => {
     expect(screen.getByText("Киберлес")).toBeDefined();
     expect(screen.getByText("Хроника")).toBeDefined();
     expect(screen.getByText("Инвентарь")).toBeDefined();
-    expect(screen.getByText("Чат")).toBeDefined();
-    expect(screen.getByText("Гайд")).toBeDefined();
+    expect(screen.getByText("Справка")).toBeDefined();
     expect(screen.getByText("Готово")).toBeDefined();
     expect(screen.getByText("Сдаться")).toBeDefined();
   });

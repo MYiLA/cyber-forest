@@ -36,6 +36,7 @@ const PageGame = () => {
     currentPlayerEnergy,
     maxGlory,
     loading,
+    gameType,
   } = useSelector(getGameState);
 
   const gameState = useSelector(getPlayersState);
@@ -653,6 +654,7 @@ const PageGame = () => {
             <GameInterface
               players={Object.values(gameState)}
               currentPlayer={currentPlayer}
+              gameType={gameType}
               onChoosingCube={onChoosingStockCube}
               onDone={onDone}
             />

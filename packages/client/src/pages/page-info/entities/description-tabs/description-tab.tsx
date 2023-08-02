@@ -18,7 +18,7 @@ export function DescriptionGameTab() {
         вашим руководством в бою сойдутся модифицированные звери киберлеса.
       </div>
       <div className={styles.description} style={{ marginTop: "10px" }}>
-        Гайд по игре можно найти в основном меню - лобби, доступном после
+        Справочник по игре можно найти в основном меню - лобби, доступном после
         регистрации.
       </div>
       <div className={styles.description_cards}>
