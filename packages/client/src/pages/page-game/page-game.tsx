@@ -14,6 +14,7 @@ import { WinnerScreen } from "@pages/page-game/screen";
 import { useNavigate } from "react-router-dom";
 import { PATH } from "@config/constants";
 import { addUserScore } from "@store/reducers/leaderboard-reducer";
+import { notifyUser } from "@shared/utils/notification";
 import { getNextPlayerType } from "./utils/get-next-player-type";
 import { ChoosingAreaCubeFunction, Dice, Player } from "./type";
 import { DiceSide } from "./widgets/game/type";
@@ -71,7 +72,7 @@ const PageGame = () => {
     /** Обновляем количество игроков */
     setPlayersCount(Object.keys(gameState).length);
     // Информируем игрока, что ход перешёл к следующему
-    window.alert(`Ход переходит к игроку ${nextPlayer}`);
+    notifyUser(`Ход переходит к игроку ${nextPlayer}`);
   };
 
   // TODO: временно работает с таймером, чтобы показать, что есть анимация загрузки
@@ -406,17 +407,15 @@ const PageGame = () => {
   const onChoosingStockCube = (side: DiceSide, id: string) => {
     if (currentPhase === PhaseType.PreparationAndHiring) {
       // Если игрок кликнул на инвентарь в фазе подготовки, информируем игрока
-      window.alert(`
-        На этом ходу больше нельзя тянуть кубики из инвентаря. 
-        Вызовите воинов на бой в зоне подготовки или наймите нового в киберлесе
-      `);
+      notifyUser(`На этом ходу больше нельзя тянуть кубики`);
+      notifyUser(`Вызовите воинов на бой или наймите новых`);
     }
     // Выбор кубика из инвентаря доступен только на фазе инвентаря
     if (currentPhase !== PhaseType.Stock || !currentPlayer) return;
 
     // Информируем игрока, что лимит выбора кубиков исчерпан
     if (stockCubeLimitCount === 0) {
-      window.alert("На этом ходу больше нельзя тянуть кубики из инвентаря");
+      notifyUser("На этом ходу больше нельзя тянуть кубики.");
       return;
     }
 
@@ -461,12 +460,12 @@ const PageGame = () => {
     /* eslint-disable indent */
     switch (currentPhase) {
       case PhaseType.Waiting:
-        window.alert("Нужно подождать окончания анимации или другого игрока");
+        notifyUser("Нужно подождать окончания анимации или другого игрока");
         break;
 
       case PhaseType.Stock:
-        window.alert(
-          `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
+        notifyUser(
+          `Осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
         );
         break;
 
@@ -480,13 +479,13 @@ const PageGame = () => {
         ) {
           // Если данный кубик не воин, то информируем игрока
           if (!isWarriorDiceSide(side)) {
-            window.alert(`Вызвать на поле боя можно только воина`);
+            notifyUser(`Вызвать на поле боя можно только воина`);
             return;
           }
           // Если игроку не хватает энергии для вызова воина, то информируем игрока
           if (side.level > currentPlayerEnergy) {
-            window.alert(
-              `Не хватает энергии для вызова на бой данного существа. У вас ${currentPlayerEnergy} а необходимо ${side.level}`
+            notifyUser(
+              `Не хватает энергии для вызова на бой данного существа.`
             );
             return;
           }
@@ -515,9 +514,7 @@ const PageGame = () => {
         break;
 
       case PhaseType.Attack:
-        window.alert(
-          `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
-        );
+        notifyUser(`Подождите, пожалуйста, пока ваши воины атакуют`);
         break;
 
       case PhaseType.Defense:
@@ -538,14 +535,12 @@ const PageGame = () => {
     /* eslint-disable indent */
     switch (currentPhase) {
       case PhaseType.Waiting:
-        window.alert(
-          `Игрок ${currentPlayerType}, нужно подождать окончания анимации или другого игрока`
-        );
+        notifyUser(`Подождите окончания анимации или другого игрока`);
         break;
 
       case PhaseType.Stock:
-        window.alert(
-          `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
+        notifyUser(
+          `Осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
         );
         break;
 
@@ -555,15 +550,11 @@ const PageGame = () => {
         break;
 
       case PhaseType.Attack:
-        window.alert(
-          `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
-        );
+        notifyUser(`Подождите, пожалуйста, пока ваши воины атакуют`);
         break;
 
       case PhaseType.Defense:
-        window.alert(
-          `Игрок ${currentPlayerType}, выберите, какой из ваших воинов в зоне боя защищается первый`
-        );
+        notifyUser(`Выберите, какой из ваших воинов защищается первым`);
         break;
 
       default:
@@ -581,12 +572,12 @@ const PageGame = () => {
     /* eslint-disable indent */
     switch (currentPhase) {
       case PhaseType.Waiting:
-        window.alert("Ждём окончания анимации или другого игрока");
+        notifyUser("Ждём окончания анимации или другого игрока");
         break;
 
       case PhaseType.Stock:
-        window.alert(
-          `Игрок ${currentPlayerType}, вам осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
+        notifyUser(
+          `Осталось выбрать в инвентаре ${stockCubeLimitCount} кубик(а)`
         );
         break;
 
@@ -594,16 +585,19 @@ const PageGame = () => {
         // Проверяем, исчерпан ли лимит по найму воинов в киберлесе
         if (hireLimitCount === 0) {
           // Если исчерпан - информируем об этом игрока
-          window.alert(
-            `За один ход в Киберлесе можно нанять только ${DEFAULT_SETTING.HIRE_LIMIT} воина(ов)`
+          notifyUser(
+            `За один ход можно нанять только ${DEFAULT_SETTING.HIRE_LIMIT} воина(ов)`
           );
           return;
         }
         // Проверяем, хватает ли игроку энергии на покупку
         if (currentPlayerEnergy < warrior.cost) {
           // Если не хватает - информируем игрока об этом
-          window.alert(
-            `Игрок ${currentPlayerType}, вам не хватает очков энергии. У вас ${currentPlayerEnergy} энергии, а на найм необходимо ${warrior.cost}`
+          notifyUser(
+            `Игрок ${currentPlayerType}, вам не хватает очков энергии.`
+          );
+          notifyUser(
+            `У вас ${currentPlayerEnergy} энергии, а на найм необходимо ${warrior.cost}`
           );
           return;
         }
@@ -631,18 +625,16 @@ const PageGame = () => {
         // Уменьшаем лимит по найму воинов в киберлесе
         setHireLimitCount(hireLimitCount - 1);
         // Информируем игрока, что воин успешно нанят
-        window.alert(`Игрок ${currentPlayerType} нанял ${warrior.type}`);
+        notifyUser(`Игрок ${currentPlayerType} нанял ${warrior.type}`);
         break;
 
       case PhaseType.Attack:
-        window.alert(
-          `Игрок ${currentPlayerType}, подождите пожалуйста, пока ваши воины атакуют`
-        );
+        notifyUser(`Подождите, пожалуйста, пока ваши воины атакуют`);
         break;
 
       case PhaseType.Defense:
-        window.alert(
-          `Игрок ${currentPlayerType}, выберите пожалуйста, какой из ваших воинов в зоне боя защищается первый`
+        notifyUser(
+          `Выберите, какой из ваших воинов в зоне боя защищается первым`
         );
         break;
 

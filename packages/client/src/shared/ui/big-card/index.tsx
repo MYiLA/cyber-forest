@@ -2,6 +2,7 @@ import cn from "classnames";
 import { Dice } from "@pages/page-game/type";
 import { createDice } from "@pages/page-game/utils/create-dice";
 import { getRandomElement } from "@shared/utils/get-random-element";
+import { notifyUser } from "@shared/utils/notification";
 import styles from "./big-card.module.scss";
 import { MainButton } from "../main-button/main-button";
 import { DiceSideComponent } from "../dice-side";
@@ -23,9 +24,8 @@ export function BigCard({ dice, onHire, limit }: BigCardProps) {
     if (limit !== undefined && limit === 0) {
       // TODO: Временно информирование игрока по фазам сделано через алерты.
       // В будущем это будет визуализировано интуитивно понятными анимациями, дизейблами и тултипами
-      window.alert(
-        `Воинов типа ${dice.type} не осталось в киберлесе. НО вы можете нанять других воинов`
-      );
+      notifyUser(`Воинов типа ${dice.type} не осталось в киберлесе`);
+      notifyUser(`Вы можете нанять других воинов`);
       return;
     }
     // Генерация кубика воина с индивидуальным id
