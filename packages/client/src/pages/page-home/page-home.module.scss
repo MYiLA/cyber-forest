@@ -86,12 +86,50 @@
   .sub_nav_link {
     display: block;
 
-    font-size: 30px;
+    font-size: 17px;
     font-family: $font-main;
     font-weight: 500;
     opacity: 0.7;
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
     &:hover {
       opacity: 1;
     }
+  }
+
+  .oauth_btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+
+    display: flex;
+    align-items: center;
+   color: #FFF;
+    font-family: "New Zelek";
+    font-size: 24px;
+    font-style: normal;
+
+    text-transform: uppercase;
+
+    &:hover {
+      text-shadow: #DFADFF 1px 0 10px;;
+    }
+
+    &_img {
+      display: block;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+
+      margin-left: 15px;
+
+      background: transparent;
+      border: 1px solid $color-white;
+
+      z-index: 1000;
+    }
+
   }
 }

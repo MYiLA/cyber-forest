@@ -10268,9 +10268,9 @@ svg-parser@^2.0.4:
   integrity sha512-e4hG1hRwoOdRb37cIMSgzNsxyzKfayW6VOflrwvR+/bzrkyxY/31WkbgnQpgtrNp1SdpJvpUAGTa/ZoiPNDuRQ==
 
 swagger-ui-dist@>=5.0.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-5.3.0.tgz#5ebed7b8b4c17cfd81b6e667761a50f0f8f07aa6"
-  integrity sha512-v4+Lw9cCCPSWqg34lOxzoq3DwCkZcPrUq/m35g/4KN8lFlr9wsRGkdFBjhO87dH63xz0k36lpa/B9SEF50ia+Q==
+  version "5.3.1"
+  resolved "https://registry.yarnpkg.com/swagger-ui-dist/-/swagger-ui-dist-5.3.1.tgz#ae76a74136152d790b06a8b71ca389cac35ab78f"
+  integrity sha512-El78OvXp9zMasfPrshtkW1CRx8AugAKoZuGGOTW+8llJzOV1RtDJYqQRz/6+2OakjeWWnZuRlN2Qj1Y0ilux3w==
 
 swagger-ui-express@^5.0.0:
   version "5.0.0"

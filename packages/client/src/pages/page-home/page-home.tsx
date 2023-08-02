@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { PATH, Theme } from "@config/constants";
+import { OAUTH_URL, PATH, Theme } from "@config/constants";
 import cn from "classnames";
 import { useTheme } from "@hooks/use-theme";
 import styles from "./page-home.module.scss";
@@ -38,6 +38,10 @@ function PageHome() {
           Регистрация{" "}
         </NavLink>
       </div>
+      <NavLink className={styles.oauth_btn} to={OAUTH_URL}>
+        Войти с Яндeкс ID
+      </NavLink>
+
       <NavLink to={PATH.ABOUT} className={styles.sub_nav_link}>
         {" "}
         Подробнее об игре{" "}

@@ -12,6 +12,10 @@ export const userLogin = createAsyncThunk("user/login", (data: UserLogin) =>
   ApiAuth.userLogin(data).then(() => ApiAuth.userGetInfo())
 );
 
+export const userOauthLogin = createAsyncThunk("user/oauth", (code: number) =>
+  ApiAuth.userOauthLogin(code).then(() => ApiAuth.userGetInfo())
+);
+
 export const userLogout = createAsyncThunk("user/logout", () =>
   ApiAuth.userLogout()
 );
@@ -97,7 +101,6 @@ export const userSlice = createSlice({
         error: action.error.message as string,
       }))
       /** Смена пароля */
-
       .addCase(userChangePassword.pending, (state) => ({
         ...state,
         loading: true,
@@ -115,6 +118,24 @@ export const userSlice = createSlice({
       }))
       .addCase(userLogin.fulfilled, (state, action) => {
         if (typeof localStorage !== "undefined") {
+          localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        }
+        return {
+          ...initialState,
+          user: action.payload.data,
+          authorized: true,
+          authChecked: true,
+        };
+      })
+
+      /** Oauth авторизация */
+      .addCase(userOauthLogin.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userOauthLogin.rejected, (state, action) => ({
+        ...state,
+        error: action.error.message as string,
+      }))
+      .addCase(userOauthLogin.fulfilled, (state, action) => {
+        if (localStorage) {
           localStorage.setItem("userData", JSON.stringify(action.payload.data));
         }
         return {
