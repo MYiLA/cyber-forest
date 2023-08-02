@@ -20,11 +20,11 @@
 		},
 		"tags": [{
 			"name": "Auth",
-			"description": "Авторизация"
+			"description": "Авторизации"
 		},{
 			"name": "OAuth",
 			"description": "OAuth авторизация"
-		},{
+		}, {
 			"name": "Users",
 			"description": "Пользователь"
 		},{
@@ -45,12 +45,10 @@
 		},{
 			"name": "Forum.Reaction",
 			"description": "Реакции (лайки) на комментарии / ответы"
-		}],
-		"responses": {
-			"204": {
-				"description": "sdfsdfgdfg"
-			}
-		}
+		},{
+			"name": "Forum.Emoji",
+			"description": "Эмодзи на темы форума (топики)"
+		}]
 	},
 	"routes": {
 		"routesDir": "swagger"

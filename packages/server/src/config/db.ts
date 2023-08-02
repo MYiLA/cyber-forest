@@ -10,6 +10,7 @@ import {
   ReactionReply,
 } from '../features/forum/reaction/reaction-models'
 import { YandexToken } from '../features/o-auth/oauth-models'
+import { Emoji } from '../features/forum/emoji/emoji-model'
 
 const isProduction = process.env.NODE_ENV === 'production'
 
@@ -44,6 +45,7 @@ const db = new Sequelize({
     ReactionComment,
     ReactionReply,
     YandexToken,
+    Emoji,
   ],
 })
 

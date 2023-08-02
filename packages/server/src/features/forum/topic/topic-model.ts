@@ -11,6 +11,7 @@ import {
 } from 'sequelize-typescript'
 import { Comment } from '../comment/comment-model'
 import { AuthorDto, User } from '../../user/user-model'
+import { Emoji, EmojiDto } from '../emoji/emoji-model'
 
 export interface TopicCreateRequest {
   readonly title: string
@@ -33,12 +34,13 @@ export interface TopicDto {
   readonly userId?: number
   readonly author?: AuthorDto
   readonly commentsQty?: number
+  readonly emojis: EmojiDto[]
   readonly createdAt?: Date
   readonly updatedAt?: Date
 }
 
 @DefaultScope(() => ({
-  include: [User.scope('author')],
+  include: [User.scope('author'), Emoji],
   attributes: {
     include: [
       [
@@ -67,4 +69,7 @@ export class Topic extends Model<Topic, Partial<TopicDto>> {
 
   @HasMany(() => Comment)
   declare comments: Comment[]
+
+  @HasMany(() => Emoji)
+  declare emojis: EmojiDto[]
 }
