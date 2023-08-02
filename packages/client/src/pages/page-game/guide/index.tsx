@@ -22,7 +22,7 @@ export function Guide({ OpenComponent }: Props) {
     <OpenComponent onClick={handleOpen} />
   ) : (
     <button className={styles.how_to_play_button} onClick={handleOpen}>
-      Как играть?
+      Справочник
     </button>
   );
 

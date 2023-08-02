@@ -24,7 +24,7 @@ type OpenBtnProps = {
 };
 const OpenGuideButton = ({ onClick }: OpenBtnProps) => (
   <MainButton className={styles.button_link} onClick={onClick}>
-    Как играть ?
+    Справочник по игре
   </MainButton>
 );
 
@@ -150,15 +150,6 @@ export const PageLobby = () => {
             <img src={settings} alt="настройки" />
           </NavLink>
         </div>
-        <NavLink
-          to={PATH.ABOUT}
-          className={cn(styles.user_link, {
-            [styles.purpur]: themeName === Theme.Purple,
-            [styles.neon]: themeName === Theme.Neon,
-          })}
-        >
-          информация об игре
-        </NavLink>
         <Guide OpenComponent={OpenGuideButton} />
         {/* TODO: пока не реализованы страницы, добавить по мере реализации */}
         {/* <a */}
@@ -178,6 +169,16 @@ export const PageLobby = () => {
             }}
           />
         ) : null}
+
+        <NavLink
+          to={PATH.ABOUT}
+          className={cn(styles.user_link, {
+            [styles.purpur]: themeName === Theme.Purple,
+            [styles.neon]: themeName === Theme.Neon,
+          })}
+        >
+          О разработчиках
+        </NavLink>
       </section>
       {newTopicForm && newTopic && (
         <NewTopicForm title={newTopic} onClose={onNewTopicClose} />

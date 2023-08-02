@@ -3,6 +3,7 @@
 
 .interface {
   max-width: 1330px;
+  max-height: 300px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -31,9 +32,12 @@
 
 .interactive_wrap {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .stock_wrap {
+  flex-grow: 1;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -48,5 +52,9 @@
 
   &::after {
     @include angle-bottom-right;
+  }
+
+  &.offline {
+    margin-bottom: 0;
   }
 }

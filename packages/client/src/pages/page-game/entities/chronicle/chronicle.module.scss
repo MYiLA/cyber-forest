@@ -7,7 +7,7 @@
   position: relative;
   width: 100%;
   background: $game-gradient;
-  padding: 20px;
+  padding: 8px 21px;
 
   &::before {
     @include background-img-position;
@@ -33,9 +33,9 @@
 }
 
 .messages_list {
-  height: 178px;
+  height: 200px;
   margin: 0;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   padding: 0;
   padding-right: 6px;
   list-style: none;

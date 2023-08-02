@@ -1,4 +1,4 @@
-import styles from "./game-interface.module.scss";
+import cn from "classnames";
 
 import { Player } from "../../type";
 import { GloryCounter } from "../../entities/glory-counter";
@@ -8,11 +8,14 @@ import { Stock } from "../../features/stock";
 import { Control } from "../../features/control";
 import { Chat } from "../../features/chat";
 import { DiceSide } from "../game/type";
-import { AreaType } from "../game/constants";
+import { AreaType, GameType } from "../game/constants";
+
+import styles from "./game-interface.module.scss";
 
 type GameInterfaceProp = {
   players: (Player | null)[];
   currentPlayer: Player;
+  gameType: GameType;
   onChoosingCube?: (side: DiceSide, id: string) => void;
   onDone?: () => void;
 };
@@ -22,6 +25,7 @@ export function GameInterface({
   currentPlayer,
   onChoosingCube,
   onDone,
+  gameType,
 }: GameInterfaceProp) {
   return (
     <div className={styles.interface}>
@@ -43,20 +47,25 @@ export function GameInterface({
                 )
             )}
           </ul>
-          <TimeCounter />
+          {gameType === GameType.Online && <TimeCounter />}
         </div>
         <Chronicle />
       </div>
 
       <div className={styles.interactive_wrap}>
-        <div className={styles.stock_wrap}>
+        <div
+          className={cn(styles.stock_wrap, {
+            [styles.offline]: gameType === GameType.Offline,
+          })}
+        >
           <Stock
             dices={currentPlayer[AreaType.Stock]}
             onChoosingCubeProp={onChoosingCube}
+            gameType={gameType}
           />
           <Control onDone={onDone} />
         </div>
-        <Chat />
+        {gameType === GameType.Online && <Chat />}
       </div>
     </div>
   );

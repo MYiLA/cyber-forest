@@ -13,7 +13,7 @@ type OpenButtonProps = {
 };
 const OpenGuideButton = ({ onClick }: OpenButtonProps) => (
   <MainButton type="button" onClick={onClick} className={styles.guide_btn}>
-    Гайд
+    Справка
   </MainButton>
 );
 
@@ -42,14 +42,16 @@ export const Control = ({ onDone }: ControlProps) => {
         data-testid="ready"
         type="button"
         className={styles.btn}
-        onClick={onDoneHandler}>
+        onClick={onDoneHandler}
+      >
         Готово
       </MainButton>
       <MainButton
         data-testid="loose"
         type="button"
         className={styles.btn}
-        onClick={handleLoose}>
+        onClick={handleLoose}
+      >
         Сдаться
       </MainButton>
       <Guide OpenComponent={OpenGuideButton} />
