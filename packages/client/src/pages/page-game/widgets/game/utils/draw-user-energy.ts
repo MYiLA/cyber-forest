@@ -19,6 +19,7 @@ export const drawUserEnergy = ({
   // Цвет и стиль текста
   ctx.fillStyle = "#FFF";
   ctx.textAlign = "right";
+  ctx.font = "14px New Zelek";
   // Отрисовка
   ctx.fillText(`Сила: ${energy}`, x, y);
 };

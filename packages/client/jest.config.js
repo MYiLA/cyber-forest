@@ -5,6 +5,7 @@ export default {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   testMatch: ["<rootDir>/src/__tests__/*.test.{ts,tsx}"],
+  setupFiles: ["jest-canvas-mock"],
   globals: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
