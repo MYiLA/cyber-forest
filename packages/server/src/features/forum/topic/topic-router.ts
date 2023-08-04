@@ -11,7 +11,7 @@ topicRouter.get(
   async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
       const { cursor, limit } = req.params
-      const response = await TopicController.getTopics(+cursor, +limit)
+      const response = await TopicController.getTopics(+cursor, +limit, req)
       return res.send(response)
     } catch (e) {
       return next(e)
