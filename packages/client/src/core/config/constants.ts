@@ -43,6 +43,7 @@ export const API_USER = {
 };
 
 export const OAUTH_URL = `https://oauth.yandex.ru/authorize?response_type=code&client_id=b78539a1fbf841339d5d675c7f64f954${
-  process.env.NODE_ENV === "development" &&
-  "&redirect_uri=http://localhost:3000/login"
+  process.env.NODE_ENV === "development"
+    ? "&redirect_uri=http://localhost:3000/login"
+    : ""
 }`;
