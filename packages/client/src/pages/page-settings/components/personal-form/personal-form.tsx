@@ -1,7 +1,7 @@
 import styles from "@pages/page-settings/page-settings.module.scss";
 import { MainInput } from "@ui/main-input/main-input";
 import classNames from "classnames";
-import { API_URL, Theme } from "@config/constants";
+import { API_RESOURCES, API_URL, Theme } from "@config/constants";
 import standardAvatar from "@images/no-avatar.jpg";
 import camera from "@images/camera.svg";
 import { useTheme } from "@hooks/use-theme";
@@ -20,6 +20,11 @@ const validators = {
     required: true,
     rule: /^[A-ZА-Я][a-zA-Zа-яА-Я-]+$/,
     message: "Только буквы или -, первая заглавная",
+  },
+  display_name: {
+    required: true,
+    rule: /^(?![\d+]+$)[a-zа-я0-9+_-]{3,20}$/gi,
+    message: "3-20 символов без пробелов",
   },
   email: {
     required: true,
@@ -92,7 +97,6 @@ export const PersonalForm: FC<User> = ({
         placeholder="Имя"
         defaultValue={form.first_name as string}
         onChange={onChange}
-        className={styles.personal_input}
         error={validate.first_name.error}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -102,7 +106,7 @@ export const PersonalForm: FC<User> = ({
         placeholder="фамилия"
         defaultValue={form.second_name as string}
         onChange={onChange}
-        className={styles.personal_input_reversed}
+        align="right"
         error={validate.second_name.error}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -112,7 +116,6 @@ export const PersonalForm: FC<User> = ({
         placeholder="почта"
         defaultValue={form.email as string}
         onChange={onChange}
-        className={styles.personal_input}
         error={validate.email.error}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -122,7 +125,7 @@ export const PersonalForm: FC<User> = ({
         placeholder="телефон"
         defaultValue={form.phone as string}
         onChange={onChange}
-        className={styles.personal_input_reversed}
+        align="right"
         error={validate.phone.error}
         onFocus={onFocus}
         onBlur={onBlur}
@@ -132,28 +135,28 @@ export const PersonalForm: FC<User> = ({
         placeholder="логин"
         defaultValue={form.login as string}
         onChange={onChange}
-        className={styles.personal_input}
         error={validate.login.error}
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      <div className={styles.personal_id}>
-        <span>{id}</span>
-        <h3
-          className={classNames({
-            [styles.personal_id_purple]: themeName === Theme.Purple,
-            [styles.personal_id_neon]: themeName !== Theme.Purple,
-          })}
-        >
-          Ваш ID
-        </h3>
-      </div>
+      <MainInput
+        name="display_name"
+        placeholder="Ник"
+        defaultValue={form.display_name as string}
+        onChange={onChange}
+        align="right"
+        error={validate.display_name.error}
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
       <div className={styles.personal_file}>
         <label className={styles.label}>
           <input type="file" onInput={onFileInput} />
           <figure className={styles.personal_figure}>
             <img
-              src={avatar ? `${API_URL}/resources${avatar}` : standardAvatar}
+              src={
+                avatar ? `${API_URL}/${API_RESOURCES}${avatar}` : standardAvatar
+              }
               className={styles.personal_avatar}
               alt="аватар"
             />
