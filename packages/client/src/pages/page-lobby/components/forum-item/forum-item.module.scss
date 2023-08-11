@@ -2,9 +2,12 @@
   position: relative;
 
   &_wrapper {
+    cursor: pointer;
+
     width: 100%;
     height: 115px;
-    cursor: default;
+
+    margin-top: 10px;
 
     display: flex;
     flex-direction: column;
@@ -71,6 +74,19 @@
     .message {
       font-size: 15px;
       font-weight: 500;
+    }
+  }
+
+  &_footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    &_btn {
+      cursor: pointer;
+      border: none;
+      background: transparent;
     }
   }
 

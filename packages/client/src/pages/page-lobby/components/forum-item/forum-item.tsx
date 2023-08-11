@@ -1,24 +1,45 @@
+import React from "react";
 import { API_URL, Theme } from "@config/constants";
 import emptyChat from "@images/chat-avatar.png";
 import { useTheme } from "@hooks/use-theme";
 import { dateFormatter } from "@utils/date-formatter";
-import { IChatData } from "@pages/page-lobby/types";
+import { ForumTopic } from "@config/forum-types";
 import cn from "classnames";
+import { useSelector } from "react-redux";
+import edit from "@images/edit.svg";
+import del from "@images/delete.svg";
+import { useForum } from "@hooks/use-forum";
 import styles from "./forum-item.module.scss";
 
-export const ForumItem: React.FC<IChatData> = ({
-  id,
-  title,
-  last_message,
+interface ForumItemProps {
+  topic: ForumTopic;
+  onClick: (data: ForumTopic) => void;
+  onEdit: ({
+    id,
+    title,
+    body,
+  }: {
+    id: number;
+    title: string;
+    body: string;
+  }) => void;
+}
+
+export const ForumItem: React.FC<ForumItemProps> = ({
+  topic,
   onClick,
+  onEdit,
 }) => {
+  const { id, title, body, updatedAt, commentsQty, author } = topic;
   const { themeName } = useTheme();
-  const userAvatar = last_message?.user.avatar
-    ? `${API_URL}/resources${last_message.user.avatar}`
+  const { toDeleteTopic } = useForum();
+  const { user } = useSelector((store: RootState) => store.user);
+  const userAvatar = author.avatar
+    ? `${API_URL}/resources${author.avatar}`
     : emptyChat;
 
   const handleBtnClick = () => {
-    onClick?.(id);
+    onClick?.(topic);
   };
 
   return (
@@ -27,23 +48,24 @@ export const ForumItem: React.FC<IChatData> = ({
         [styles.purpur]: themeName === Theme.Purple,
         [styles.neon]: themeName !== Theme.Purple,
       })}
+      onClick={handleBtnClick}
     >
       <div className={styles.forum_header}>
         <h3 className={styles.title}>{title}</h3>
-        {last_message ? (
-          <span className={styles.date}>
-            {dateFormatter(last_message.time)}
-          </span>
-        ) : null}
+        {updatedAt && (
+          <span className={styles.date}>{dateFormatter(updatedAt)}</span>
+        )}
       </div>
-      {last_message ? (
+      {body ? (
         <div className={styles.forum_body}>
           <img
             src={userAvatar}
             alt="аватар пользователя"
             className={styles.image}
           />
-          <span className={styles.message}>{last_message.content}</span>
+          <span className={styles.message}>
+            {body.length > 370 ? `${body.substring(0, 370)}...` : body}
+          </span>
         </div>
       ) : (
         <div className={styles.forum_body}>
@@ -53,9 +75,31 @@ export const ForumItem: React.FC<IChatData> = ({
           </span>
         </div>
       )}
-      <button className={styles.forum_open} onClick={handleBtnClick}>
-        Просмотр темы
-      </button>
+      <div className={styles.forum_footer}>
+        <span>количество комментариев: {commentsQty}</span>
+        {user?.id === author.id && (
+          <button
+            className={styles.forum_footer_btn}
+            onClick={(event) => {
+              event.stopPropagation();
+              onEdit({ id, title, body });
+            }}
+          >
+            <img src={edit} alt="иконка изменения" />
+          </button>
+        )}
+        {user?.id === author.id && (
+          <button
+            className={styles.forum_footer_btn}
+            onClick={async (event) => {
+              event.stopPropagation();
+              await toDeleteTopic(id);
+            }}
+          >
+            <img src={del} alt="иконка удаления" />
+          </button>
+        )}
+      </div>
     </div>
   );
 };

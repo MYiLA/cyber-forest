@@ -31,8 +31,8 @@
     &_wrapper {
       position: relative;
       display: block;
-      width: 830px;
-      height: 714px;
+      width: 70vw;
+      height: 90vh;
       margin: 5vh auto;
       border: 1px solid #ffffff;
 
@@ -75,8 +75,8 @@
 
   .topic {
     display: block;
-    width: 738px;
-    max-height: 555px;
+    width: 64vw;
+    height: 70vh;
     overflow-y: scroll;
     padding: 18px 24px;
     margin: 0 auto;
@@ -91,19 +91,42 @@
     }
 
     &_descr {
-      position: relative;
+      white-space: pre;
       color: #fff;
-      font-size: 15px;
-      font-family: Blender Pro;
+      font-size: 20px;
       font-weight: 500;
-      line-height: 100%;
 
-      &::after {
+      &_input {
+        white-space: normal;
+        width: 100%;
+        background: #FFFFFF20;
+        color: #FFFFFF;
+        font-size: 20px;
+      }
+
+      &_footer {
+        margin-top: 15px;
+        margin-left: 95%;
+
+        button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &_comments {
+      position: relative;
+      margin-top: 10px;
+      margin-left: 30px;
+
+      &::before {
         position: absolute;
-        bottom: -10px;
-        left: 10px;
+        top: -10px;
+        left: -10px;
         content: "";
-        width: 675px;
+        width: 60vw;
         height: 1px;
         background: #ffffff50;
       }
@@ -116,13 +139,19 @@
       font-weight: 500;
       line-height: 100%;
     }
+
     &_input {
-      //width: 200px;
+      position: relative;
+      width: 52vw;
       margin-top: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.19);
+      border-radius: 5px 0 0 5px;
+      margin-left: -30px;
     }
+
     &_comment {
       margin-top: 15px;
-      width: 150px;
+      width: 350px;
     }
   }
 }

@@ -1,4 +1,5 @@
 import { User } from "@config/user-types";
+import { ForumTopic } from "@config/forum-types";
 
 export interface IChatData {
   id: number;
@@ -32,8 +33,8 @@ export interface IActiveForumTopicMessages {
   };
 }
 
-export interface IActiveForumTopicProps {
-  id: number;
+export interface ActiveForumTopicProps {
+  data: ForumTopic;
   onClose: () => void;
 }
 export interface ITopicDetails {
