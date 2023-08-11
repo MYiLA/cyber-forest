@@ -8,8 +8,8 @@ import { useForm } from "@hooks/use-form";
 import { MainButton } from "@ui/main-button/main-button";
 import { useForum } from "@hooks/use-forum";
 import { TopicStructure } from "@config/forum-types";
-import styles from "./new-topic-form.module.scss";
 import { removeFormError, showFormError } from "@utils/show-form-error";
+import styles from "./new-topic-form.module.scss";
 
 type NewTopicFormProps = {
   title: string;

@@ -6,8 +6,8 @@ import { useForum } from "@hooks/use-forum";
 import { ReactionTarget } from "@config/forum-types";
 import { useForm } from "@hooks/use-form";
 import errorStyles from "@pages/page-lobby/components/new-topic-form/new-topic-form.module.scss";
-import styles from "./topic-input.module.scss";
 import { removeFormError, showFormError } from "@utils/show-form-error";
+import styles from "./topic-input.module.scss";
 
 type TopicInputProps = {
   inputName: string;
