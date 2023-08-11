@@ -14,7 +14,6 @@ import { oAuthRouter } from './features/o-auth/o-auth-router'
 export const apiRouter = Router()
 
 apiRouter.use(express.static('swagger'))
-apiRouter.use('/resources', AuthMiddleware, express.static('uploads'))
 
 apiRouter.use(
   '/docs',

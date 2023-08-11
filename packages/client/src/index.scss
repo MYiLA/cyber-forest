@@ -78,11 +78,13 @@ a:hover {
 .container-neon {
   height: 100vh;
   background-image: url(@images/bg-neon.jpg);
+  background-size: cover;
 }
 
 .container-purple {
   height: 100vh;
   background-image: url(@images/bg-purple.jpg);
+  background-size: cover;
 }
 
 .body-neon {

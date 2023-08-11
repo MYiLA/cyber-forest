@@ -34,14 +34,12 @@ export const userGetInfo = createAsyncThunk(
 
 export const userChangeData = createAsyncThunk(
   "user/profile",
-  (data: UserRegister) =>
-    UserApi.userChangeData(data).then(() => ApiAuth.userGetInfo())
+  (data: UserRegister) => UserApi.userChangeData(data)
 );
 
 export const userChangeAvatar = createAsyncThunk(
   "user/profile/avatar",
-  (data: { avatar: object }) =>
-    UserApi.userChangeAvatar(data).then(() => ApiAuth.userGetInfo())
+  (data: { avatar: object }) => UserApi.userChangeAvatar(data)
 );
 
 export const userChangePassword = createAsyncThunk(
@@ -74,12 +72,15 @@ export const userSlice = createSlice({
     builder
       /** Профиль пользователя */
       .addCase(userChangeData.pending, (state) => ({ ...state, loading: true }))
-      .addCase(userChangeData.fulfilled, (state, action) => ({
-        ...initialState,
-        user: action.payload.data,
-        authorized: true,
-        authChecked: true,
-      }))
+      .addCase(userChangeData.fulfilled, (state, action) => {
+        localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        return {
+          ...state,
+          user: action.payload.data,
+          authorized: true,
+          authChecked: true,
+        };
+      })
       .addCase(userChangeAvatar.rejected, (state, action) => ({
         ...state,
         error: action.error.message as string,
@@ -90,16 +91,20 @@ export const userSlice = createSlice({
         ...state,
         loading: true,
       }))
-      .addCase(userChangeAvatar.fulfilled, (state, action) => ({
-        ...initialState,
-        user: action.payload.data,
-        authorized: true,
-        authChecked: true,
-      }))
+      .addCase(userChangeAvatar.fulfilled, (state, action) => {
+        localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        return {
+          ...state,
+          user: action.payload.data,
+          authorized: true,
+          authChecked: true,
+        };
+      })
       .addCase(userChangeData.rejected, (state, action) => ({
         ...state,
         error: action.error.message as string,
       }))
+
       /** Смена пароля */
       .addCase(userChangePassword.pending, (state) => ({
         ...state,
