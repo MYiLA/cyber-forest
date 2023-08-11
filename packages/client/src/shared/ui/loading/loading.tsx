@@ -1,3 +1,11 @@
+import styles from "./Loading.module.scss";
+
 export function Loading() {
-  return <p>Loading...</p>;
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.spin}>
+        <div className={styles.inner} />
+      </div>
+    </div>
+  );
 }

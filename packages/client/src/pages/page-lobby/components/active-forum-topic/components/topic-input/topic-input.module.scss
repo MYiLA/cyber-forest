@@ -1,14 +1,18 @@
 .comment {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
-  height: 30px;
-  padding-top: 10px;
+  form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 30px;
+    padding-top: 15px;
+    margin-left: 40px;
+  }
 
   &_response {
-    display: none;
-    width: 500px;
+    display: block;
+    width: 350px;
     height: 26px;
     position: relative;
 
@@ -24,17 +28,34 @@
     &::placeholder {
       color: #ffffff70;
     }
+    &_large {
+      width: 450px;
+
+      &_neon {
+        background: #3fb7ea30;
+        border: 1px solid #3fb7ea;
+        border-radius: 2px;
+      }
+
+      &_purple {
+        background: #bb6aea10;
+        border: 1px solid #bb6aea;
+        border-radius: 2px;
+      }
+    }
 
     &_neon {
       background: #3fb7ea30;
+      border-bottom: 1px solid #3fb7ea;
     }
 
     &_purple {
-      background: #bb6aea33;
+      background: #bb6aea10;
+      border-bottom: 1px solid #bb6aea;
     }
 
     &.active {
-      display: block;
+      width: 450px;
     }
   }
 
