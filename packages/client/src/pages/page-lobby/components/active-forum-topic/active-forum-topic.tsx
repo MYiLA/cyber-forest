@@ -11,6 +11,10 @@ import { useSelector } from "react-redux";
 import { Loading } from "@ui/loading/loading";
 import { ForumTopic, ReactionTarget, TopicComments } from "@config/forum-types";
 import edit from "@images/edit.svg";
+import { EmojiType } from "@shared/type";
+import { EmojiSelect } from "@shared/ui/emoji-select";
+import { EmojiComponent } from "@shared/ui/emoji-component";
+import { getEmoji } from "@shared/utils/get-emoji";
 import styles from "./active-forum-topic.module.scss";
 
 export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
@@ -20,12 +24,16 @@ export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
   const [changing, setChanging] = useState(false);
 
   const { themeName } = useTheme();
-  const { toGetTopicsComments, toChangeTopic } = useForum();
+  const { toGetTopicsComments, toChangeTopic, toToggleTopicEmoji } = useForum();
   const { activeTopicComments, activeTopic } = useSelector(
     (store: RootState) => store.forum
   );
   const { user } = useSelector((store: RootState) => store.user);
   const [topicData, setTopicData] = useState<ForumTopic>(activeTopic ?? data);
+
+  const onEmojiToggle = (ev: EmojiType) => {
+    toToggleTopicEmoji({ emoji: ev.emoji, topicId: data.id });
+  };
 
   useEffect(() => {
     toGetTopicsComments({ id: data.id, cursor: 0 });
@@ -98,6 +106,24 @@ export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
               </button>
             </div>
           )}
+          <div className={styles.emoji_wrap}>
+            <EmojiSelect onSelect={onEmojiToggle} />
+            <ul className={styles.emoji_list}>
+              {data.emojis.map(({ emoji: emojiItem, reacted, qty }) => {
+                const activeClass = reacted ? styles.active : "";
+                const emoji = getEmoji(emojiItem);
+                return (
+                  <li
+                    key={emoji}
+                    className={cn(styles.emoji_item, activeClass)}
+                  >
+                    <EmojiComponent data={{ emoji }} onClick={onEmojiToggle} />
+                    <span className={styles.emoji_counter}>{qty}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
           <div className={styles.topic_comments}>
             {activeTopicComments &&
               activeTopicComments.length > 0 &&

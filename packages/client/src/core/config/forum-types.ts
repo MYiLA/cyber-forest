@@ -1,5 +1,11 @@
 import { User } from "@config/user-types";
 
+export type EmojiDTO = {
+  emoji: string,
+  qty: number,
+  reacted: true
+}
+
 export type ForumTopic = {
   id: number;
   title: string;
@@ -9,6 +15,7 @@ export type ForumTopic = {
   updatedAt: string;
   commentsQty: string;
   author: User;
+  emojis: EmojiDTO[];
 };
 
 export type TopicStructure = {

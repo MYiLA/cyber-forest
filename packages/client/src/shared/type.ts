@@ -1,3 +1,5 @@
+import { Emoji, EmojiPack } from "./constants";
+
 /** Типы кубиков */
 export enum DiceType {
   /** Волк */
@@ -61,3 +63,9 @@ export type AccessHireWarrior = {
   /** Количество воинов, доступных для найма. Меняется в процессе игры */
   count: number;
 };
+
+/** Эмоция */
+export type EmojiType = {
+  emoji: Emoji,
+  pack?: EmojiPack,
+}

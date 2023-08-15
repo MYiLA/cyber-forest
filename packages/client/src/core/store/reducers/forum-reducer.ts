@@ -6,6 +6,7 @@ import {
   TopicComments,
   TopicStructure,
 } from "@config/forum-types";
+import { API_FORUM } from "@core/config/constants";
 
 export const deleteTopic = createAsyncThunk(
   "forum/deleteTopic",
@@ -78,6 +79,12 @@ export const getTopicsComment = createAsyncThunk(
   "forum/comments",
   (data: { id: number; cursor: number }) =>
     ForumApi.getTopicComments(data.id, data.cursor)
+);
+
+export const toggleTopicEmoji = createAsyncThunk(
+  API_FORUM.ADD_TOPIC_EMOJI,
+  (data: { emoji: string; topicId: number }) =>
+    ForumApi.toggleTopicEmoji(data).then(() => ForumApi.getAllTopics(0))
 );
 
 const initialState: {
@@ -340,7 +347,41 @@ const ForumSlice = createSlice({
         loading: false,
         error: null,
         forum: action.payload.data,
-      }));
+      }))
+      .addCase(toggleTopicEmoji.pending, (state) => ({
+        ...state,
+        loading: true,
+        error: null,
+      }))
+      .addCase(toggleTopicEmoji.rejected, (state, action) => ({
+        ...state,
+        loading: false,
+        activeTopic: null,
+        error: action.error.message as string,
+      }))
+      .addCase(toggleTopicEmoji.fulfilled, (state, action) => {
+        if (action.payload && action.meta?.arg.emoji) {
+          const topic = action.payload.data.filter(
+            ({ id }) => id === action.meta.arg.topicId
+          )[0];
+
+          return {
+            ...state,
+            loading: false,
+            error: null,
+            activeTopic: topic,
+          };
+        }
+        if (action.payload && !action.meta?.arg.emoji) {
+          return {
+            ...state,
+            loading: false,
+            error: null,
+            activeTopic: null,
+            forum: action.payload.data,
+          };
+        }
+      });
   },
 });
 

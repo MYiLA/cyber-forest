@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { API_URL, Theme } from "@config/constants";
 import emptyChat from "@images/chat-avatar.png";
 import { useTheme } from "@hooks/use-theme";
@@ -30,7 +30,7 @@ export const ForumItem: React.FC<ForumItemProps> = ({
   onClick,
   onEdit,
 }) => {
-  const { id, title, body, updatedAt, commentsQty, author } = topic;
+  const { id, title, body, updatedAt, commentsQty, author, emojis } = topic;
   const { themeName } = useTheme();
   const { toDeleteTopic } = useForum();
   const { user } = useSelector((store: RootState) => store.user);
@@ -41,6 +41,11 @@ export const ForumItem: React.FC<ForumItemProps> = ({
   const handleBtnClick = () => {
     onClick?.(topic);
   };
+
+  const emojisCount = useMemo(
+    () => emojis.reduce((acc, item) => acc + item.qty, 0),
+    [topic]
+  );
 
   return (
     <div
@@ -76,7 +81,9 @@ export const ForumItem: React.FC<ForumItemProps> = ({
         </div>
       )}
       <div className={styles.forum_footer}>
-        <span>количество комментариев: {commentsQty}</span>
+        <span>Эмоции: {emojisCount}</span>
+        &nbsp;&nbsp;
+        <span>Комментарии: {commentsQty}</span>
         {user?.id === author.id && (
           <button
             className={styles.forum_footer_btn}
