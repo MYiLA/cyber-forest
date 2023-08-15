@@ -77,6 +77,13 @@ class ForumApi extends HttpTransport {
   }): Promise<{ data: { reacted: boolean } }> {
     return this._axios.post(API_FORUM.FORUM_REACTION, data);
   }
+
+  public toggleTopicEmoji(data: {
+    emoji: string;
+    topicId: number;
+  }): Promise<{ data: { reacted: boolean } }> {
+    return this._axios.post(API_FORUM.ADD_TOPIC_EMOJI, data);
+  }
 }
 
 export default new ForumApi();

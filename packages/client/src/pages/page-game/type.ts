@@ -32,6 +32,8 @@ export type Dice = {
   bgImg: string;
   /** Имя воина */
   title: string;
+  /** Имя воина в винительном падеже */
+  accusativeTitle: string;
 };
 
 /** Игрок */

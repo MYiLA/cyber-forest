@@ -1,6 +1,6 @@
 import cn from "classnames";
 import { Theme } from "@config/constants";
-import React, { BaseSyntheticEvent, FC, useRef } from "react";
+import { BaseSyntheticEvent, FC, useRef } from "react";
 import { useTheme } from "@hooks/use-theme";
 import { useForum } from "@hooks/use-forum";
 import { ReactionTarget } from "@config/forum-types";

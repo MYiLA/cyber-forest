@@ -208,11 +208,13 @@ export const PageLobby = () => {
         })}
       >
         <FullScreenBtn active />
-        <img
-          src={user?.avatar ? `${API_URL}/resources${user?.avatar}` : avatar}
-          alt="аватар пользователя"
-          className={styles.user_avatar}
-        />
+        <div className={styles.user_avatar_wrap}>
+          <img
+            src={user?.avatar ? `${API_URL}/resources${user?.avatar}` : avatar}
+            alt="аватар пользователя"
+            className={styles.user_avatar}
+          />
+        </div>
         <div className={styles.user_row}>
           <span className={styles.user_name}>
             {user?.first_name} {user?.second_name}

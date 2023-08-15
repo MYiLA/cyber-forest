@@ -15,6 +15,7 @@ import {
   getSearchenTopics,
   getTopicsComment,
   setActiveTopic,
+  toggleTopicEmoji,
 } from "@store/reducers/forum-reducer";
 import {
   ForumTopic,
@@ -119,6 +120,13 @@ export const useForum = () => {
     [dispatch]
   );
 
+  const toToggleTopicEmoji = useCallback(
+    (data: { emoji: string; topicId: number }) => {
+      dispatch(toggleTopicEmoji(data));
+    },
+    [dispatch]
+  );
+
   return {
     toGetForumTopics,
     toGetTopicsComments,
@@ -132,5 +140,6 @@ export const useForum = () => {
     toDeleteCommentReply,
     toSearchForTopic,
     toChooseActiveTopic,
+    toToggleTopicEmoji,
   };
 };

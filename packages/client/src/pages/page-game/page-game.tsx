@@ -626,7 +626,7 @@ const PageGame = () => {
         // Уменьшаем лимит по найму воинов в киберлесе
         setHireLimitCount(hireLimitCount - 1);
         // Информируем игрока, что воин успешно нанят
-        notifyUser(`Игрок ${currentPlayerType} нанял ${warrior.type}`);
+        notifyUser(`${gameState[currentPlayerType]?.name} нанял(а) ${warrior.accusativeTitle.toLowerCase()}`);
         break;
 
       case PhaseType.Attack:

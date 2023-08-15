@@ -44,6 +44,7 @@ export const API_FORUM = {
   FORUM_COMMENT: "/forum/comment",
   FORUM_REPLY: "/forum/reply",
   FORUM_REACTION: "/forum/reaction",
+  ADD_TOPIC_EMOJI: "/forum/emoji",
 };
 
 export const API_USER = {
