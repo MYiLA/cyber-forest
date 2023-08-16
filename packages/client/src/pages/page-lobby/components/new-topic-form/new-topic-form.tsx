@@ -37,7 +37,7 @@ export const NewTopicForm: FC<NewTopicFormProps> = ({
   id,
   body,
 }) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { toAddNewTopic, toChangeTopic } = useForum();
 
   const initialForm = {

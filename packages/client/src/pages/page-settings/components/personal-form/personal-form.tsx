@@ -53,7 +53,7 @@ export const PersonalForm: FC<User> = ({
   login,
   email,
 }) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   const initialForm = {
     first_name: first_name || "",
@@ -92,63 +92,77 @@ export const PersonalForm: FC<User> = ({
   return (
     <form className={styles.personal}>
       <h3 className={styles.personal_header}>личные данные</h3>
-      <MainInput
-        name="first_name"
-        placeholder="Имя"
-        defaultValue={form.first_name as string}
-        onChange={onChange}
-        error={validate.first_name.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <MainInput
-        name="second_name"
-        placeholder="фамилия"
-        defaultValue={form.second_name as string}
-        onChange={onChange}
-        align="right"
-        error={validate.second_name.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <MainInput
-        name="email"
-        placeholder="почта"
-        defaultValue={form.email as string}
-        onChange={onChange}
-        error={validate.email.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <MainInput
-        name="phone"
-        placeholder="телефон"
-        defaultValue={form.phone as string}
-        onChange={onChange}
-        align="right"
-        error={validate.phone.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <MainInput
-        name="login"
-        placeholder="логин"
-        defaultValue={form.login as string}
-        onChange={onChange}
-        error={validate.login.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
-      <MainInput
-        name="display_name"
-        placeholder="Ник"
-        defaultValue={form.display_name as string}
-        onChange={onChange}
-        align="right"
-        error={validate.display_name.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="first_name"
+          placeholder="Имя"
+          defaultValue={form.first_name as string}
+          onChange={onChange}
+          className={styles.personal_input}
+          error={validate.first_name.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </div>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="second_name"
+          placeholder="фамилия"
+          defaultValue={form.second_name as string}
+          onChange={onChange}
+          className={styles.personal_input_reversed}
+          error={validate.second_name.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </div>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="email"
+          placeholder="почта"
+          defaultValue={form.email as string}
+          onChange={onChange}
+          className={styles.personal_input}
+          error={validate.email.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </div>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="phone"
+          placeholder="телефон"
+          defaultValue={form.phone as string}
+          onChange={onChange}
+          className={styles.personal_input_reversed}
+          error={validate.phone.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </div>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="login"
+          placeholder="логин"
+          defaultValue={form.login as string}
+          onChange={onChange}
+          className={styles.personal_input}
+          error={validate.login.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </div>
+      <div className={styles.personal_id}>
+        <span>{id}</span>
+        <h3
+          className={classNames({
+            [styles.personal_id_purple]: themeName === Theme.Purple,
+            [styles.personal_id_neon]: themeName !== Theme.Purple,
+          })}
+        >
+          Ваш ID
+        </h3>
+      </div>
       <div className={styles.personal_file}>
         <label className={styles.label}>
           <input type="file" onInput={onFileInput} />

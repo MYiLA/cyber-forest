@@ -22,9 +22,15 @@
   top: 16px;
   width: 50px;
   height: calc(100% - 32px);
-  background-color: #2F1E45;
-
   transition: width 0.6s;
+
+  &.purple {
+    background-color: #2F1E45;
+  }
+
+  &.neon {
+    background-color: $color-dark-green;
+  }
 
   &::after {
     @include background-img-position;

@@ -30,7 +30,7 @@ export const BattleSetting = () => {
 
   const [online, setOnline] = useState(false);
 
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   const dispatch = useDispatch<Dispatch>();
 
@@ -62,45 +62,53 @@ export const BattleSetting = () => {
         />
         {online && (
           <>
-            <MainInput
-              name="table_name"
-              placeholder="Название стола"
-              value={form.table_name as string}
-              onChange={onChange}
-              className={styles.battle_inputs}
-              error={validate.table_name.error}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
-            <MainInput
-              name="players_count"
-              placeholder="Количество игроков"
-              value={form.players_count as string}
-              onChange={onChange}
-              className={styles.battle_inputs}
-              error={validate.players_count.error}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
-            <Checkbox
-              name="has_table_password"
-              label="установить пароль"
-              classname={styles.battle_checkbox}
-              value={form.has_table_password as boolean}
-              onClick={onChange}
-            />
-            <MainInput
-              autoComplete="off"
-              name="table_password"
-              placeholder="Пароль"
-              value={form.table_password as string}
-              onChange={onChange}
-              type="password"
-              disabled={!form.has_table_password as boolean}
-              className={styles.battle_inputs}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
+            <div className={styles.battle_elementwrapper}>
+              <MainInput
+                name="table_name"
+                placeholder="Название стола"
+                value={form.table_name as string}
+                onChange={onChange}
+                className={styles.battle_inputs}
+                error={validate.table_name.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
+            </div>
+            <div className={styles.battle_elementwrapper}>
+              <MainInput
+                name="players_count"
+                placeholder="Количество игроков"
+                value={form.players_count as string}
+                onChange={onChange}
+                className={styles.battle_inputs}
+                error={validate.players_count.error}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
+            </div>
+            <div className={styles.battle_elementwrapper}>
+              <Checkbox
+                name="has_table_password"
+                label="установить пароль"
+                classname={styles.battle_checkbox}
+                value={form.has_table_password as boolean}
+                onClick={onChange}
+              />
+            </div>
+            <div className={styles.battle_elementwrapper}>
+              <MainInput
+                autoComplete="off"
+                name="table_password"
+                placeholder="Пароль"
+                value={form.table_password as string}
+                onChange={onChange}
+                type="password"
+                disabled={!form.has_table_password as boolean}
+                className={styles.battle_inputs}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
+            </div>
             <div className={styles.battle_buttons}>
               <MainButton
                 type="submit"

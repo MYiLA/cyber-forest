@@ -18,7 +18,7 @@ export function Checkbox({
   value,
   onClick,
 }: CheckboxProps) {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   return (
     <div className={classname}>

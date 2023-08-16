@@ -7,6 +7,7 @@ $color-yellow: #fedf3e;
 $color-violet: #e2b0ff;
 $color-neon: #2bfffb;
 $color-orange: #fb7c45;
+$color-dark-green: #1e3e45;
 
 $color-error: #ef6a6a;
 $color-bg-neon: #10222e;
@@ -18,6 +19,13 @@ $game-gradient: linear-gradient(
   #2c1d42 0%,
   #45365d 51.04%,
   #4a2957 100%
+);
+
+$game-gradient-neon: linear-gradient(
+  135deg, 
+  #71aea0 0%, 
+  #45404e 51.04%,
+  #192349 100%
 );
 
 $scrollbar-purple-color: #632885;

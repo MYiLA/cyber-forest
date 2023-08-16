@@ -22,8 +22,7 @@ export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
   onClose,
 }) => {
   const [changing, setChanging] = useState(false);
-
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { toGetTopicsComments, toChangeTopic, toToggleTopicEmoji } = useForum();
   const { activeTopicComments, activeTopic } = useSelector(
     (store: RootState) => store.forum

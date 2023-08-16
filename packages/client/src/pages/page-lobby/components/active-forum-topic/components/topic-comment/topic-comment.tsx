@@ -29,7 +29,7 @@ export const TopicComment: React.FC<TopicCommentProps> = ({
   replies,
   topicId,
 }) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { toAddReaction, toDeleteComment } = useForum();
   const { user } = useSelector((store: RootState) => store.user);
 

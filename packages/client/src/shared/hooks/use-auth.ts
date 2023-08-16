@@ -37,7 +37,7 @@ export const useAuth = () => {
   }, [authorized, loading]);
 
   const checkAuth = useCallback(() => {
-    dispatch(userGetInfo());
+    dispatch(userGetInfo(null));
   }, []);
 
   const toLogin = useCallback(

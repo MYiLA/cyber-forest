@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./rating.module.scss";
 
 export function Rating() {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   return (
     <div className={styles.rating}>

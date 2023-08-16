@@ -6,12 +6,39 @@
   .bottom_right {
     position: absolute;
     right: 0;
-    bottom: -10px;
+    bottom: -15px;
   }
   .bottom_left {
     position: absolute;
     left: 0px;
     bottom: -9px;
+  }
+
+  .bottom_left,
+  .bottom_right {
+    svg {
+      filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.50));
+    }
+
+    &.purple {
+      svg {
+        fill: #e3b0ff;
+
+        path {
+          stroke: #e3b0ff;;
+        }
+      }
+    }
+
+    &.neon {
+      svg {
+        fill: #7cf0f0;
+
+        path {
+          stroke: #7cf0f0;;
+        }
+      }
+    }
   }
 
   .placeholder {
@@ -23,14 +50,47 @@
     position: absolute;
     transform-origin: 0 0;
     transition: transform 200ms, color 200ms;
+    white-space: nowrap;
+
+    &.purple, 
+    &.neon {
+      font-family: "New Zelek";
+      text-shadow: 0px 0px 5px rgb(255 255 255 / 50%);
+    }
+
+    &.purple {
+      color: #e3b0ff;
+    }
+
+    &.neon {
+      color: #7cf0f0;
+    }
   }
 
   input {
     padding: 3px;
     font-size: 20px;
     width: 100%;
-    border-bottom: 1px solid $color-white;
+    border-bottom: 1px solid #e3b0ff;
     color: $color-white;
+
+    &.purple {
+      border-bottom: 1px solid #e3b0ff;
+
+      &:focus ~ .placeholder,
+      &:not(:placeholder-shown) ~ .placeholder {
+        color: #e3b0ff;
+      }
+    }
+
+    &.neon {
+      border-bottom: 1px solid #7cf0f0;
+
+      &:focus ~ .placeholder,
+      &:not(:placeholder-shown) ~ .placeholder {
+        color: #7cf0f0;
+      }
+    }
 
     &::placeholder {
       color: $color-gray;
@@ -44,7 +104,6 @@
     &:focus ~ .placeholder,
     &:not(:placeholder-shown) ~ .placeholder {
       transform: translateY(-15px) scale(0.6);
-      color: $color-white;
     }
   }
 

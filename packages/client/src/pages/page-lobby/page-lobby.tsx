@@ -33,12 +33,12 @@ const OpenGuideButton = ({ onClick }: OpenBtnProps) => (
 
 export const PageLobby = () => {
   const { user } = useSelector((store: RootState) => store.user);
+  const themeName = useTheme();
   const { forum, loading, error, activeTopic } = useSelector(
     (store: RootState) => store.forum
   );
   const { toGetForumTopics, toSearchForTopic, toChooseActiveTopic } =
     useForum();
-  const { themeName } = useTheme();
   const [newTopic, setNewTopic] = useState<string | null>(null);
   const [newTopicForm, setNewTopicForm] = useState<boolean>(false);
   const [searchenTopic, setSearchenTopic] = useState<string | null>(null);
@@ -82,7 +82,7 @@ export const PageLobby = () => {
   }, [debouncedValue]);
 
   const onNewTopicClose = () => {
-    setTopicToChange(null);
+    setNewTopic(null);
     setNewTopicForm(!newTopicForm);
   };
 
@@ -224,6 +224,14 @@ export const PageLobby = () => {
           </NavLink>
         </div>
         <Guide OpenComponent={OpenGuideButton} />
+        {/* TODO: пока не реализованы страницы, добавить по мере реализации */}
+        {/* <a */}
+        {/*  className={classNames(styles.user_link, { */}
+        {/*    [styles.purpur]: themeName === Theme.Purple, */}
+        {/*    [styles.neon]: themeName === Theme.Neon, */}
+        {/*  })}> */}
+        {/*  бестиарий */}
+        {/* </a> */}
         <Rating />
         <BattleSetting />
         {activeTopic && (

@@ -36,7 +36,7 @@ export const TopicInput: FC<TopicInputProps> = ({
   commentId,
   target,
 }) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { toAddTopicComment, toAddCommentReply } = useForum();
 
   const initialForm = {

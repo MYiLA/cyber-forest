@@ -23,8 +23,13 @@ class AuthApi extends HttpTransport {
   }
 
   public userGetInfo(
-    cookies: Record<string, string> | null = null
+    cookies: Record<string, string> | null = null,
+    serverResponse: User | null = null
   ): Promise<{ data: User }> {
+    if (serverResponse) {
+      localStorage.setItem("userData", JSON.stringify(serverResponse));
+    }
+
     if (typeof localStorage !== "undefined") {
       const userData = localStorage.getItem("userData");
       if (userData !== null) {
@@ -42,7 +47,6 @@ class AuthApi extends HttpTransport {
     } else {
       request = this._axios.get(API_AUTH.USER_INFO);
     }
-
     return request;
   }
 

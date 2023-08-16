@@ -13,7 +13,7 @@ type Props = {
 
 export function NavigationButton(props: Props) {
   const { text, isActive = false, onClick } = props;
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   const isNeon = !isActive && themeName === Theme.Neon;
   const isPurple = !isActive && themeName === Theme.Purple;

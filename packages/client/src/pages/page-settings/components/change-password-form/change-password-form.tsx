@@ -32,7 +32,7 @@ const initialForm = {
 };
 
 export function ChangePasswordForm() {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   const { error } = useUserData();
 
@@ -74,37 +74,43 @@ export function ChangePasswordForm() {
   return (
     <form className={styles.password}>
       <h3 className={styles.personal_header}> Смена пароля </h3>
-      <MainInput
-        name="oldPassword"
-        placeholder="старый пароль"
-        defaultValue={form.oldPassword as string}
-        onChange={onChange}
-        // className={styles.personal_input}
-        error={validate.oldPassword.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        type="password"
-      />
-      <MainInput
-        name="newPassword"
-        placeholder="новый пароль"
-        defaultValue={form.newPassword as string}
-        onChange={onChange}
-        error={validate.newPassword.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        type="password"
-      />
-      <MainInput
-        name="repeatPassword"
-        placeholder="повторите пароль"
-        defaultValue={form.repeatPassword as string}
-        onChange={onChange}
-        error={validate.repeatPassword.error}
-        onFocus={onFocus}
-        onBlur={onErroredRepeat}
-        type="password"
-      />
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="oldPassword"
+          placeholder="старый пароль"
+          defaultValue={form.oldPassword as string}
+          onChange={onChange}
+          // className={styles.personal_input}
+          error={validate.oldPassword.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          type="password"
+        />
+      </div>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="newPassword"
+          placeholder="новый пароль"
+          defaultValue={form.newPassword as string}
+          onChange={onChange}
+          error={validate.newPassword.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+          type="password"
+        />
+      </div>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="repeatPassword"
+          placeholder="повторите пароль"
+          defaultValue={form.repeatPassword as string}
+          onChange={onChange}
+          error={validate.repeatPassword.error}
+          onFocus={onFocus}
+          onBlur={onErroredRepeat}
+          type="password"
+        />
+      </div>
       <button
         type="submit"
         onClick={onSubmit}

@@ -4,12 +4,13 @@ import scrollbarNeon from "@scss/_scrollbar-neon.scss?inline";
 import scrollbarPurple from "@scss/_scrollbar-purple.scss?inline";
 import { Theme } from "@config/constants";
 
-const getTheme = (store: RootState) => store.theme;
+const getTheme = (store: RootState) =>
+  (store.user.user?.settings?.theme as Theme) ?? Theme.Purple;
 
 const themeIsEqual = (
-  prevState: RootState["theme"],
-  nextState: RootState["theme"]
-) => prevState.themeName === nextState.themeName;
+  prevState: string | undefined,
+  nextState: string | undefined
+) => prevState === nextState;
 
 const scrollbars = {
   [Theme.Neon]: scrollbarNeon,
@@ -19,7 +20,7 @@ const scrollbars = {
 export const useTheme = () => {
   const themeSelector = useSelector(getTheme, themeIsEqual);
 
-  if (typeof document !== "undefined") {
+  if (typeof document !== "undefined" && themeSelector) {
     const style =
       document.getElementById("main-scrollbar") ||
       document.createElement("style");
@@ -27,7 +28,7 @@ export const useTheme = () => {
       style.id = "main-scrollbar";
       document.head.appendChild(style);
     }
-    style.textContent = scrollbars[themeSelector.themeName];
+    style.textContent = scrollbars[themeSelector as Theme];
   }
   return themeSelector;
 };

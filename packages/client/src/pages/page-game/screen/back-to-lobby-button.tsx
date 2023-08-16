@@ -9,7 +9,7 @@ type Props = {
   className?: string;
 };
 export const BackToLobbyButton = (props: Props) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { className } = props;
   const navigate = useNavigate();
   const handleClick = () => {

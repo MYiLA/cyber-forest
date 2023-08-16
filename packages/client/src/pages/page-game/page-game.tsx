@@ -12,10 +12,11 @@ import { useGameStart } from "@hooks/use-game-start";
 import { Loader } from "@ui/loader";
 import { WinnerScreen } from "@pages/page-game/screen";
 import { useNavigate } from "react-router-dom";
-import { PATH } from "@config/constants";
+import { PATH, Theme } from "@config/constants";
 import { addUserScore } from "@store/reducers/leaderboard-reducer";
 import { notifyUser } from "@shared/utils/notification";
 import { getRandomIntegerInRange } from "@shared/utils/get-random-integer-in-range";
+import { useTheme } from "@hooks/use-theme";
 import { getNextPlayerType } from "./utils/get-next-player-type";
 import { ChoosingAreaCubeFunction, Dice, Player } from "./type";
 import { DiceSide } from "./widgets/game/type";
@@ -39,6 +40,8 @@ const PageGame = () => {
     loading,
     gameType,
   } = useSelector(getGameState);
+
+  const themeName = useTheme();
 
   const gameState = useSelector(getPlayersState);
 
@@ -789,8 +792,13 @@ const PageGame = () => {
     }
     /* eslint-enable indent */
   };
+
   return (
-    <div className={styles.wrap}>
+    <div
+      className={`${styles.wrap} ${
+        themeName === Theme.Purple ? styles.purple : styles.neon
+      }`}
+    >
       {loadingBanner && <Loader />}
       {winner && <WinnerScreen {...winner} />}
       <div className={styles.game}>
