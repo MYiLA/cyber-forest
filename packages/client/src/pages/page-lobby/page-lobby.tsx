@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import React, { BaseSyntheticEvent, useEffect, useState } from "react";
+import React, { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
 import avatar from "@images/chat-avatar.png";
 import { RootState } from "@store/store";
 import { useTheme } from "@hooks/use-theme";
@@ -8,14 +8,17 @@ import settings from "@images/settings.svg";
 import { Rating } from "@pages/page-lobby/components/rating/rating";
 import { BattleSetting } from "@pages/page-lobby/components/battle-settings/battle-settings";
 import { ActiveTopicModal } from "@pages/page-lobby/components/active-forum-topic/active-forum-topic";
-import { forumMockTopics } from "@pages/page-lobby/mocks";
 import cn from "classnames";
-import { IChatData } from "@pages/page-lobby/types";
 import { NavLink } from "react-router-dom";
 import { FullScreenBtn } from "@ui/full-creen-btn/full-screen-btn";
 import { NewTopicForm } from "@pages/page-lobby/components/new-topic-form/new-topic-form";
 import { Guide } from "@pages/page-game/guide";
 import { MainButton } from "@ui/main-button/main-button";
+import { useForum } from "@hooks/use-forum";
+import { useDebounce } from "@hooks/use-debounce";
+import { Fields, useForm, Validators } from "@hooks/use-form";
+import { MainInput } from "@ui/main-input/main-input";
+import { Loading } from "@ui/loading/loading";
 import { ForumItem } from "./components/forum-item/forum-item";
 import styles from "./page-lobby.module.scss";
 
@@ -30,29 +33,56 @@ const OpenGuideButton = ({ onClick }: OpenBtnProps) => (
 
 export const PageLobby = () => {
   const { user } = useSelector((store: RootState) => store.user);
+  const { forum, loading, error, activeTopic } = useSelector(
+    (store: RootState) => store.forum
+  );
+  const { toGetForumTopics, toSearchForTopic, toChooseActiveTopic } =
+    useForum();
   const { themeName } = useTheme();
-  const [searchString, setSearchString] = useState<string>("");
   const [newTopic, setNewTopic] = useState<string | null>(null);
   const [newTopicForm, setNewTopicForm] = useState<boolean>(false);
-  const [topicList, setTopicList] = useState(forumMockTopics);
-  const [activeTopicId, setActiveTopicId] = useState(0);
+  const [searchenTopic, setSearchenTopic] = useState<string | null>(null);
+  const [topicToChange, setTopicToChange] = useState<{
+    id: number;
+    title: string;
+    body: string;
+  } | null>(null);
+
+  const debouncedValue = useDebounce(searchenTopic, 1500);
+
+  const validators: Validators = {
+    title: {
+      required: true,
+      rule: /^.{1,50}$/,
+      message: "в названии может быть до 50 символов",
+    },
+  };
+
+  const initialForm: Fields = {
+    title: "",
+  };
+
+  const { form, onChange, validate, onFocus, onBlur } = useForm(
+    initialForm,
+    validators
+  );
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
-    onSearchInput(searchString, topicList);
-  }, [searchString]);
+    toGetForumTopics(0);
+  }, []);
 
-  function onSearchInput(value: string, array: IChatData[]) {
-    if (Array.isArray(array) && array[0] && value) {
-      const res = array.filter((chat) => chat.title.includes(value));
-      setTopicList(res);
-    } else if (!value) {
-      setTopicList(forumMockTopics);
+  useEffect(() => {
+    if (debouncedValue) {
+      toSearchForTopic(debouncedValue);
+    } else {
+      toGetForumTopics(0);
     }
-  }
+  }, [debouncedValue]);
 
   const onNewTopicClose = () => {
-    setNewTopic(null);
-
+    setTopicToChange(null);
     setNewTopicForm(!newTopicForm);
   };
 
@@ -89,45 +119,86 @@ export const PageLobby = () => {
       >
         <input
           type="search"
-          onChange={(event: BaseSyntheticEvent) =>
-            setSearchString(event.target.value)
-          }
           placeholder="Поиск по названию"
           className={cn(
             styles.forum_search,
             themeName === Theme.Purple ? styles.purpur : styles.neon
           )}
+          onChange={(event: BaseSyntheticEvent) => {
+            if (event.target.value) {
+              setSearchenTopic(event.target.value);
+            }
+          }}
         />
-        {topicList.map((topic, index) => (
-          <ForumItem key={index} {...topic} onClick={setActiveTopicId} />
-        ))}
-        <div className={styles.forum_input_wrapper}>
-          <input
-            className={cn(
-              styles.forum_input,
-              themeName === Theme.Purple ? styles.purpur : styles.neon
-            )}
-            onBlur={(event: BaseSyntheticEvent) => {
-              if (event.target.value) {
-                setNewTopic(event.target.value);
-              }
+        {loading && !activeTopic && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
-            placeholder="Введите тему для обсуждения"
-          />
-          <button
-            type="submit"
-            disabled={!newTopic}
-            onClick={() => {
-              setNewTopicForm(!newTopicForm);
-              console.log("topic added");
-            }}
-            className={cn(styles.forum_input_submit, {
-              [styles.forum_input_submit_purpur]: themeName === Theme.Purple,
-              [styles.forum_input_submit_neon]: themeName !== Theme.Purple,
-            })}
           >
-            Создать тему
-          </button>
+            <Loading />
+          </div>
+        )}
+        {error && (
+          <div className={styles.forum_error}>
+            <span className={styles.forum_error_message}> {error} </span>
+            <MainButton
+              className={styles.forum_error_reset}
+              onClick={() => {
+                toGetForumTopics(0);
+              }}
+            >
+              Сбросить поиск
+            </MainButton>
+          </div>
+        )}
+        <div className={styles.forum_items}>
+          {!loading &&
+            !error &&
+            forum?.map((topic) => (
+              <ForumItem
+                key={topic.id}
+                topic={topic}
+                onClick={toChooseActiveTopic}
+                onEdit={setTopicToChange}
+              />
+            ))}
+        </div>
+        <div className={styles.forum_input_wrapper}>
+          <form>
+            <MainInput
+              name="title"
+              id="topic-title-input"
+              placeholder="Введите тему для обсуждения"
+              value={form.title as string}
+              onChange={onChange as (e: BaseSyntheticEvent) => void}
+              onFocus={onFocus as (e: BaseSyntheticEvent) => void}
+              onBlur={onBlur as (e: BaseSyntheticEvent) => void}
+              error={validate.title.error}
+              className={cn(
+                styles.forum_input,
+                themeName === Theme.Purple ? styles.purpur : styles.neon
+              )}
+            />
+            <MainButton
+              type="submit"
+              className={cn(styles.forum_input_submit, {
+                [styles.forum_input_submit_purpur]: themeName === Theme.Purple,
+                [styles.forum_input_submit_neon]: themeName !== Theme.Purple,
+              })}
+              disabled={!form.title}
+              onClick={(event: BaseSyntheticEvent) => {
+                event.preventDefault();
+
+                setNewTopic(form.title as string);
+                setNewTopicForm(!newTopicForm);
+              }}
+            >
+              Создать новую тему
+            </MainButton>
+          </form>
         </div>
       </section>
       <section
@@ -137,11 +208,13 @@ export const PageLobby = () => {
         })}
       >
         <FullScreenBtn active />
-        <img
-          src={user?.avatar ? `${API_URL}/resources${user?.avatar}` : avatar}
-          alt="аватар пользователя"
-          className={styles.user_avatar}
-        />
+        <div className={styles.user_avatar_wrap}>
+          <img
+            src={user?.avatar ? `${API_URL}/resources${user?.avatar}` : avatar}
+            alt="аватар пользователя"
+            className={styles.user_avatar}
+          />
+        </div>
         <div className={styles.user_row}>
           <span className={styles.user_name}>
             {user?.first_name} {user?.second_name}
@@ -151,25 +224,21 @@ export const PageLobby = () => {
           </NavLink>
         </div>
         <Guide OpenComponent={OpenGuideButton} />
-        {/* TODO: пока не реализованы страницы, добавить по мере реализации */}
-        {/* <a */}
-        {/*  className={classNames(styles.user_link, { */}
-        {/*    [styles.purpur]: themeName === Theme.Purple, */}
-        {/*    [styles.neon]: themeName === Theme.Neon, */}
-        {/*  })}> */}
-        {/*  бестиарий */}
-        {/* </a> */}
         <Rating />
         <BattleSetting />
-        {activeTopicId ? (
+        {activeTopic && (
           <ActiveTopicModal
-            id={activeTopicId}
+            data={activeTopic}
             onClose={() => {
-              setActiveTopicId(0);
+              toChooseActiveTopic(null);
+              toGetForumTopics(0);
+
+              if (inputRef.current && inputRef.current.value) {
+                inputRef.current.value = "";
+              }
             }}
           />
-        ) : null}
-
+        )}
         <NavLink
           to={PATH.ABOUT}
           className={cn(styles.user_link, {
@@ -182,6 +251,14 @@ export const PageLobby = () => {
       </section>
       {newTopicForm && newTopic && (
         <NewTopicForm title={newTopic} onClose={onNewTopicClose} />
+      )}
+      {topicToChange && (
+        <NewTopicForm
+          title={topicToChange.title}
+          body={topicToChange && topicToChange.body}
+          onClose={onNewTopicClose}
+          id={topicToChange.id}
+        />
       )}
     </div>
   );

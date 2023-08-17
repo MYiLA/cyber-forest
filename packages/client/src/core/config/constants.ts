@@ -38,6 +38,15 @@ export const API_AUTH = {
   USER_OAUTH_LOGIN: "/oauth/yandex",
 };
 
+export const API_FORUM = {
+  FORUM_TOPIC: "/forum/topic",
+  FORUM_TOPIC_SEARCH: "/forum/topic/search",
+  FORUM_COMMENT: "/forum/comment",
+  FORUM_REPLY: "/forum/reply",
+  FORUM_REACTION: "/forum/reaction",
+  ADD_TOPIC_EMOJI: "/forum/emoji",
+};
+
 export const API_USER = {
   USER_AVATAR: "user/profile/avatar",
   USER_PASSWORD: "user/password",
@@ -49,3 +58,5 @@ export const OAUTH_URL = `https://oauth.yandex.ru/authorize?response_type=code&c
     ? "&redirect_uri=http://localhost:3000/login"
     : ""
 }`;
+
+export const NO_DATA = "no data";
