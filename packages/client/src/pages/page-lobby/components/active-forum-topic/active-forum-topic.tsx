@@ -109,19 +109,23 @@ export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
           <div className={styles.emoji_wrap}>
             <EmojiSelect onSelect={onEmojiToggle} />
             <ul className={styles.emoji_list}>
-              {data.emojis.map(({ emoji: emojiItem, reacted, qty }) => {
-                const activeClass = reacted ? styles.active : "";
-                const emoji = getEmoji(emojiItem);
-                return (
-                  <li
-                    key={emoji}
-                    className={cn(styles.emoji_item, activeClass)}
-                  >
-                    <EmojiComponent data={{ emoji }} onClick={onEmojiToggle} />
-                    <span className={styles.emoji_counter}>{qty}</span>
-                  </li>
-                );
-              })}
+              {data.emojis?.length &&
+                data.emojis.map(({ emoji: emojiItem, reacted, qty }) => {
+                  const activeClass = reacted ? styles.active : "";
+                  const emoji = getEmoji(emojiItem);
+                  return (
+                    <li
+                      key={emoji}
+                      className={cn(styles.emoji_item, activeClass)}
+                    >
+                      <EmojiComponent
+                        data={{ emoji }}
+                        onClick={onEmojiToggle}
+                      />
+                      <span className={styles.emoji_counter}>{qty}</span>
+                    </li>
+                  );
+                })}
             </ul>
           </div>
           <div className={styles.topic_comments}>

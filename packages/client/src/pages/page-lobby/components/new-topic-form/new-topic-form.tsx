@@ -86,7 +86,6 @@ export const NewTopicForm: FC<NewTopicFormProps> = ({
                 event.target.classList.remove(styles.error);
               }
             }}
-            defaultValue={title ?? ""}
           />
           <label className={styles.text_input_label}>описание темы</label>
           <textarea
