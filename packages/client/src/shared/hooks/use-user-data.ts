@@ -24,7 +24,7 @@ export const useUserData = () => {
   );
 
   const toChangeData = useCallback(
-    (data: User) => {
+    (data: Partial<User>) => {
       dispatch(userChangeData(data));
     },
     [dispatch]

@@ -10,7 +10,7 @@ import back from "@images/back.svg";
 import styles from "./page-info.module.scss";
 
 const PageInfo = () => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const [activeTab, setActiveTab] = useState(0);
 
   return (

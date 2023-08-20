@@ -5,7 +5,7 @@ import { useTheme } from "@hooks/use-theme";
 import styles from "./page-home.module.scss";
 
 function PageHome() {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   return (
     <div className={styles.container}>

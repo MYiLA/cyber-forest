@@ -1,7 +1,9 @@
-import inputUnderlineR from "@images/input-underline-r.svg";
-import inputUnderlineL from "@images/input-underline-l.svg";
-import { FC, Fragment, InputHTMLAttributes, useCallback } from "react";
+import { ReactComponent as InputUnderlineR } from "@images/input-underline-r.svg";
+import { ReactComponent as InputUnderlineL } from "@images/input-underline-l.svg";
+import { FC, InputHTMLAttributes, useCallback } from "react";
 import cn from "classnames";
+import { Theme } from "@config/constants";
+import { useTheme } from "@hooks/use-theme";
 import styles from "./main-input.module.scss";
 
 interface TInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -24,22 +26,28 @@ export const MainInput: FC<TInputProps> = ({
   align = "left",
   ...rest
 }) => {
+  const themeName = useTheme();
+
   const DecorImage = useCallback(
-    () => (
+    ({ color }: { color: Theme }) => (
       <>
         {align === "left" && (
-          <img
-            className={styles.bottom_right}
-            src={inputUnderlineR}
-            alt="стилизация input справа"
-          />
+          <div
+            className={`${styles.bottom_right} ${
+              color === Theme.Purple ? styles.purple : styles.neon
+            }`}
+          >
+            <InputUnderlineR />
+          </div>
         )}
         {align === "right" && (
-          <img
-            className={styles.bottom_left}
-            src={inputUnderlineL}
-            alt="стилизация input слева"
-          />
+          <div
+            className={`${styles.bottom_left} ${
+              color === Theme.Purple ? styles.purple : styles.neon
+            }`}
+          >
+            <InputUnderlineL />
+          </div>
         )}
         {align === "none" && <></>}
       </>
@@ -68,15 +76,23 @@ export const MainInput: FC<TInputProps> = ({
             align === "right" ? styles.right_direction : ""
           )}
         >
-          <DecorImage />
+          <DecorImage color={themeName} />
           <input
             name={name}
             type={type}
-            className={extraClassName}
+            className={`${extraClassName} ${
+              themeName === Theme.Purple ? styles.purple : styles.neon
+            }`}
             placeholder=" "
             {...rest}
           />
-          <label className={styles.placeholder}>{placeholder}</label>
+          <label
+            className={`${styles.placeholder} ${
+              themeName === Theme.Purple ? styles.purple : styles.neon
+            }`}
+          >
+            {placeholder}
+          </label>
           {error && <div className={styles.error}>{error}</div>}
         </div>
       )}

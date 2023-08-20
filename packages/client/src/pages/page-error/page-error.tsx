@@ -9,7 +9,7 @@ const errorMessages: Record<string, string> = {
 };
 
 const PageError = ({ error = "404" }) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   return (
     <div className={styles.container}>

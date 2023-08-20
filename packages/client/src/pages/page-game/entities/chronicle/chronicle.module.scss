@@ -6,8 +6,15 @@
 
   position: relative;
   width: 100%;
-  background: $game-gradient;
   padding: 8px 21px;
+
+  &.purple {
+    background: $game-gradient;
+  }
+
+  &.neon {
+    background: $game-gradient-neon;
+  }
 
   &::before {
     @include background-img-position;

@@ -14,12 +14,12 @@ type Props = {
 
 export const GuideBlock = (props: Props) => {
   const { children, open } = props;
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const ref = useRef<null | HTMLDivElement>(null);
   useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    let timeout: ReturnType<typeof setTimeout>
+    const el = ref.current;
+    if (!el) return;
+    let timeout: ReturnType<typeof setTimeout>;
     if (open) {
       timeout = setTimeout(() => {
         el.style.transform = "translateX(0)";

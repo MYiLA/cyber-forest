@@ -13,7 +13,7 @@ type Props = {
 };
 
 export function ScreenBlock(props: Props) {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { children, className } = props;
   return (
     <div

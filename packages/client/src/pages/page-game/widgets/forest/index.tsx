@@ -4,6 +4,8 @@ import { BigCard } from "@shared/ui/big-card";
 import { CardComponent } from "@shared/ui/card";
 import { RootState } from "@core/store/store";
 import { useSelector } from "react-redux";
+import { useTheme } from "@hooks/use-theme";
+import { Theme } from "@config/constants";
 import { createForest } from "../../utils/create-forest";
 import { Dice } from "../../type";
 import styles from "./forest.module.scss";
@@ -20,6 +22,7 @@ export function Forest({ onHire }: ForestProps) {
   const [dices, setDices] = useState<Dice[]>();
   const ref = useRef<null | HTMLDivElement>(null);
   const { accessHireWarriors } = useSelector(getGameState);
+  const themeName = useTheme();
   // Получаем число доступных для найма воинов текущей выбранной карточки
   const currentCardLimit = useMemo(() => {
     if (!currentCard) {
@@ -46,7 +49,11 @@ export function Forest({ onHire }: ForestProps) {
     }
   }, [dices, accessHireWarriors]);
 
-  const wrapClasses = cn(isOpen ? styles.open : "", styles.forest_wrap);
+  const wrapClasses = cn(
+    isOpen ? styles.open : "",
+    styles.forest_wrap,
+    themeName === Theme.Purple ? styles.purple : styles.neon
+  );
 
   return (
     <>

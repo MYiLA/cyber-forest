@@ -3,7 +3,7 @@ import { User, UserPassword } from "@config/user-types";
 import { HttpTransport } from "@api/http-transport";
 
 class UserApi extends HttpTransport {
-  public userChangeData(data: User) {
+  public userChangeData(data: Partial<User>) {
     return this._axios.put(API_USER.USER_DATA, data);
   }
 

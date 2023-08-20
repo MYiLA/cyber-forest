@@ -44,7 +44,14 @@
   border: 1px solid $color-white;
   margin-bottom: 12px;
   box-shadow: 0 0 15px -3px $color-white;
-  background: $game-gradient;
+
+  &.purple {
+    background: $game-gradient;
+  }
+
+  &.neon {
+    background: $game-gradient-neon;
+  }
 
   &::before {
     @include angle-top-left;

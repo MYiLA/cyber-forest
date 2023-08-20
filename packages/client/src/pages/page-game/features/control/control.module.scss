@@ -18,6 +18,10 @@
   & button {
     padding: 5px 20px;
   }
+
+  &.neon {
+    background-color: rgba(124, 240, 240, 0.60);
+  }
 }
 
 .guide_btn {

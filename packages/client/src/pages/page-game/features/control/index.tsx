@@ -3,7 +3,8 @@ import { Guide } from "@pages/page-game/guide";
 import { useState } from "react";
 import { LooseScreen } from "@pages/page-game/screen";
 import { useNavigate } from "react-router-dom";
-import { PATH } from "@config/constants";
+import { PATH, Theme } from "@config/constants";
+import { useTheme } from "@hooks/use-theme";
 import styles from "./control.module.scss";
 
 // TODO: Точно такая же переменная в модалке, по хорошему надо вынести в одну
@@ -32,6 +33,8 @@ export const Control = ({ onDone }: ControlProps) => {
     onDone();
   };
 
+  const themeName = useTheme();
+
   const handleLoose = () => {
     setIsLooseOpen(true);
   };
@@ -48,7 +51,9 @@ export const Control = ({ onDone }: ControlProps) => {
       <MainButton
         data-testid="ready"
         type="button"
-        className={styles.btn}
+        className={`${styles.btn} ${
+          themeName === Theme.Purple ? styles.purple : styles.neon
+        }`}
         onClick={onDoneHandler}
       >
         Готово
@@ -56,7 +61,9 @@ export const Control = ({ onDone }: ControlProps) => {
       <MainButton
         data-testid="loose"
         type="button"
-        className={styles.btn}
+        className={`${styles.btn} ${
+          themeName === Theme.Purple ? styles.purple : styles.neon
+        }`}
         onClick={handleLoose}
       >
         Сдаться

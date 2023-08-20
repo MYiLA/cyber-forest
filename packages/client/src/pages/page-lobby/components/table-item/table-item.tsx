@@ -19,7 +19,7 @@ export const TableItem: React.FC<ITableItemProps> = ({
   users,
   password,
 }) => {
-  const { themeName } = useTheme();
+  const themeName = useTheme();
 
   function getUsersImg(userList: User[]) {
     return userList.map((user) =>

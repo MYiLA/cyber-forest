@@ -31,7 +31,7 @@ export const ForumItem: React.FC<ForumItemProps> = ({
   onEdit,
 }) => {
   const { id, title, body, updatedAt, commentsQty, author, emojis } = topic;
-  const { themeName } = useTheme();
+  const themeName = useTheme();
   const { toDeleteTopic } = useForum();
   const { user } = useSelector((store: RootState) => store.user);
   const userAvatar = author.avatar

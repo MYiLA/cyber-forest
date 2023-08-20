@@ -3,9 +3,12 @@
 .wrap {
   height: 100%;
   width: 100%;
-  background-color: rgba(#1F0E44, .7);
   overflow-y: scroll;
   overflow-x: hidden;
+
+  &.purple {
+    background-color: rgba(#1F0E44, .7);
+  }
 }
 
 .game {

@@ -1,5 +1,7 @@
 import cn from "classnames";
 
+import { useTheme } from "@hooks/use-theme";
+import { Theme } from "@config/constants";
 import { Player } from "../../type";
 import { GloryCounter } from "../../entities/glory-counter";
 import { Chronicle } from "../../entities/chronicle";
@@ -27,6 +29,8 @@ export function GameInterface({
   onDone,
   gameType,
 }: GameInterfaceProp) {
+  const themeName = useTheme();
+
   return (
     <div className={styles.interface}>
       <div className={styles.info}>
@@ -56,6 +60,8 @@ export function GameInterface({
         <div
           className={cn(styles.stock_wrap, {
             [styles.offline]: gameType === GameType.Offline,
+            [styles.puple]: themeName === Theme.Purple,
+            [styles.neon]: themeName === Theme.Neon,
           })}
         >
           <Stock
