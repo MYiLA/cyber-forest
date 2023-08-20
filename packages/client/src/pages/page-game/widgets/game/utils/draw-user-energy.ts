@@ -21,5 +21,5 @@ export const drawUserEnergy = ({
   ctx.textAlign = "right";
   ctx.font = "14px New Zelek";
   // Отрисовка
-  ctx.fillText(`Сила: ${energy}`, x, y);
+  ctx.fillText(`Энергия: ${energy}`, x, y);
 };

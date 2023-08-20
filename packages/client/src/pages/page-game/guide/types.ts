@@ -1,6 +1,6 @@
 export enum GuidesVars {
   Glory = "glory",
-  Power = "power",
+  Energy = "power",
   Warriors = "warriors",
   Zone = "zone",
   Hiring = "hiring",

@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "@config/constants";
 import { addUserScore } from "@store/reducers/leaderboard-reducer";
 import { notifyUser } from "@shared/utils/notification";
+import { getRandomIntegerInRange } from "@shared/utils/get-random-integer-in-range";
 import { getNextPlayerType } from "./utils/get-next-player-type";
 import { ChoosingAreaCubeFunction, Dice, Player } from "./type";
 import { DiceSide } from "./widgets/game/type";
@@ -67,13 +68,20 @@ const PageGame = () => {
     const nextPlayer = getNextPlayerType(currentPlayerType, playersCount);
     // Ход переходит следующему игроку
     dispatch(gameSlice.actions.setCurrentPlayerType(nextPlayer));
+    // Добавляем сообщение в хронику
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        player: gameState[nextPlayer] ?? undefined,
+        message: `Ход переходит к игроку ${gameState[nextPlayer]?.name}`,
+      })
+    );
+    // Информируем игрока, что ход перешёл к следующему
+    notifyUser(`Ход переходит к игроку ${gameState[nextPlayer]?.name}`);
     // Фаза игры переходит в стадию "Итоги битвы"
     dispatch(gameSlice.actions.setCurrentPhase(PhaseType.ResultBattle));
     // TODO: Обновление количества игроков нужно в случае их выбывания по таймеру в процессе игры
     /** Обновляем количество игроков */
     setPlayersCount(Object.keys(gameState).length);
-    // Информируем игрока, что ход перешёл к следующему
-    notifyUser(`Ход переходит к игроку ${nextPlayer}`);
   };
 
   // TODO: временно работает с таймером, чтобы показать, что есть анимация загрузки
@@ -110,7 +118,6 @@ const PageGame = () => {
           })),
         })
       );
-
       dispatch(
         playersSlice.actions.deleteDicesInArea({
           areaType: AreaType.Rest,
@@ -118,10 +125,34 @@ const PageGame = () => {
           dices: restDices,
         })
       );
+      // Добавляем сообщение в хронику
+      dispatch(
+        gameSlice.actions.addMessageInChronicle({
+          player: currentPlayer,
+          message: `Воины ${currentPlayer.name} отдохнули и перешли в инвентарь`,
+        })
+      );
     }
-
+    const energy = getRandomIntegerInRange(
+      DEFAULT_SETTING.MIN_START_ENERGY,
+      DEFAULT_SETTING.MAX_START_ENERGY
+    );
     // Добавляем текущему игроку энергию на ход
-    dispatch(gameSlice.actions.createCurrentPlayerEnergy());
+    dispatch(gameSlice.actions.createCurrentPlayerEnergy(energy));
+    // Добавляем сообщение в хронику
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        player: currentPlayer,
+        message: `${currentPlayer.name} получает ${energy} энергии`,
+      })
+    );
+    // Добавляем сообщение в хронику
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        player: currentPlayer,
+        message: `Игроку ${currentPlayer.name} нужно выбрать ${stockCubeLimitCount} кубика в инвентаре`,
+      })
+    );
   }, [currentPhase]);
 
   // обработка загрузки данных для игры
@@ -156,6 +187,20 @@ const PageGame = () => {
       0
     );
     dispatch(gameSlice.actions.increaseCurrentPlayerEnergy(diceEnergy));
+    // Добавляем сообщение в хронику
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        player: currentPlayer,
+        message: `${currentPlayer.name} получает ${diceEnergy} энергии(ю) за кубики в зоне подготовки`,
+      })
+    );
+    // Добавляем сообщение в хронику об ожидаемом действии от пользователя
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        player: currentPlayer ?? undefined,
+        message: `${currentPlayer?.name} выбрал(а) кубики. Теперь пора тратить накопленную энергию`,
+      })
+    );
   }, [currentPhase]);
 
   // Обработка фазы Атаки
@@ -183,43 +228,77 @@ const PageGame = () => {
         };
       })
       .filter((item) => !!item);
-    // TODO: Логирование фазы атаки пока сделана через консоль-лог. В будущем нужно переделать вывод сообщений в хронику
-    console.log("ФАЗА АТАКИ");
-    console.log("otherPlayersArmies", otherPlayersArmies);
     // Если в зоне атаки текущего игрока нет воинов, или у защищающихся игроков нет воинов
     if (
       !currentPlayerArmy.length ||
       !otherPlayersArmies.some((army) => army?.army.length)
     ) {
-      console.log("НЕТ ВОИНОВ");
       // То ход сразу переходит к следующему игроку
       goNextPlayerTurn();
       return;
     }
-
     // Считаем силу атаки армии
     const attack = currentPlayerArmy.reduce(
       (acc, warrior) => acc + Number(warrior?.attack),
       0
     );
-    console.log("Сила атаки текущего игрока", attack);
-    // TODO: Порефакторить эту часть. Слишком большая вложенность
+    // Добавляем сообщение в хронику
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        message: `Битва началась`,
+      })
+    );
+    // Добавляем сообщение в хронику
+    dispatch(
+      gameSlice.actions.addMessageInChronicle({
+        player: currentPlayer,
+        message: `${currentPlayer.name} атакует каждого игрока на ${attack}`,
+      })
+    );
     // Атакуем силой атаки текущего игрока каждого противника
     otherPlayersArmies.forEach((warriors) => {
-      console.log("Противник", warriors);
-      console.log("Нет воинов?", !warriors?.army?.length);
+      if (!warriors?.type) return;
+      const defPlayer = gameState[warriors.type] ?? undefined;
+      // Добавляем сообщение в хронику
+      dispatch(
+        gameSlice.actions.addMessageInChronicle({
+          player: defPlayer,
+          message: `Защищается ${defPlayer?.name}`,
+        })
+      );
       // Если у противника нет воинов - ничего не делаем
-      if (!warriors?.army?.length) return;
+      if (!warriors?.army?.length) {
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            player: defPlayer,
+            message: `У ${defPlayer?.name} нет воинов. Бой выйграл ${currentPlayer.name}`,
+          })
+        );
+        return;
+      }
       // Считаем общую защиту противника
       const defense = warriors.army.reduce(
         (acc, warrior) => acc + Number(warrior?.side.defense),
         0
       );
-      console.log("Защита противника", defense);
-      console.log("Противник повержен? defense <= attack", defense <= attack);
+      // Добавляем сообщение в хронику
+      dispatch(
+        gameSlice.actions.addMessageInChronicle({
+          player: defPlayer,
+          message: `Общая защита ${defPlayer?.name} равна ${defense}`,
+        })
+      );
       // Если сумма защит противника меньше либо равна сумме атак игрока
       if (defense <= attack) {
         const attackDices = gameState?.[warriors.type]?.[AreaType.Attack];
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            player: defPlayer,
+            message: `${defPlayer?.name} проиграл(а) битву. Все его воины получают ранение и идут отдыхать`,
+          })
+        );
         // Противник повержен
         if (!attackDices) return;
         // Все его воины переходят в зону отдыха
@@ -245,39 +324,61 @@ const PageGame = () => {
         (warrior1, warrior2) =>
           Number(warrior2?.side.defense) - Number(warrior1?.side.defense)
       );
-      console.log("сортировка воинов защиты", sortedWarriors);
       // Вычисляем защиту самого сильного воина противника
       const bestDefense = Number(sortedWarriors[0]?.side.defense);
-      console.log("Лучшая защита противника", bestDefense);
-      console.log("Атака отражена? bestDefense > attack", bestDefense > attack);
+      // Добавляем сообщение в хронику
+      dispatch(
+        gameSlice.actions.addMessageInChronicle({
+          player: defPlayer,
+          message: `Защита самого сильного воина ${defPlayer?.name} равна ${bestDefense}`,
+        })
+      );
 
       // Если защита самого сильного воина противника больше атаки игрока
       if (bestDefense > attack) {
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            player: defPlayer,
+            message: `${defPlayer?.name} с легкостью выйграл(а) бой. Атака ${currentPlayer.name} успешно отражена!`,
+          })
+        );
         // То атака успешно отражена
         return;
       }
-      console.log("Сложная ситуация?", bestDefense <= attack);
+
       // Если защита самого сильного воина противника меньше либо равна атаке игрока
       if (bestDefense <= attack) {
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            player: defPlayer,
+            message: `Впереди сложный бой...`,
+          })
+        );
         // TODO: Тут должен быть переход в фазу защиты и игроку даётся выбрать самому,
         // кто из его воинов защищается первым. Временно описана автоматизация. Она будет применена при описании поведения ботов
 
         // В процессе боя сила атаки падает после ранения каждого воина на силу его защиты
         let attackPower = attack;
-        console.log("attackPower", attackPower);
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            player: defPlayer,
+            message: `Воинов игрока ${defPlayer?.name} атакуют силой ${attackPower}`,
+          })
+        );
         // Каждый воин противника получает ранение последовательно, начиная с того воина, чья защита меньше всего
         for (let i = sortedWarriors.length - 1; attackPower > 0; i--) {
           const warrior = sortedWarriors[i];
           const defenseWarrior = Number(warrior?.side.defense);
-          console.log(
-            "Воин получает ранение? defense <= attackPower",
-            defenseWarrior,
-            attackPower,
-            defenseWarrior <= attackPower
-          );
-          console.log(
-            "Воина защитил его самый сильный напарник?",
-            bestDefense > attackPower
+          const titleDefenseWarrior = warrior?.dice.title;
+          // Добавляем сообщение в хронику
+          dispatch(
+            gameSlice.actions.addMessageInChronicle({
+              player: defPlayer,
+              message: `Защищается ${titleDefenseWarrior} с защитой ${defenseWarrior}`,
+            })
           );
           // Если защита воина меньше, чем атака, то воин получает ранение
           // В сравнении учавствует и защита сильнейшего воина, так как он может защитить слабого напарника
@@ -286,6 +387,13 @@ const PageGame = () => {
             if (!dice) return;
             // Атака уменьшается на показатель защиты воина
             attackPower -= defenseWarrior;
+            // Добавляем сообщение в хронику
+            dispatch(
+              gameSlice.actions.addMessageInChronicle({
+                player: defPlayer,
+                message: `Атака ${currentPlayer.name} уменьшается до ${attackPower}, но ${titleDefenseWarrior} ранен(а) и уходит на отдых`,
+              })
+            );
             // Воин отправляется в зону отдыха
             dispatch(
               playersSlice.actions.addDicesInArea({
@@ -301,13 +409,32 @@ const PageGame = () => {
                 dices: [dice],
               })
             );
+          } else if (defenseWarrior > attackPower) {
+            attackPower = 0;
+            // Добавляем сообщение в хронику
+            dispatch(
+              gameSlice.actions.addMessageInChronicle({
+                player: defPlayer,
+                message: `${titleDefenseWarrior} отражает атаку!`,
+              })
+            );
           } else {
             // Иначе воин выживает
             attackPower = 0;
+            // Добавляем сообщение в хронику
+            dispatch(
+              gameSlice.actions.addMessageInChronicle({
+                player: defPlayer,
+                message: `${titleDefenseWarrior} выживает, благодаря сильному напарнику. Атака отражена!`,
+              })
+            );
           }
         }
-        console.log(
-          `БОЙ с воинами ${warriors.type} окончен. attackPower = ${attackPower}`
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            message: `Бой ${currentPlayer.name} с ${defPlayer?.name} завершен. Победил ${defPlayer?.name}, но это было нелегко...`,
+          })
         );
       }
     });
@@ -331,7 +458,6 @@ const PageGame = () => {
         ? DEFAULT_SETTING.FUTURE_CUBE_LIMIT
         : DEFAULT_SETTING.START_CUBE_LIMIT;
     setStockCubeLimitCount(cubeLimit);
-
     const preparationDices = currentPlayer[AreaType.Preparation];
     // Если в зоне подготовки остались кубики
     if (preparationDices.length) {
@@ -351,11 +477,17 @@ const PageGame = () => {
         })
       );
     }
-
     const attackDices = currentPlayer[AreaType.Attack];
     // Если воины игрока в зоне боя выжили
     if (attackDices.length) {
       const glory = attackDices.reduce((acc, item) => acc + item.glory, 0);
+      // Добавляем сообщение в хронику
+      dispatch(
+        gameSlice.actions.addMessageInChronicle({
+          player: currentPlayer,
+          message: `Поздравляем! ${currentPlayer.name} получает ${glory} славы за своих воинов. Выжившим воинам нужно отдохнуть от тяжелых битв`,
+        })
+      );
       // То добавляем за них славу игроку
       dispatch(
         playersSlice.actions.increaseGlory({
@@ -390,6 +522,13 @@ const PageGame = () => {
   // Обработка окончания игры
   useEffect(() => {
     if (currentPlayer?.gloryCount && currentPlayer?.gloryCount >= maxGlory) {
+      // Добавляем сообщение в хронику
+      dispatch(
+        gameSlice.actions.addMessageInChronicle({
+          player: currentPlayer,
+          message: `${currentPlayer.name} выйграл(а)! Слава достигла ${maxGlory}`,
+        })
+      );
       setWinner(currentPlayer);
       Object.values(gameState).forEach((player) => {
         if (!player) return;
@@ -625,8 +764,15 @@ const PageGame = () => {
         );
         // Уменьшаем лимит по найму воинов в киберлесе
         setHireLimitCount(hireLimitCount - 1);
-        // Информируем игрока, что воин успешно нанят
-        notifyUser(`${gameState[currentPlayerType]?.name} нанял(а) ${warrior.accusativeTitle.toLowerCase()}`);
+        // Добавляем сообщение в хронику
+        dispatch(
+          gameSlice.actions.addMessageInChronicle({
+            player: currentPlayer,
+            message: `${
+              currentPlayer.name
+            } нанял(а) ${warrior.accusativeTitle.toLowerCase()}`,
+          })
+        );
         break;
 
       case PhaseType.Attack:

@@ -1,4 +1,10 @@
+import { v4 as uuid4 } from "uuid";
 import { getAccessHireWarriors } from "@shared/utils/get-access-hire-warriors";
+import {
+  ChronicleMessage,
+  AccessHireWarrior,
+  ChronicleMessagePayload,
+} from "@shared/type";
 import {
   DEFAULT_SETTING,
   GameType,
@@ -6,8 +12,6 @@ import {
   PlayerType,
 } from "@pages/page-game/widgets/game/constants";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AccessHireWarrior } from "@shared/type";
-import { getRandomIntegerInRange } from "@shared/utils/get-random-integer-in-range";
 
 const initialState: {
   /** Тип игры. По-умолчанию оффлайн */
@@ -24,6 +28,8 @@ const initialState: {
   maxGlory: number;
   /** Загрузка данных для игры */
   loading: boolean;
+  /** Список сообщений в хронике */
+  chronicleMessages: ChronicleMessage[];
 } = {
   currentPlayerType: PlayerType.Red,
   currentPlayerEnergy: 0,
@@ -32,6 +38,7 @@ const initialState: {
   maxGlory: 25,
   loading: false,
   gameType: GameType.Offline,
+  chronicleMessages: [],
 };
 
 export const gameSlice = createSlice({
@@ -66,12 +73,9 @@ export const gameSlice = createSlice({
     }),
 
     /** Сгенерировать энергию игроку в начале хода */
-    createCurrentPlayerEnergy: (state) => ({
+    createCurrentPlayerEnergy: (state, action: PayloadAction<number>) => ({
       ...state,
-      currentPlayerEnergy: getRandomIntegerInRange(
-        DEFAULT_SETTING.MIN_START_ENERGY,
-        DEFAULT_SETTING.MAX_START_ENERGY
-      ),
+      currentPlayerEnergy: action.payload,
     }),
 
     /** Увеличить энергию текущего игрока */
@@ -131,6 +135,24 @@ export const gameSlice = createSlice({
         type: item.type,
         count: DEFAULT_SETTING.MAX_HIRE_WARRIOR_COUNT,
       })),
+    }),
+
+    /** Очистить хронику */
+    resetChronicle: (state) => ({
+      ...state,
+      chronicleMessages: [],
+    }),
+
+    /** Добавить сообщение в хронику */
+    addMessageInChronicle: (
+      state,
+      action: PayloadAction<ChronicleMessagePayload>
+    ) => ({
+      ...state,
+      chronicleMessages: [
+        ...state.chronicleMessages,
+        { ...action.payload, id: uuid4() },
+      ],
     }),
   },
 });
