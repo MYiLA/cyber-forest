@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
 import scrollbarNeon from "@scss/_scrollbar-neon.scss?inline";
 import scrollbarPurple from "@scss/_scrollbar-purple.scss?inline";
 import { Theme } from "@config/constants";

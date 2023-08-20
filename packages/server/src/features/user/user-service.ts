@@ -83,7 +83,7 @@ class UserService {
 
   public async search(dto: UsersSearchRequest): Promise<UserDto[]> {
     return await User.findAll({
-      where: { login: { [Op.like]: `%${dto.login}%` } },
+      where: { login: { [Op.iLike]: `%${dto.login}%` } },
       attributes: { exclude: ['authCookie', 'password'] },
       limit: 10,
     })

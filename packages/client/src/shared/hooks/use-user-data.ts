@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, RootState } from "@store/store";
 import { useCallback, useEffect } from "react";
 import {
   resetError,
@@ -10,7 +9,7 @@ import {
 import { User, UserPassword } from "@config/user-types";
 
 export const useUserData = () => {
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const getUserState = (store: RootState) => store.user;
 

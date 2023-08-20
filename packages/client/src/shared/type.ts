@@ -1,6 +1,6 @@
 import { Player } from "@/pages/page-game/type";
 
-import { Emoji, EmojiPack } from "./constants";
+import { EmojiPack } from "./constants";
 
 /** Типы кубиков */
 export enum DiceType {
@@ -68,9 +68,9 @@ export type AccessHireWarrior = {
 
 /** Эмоция */
 export type EmojiType = {
-  emoji: Emoji,
-  pack?: EmojiPack,
-}
+  emoji: string;
+  pack?: EmojiPack;
+};
 
 /** Сообщение внутри хроники событий */
 export type ChronicleMessagePayload = {

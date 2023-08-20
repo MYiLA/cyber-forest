@@ -7,7 +7,6 @@ import { MainInput } from "@ui/main-input/main-input";
 import { MainButton } from "@ui/main-button/main-button";
 import { PATH } from "@config/constants";
 import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
 import { useAuth } from "@hooks/use-auth";
 import styles from "./page-login.module.scss";
 

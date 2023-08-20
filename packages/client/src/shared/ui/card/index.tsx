@@ -1,5 +1,4 @@
 import { DiceType } from "@shared/type";
-import { RootState } from "@core/store/store";
 import { useSelector } from "react-redux";
 import { Energy } from "../energy";
 import { Glory } from "../glory";

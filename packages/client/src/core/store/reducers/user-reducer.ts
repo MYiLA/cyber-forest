@@ -34,7 +34,7 @@ export const userGetInfo = createAsyncThunk(
 
 export const userChangeData = createAsyncThunk(
   "user/profile",
-  (data: UserRegister) => UserApi.userChangeData(data)
+  (data: Partial<User>) => UserApi.userChangeData(data)
 );
 
 export const userChangeAvatar = createAsyncThunk(
@@ -73,10 +73,13 @@ export const userSlice = createSlice({
       /** Профиль пользователя */
       .addCase(userChangeData.pending, (state) => ({ ...state, loading: true }))
       .addCase(userChangeData.fulfilled, (state, action) => {
-        localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...state.user, ...action.payload.data })
+        );
         return {
           ...state,
-          user: action.payload.data,
+          user: { ...state.user, ...action.payload.data },
           authorized: true,
           authChecked: true,
         };
@@ -92,10 +95,13 @@ export const userSlice = createSlice({
         loading: true,
       }))
       .addCase(userChangeAvatar.fulfilled, (state, action) => {
-        localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...state.user, ...action.payload.data })
+        );
         return {
           ...state,
-          user: action.payload.data,
+          user: { ...state.user, ...action.payload.data },
           authorized: true,
           authChecked: true,
         };
@@ -123,11 +129,14 @@ export const userSlice = createSlice({
       }))
       .addCase(userLogin.fulfilled, (state, action) => {
         if (typeof localStorage !== "undefined") {
-          localStorage.setItem("userData", JSON.stringify(action.payload.data));
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({ ...state.user, ...action.payload.data })
+          );
         }
         return {
           ...initialState,
-          user: action.payload.data,
+          user: { ...state.user, ...action.payload.data },
           authorized: true,
           authChecked: true,
         };
@@ -141,30 +150,26 @@ export const userSlice = createSlice({
       }))
       .addCase(userOauthLogin.fulfilled, (state, action) => {
         if (localStorage) {
-          localStorage.setItem("userData", JSON.stringify(action.payload.data));
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({ ...state.user, ...action.payload.data })
+          );
         }
         return {
           ...initialState,
-          user: action.payload.data,
+          user: { ...state.user, ...action.payload.data },
           authorized: true,
           authChecked: true,
         };
       })
 
       /** Выход пользователя */
-      .addCase(userLogout.pending, (state) => {
-        console.log("logout pending");
-        return { ...state, loading: true };
-      })
-      .addCase(userLogout.rejected, (state) => {
-        console.log("logout reject");
-        return {
-          ...state,
-          loading: false,
-        };
-      })
+      .addCase(userLogout.pending, (state) => ({ ...state, loading: true }))
+      .addCase(userLogout.rejected, (state) => ({
+        ...state,
+        loading: false,
+      }))
       .addCase(userLogout.fulfilled, () => {
-        console.log("logout filled");
         localStorage.removeItem("userData");
         return { ...initialState, authChecked: true };
       })
@@ -177,14 +182,17 @@ export const userSlice = createSlice({
       }))
       .addCase(userGetInfo.fulfilled, (state, action) => {
         if (typeof localStorage !== "undefined") {
-          localStorage.setItem("userData", JSON.stringify(action.payload.data));
+          localStorage.setItem(
+            "userData",
+            JSON.stringify({ ...state.user, ...action.payload.data })
+          );
         }
         return {
           ...state,
           loading: false,
           authorized: true,
           error: null,
-          user: action.payload.data,
+          user: { ...state.user, ...action.payload.data },
           authChecked: true,
         };
       })
@@ -196,10 +204,13 @@ export const userSlice = createSlice({
         error: action.error.message as string,
       }))
       .addCase(userRegister.fulfilled, (state, action) => {
-        localStorage.setItem("userData", JSON.stringify(action.payload.data));
+        localStorage.setItem(
+          "userData",
+          JSON.stringify({ ...state.user, ...action.payload.data })
+        );
         return {
           ...state,
-          user: action.payload.data,
+          user: { ...state.user, ...action.payload.data },
           loading: false,
           authChecked: true,
           authorized: true,

@@ -26,8 +26,8 @@ export const EmojiSelect = ({ onSelect }: EmojiSelectProps) => {
       />
       <div className={styles.list_wrap}>
         <ul className={styles.list}>
-          {Object.values(Emoji).map((emoji) => (
-            <li className={styles.emoji} key={emoji}>
+          {Object.keys(Emoji).map((emoji, index) => (
+            <li className={styles.emoji} key={index}>
               <EmojiComponent
                 data={{ emoji }}
                 onClick={(ev) => {

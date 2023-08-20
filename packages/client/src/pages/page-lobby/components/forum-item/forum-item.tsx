@@ -74,10 +74,7 @@ export const ForumItem: React.FC<ForumItemProps> = ({
         </div>
       ) : (
         <div className={styles.forum_body}>
-          <span className={styles.message}>
-            {" "}
-            в этой теме еще нет сообщений{" "}
-          </span>
+          <span className={styles.message}>в этой теме еще нет сообщений</span>
         </div>
       )}
       <div className={styles.forum_footer}>

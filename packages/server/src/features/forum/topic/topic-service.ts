@@ -21,7 +21,7 @@ class TopicService {
     return await Topic.findAll({
       offset: dto.cursor,
       limit: dto.limit <= 100 ? dto.limit : 100,
-      order: [['createdAt', 'DESC']],
+      order: [['updatedAt', 'DESC']],
     }).then(res =>
       res.map(row => ({
         ...row.get({ plain: true }),
@@ -58,7 +58,7 @@ class TopicService {
 
   public async searchTopic(query: string): Promise<TopicDto[]> {
     return await Topic.findAll({
-      where: { title: { [Op.like]: `%${query}%` } },
+      where: { title: { [Op.iLike]: `%${query}%` } },
       limit: 10,
     })
   }

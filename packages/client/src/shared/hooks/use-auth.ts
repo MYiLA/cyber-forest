@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Dispatch, RootState } from "@store/store";
 import { PATH } from "@config/constants";
 import {
   userGetInfo,
@@ -15,7 +14,7 @@ import { UserLogin, UserRegister } from "@config/user-types";
 
 /** Хук для авторизации/логина/регистрации */
 export const useAuth = () => {
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const getUserState = (store: RootState) => store.user;

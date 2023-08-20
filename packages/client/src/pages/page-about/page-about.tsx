@@ -3,16 +3,15 @@ import { useTheme } from "@hooks/use-theme";
 import { PATH, Theme } from "@config/constants";
 import cn from "classnames";
 import React, { useState } from "react";
-import { DescriptionGameTab } from "@pages/page-info/entities/description-tabs/description-tab";
-import { DevsTab } from "@pages/page-info/entities/devs-tab/devs-tab";
+import { DescriptionGameTab } from "@pages/page-about/entities/description-tabs/description-tab";
+import { DevsTab } from "@pages/page-about/entities/devs-tab/devs-tab";
 import { NavLink } from "react-router-dom";
 import back from "@images/back.svg";
-import styles from "./page-info.module.scss";
+import styles from "./page-about.module.scss";
 
-const PageInfo = () => {
+const PageAbout = () => {
   const themeName = useTheme();
   const [activeTab, setActiveTab] = useState(0);
-
   return (
     <div className={styles.container}>
       <h3
@@ -46,16 +45,22 @@ const PageInfo = () => {
         </div>
         <footer className={styles.tab}>
           <div
-            className={cn(styles.tab_sign, {
-              [styles.tab_sign_active]: activeTab === 0,
-              [styles.tab_sign]: activeTab !== 0,
-            })}
+            className={cn(
+              styles.tab_sign,
+              {
+                [styles.tab_sign_active]: activeTab === 0,
+              },
+              themeName === Theme.Neon && styles.neon
+            )}
           />
           <div
-            className={cn(styles.tab_sign, {
-              [styles.tab_sign_active]: activeTab === 1,
-              [styles.tab_sign_unactive]: activeTab !== 1,
-            })}
+            className={cn(
+              styles.tab_sign,
+              {
+                [styles.tab_sign_active]: activeTab === 1,
+              },
+              themeName === Theme.Neon && styles.neon
+            )}
           />
         </footer>
         <button
@@ -75,4 +80,4 @@ const PageInfo = () => {
   );
 };
 
-export default PageInfo;
+export default PageAbout;

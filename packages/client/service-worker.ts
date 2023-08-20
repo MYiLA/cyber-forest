@@ -15,7 +15,7 @@ const URLS = [
   "/about",
   "/error",
   "/lobby",
-  "/user-data",
+  "/settings",
   "/game",
   "/leader-board",
 ];
@@ -113,7 +113,7 @@ self.addEventListener("fetch", (event: FetchEvent & ExtendableEvent) => {
     }
   }
 
-  if (event.request.method !== "GET") {
+  if (event.request.method !== "GET" || event.request.url.match("/api")) {
     return;
   }
 

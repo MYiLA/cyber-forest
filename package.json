@@ -10,7 +10,7 @@
     "dev:ssr": "lerna run ssr --scope=client",
     "dev:server": "lerna run dev --scope=server",
     "dev": "lerna run dev",
-    "deploy": "rsync -av --exclude={'node_modules','dist','.git','tmp','uploads','.idea','ssl'} . root@cyberforest.ru:/home/cyb/",
+    "deploy": "rsync -av --exclude={'node_modules','dist','.git','tmp','uploads','.idea','ssl','yarn.lock'} . root@cyberforest.ru:/home/cyb/",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",

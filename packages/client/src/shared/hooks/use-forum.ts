@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { Dispatch } from "@store/store";
 import { useCallback, useEffect } from "react";
 import { resetError } from "@store/reducers/user-reducer";
 import {
@@ -24,7 +23,7 @@ import {
 } from "@config/forum-types";
 
 export const useForum = () => {
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(
     () => () => {
@@ -33,12 +32,9 @@ export const useForum = () => {
     []
   );
 
-  const toGetForumTopics = useCallback(
-    (cursor: number) => {
-      dispatch(getAllTopics(cursor));
-    },
-    [dispatch]
-  );
+  const toGetForumTopics = useCallback((cursor: number) => {
+    dispatch(getAllTopics(cursor));
+  }, []);
 
   const toGetTopicsComments = useCallback(
     (data: { id: number; cursor: number }) => {

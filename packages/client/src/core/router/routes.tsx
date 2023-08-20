@@ -12,10 +12,9 @@ import {
   PageSettings,
 } from "@router/router-pages";
 import { PATH } from "@config/constants";
-import { RootState } from "@store/store";
 import { BlankLayout } from "@layouts/blank-layout/blank-layout";
 import { GameLayout } from "@layouts/game-layout/game-layout";
-import { PageLeaderboard } from "@pages/leaderboard";
+import { PageLeaderboard } from "@pages/page-leaderboard";
 
 const routes = [
   {
@@ -30,7 +29,7 @@ const routes = [
     protected: false,
   },
   {
-    path: PATH.USER,
+    path: PATH.SETTINGS,
     element: <PageSettings />,
     layout: "game",
     protected: true,
@@ -39,18 +38,6 @@ const routes = [
     path: PATH.LOBBY,
     element: <PageLobby />,
     layout: "game",
-    protected: true,
-  },
-  {
-    path: PATH.USER,
-    element: <></>,
-    layout: "blank",
-    protected: true,
-  },
-  {
-    path: PATH.TOPIC,
-    element: <></>,
-    layout: "blank",
     protected: true,
   },
   {
@@ -102,7 +89,7 @@ const ProtectedRouteElement: FC<{ children: ReactNode }> = ({ children }) => {
     return <>{children}</>;
   }
   return (
-    <Navigate to={PATH.LOGIN} replace state={{ redirect: location.pathname }} />
+    <Navigate to={PATH.HOME} replace state={{ redirect: location.pathname }} />
   );
 };
 

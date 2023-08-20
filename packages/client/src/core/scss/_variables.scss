@@ -13,7 +13,8 @@ $color-error: #ef6a6a;
 $color-bg-neon: #10222e;
 $color-bg-purple: #05151d;
 
-$dialog-gradient: linear-gradient(-45deg, #321642, #a083b4);
+$dialog-purple-gradient: linear-gradient(135deg, rgba(44, 29, 66, 0.70) 0%, rgba(69, 54, 93, 0.70) 51.04%, rgba(74, 41, 87, 0.70) 100%) !important;
+$dialog-neon-gradient: linear-gradient(135deg, rgba(33, 44, 50, 0.7) 0%, rgba(61, 125, 115, 0.7) 51.04%, rgba(33, 44, 50, 0.7) 100%) !important;
 $game-gradient: linear-gradient(
   135deg,
   #2c1d42 0%,

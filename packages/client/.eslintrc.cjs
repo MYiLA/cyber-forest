@@ -36,7 +36,7 @@ module.exports = {
     "react/function-component-definition": "off",
 
     "indent": [
-      "error",
+      "off",
       2
     ]
   }

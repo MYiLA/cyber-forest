@@ -6,6 +6,7 @@ import { AuthProvider } from "@core/auth-provider/auth-provider";
 import { MainRouter } from "@router/main-router";
 import { userGetInfo } from "@store/reducers/user-reducer";
 import { createStore } from "@store/store";
+import { ToastContainer } from "react-toastify";
 
 export async function render(url: string, cookies: Record<string, string>) {
   const store = createStore({});
@@ -19,15 +20,22 @@ export async function render(url: string, cookies: Record<string, string>) {
           </AuthProvider>
         </StaticRouter>
       </Provider>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
     </React.StrictMode>
   );
 
   const state = `
     <script>
         window.__PREPARED_STATE__ = ${JSON.stringify(store.getState()).replace(
-    /</g,
-    "\\u003c"
-  )}
+          /</g,
+          "\\u003c"
+        )}
     </script>`;
 
   return { html, state, head: "" };

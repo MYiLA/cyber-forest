@@ -15,7 +15,7 @@ export const store = createStore({
       email: "mail@mail.ru",
       phone: "+79532344567",
       avatar: "/236675d1826375cab820d9513da74fb0.png",
-      settings: null,
+      settings: { theme: "neon" },
     },
   },
   players: {
@@ -864,9 +864,6 @@ export const store = createStore({
       type: "Green",
     },
   },
-  theme: {
-    themeName: "purple",
-  },
   game: {
     currentPlayerType: "Red",
     currentPlayerEnergy: 6,
@@ -907,4 +904,5 @@ export const store = createStore({
   },
   chat: {},
   forum: {},
+  leaderboard: {},
 });

@@ -1,4 +1,5 @@
 import icon from "@images/logo.png";
+import { toast } from "react-toastify";
 
 const permissionStatus = {
   GRANTED: "granted",
@@ -6,6 +7,8 @@ const permissionStatus = {
 };
 
 export function notifyUser(text: string) {
+  toast(text);
+
   if (!("Notification" in window)) {
     console.log("Web Notifications are not supported.");
     globalThis.alert(text);

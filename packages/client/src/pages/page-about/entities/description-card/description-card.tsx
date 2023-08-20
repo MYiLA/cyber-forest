@@ -1,4 +1,4 @@
-import { DescriptionCardProps } from "@pages/page-info/type";
+import { DescriptionCardProps } from "@pages/page-about/type";
 import { FC } from "react";
 import styles from "./description-card.module.scss";
 

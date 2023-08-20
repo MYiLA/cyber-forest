@@ -60,7 +60,7 @@ export function Modal(props: ModalProps) {
   };
 
   useEffect(() => {
-    let timoutId: ReturnType<typeof setTimeout>
+    let timoutId: ReturnType<typeof setTimeout>;
     if (open) {
       openModal();
     } else {
@@ -74,6 +74,7 @@ export function Modal(props: ModalProps) {
   return (
     <>
       {isOpen &&
+        typeof document !== "undefined" &&
         createPortal(
           <div
             {...rootProps}
