@@ -30,9 +30,9 @@ export function Navigation(props: Props) {
         isActive={step === GuidesVars.Warriors}
       />
       <NavigationButton
-        text="Сила"
-        onClick={handleClick(GuidesVars.Power)}
-        isActive={step === GuidesVars.Power}
+        text="Энергия"
+        onClick={handleClick(GuidesVars.Energy)}
+        isActive={step === GuidesVars.Energy}
       />
       <NavigationButton
         text="Слава"

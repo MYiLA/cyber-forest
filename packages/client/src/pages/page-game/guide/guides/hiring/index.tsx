@@ -25,7 +25,7 @@ export function Hiring() {
         />
         <DescriptionBlock
           className={cn(styles.desc_block, styles.top_desc_block)}
-          text="Если у вас достаточно силы, то вы можете нанять одного воина в киберлесу за ваш ход"
+          text="Если у вас достаточно энергии, то вы можете нанять одного воина в киберлесу за ваш ход"
         />
       </div>
       <div className={styles.middle_desc}>

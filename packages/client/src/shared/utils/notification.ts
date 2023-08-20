@@ -1,4 +1,4 @@
-import icon from "@images/message-image.png";
+import icon from "@images/logo.png";
 
 const permissionStatus = {
   GRANTED: "granted",

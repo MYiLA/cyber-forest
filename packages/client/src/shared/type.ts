@@ -1,3 +1,5 @@
+import { Player } from "@/pages/page-game/type";
+
 import { Emoji, EmojiPack } from "./constants";
 
 /** Типы кубиков */
@@ -69,3 +71,16 @@ export type EmojiType = {
   emoji: Emoji,
   pack?: EmojiPack,
 }
+
+/** Сообщение внутри хроники событий */
+export type ChronicleMessagePayload = {
+  message: string;
+  player?: Player;
+};
+
+/** Сообщение внутри хроники событий */
+export type ChronicleMessage = {
+  id: string;
+  message: string;
+  player?: Player;
+};

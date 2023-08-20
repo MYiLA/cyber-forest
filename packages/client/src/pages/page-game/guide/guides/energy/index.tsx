@@ -5,12 +5,12 @@ import miniCat from "../assets/mini-cat.png";
 import prepareCard from "../assets/prepare-card.png";
 import powerCard from "../assets/power-card.png";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
-import styles from "./power.module.scss";
+import styles from "./energy.module.scss";
 import { DescriptionBlock } from "../description-block";
 
-export function Power() {
+export function Energy() {
   return (
-    <div className={styles.power}>
+    <div className={styles.energy}>
       <Arrow className={cn(styles.arrow, styles.arrow_1)} />
       <Arrow className={cn(styles.arrow, styles.arrow_2)} />
       <Arrow className={cn(styles.arrow, styles.arrow_3)} />
@@ -24,7 +24,7 @@ export function Power() {
       </div>
       <DescriptionBlock
         className={styles.top_desc}
-        text="сила нужна для подготовки и найма воинов"
+        text="Энергия нужна для вызова на бой и найма воинов"
       />
       <img src={miniCat} className={styles.mini_cat_img} alt="mini cat card" />
       <img
@@ -34,11 +34,11 @@ export function Power() {
       />
       <DescriptionBlock
         className={styles.first_bottom_desc}
-        text="Сила дается игроку на каждый ход случайное количество от 2 до 6 единиц"
+        text="Энергия дается игроку на каждый ход случайное количество от 2 до 6 единиц"
       />
       <DescriptionBlock
         className={styles.second_bottom_desc}
-        text="силу может увеличить воин при определeнном шансе выпадения. Шанс выпадения силы у воина обозначен в описании воина"
+        text="Энергию может увеличить воин при определенном шансе выпадения. Шанс выпадения энергии у воина обозначен в описании воина"
       />
       <img
         className={styles.prepare_card_img}

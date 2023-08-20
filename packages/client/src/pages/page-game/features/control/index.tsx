@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "@config/constants";
 import styles from "./control.module.scss";
 
+// TODO: Точно такая же переменная в модалке, по хорошему надо вынести в одну
+const ANIMATION_DURATION_MS = 193;
+
 // TODO: Код читаемый, но можно лучше) Сделать LooseScreen по аналогии с Guide
 
 type OpenButtonProps = {
@@ -22,7 +25,7 @@ type ControlProps = {
 };
 
 export const Control = ({ onDone }: ControlProps) => {
-  const [looseState, setLooseState] = useState(false);
+  const [isLooseOpen, setIsLooseOpen] = useState(false);
   const navigate = useNavigate();
   const onDoneHandler = () => {
     if (!onDone) return;
@@ -30,10 +33,14 @@ export const Control = ({ onDone }: ControlProps) => {
   };
 
   const handleLoose = () => {
-    setLooseState(true);
+    setIsLooseOpen(true);
   };
-  const handleCloseLooseScreen = () => {
-    navigate(PATH.LOBBY);
+  const handleCloseLooseScreen = (isConfirm: boolean) => {
+    setIsLooseOpen(false);
+    if (isConfirm) {
+      // Чтоб успело вначале закрыться, а потом отработать логика
+      setTimeout(() => navigate(PATH.LOBBY), ANIMATION_DURATION_MS);
+    }
   };
 
   return (
@@ -55,7 +62,7 @@ export const Control = ({ onDone }: ControlProps) => {
         Сдаться
       </MainButton>
       <Guide OpenComponent={OpenGuideButton} />
-      {looseState && <LooseScreen onClose={handleCloseLooseScreen} />}
+      <LooseScreen onClose={handleCloseLooseScreen} isOpen={isLooseOpen} />
     </div>
   );
 };
