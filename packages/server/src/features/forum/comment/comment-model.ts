@@ -46,7 +46,9 @@ export interface CommentDto {
     return {
       include: [
         User.scope('author'),
-        Reply.scope({ method: ['full', userId] }),
+        Reply.scope({
+          method: ['full', userId],
+        }),
       ],
       attributes: {
         include: [

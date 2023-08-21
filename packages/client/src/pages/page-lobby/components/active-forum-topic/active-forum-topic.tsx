@@ -8,13 +8,12 @@ import cn from "classnames";
 import { TopicInput } from "@pages/page-lobby/components/active-forum-topic/components/topic-input/topic-input";
 import { useForum } from "@hooks/use-forum";
 import { useSelector } from "react-redux";
-import { Loading } from "@ui/loading/loading";
 import { ForumTopic, ReactionTarget, TopicComments } from "@config/forum-types";
 import edit from "@images/edit.svg";
 import { EmojiType } from "@shared/type";
 import { EmojiSelect } from "@shared/ui/emoji-select";
 import { EmojiComponent } from "@shared/ui/emoji-component";
-import { getEmoji } from "@shared/utils/get-emoji";
+import { Loader } from "@ui/loader";
 import styles from "./active-forum-topic.module.scss";
 
 export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
@@ -108,23 +107,23 @@ export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
           <div className={styles.emoji_wrap}>
             <EmojiSelect onSelect={onEmojiToggle} />
             <ul className={styles.emoji_list}>
-              {data.emojis?.length &&
-                data.emojis.map(({ emoji: emojiItem, reacted, qty }) => {
-                  const activeClass = reacted ? styles.active : "";
-                  const emoji = getEmoji(emojiItem);
-                  return (
-                    <li
-                      key={emoji}
-                      className={cn(styles.emoji_item, activeClass)}
-                    >
-                      <EmojiComponent
-                        data={{ emoji }}
-                        onClick={onEmojiToggle}
-                      />
-                      <span className={styles.emoji_counter}>{qty}</span>
-                    </li>
-                  );
-                })}
+              {data.emojis?.length
+                ? data.emojis.map(({ emoji: emojiItem, reacted, qty }) => {
+                    const activeClass = reacted ? styles.active : "";
+                    return (
+                      <li
+                        key={emojiItem}
+                        className={cn(styles.emoji_item, activeClass)}
+                      >
+                        <EmojiComponent
+                          data={{ emoji: emojiItem }}
+                          onClick={onEmojiToggle}
+                        />
+                        <span className={styles.emoji_counter}>{qty}</span>
+                      </li>
+                    );
+                  })
+                : null}
             </ul>
           </div>
           <div className={styles.topic_comments}>
@@ -142,7 +141,7 @@ export const ActiveTopicModal: React.FC<ActiveForumTopicProps> = ({
                 в этой теме еще нет комментариев.
               </span>
             )}
-            {!activeTopicComments && <Loading />}
+            {!activeTopicComments && <Loader />}
             <TopicInput
               key={data.id}
               inputName={`topic-${data.id.toString()}`}

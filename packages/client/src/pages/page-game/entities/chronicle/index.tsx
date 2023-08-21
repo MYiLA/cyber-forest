@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { MutableRefObject, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import { useTheme } from "@hooks/use-theme";
 import { Theme } from "@config/constants";
@@ -11,14 +11,14 @@ export function Chronicle() {
   const themeName = useTheme();
 
   const { chronicleMessages } = useSelector(getGameState);
-  const [endElement, setEndElement] = useState<HTMLLIElement | null>(null);
-  const ref = useRef(null);
+  const endElement = useRef() as MutableRefObject<HTMLLIElement>;
 
   useEffect(() => {
-    if (endElement === null) return;
-
-    endElement.scrollIntoView({ behavior: "smooth" });
-  }, [ref, chronicleMessages]);
+    if (!endElement.current) return;
+    if (typeof endElement.current.scrollIntoView === "function") {
+      endElement.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [endElement, chronicleMessages]);
 
   return (
     <div
@@ -35,7 +35,7 @@ export function Chronicle() {
               </li>
             ))}
             <li
-              ref={(el) => setEndElement(el)}
+              ref={endElement}
               style={{
                 height: "1px",
                 width: "1px",

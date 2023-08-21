@@ -1,6 +1,6 @@
-import styles from "@pages/page-info/page-info.module.scss";
-import { infocards } from "@pages/page-info/constant";
-import { DescriptionCard } from "@pages/page-info/entities/description-card/description-card";
+import styles from "@pages/page-about/page-about.module.scss";
+import { infocards } from "@pages/page-about/constant";
+import { DescriptionCard } from "@pages/page-about/entities/description-card/description-card";
 
 export function DescriptionGameTab() {
   return (
@@ -9,10 +9,15 @@ export function DescriptionGameTab() {
         Киберлес - это захватывающая игра по мотиву серии настольных игр
         <a
           href="https://www.mosigra.ru/Quarriors/rules/"
-          style={{ textDecoration: "underline", cursor: "pointer" }}
+          style={{
+            textDecoration: "underline",
+            cursor: "pointer",
+            margin: "0 12px",
+          }}
+          target="_blank"
+          rel="noreferrer"
         >
-          {" "}
-          Quarriors
+          QUARIORS
         </a>
         , где ваша победа зависит от удачи и умения тактически мыслить. Под
         вашим руководством в бою сойдутся модифицированные звери киберлеса.
@@ -22,8 +27,8 @@ export function DescriptionGameTab() {
         регистрации.
       </div>
       <div className={styles.description_cards}>
-        {infocards.map((card) => (
-          <DescriptionCard {...card} />
+        {infocards.map((card, index) => (
+          <DescriptionCard key={index} {...card} />
         ))}
       </div>
       <div className={styles.description}>

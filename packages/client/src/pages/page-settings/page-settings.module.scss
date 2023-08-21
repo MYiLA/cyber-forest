@@ -1,3 +1,5 @@
+@import "@scss/variables";
+
 .container {
   display: flex;
 }
@@ -13,11 +15,11 @@
   padding: 66px 46px;
 
   &_purple {
-    background: #4031555a;
+    background: $dialog-purple-gradient;
   }
 
   &_neon {
-    background: #3fb7ea4d;
+    background: $dialog-neon-gradient;
   }
 
   &::before {

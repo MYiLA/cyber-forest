@@ -39,15 +39,12 @@ class AuthApi extends HttpTransport {
       }
     }
 
-    let request;
     if (cookies && cookies.authCookie) {
-      request = this._axios.get(API_AUTH.USER_INFO, {
+      return this._axios.get(API_AUTH.USER_INFO, {
         headers: { Cookie: `authCookie=${cookies.authCookie};` },
       });
-    } else {
-      request = this._axios.get(API_AUTH.USER_INFO);
     }
-    return request;
+    return this._axios.get(API_AUTH.USER_INFO);
   }
 
   public userRegister(data: UserRegister) {

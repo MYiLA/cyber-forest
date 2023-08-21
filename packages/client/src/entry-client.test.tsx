@@ -9,7 +9,7 @@ const appContent = "/";
 // )
 
 test("Example test", async () => {
-  await act(() => {
+  await act(async () => {
     render(<MainButton />);
   });
 

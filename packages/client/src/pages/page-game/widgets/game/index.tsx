@@ -1,5 +1,4 @@
 import { FC, MouseEventHandler, Ref, useEffect, useMemo, useRef } from "react";
-import { RootState } from "@core/store/store";
 import { useSelector } from "react-redux";
 import { clearContext } from "@pages/page-game/widgets/game/utils/clear-context";
 import styles from "./game.module.scss";

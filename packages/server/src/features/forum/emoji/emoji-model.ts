@@ -50,7 +50,7 @@ export class Emoji extends Model<Emoji, Partial<EmojiCreate>> {
   @EmojiIndex
   declare userId: number
 
-  @Column(DataType.STRING(15))
+  @Column(DataType.STRING(32))
   @EmojiIndex
   declare emoji: string
 }

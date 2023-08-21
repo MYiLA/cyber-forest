@@ -8,6 +8,7 @@ import {
 import { OK } from '../../../config/types-constants'
 import { ApiError } from '../../../exceptions/api-error'
 import { Topic } from '../topic/topic-model'
+import { Reply } from '../reply/reply-model'
 
 class CommentService {
   public async getComments(
@@ -18,6 +19,10 @@ class CommentService {
       where: { topicId: dto.topicId },
       offset: dto.cursor,
       limit: dto.limit,
+      order: [
+        ['updatedAt', 'DESC'],
+        [{ model: Reply, as: 'replies' }, 'updatedAt', 'DESC'],
+      ],
     })
   }
 

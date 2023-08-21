@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import React, { BaseSyntheticEvent, useEffect, useRef, useState } from "react";
 import avatar from "@images/chat-avatar.png";
-import { RootState } from "@store/store";
 import { useTheme } from "@hooks/use-theme";
 import { PATH, API_URL, Theme } from "@config/constants";
 import settings from "@images/settings.svg";
@@ -62,7 +61,7 @@ export const PageLobby = () => {
     title: "",
   };
 
-  const { form, onChange, validate, onFocus, onBlur } = useForm(
+  const { form, onChange, validate, onFocus, onBlur, resetForm } = useForm(
     initialForm,
     validators
   );
@@ -84,6 +83,7 @@ export const PageLobby = () => {
   const onNewTopicClose = () => {
     setNewTopic(null);
     setNewTopicForm(!newTopicForm);
+    setTopicToChange(null);
   };
 
   return (
@@ -130,17 +130,7 @@ export const PageLobby = () => {
             }
           }}
         />
-        {loading && !activeTopic && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Loading />
-          </div>
-        )}
+        {loading && !activeTopic && <Loading />}
         {error && (
           <div className={styles.forum_error}>
             <span className={styles.forum_error_message}> {error} </span>
@@ -193,6 +183,7 @@ export const PageLobby = () => {
                 event.preventDefault();
 
                 setNewTopic(form.title as string);
+                resetForm();
                 setNewTopicForm(!newTopicForm);
               }}
             >
@@ -219,7 +210,7 @@ export const PageLobby = () => {
           <span className={styles.user_name}>
             {user?.first_name} {user?.second_name}
           </span>
-          <NavLink to={PATH.USER} className={styles.user_settings}>
+          <NavLink to={PATH.SETTINGS} className={styles.user_settings}>
             <img src={settings} alt="настройки" />
           </NavLink>
         </div>

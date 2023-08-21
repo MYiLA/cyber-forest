@@ -7,10 +7,11 @@ import mariya from "@images/about/mariya.jpg";
 import valeriya from "@images/about/valeriya.png";
 import ruslan from "@images/about/ruslan.jpg";
 import andrey from "@images/about/andrey.jpg";
+import alexandra from "@images/about/alexandra.jpg";
 import {
   DescriptionCardProps,
   DescriptionDevsCardProps,
-} from "@pages/page-info/type";
+} from "@pages/page-about/type";
 
 import styles from "./entities/devs-card/devs-card.module.scss";
 
@@ -72,6 +73,14 @@ export const devsInfo: DescriptionDevsCardProps[] = [
     subtitle: "давайте новую фичу!",
     description:
       "Фронтенд разработчик в компании МТГ Бизнес Решения. Люблю кушать и мотоциклы.",
+    extraClass: styles.personal_reversed,
+  },
+  {
+    img: alexandra,
+    name: "Александра Тараскина",
+    subtitle: "пятый элемент",
+    description:
+      "Бэкенд разработчик с 4-х летним опытом. Последнее время больше интересует фронтенд.",
     extraClass: styles.personal_reversed,
   },
 ];

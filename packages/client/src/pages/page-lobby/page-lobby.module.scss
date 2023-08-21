@@ -282,12 +282,14 @@
 
     &_avatar_wrap {
       margin-top: 35px;
-      width: 177px;
-      height: 177px;
+      min-width: 177px;
+      min-height: 177px;
+      max-width: 177px;
+      max-height: 177px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid #FFF;
-      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+      box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.50);
     }
 
     &_avatar {
@@ -324,7 +326,6 @@
 
       font-family: "New Zelek";
       color: #FFFFFF;
-      text-align: center;
       font-size: 20px;
       text-transform: uppercase;
       cursor: pointer;

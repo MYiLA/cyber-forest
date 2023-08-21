@@ -2,7 +2,6 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import cn from "classnames";
 import { BigCard } from "@shared/ui/big-card";
 import { CardComponent } from "@shared/ui/card";
-import { RootState } from "@core/store/store";
 import { useSelector } from "react-redux";
 import { useTheme } from "@hooks/use-theme";
 import { Theme } from "@config/constants";

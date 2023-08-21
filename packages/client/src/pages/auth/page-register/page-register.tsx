@@ -9,7 +9,6 @@ import { PATH } from "@config/constants";
 import { useAuth } from "@hooks/use-auth";
 
 import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
 import styles from "./page-register.module.scss";
 
 const validators: Validators = {

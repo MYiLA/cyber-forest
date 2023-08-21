@@ -6,7 +6,6 @@ import { Switcher } from "@ui/switcher/switcher";
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
-import { RootState } from "@store/store";
 import { useUserData } from "@hooks/use-user-data";
 import back from "../../assets/images/back.svg";
 import winRight from "../../assets/images/win-rb-stroke.svg";

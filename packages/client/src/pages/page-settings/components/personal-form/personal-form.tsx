@@ -110,7 +110,7 @@ export const PersonalForm: FC<User> = ({
           placeholder="фамилия"
           defaultValue={form.second_name as string}
           onChange={onChange}
-          className={styles.personal_input_reversed}
+          align="right"
           error={validate.second_name.error}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -134,7 +134,7 @@ export const PersonalForm: FC<User> = ({
           placeholder="телефон"
           defaultValue={form.phone as string}
           onChange={onChange}
-          className={styles.personal_input_reversed}
+          align="right"
           error={validate.phone.error}
           onFocus={onFocus}
           onBlur={onBlur}
@@ -152,17 +152,19 @@ export const PersonalForm: FC<User> = ({
           onBlur={onBlur}
         />
       </div>
-      <div className={styles.personal_id}>
-        <span>{id}</span>
-        <h3
-          className={classNames({
-            [styles.personal_id_purple]: themeName === Theme.Purple,
-            [styles.personal_id_neon]: themeName !== Theme.Purple,
-          })}
-        >
-          Ваш ID
-        </h3>
+      <div className={styles.personal_inputwrapper}>
+        <MainInput
+          name="display_name"
+          placeholder="ник"
+          defaultValue={form.display_name as string}
+          onChange={onChange}
+          align="right"
+          error={validate.display_name.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
       </div>
+
       <div className={styles.personal_file}>
         <label className={styles.label}>
           <input type="file" onInput={onFileInput} />
@@ -180,24 +182,27 @@ export const PersonalForm: FC<User> = ({
           </figure>
         </label>
       </div>
-      <button
-        type="submit"
-        onClick={(e) => onSubmitPersonal(e)}
-        disabled={
-          !form.first_name ||
-          !form.second_name ||
-          !form.login ||
-          !form.email ||
-          !form.avatar ||
-          !form.phone
-        }
-        className={classNames(styles.personal_submit, {
-          [styles.personal_submit_purple]: themeName === Theme.Purple,
-          [styles.personal_submit_neon]: themeName === Theme.Neon,
-        })}
-      >
-        сохранить
-      </button>
+      <div className="text-right">
+        <button
+          type="submit"
+          onClick={onSubmitPersonal}
+          disabled={
+            !form.first_name ||
+            !form.second_name ||
+            !form.display_name ||
+            !form.login ||
+            !form.email ||
+            !form.avatar ||
+            !form.phone
+          }
+          className={classNames(styles.personal_submit, {
+            [styles.personal_submit_purple]: themeName === Theme.Purple,
+            [styles.personal_submit_neon]: themeName === Theme.Neon,
+          })}
+        >
+          сохранить
+        </button>
+      </div>
     </form>
   );
 };

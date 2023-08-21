@@ -1,7 +1,6 @@
 // TODO: Порефакторить Файл. Слишком много строк
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dispatch, RootState } from "@store/store";
 import { gameSlice } from "@core/store/reducers/game-reducer";
 import { playersSlice } from "@core/store/reducers/players-reducer";
 import { shuffleArray } from "@shared/utils/shuffle-array";
@@ -30,7 +29,7 @@ const getGameState = (store: RootState) => store.game;
 const getPlayersState = (store: RootState) => store.players;
 
 const PageGame = () => {
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     currentPlayerType,

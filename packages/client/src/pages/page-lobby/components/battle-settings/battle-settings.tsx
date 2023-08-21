@@ -10,7 +10,6 @@ import cn from "classnames";
 import { validators } from "@pages/page-lobby/validators";
 import { OfflineUsersForm } from "@pages/page-lobby/components/battle-settings/offline-users-form/offline-users-form";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "@store/store";
 import { userLogout } from "@store/reducers/user-reducer";
 import styles from "./battle-settings.module.scss";
 
@@ -32,7 +31,7 @@ export const BattleSetting = () => {
 
   const themeName = useTheme();
 
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -78,8 +77,12 @@ export const BattleSetting = () => {
               <MainInput
                 name="players_count"
                 placeholder="Количество игроков"
+                maxLength={1}
                 value={form.players_count as string}
-                onChange={onChange}
+                onChange={(e) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, "");
+                  onChange(e);
+                }}
                 className={styles.battle_inputs}
                 error={validate.players_count.error}
                 onFocus={onFocus}

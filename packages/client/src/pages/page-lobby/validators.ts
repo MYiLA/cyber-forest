@@ -1,7 +1,7 @@
 export const validators = {
   players_count: {
     required: true,
-    rule: /^[1234]{1}$/,
+    rule: /^[1-4]{1}$/,
     message: "может играть до 4 человек",
   },
   type: {

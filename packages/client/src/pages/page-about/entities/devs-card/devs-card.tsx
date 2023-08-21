@@ -1,4 +1,4 @@
-import { DescriptionDevsCardProps } from "@pages/page-info/type";
+import { DescriptionDevsCardProps } from "@pages/page-about/type";
 import { FC } from "react";
 import cn from "classnames";
 import styles from "./devs-card.module.scss";

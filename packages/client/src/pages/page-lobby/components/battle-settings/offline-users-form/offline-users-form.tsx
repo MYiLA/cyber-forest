@@ -9,7 +9,6 @@ import { useGameStart } from "@hooks/use-game-start";
 import { FormEvent } from "react";
 import { userLogout } from "@store/reducers/user-reducer";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "@store/store";
 
 const initialForm: {
   user1: string;
@@ -18,11 +17,11 @@ const initialForm: {
   user4: string;
   max_glory: string;
 } = {
-  user1: "",
-  user2: "",
-  user3: "",
-  user4: "",
-  max_glory: "25",
+  user1: "Вася",
+  user2: "Катя",
+  user3: "Петя",
+  user4: "Даша",
+  max_glory: "10",
 };
 const validators = {
   user1: {
@@ -46,21 +45,19 @@ const validators = {
     message: "1-20 символов, буквы и цифры",
   },
   max_glory: {
-    required: false,
+    required: true,
     rule: /^[0-9]{1,2}$/,
-    message: "число славы должно быть меньше 100",
+    message: "число славы от 1 до 99",
   },
 };
 
 export const OfflineUsersForm = () => {
-  const { form, onChange, validate, onFocus, onBlur } = useForm(
-    initialForm,
-    validators
-  );
+  const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
+    useForm(initialForm, validators);
 
   const themeName = useTheme();
 
-  const dispatch = useDispatch<Dispatch>();
+  const dispatch = useDispatch<AppDispatch>();
 
   const {
     toStartGame,
@@ -71,6 +68,10 @@ export const OfflineUsersForm = () => {
 
   const onClick = (event: FormEvent) => {
     event.preventDefault();
+
+    if (!validateAllFields()) {
+      return;
+    }
 
     const players = Object.values(form)
       .map((player) => (player && !Number(player) ? player : null))
@@ -131,9 +132,13 @@ export const OfflineUsersForm = () => {
       />
       <MainInput
         name="max_glory"
+        maxLength={2}
         placeholder="число славы (макс.)"
         value={form.max_glory as string}
-        onChange={onChange}
+        onChange={(e) => {
+          e.target.value = e.target.value.replace(/[^0-9]/g, "");
+          onChange(e);
+        }}
         className={styles.battle_inputs}
         error={validate.max_glory.error}
         onFocus={onFocus}

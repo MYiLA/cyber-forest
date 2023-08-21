@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { createStore, RootState } from "@store/store";
+import { createStore } from "@store/store";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { MainRouter } from "@router/main-router";
@@ -8,6 +8,8 @@ import { AuthProvider } from "@core/auth-provider/auth-provider";
 import "./index.scss";
 import { toggleFullScreen } from "@utils/full-screen-fn";
 import { ErrorBoundary } from "@ui/error-boundary";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const container = document.getElementById("root");
 
@@ -53,6 +55,13 @@ const MainApp = () => {
             </AuthProvider>
           </BrowserRouter>
         </Provider>
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          closeOnClick
+          pauseOnHover
+          theme="light"
+        />
       </ErrorBoundary>
     </React.StrictMode>
   );

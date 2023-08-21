@@ -1,5 +1,5 @@
-import { ReactComponent as InputUnderlineR } from "@images/input-underline-r.svg";
-import { ReactComponent as InputUnderlineL } from "@images/input-underline-l.svg";
+import SvgInputUnderlineR from "@images/input-underline-r.svg";
+import SvgInputUnderlineL from "@images/input-underline-l.svg";
 import { FC, InputHTMLAttributes, useCallback } from "react";
 import cn from "classnames";
 import { Theme } from "@config/constants";
@@ -15,6 +15,9 @@ interface TInputProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
   align?: string;
 }
+
+const InputUnderlineR = () => <img src={SvgInputUnderlineR} alt="right" />;
+const InputUnderlineL = () => <img src={SvgInputUnderlineL} alt="left" />;
 
 export const MainInput: FC<TInputProps> = ({
   extraClassName,
