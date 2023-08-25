@@ -5,6 +5,32 @@
 Формат ченжлога основан на правилах [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 Проект придерживается [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2023-08-26
+
+### Добавлено
+
+- [CYB-39]  (https://linear.app/cyberforest/issue/CYB-39)  Написаны тесты на игровой движок + любой UI
+- [CYB-77]  (https://linear.app/cyberforest/issue/CYB-77)  Задокументирована структура бэкенда
+- [CYB-45]  (https://linear.app/cyberforest/issue/CYB-45)  Добавлен в проект memoryleaksmd
+- [CYB-44]  (https://linear.app/cyberforest/issue/CYB-44)  Добавлено ещё одно WEB API: Notification API
+- [CYB-43]  (https://linear.app/cyberforest/issue/CYB-43)  Добавлено API лидерборда
+- [CYB-41]  (https://linear.app/cyberforest/issue/CYB-41)  Добавлена Oauth авторизация 
+- [CYB-86]  (https://linear.app/cyberforest/issue/CYB-86)  Скорректирована вёрстка игрового поля для офлайн режима
+- [CYB-119] (https://linear.app/cyberforest/issue/CYB-119) Добавлены подписи полей и цветные засечки 
+- [CYB-61]  (https://linear.app/cyberforest/issue/CYB-61)  Добавлены эмоджи(бэкенд)
+- [CYB-64]  (https://linear.app/cyberforest/issue/CYB-64)  Добавлено API форума
+- [CYB-60]  (https://linear.app/cyberforest/issue/CYB-60)  Добавлены эмодзи (клиентская часть)
+- [CYB-59]  (https://linear.app/cyberforest/issue/CYB-59)  Добавлено переключение тем (клиентская часть) 
+- [CYB-127] (https://linear.app/cyberforest/issue/CYB-127) Добавлена хроника на странице игры
+
+### Исправлено
+- [CYB-133] (https://linear.app/cyberforest/issue/CYB-133) Исправлен баг при создании топика
+- [CYB-135] (https://linear.app/cyberforest/issue/CYB-135) Исправлено множество небольших багов
+
+### Изменено
+- [CYB-120] (https://linear.app/cyberforest/issue/CYB-120) Доработано API для OAuth 
+- [CYB-126] (https://linear.app/cyberforest/issue/CYB-126) Доработан SW и README
+
 ## [1.0.0] - 2023-07-22
 
 ### Добавлено

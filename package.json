@@ -1,5 +1,6 @@
 {
   "name": "cyberforest",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "bootstrap": "yarn && node init.js && lerna clean -y && yarn && lerna bootstrap",
