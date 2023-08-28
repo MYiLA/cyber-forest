@@ -1,12 +1,12 @@
 ARG SERVER_PORT=3001
 
-FROM node:18-alpine
+FROM node:18
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json ./
 
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 COPY . .
 

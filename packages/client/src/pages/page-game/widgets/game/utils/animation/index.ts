@@ -1,1 +1,1 @@
-export { rollDice } from './dice-animation'
+export { rollDice } from "./dice-animation";

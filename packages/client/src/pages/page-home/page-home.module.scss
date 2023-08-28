@@ -9,17 +9,17 @@
   gap: 50px;
   height: 100%;
   .header {
-    color: rgba(238, 216, 255, 0.10);
+    color: rgba(238, 216, 255, 0.1);
     text-align: center;
     text-shadow: 0 0 1em #fff;
     font-size: 150px;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     -webkit-text-stroke-width: 5px;
     &.purple {
       -webkit-text-stroke-color: #dcd0ea;
     }
     &.neon {
-      -webkit-text-stroke-color: #7CF0F0;
+      -webkit-text-stroke-color: #7cf0f0;
     }
   }
   .image {
@@ -42,24 +42,26 @@
 
       position: relative;
 
-      color: #FFFFFF;
+      color: #ffffff;
       font-size: 32px;
-      font-family: New_Zelek;
+      font-family: "New Zelek";
       text-align: center;
       text-transform: uppercase;
       &.purple {
-        background: rgba(187, 106, 234, 0.60);
-        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.60) inset, 0px 0px 2px 1px rgba(255, 255, 255, 0.50);
+        background: rgba(187, 106, 234, 0.6);
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.6) inset,
+          0px 0px 2px 1px rgba(255, 255, 255, 0.5);
         &:hover {
-          box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.30);
+          box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.3);
         }
       }
       &.neon {
-        border: 1px solid #FFF;
-        background: rgba(124, 240, 240, 0.60);
-        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.60) inset, 0px 0px 2px 1px rgba(255, 255, 255, 0.50);
+        border: 1px solid #fff;
+        background: rgba(124, 240, 240, 0.6);
+        box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.6) inset,
+          0px 0px 2px 1px rgba(255, 255, 255, 0.5);
         &:hover {
-          box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.30);
+          box-shadow: 3px 3px 3px 1px rgba(0, 0, 0, 0.3);
         }
       }
       &:first-child {
@@ -84,12 +86,50 @@
   .sub_nav_link {
     display: block;
 
-    font-size: 30px;
+    font-size: 17px;
     font-family: $font-main;
     font-weight: 500;
     opacity: 0.7;
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
     &:hover {
       opacity: 1;
     }
+  }
+
+  .oauth_btn {
+    cursor: pointer;
+    background: transparent;
+    border: none;
+
+    display: flex;
+    align-items: center;
+   color: #FFF;
+    font-family: "New Zelek";
+    font-size: 24px;
+    font-style: normal;
+
+    text-transform: uppercase;
+
+    &:hover {
+      text-shadow: #DFADFF 1px 0 10px;;
+    }
+
+    &_img {
+      display: block;
+
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+
+      margin-left: 15px;
+
+      background: transparent;
+      border: 1px solid $color-white;
+
+      z-index: 1000;
+    }
+
   }
 }

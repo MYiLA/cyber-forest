@@ -3,11 +3,14 @@ import { CustomRequest } from '../../config/types-constants'
 import ResourcesController from './resources-controller'
 import { UploadMiddleware } from '../../middlewares/upload-middleware'
 import { ApiError } from '../../exceptions/api-error'
+import path from 'path'
 
 export const resourcesRouter = Router()
 
-resourcesRouter.get('/', (_, res: Response) => {
-  res.json({ result: 'resources' })
+resourcesRouter.get('/:id', (req, res) => {
+  const file = path.join(__dirname, '..', '..', '..', 'uploads')
+  const { id } = req.params
+  res.sendFile(`${file}/${id}`)
 })
 
 resourcesRouter.post(

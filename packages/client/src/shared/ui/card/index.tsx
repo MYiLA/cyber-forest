@@ -1,32 +1,31 @@
-import { DiceType } from '@shared/type'
-import { RootState } from '@core/store/store'
-import { useSelector } from 'react-redux'
-import { Energy } from '../energy'
-import { Glory } from '../glory'
-import styles from './card.module.scss'
+import { DiceType } from "@shared/type";
+import { useSelector } from "react-redux";
+import { Energy } from "../energy";
+import { Glory } from "../glory";
+import styles from "./card.module.scss";
 
 type CardComponentProps = {
-  img: string
-  title: string
-  energy: number
-  glory: number
-  type: DiceType
-  onClick: () => void
-}
+  img: string;
+  title: string;
+  energy: number;
+  glory: number;
+  type: DiceType;
+  onClick: () => void;
+};
 
-const getGameState = (store: RootState) => store.game
+const getGameState = (store: RootState) => store.game;
 
-export const CardComponent = ({
+export function CardComponent({
   energy,
   glory,
   img,
   title,
   type,
   onClick,
-}: CardComponentProps) => {
-  const { accessHireWarriors } = useSelector(getGameState)
+}: CardComponentProps) {
+  const { accessHireWarriors } = useSelector(getGameState);
   const accessHireCount =
-    accessHireWarriors.find(item => item.type === type)?.count ?? 0
+    accessHireWarriors.find((item) => item.type === type)?.count ?? 0;
 
   return (
     <div className={styles.card_wrap} onClick={onClick} onMouseEnter={onClick}>
@@ -48,5 +47,5 @@ export const CardComponent = ({
         </span>
       </div>
     </div>
-  )
+  );
 }

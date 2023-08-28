@@ -1,30 +1,30 @@
-import { GuideBlock } from './guide-block'
-import { Modal } from '@ui/modal'
-import { FC, useState } from 'react'
-import { GuideProvider } from './context'
-import { Guides } from './guides'
-import styles from './guide.module.scss'
+import { Modal } from "@ui/modal";
+import { FC, useState } from "react";
+import { GuideBlock } from "./guide-block";
+import { GuideProvider } from "./context";
+import { Guides } from "./guides";
+import styles from "./guide.module.scss";
 
 type Props = {
-  OpenComponent?: FC<{ onClick: () => void }>
-}
+  OpenComponent?: FC<{ onClick: () => void }>;
+};
 
-export const Guide = ({ OpenComponent }: Props) => {
-  const [open, setOpen] = useState(false)
+export function Guide({ OpenComponent }: Props) {
+  const [open, setOpen] = useState(false);
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
   const handleOpen = () => {
-    setOpen(true)
-  }
+    setOpen(true);
+  };
 
   const component = OpenComponent ? (
     <OpenComponent onClick={handleOpen} />
   ) : (
     <button className={styles.how_to_play_button} onClick={handleOpen}>
-      Как играть?
+      Справочник
     </button>
-  )
+  );
 
   return (
     <>
@@ -37,5 +37,5 @@ export const Guide = ({ OpenComponent }: Props) => {
         </GuideProvider>
       </Modal>
     </>
-  )
+  );
 }

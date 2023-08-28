@@ -1,3 +1,5 @@
 export const dateFormatter = (date: string) => {
-  return date.split('.')[0].replaceAll('-', '/').replace('T', ', ')
-}
+  const d = new Date(date);
+
+  return d.toLocaleString("ru").replaceAll(".", "/");
+};

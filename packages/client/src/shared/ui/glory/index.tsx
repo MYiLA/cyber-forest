@@ -1,10 +1,10 @@
 type GloryProps = {
-  width?: number
-  height?: number
-  className?: string
-}
+  width?: number;
+  height?: number;
+  className?: string;
+};
 
-export const Glory = ({ width, height, className }: GloryProps) => {
+export function Glory({ width, height, className }: GloryProps) {
   return (
     <svg
       className={className}
@@ -12,7 +12,8 @@ export const Glory = ({ width, height, className }: GloryProps) => {
       height={height}
       viewBox="0 0 32 31"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -20,5 +21,5 @@ export const Glory = ({ width, height, className }: GloryProps) => {
         fill="currentColor"
       />
     </svg>
-  )
+  );
 }

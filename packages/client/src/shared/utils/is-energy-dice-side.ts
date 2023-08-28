@@ -1,5 +1,7 @@
-import { DiceSideEnergy } from '../type'
+import { DiceSideEnergy } from "../type";
 
-export const isEnergyDiceSide = (obj: any): obj is DiceSideEnergy => {
-  return obj?.energyCount !== undefined
-}
+export const isEnergyDiceSide = (obj: unknown): obj is DiceSideEnergy =>
+  typeof obj === "object" &&
+  obj !== null &&
+  "energyCount" in obj &&
+  obj?.energyCount !== undefined;

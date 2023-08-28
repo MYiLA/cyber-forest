@@ -1,13 +1,39 @@
-# Changelog
+# Список изменений
 
 Все важные изменения в проекте будут задокументированы здесь.
 
 Формат ченжлога основан на правилах [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 Проект придерживается [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2023-08-26
+
+### Добавлено
+
+- [CYB-39]  (https://linear.app/cyberforest/issue/CYB-39)  Написаны тесты на игровой движок + любой UI
+- [CYB-77]  (https://linear.app/cyberforest/issue/CYB-77)  Задокументирована структура бэкенда
+- [CYB-45]  (https://linear.app/cyberforest/issue/CYB-45)  Добавлен в проект memoryleaksmd
+- [CYB-44]  (https://linear.app/cyberforest/issue/CYB-44)  Добавлено ещё одно WEB API: Notification API
+- [CYB-43]  (https://linear.app/cyberforest/issue/CYB-43)  Добавлено API лидерборда
+- [CYB-41]  (https://linear.app/cyberforest/issue/CYB-41)  Добавлена Oauth авторизация 
+- [CYB-86]  (https://linear.app/cyberforest/issue/CYB-86)  Скорректирована вёрстка игрового поля для офлайн режима
+- [CYB-119] (https://linear.app/cyberforest/issue/CYB-119) Добавлены подписи полей и цветные засечки 
+- [CYB-61]  (https://linear.app/cyberforest/issue/CYB-61)  Добавлены эмоджи(бэкенд)
+- [CYB-64]  (https://linear.app/cyberforest/issue/CYB-64)  Добавлено API форума
+- [CYB-60]  (https://linear.app/cyberforest/issue/CYB-60)  Добавлены эмодзи (клиентская часть)
+- [CYB-59]  (https://linear.app/cyberforest/issue/CYB-59)  Добавлено переключение тем (клиентская часть) 
+- [CYB-127] (https://linear.app/cyberforest/issue/CYB-127) Добавлена хроника на странице игры
+
+### Исправлено
+- [CYB-133] (https://linear.app/cyberforest/issue/CYB-133) Исправлен баг при создании топика
+- [CYB-135] (https://linear.app/cyberforest/issue/CYB-135) Исправлено множество небольших багов
+
+### Изменено
+- [CYB-120] (https://linear.app/cyberforest/issue/CYB-120) Доработано API для OAuth 
+- [CYB-126] (https://linear.app/cyberforest/issue/CYB-126) Доработан SW и README
+
 ## [1.0.0] - 2023-07-22
 
-### ADDED
+### Добавлено
 - [CYB-12] (https://linear.app/cyberforest/issue/CYB-12) Создан репозиторий из шаблона
 - [CYB-13] (https://linear.app/cyberforest/issue/CYB-13) Добавлено отображение страниц, используя React Router и React Router DOM
 - [CYB-14] (https://linear.app/cyberforest/issue/CYB-14) Сверстана главная страница игры - лобби с заглушкой форума
@@ -48,7 +74,7 @@
 - [CYB-79] (https://linear.app/cyberforest/issue/CYB-79) Доработан Service Worker и авторизация
 - [CYB-90] (https://linear.app/cyberforest/issue/CYB-79) Сверстана страница с описанием игры и информацией о разработчиках
  
-### FIXED
+### Исправлено
 - [CYB-49] (https://linear.app/cyberforest/issue/CYB-49) Исправлен баг на странице регистрации
 - [CYB-75] (https://linear.app/cyberforest/issue/CYB-75) Поправлен билд приложения
 - [CYB-80] (https://linear.app/cyberforest/issue/CYB-80) Исправлены ошибки форума и настроек игры
@@ -58,5 +84,5 @@
 - [CYB-96] (https://linear.app/cyberforest/issue/CYB-96) Поправлена вёрстка игры и игровой движок
 - [CYB-98] (https://linear.app/cyberforest/issue/CYB-98) Поправлено позиционирование киберлеса на невысоких экранах мониторов. Упорядочены расстояния между пунктами меню в лобби. Убран лишний бэкграунд на странице игры. Поправлены уехавшие стрелки в гайде. Поправлено склонение слов при выйгрыше.
 
-### CHANGED
+### Изменено
 - [CYB-36] (https://linear.app/cyberforest/issue/CYB-36) Авторизация стала проверяться через Hook useAuth

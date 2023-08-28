@@ -4,6 +4,7 @@
 .chat {
   @include glow-for-big;
 
+  flex-shrink: 0;
   position: relative;
   padding: 16px;
   padding-bottom: 6px;

@@ -1,24 +1,25 @@
+@import "@scss/variables";
+
 .container {
   display: flex;
 }
 
 .wrapper {
-
   display: block;
   position: relative;
   margin: 10vh auto;
   width: 80vw;
   height: 80vh;
-  border: 1px solid #FFFFFF;
+  border: 1px solid #ffffff;
 
   padding: 66px 46px;
 
   &_purple {
-    background: rgba(143, 108, 188, 0.1);
+    background: $dialog-purple-gradient;
   }
 
   &_neon {
-    background: #3FB7EA4D;
+    background: $dialog-neon-gradient;
   }
 
   &::before {
@@ -58,23 +59,25 @@
   }
 
   .header {
-    color: #FFF;
+    color: #fff;
     font-size: 40px;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     line-height: 35px;
     text-align: center;
   }
 
-  .personal {
+  &_formcontainer {
+    display: flex;
+  }
 
+  .personal {
     margin-top: 3%;
     width: 50%;
     height: 70%;
     position: relative;
     display: grid;
-    grid-auto-columns: 237px;
-    grid-auto-rows: 56px;
-    grid-column-gap: 29px;
+    grid-auto-columns: 43%;
+    grid-column-gap: 6%;
 
     &::after {
       content: url("../../assets/images/divider.svg");
@@ -84,20 +87,25 @@
     }
 
     &_header {
-      color: #FFF;
+      color: #fff;
       font-size: 20px;
-      font-family: New_Zelek;
+      font-family: "New Zelek";
       line-height: 35px;
       text-transform: uppercase;
       text-align: center;
       grid-column: 1 / 3;
+      margin-bottom: 20px;
+    }
+
+    &_inputwrapper {
+      margin-top: 20px;
+      height: 100%;
     }
 
     &_input {
       position: relative;
 
       &_reversed {
-
         input {
           text-align: right !important;
         }
@@ -109,6 +117,7 @@
         label {
           right: 0 !important;
           left: auto;
+          transform-origin: top right;
         }
       }
 
@@ -124,7 +133,7 @@
       align-items: center;
 
       span {
-        color: #FFF;
+        color: #fff;
         text-align: right;
         font-size: 20px;
         font-family: Blender Pro;
@@ -135,11 +144,11 @@
       }
 
       &_purple {
-        color: #E2B0FF;
+        color: #e2b0ff;
       }
 
       &_neon {
-        color: #7CF0F0;
+        color: #7cf0f0;
       }
     }
     &_file {
@@ -161,11 +170,11 @@
       height: 177px;
       box-sizing: border-box;
       border-radius: 100px;
-      border: 3px solid #FFF;
-      transition: all ease-in-out .3s;
+      border: 3px solid #fff;
+      transition: all ease-in-out 0.3s;
 
       &:hover {
-        box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+        box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
       }
 
       &_figcaption {
@@ -175,15 +184,15 @@
         width: 177px;
         height: 177px;
         border-radius: 100%;
-        border: 3px solid #FFF;
+        border: 3px solid #fff;
         opacity: 0;
         background-color: rgba(0, 0, 0, 0);
-        transition: all ease-in-out .3s;
+        transition: all ease-in-out 0.3s;
 
         &:hover {
           opacity: 1;
-          background-color: rgba(0, 0, 0, .6);
-          box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+          background-color: rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
         }
 
         > img {
@@ -197,14 +206,14 @@
     &_submit {
       position: relative;
 
-      border: 1px solid #FFF;
+      border: 1px solid #fff;
       width: 132px;
       height: 27px;
 
-      color: #FFF;
+      color: #fff;
       text-align: center;
       font-size: 14px;
-      font-family: New_Zelek;
+      font-family: "New Zelek";
       text-transform: uppercase;
 
       margin-top: 30px;
@@ -217,13 +226,13 @@
       }
 
       &_neon {
-        background: #7CF0F080;
+        background: #7cf0f080;
       }
       &:hover {
-        box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.50);;
+        box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
       }
       &:disabled {
-        background: #45404E20;
+        background: #45404e20;
         &:hover {
           box-shadow: none;
         }
@@ -247,10 +256,8 @@
     margin-top: 3%;
     width: 50%;
     height: 70%;
-    position: absolute;
     display: flex;
     flex-direction: column;
-    right: 0;
     top: 100px;
     padding: 0px 30px;
     h3 {
@@ -272,15 +279,12 @@
     width: 267px;
     position: absolute;
     bottom: 30px;
-    right: 0;
+    right: 57px;
     span {
       width: 90px;
     }
     span:nth-child(2) {
       text-align: right;
-    }
-    label {
-      margin-top: 5px;
     }
   }
 }

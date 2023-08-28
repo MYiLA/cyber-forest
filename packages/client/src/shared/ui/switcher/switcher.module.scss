@@ -3,6 +3,36 @@
   margin: 0 auto;
   margin-bottom: 24px;
 
+  &_themetoggle {
+    position: relative;
+    height: 57px;
+
+    span {
+      font-size: 20px;
+
+      &.left, 
+      &.right {
+        display: inline-block;
+        position: absolute;
+        width: 50% !important;
+      }
+    }
+
+    .left {
+      top: 3px;
+      left: 5px;
+    }
+
+    .right {
+      bottom: -10%;
+      right: 14%;
+    }
+
+    label.switch {
+      margin-top: 25px;
+    }
+  }
+
   .switch {
     position: absolute;
     top: 1px;
@@ -11,6 +41,10 @@
     width: 22px;
     height: 11px;
     bottom: 14px;
+
+    label {
+      margin-top: 5px;
+    }
   }
 
   &_label {
@@ -20,28 +54,28 @@
     flex-direction: row;
     justify-content: space-around;
     font-size: 14px;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     line-height: 16px;
-    .unactive {
 
+    .unactive {
       &_purpur {
-        color: #E2B0FF65;
+        color: rgba(187, 106, 234, 0.65);
       }
 
       &_neon {
-        color: #7CF0F065;
+        color: #7cf0f065;
       }
     }
 
     .active {
-      text-shadow: 0px 0px 5px 0px rgba(255, 255, 255, 0.50);
+      text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.5);
 
       &_purpur {
-        color: #E2B0FF;
+        color: #e2b0ff;
       }
 
       &_neon {
-        color: #7CF0F0;
+        color: #7cf0f0;
       }
     }
   }
@@ -65,8 +99,8 @@
   right: 0;
   bottom: 0;
   border-radius: 40px;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
   border: none;
 
   &:before {
@@ -75,26 +109,26 @@
     height: 8px;
     width: 9px;
     border-radius: 40px;
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
     left: 1px;
     bottom: 1px;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
   }
 
   &_purpur {
-    background-color: #BB6AEA66;
+    background-color: #bb6aea66;
 
     &:before {
-      background-color: #BB6AEA;
+      background-color: #bb6aea;
     }
   }
 
   &_neon {
-    background-color: #7CF0F066;
+    background-color: #7cf0f066;
 
     &:before {
-      background-color: #7CF0F0;
+      background-color: #7cf0f0;
     }
   }
 }

@@ -1,14 +1,14 @@
 .label {
   font-size: 14px;
-  font-family: New_Zelek;
+  font-family: "New Zelek";
   margin-right: 10px;
 
   &.purpur {
-    color: #DFADFF;
+    color: #dfadff;
   }
 
   &.neon {
-    color: #7CF0F0;
+    color: #7cf0f0;
   }
 }
 
@@ -16,5 +16,5 @@
   width: 10px;
   height: 10px;
   cursor: pointer;
-  border: 1px solid #B1B1B1;
+  border: 1px solid #b1b1b1;
 }

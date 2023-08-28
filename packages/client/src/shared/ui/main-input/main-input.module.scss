@@ -1,114 +1,169 @@
 @import "@scss/_variables.scss";
 .container {
-	position: relative;
-	margin-bottom: 12px;
-	margin-top: 12px;
-	.bottom_right {
-		position: absolute;
-		right: 0;
-		bottom: -10px;
-	}
-	.bottom_left {
-		position: absolute;
-		left: 0px;
-		bottom: -9px;
-	}
+  position: relative;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  .bottom_right {
+    position: absolute;
+    right: 0;
+    bottom: -15px;
+  }
+  .bottom_left {
+    position: absolute;
+    left: 0;
+    bottom: -13px;
+  }
 
-	.placeholder {
-		left: 0px;
-		top: 3px;
-		color: $color-white;
-		font-size: 20px;
-		pointer-events: none;
-		position: absolute;
-		transform-origin: 0 0;
-		transition: transform 200ms, color 200ms;
-	}
+  .bottom_left,
+  .bottom_right {
+    svg {
+      filter: drop-shadow(0px 0px 5px rgba(255,255,255,0.50));
+    }
 
-	input {
-		padding: 3px;
-		font-size: 20px;
-		width: 100%;
-		border-bottom: 1px solid $color-white;
-		color: $color-white;
+    &.purple {
+      svg {
+        fill: #e3b0ff;
 
-		&::placeholder {
-			color: $color-gray;
-		}
+        path {
+          stroke: #e3b0ff;;
+        }
+      }
+    }
 
-		&:focus {
-			//border-bottom: 2px solid var(--primary-color);
-			//background-color: white;
-		}
+    &.neon {
+      svg {
+        fill: #7cf0f0;
 
-		&:focus ~ .placeholder,
-		&:not(:placeholder-shown) ~ .placeholder {
-			transform: translateY(-15px) scale(0.6);
-			color: $color-white;
-		}
-	}
+        path {
+          stroke: #7cf0f0;;
+        }
+      }
+    }
+  }
 
-	.error {
-		font-size: 12px;
-		position: absolute;
-		bottom: -18px;
-		color: $color-error;
-		width: 100%;
-	}
+  .placeholder {
+    left: 0px;
+    top: 3px;
+    color: $color-white;
+    font-size: 20px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 0;
+    transition: transform 200ms, color 200ms;
+    white-space: nowrap;
 
+    &.purple, 
+    &.neon {
+      font-family: "New Zelek";
+      text-shadow: 0px 0px 5px rgb(255 255 255 / 50%);
+    }
 
+    &.purple {
+      color: #e3b0ff;
+    }
+
+    &.neon {
+      color: #7cf0f0;
+    }
+  }
+
+  input {
+    padding: 3px;
+    font-size: 20px;
+    width: 100%;
+    border-bottom: 1px solid #e3b0ff;
+    color: $color-white;
+
+    &.purple {
+      border-bottom: 1px solid #e3b0ff;
+
+      &:focus ~ .placeholder,
+      &:not(:placeholder-shown) ~ .placeholder {
+        color: #e3b0ff;
+      }
+    }
+
+    &.neon {
+      border-bottom: 1px solid #7cf0f0;
+
+      &:focus ~ .placeholder,
+      &:not(:placeholder-shown) ~ .placeholder {
+        color: #7cf0f0;
+      }
+    }
+
+    &::placeholder {
+      color: $color-gray;
+    }
+
+    &:focus {
+      //border-bottom: 2px solid var(--primary-color);
+      //background-color: white;
+    }
+
+    &:focus ~ .placeholder,
+    &:not(:placeholder-shown) ~ .placeholder {
+      transform: translateY(-15px) scale(0.6);
+    }
+  }
+
+  .error {
+    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    color: $color-error;
+    width: 100%;
+  }
 }
 
 .right_direction {
-	.placeholder {
-		text-align: right;
-		right: 0px;
-		transform-origin: 100% 0;
-	}
-	input {
-		text-align: right;
-	}
-	.error {
-		text-align: right;
-	}
+  .placeholder {
+    text-align: right;
+    right: 0px;
+    transform-origin: 100% 0;
+  }
+  input {
+    text-align: right;
+  }
+  .error {
+    text-align: right;
+  }
 }
 
-
-
 .custom_checkbox {
-	width: 20px;
-	position: relative;
-	margin: 5px;
-	label {
-		width: 20px;
-		height: 20px;
-		cursor: pointer;
-		position: absolute;
-		top: 0;
-		left: 0;
-		border: 1px solid $color-white;
-		&:after {
-			content: '';
-			width: 9px;
-			height: 4px;
-			position: absolute;
-			top: 4px;
-			left: 4px;
-			border: 3px solid $color-white;
-			border-top: none;
-			border-right: none;
-			background: transparent;
-			opacity: 0;
-			transform: rotate(-45deg);
-		}
-		&:hover::after {
-			opacity: 0.3;
-		}
-	}
-	input[type=checkbox] {
-		visibility: hidden;
-		&:checked + label:after {
-			opacity: 1;
-		}
-	}
+  width: 20px;
+  position: relative;
+  margin: 5px;
+  label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $color-white;
+    &:after {
+      content: "";
+      width: 9px;
+      height: 4px;
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      border: 3px solid $color-white;
+      border-top: none;
+      border-right: none;
+      background: transparent;
+      opacity: 0;
+      transform: rotate(-45deg);
+    }
+    &:hover::after {
+      opacity: 0.3;
+    }
+  }
+  input[type="checkbox"] {
+    visibility: hidden;
+    &:checked + label:after {
+      opacity: 1;
+    }
+  }
 }

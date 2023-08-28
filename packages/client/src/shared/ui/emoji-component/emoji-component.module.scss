@@ -1,0 +1,18 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.wrap {
+  width: 32px;
+  max-height: 32px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.img {
+  @include img-position;
+}

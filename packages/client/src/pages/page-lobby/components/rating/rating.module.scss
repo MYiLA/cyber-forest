@@ -10,21 +10,21 @@
     margin: 0 auto;
     text-align: center;
     font-size: 20px;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     text-transform: uppercase;
 
     &.purpur {
-      color: #E2B0FF;
+      color: #e2b0ff;
     }
 
     &.neon {
-      color: #7CF0F0;
+      color: #7cf0f0;
     }
   }
 
   &_place {
     margin-top: 8px;
-    color: #FFF;
+    color: #fff;
     text-align: center;
     font-size: 20px;
     font-family: Blender Pro;
@@ -38,7 +38,7 @@
     flex-direction: row;
     justify-content: space-between;
 
-    color: rgba(255, 255, 255, 0.50);
+    color: rgba(255, 255, 255, 0.5);
     text-align: center;
     font-size: 20px;
     font-family: Blender Pro;

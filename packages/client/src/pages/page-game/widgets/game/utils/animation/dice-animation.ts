@@ -1,45 +1,45 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { DiceSide } from '../../type'
-import { animate } from '@utils/animate'
-import { AreaType } from '@pages/page-game/widgets/game/constants'
-import { drawDiceSide } from '@pages/page-game/widgets/game/utils/draw-dice-side'
-import { allSides as allSidesConst } from '@pages/page-game/widgets/game/utils/animation/sides'
+import { animate } from "@utils/animate";
+import { AreaType } from "@pages/page-game/widgets/game/constants";
+import { drawDiceSide } from "@pages/page-game/widgets/game/utils/draw-dice-side";
+import { allSides as allSidesConst } from "@pages/page-game/widgets/game/utils/animation/sides";
+import { DiceSide } from "../../type";
 
 type DiceMetaOption = {
-  index?: number
-  lastSide: DiceSide
-  willAnimated?: boolean
-}
+  index?: number;
+  lastSide: DiceSide;
+  willAnimated?: boolean;
+};
 
-const diceMeta: Record<string, Required<DiceMetaOption>> = {}
+const diceMeta: Record<string, Required<DiceMetaOption>> = {};
 const getInitialDiceOptions = (
   params: DiceMetaOption
 ): Required<DiceMetaOption> => ({
   lastSide: params.lastSide,
   index: params.index || 0,
   willAnimated: !!params.willAnimated,
-})
+});
 
-const DIFF = 0.1
-const TIME_SCALE = 0.5
+const DIFF = 0.1;
+const TIME_SCALE = 0.5;
 const isRounded = (val: number) => {
-  const rounded = Math.round(val)
-  const min = rounded - DIFF
-  const max = rounded + DIFF
-  return val > min && val < max
-}
+  const rounded = Math.round(val);
+  const min = rounded - DIFF;
+  const max = rounded + DIFF;
+  return val > min && val < max;
+};
 
 type RollDiceOptions = {
-  ctx: CanvasRenderingContext2D
-  lastSide: DiceSide
-  area: AreaType
-  sides: DiceSide[]
-  minX: number
-  minY: number
-}
+  ctx: CanvasRenderingContext2D;
+  lastSide: DiceSide;
+  area: AreaType;
+  sides: DiceSide[];
+  minX: number;
+  minY: number;
+};
 
 export const rollDice = (diceKey: string, options: RollDiceOptions) => {
-  const { minY, minX, ctx, lastSide } = options
+  const { minY, minX, ctx, lastSide } = options;
   // TODO: поправить и отрефачить анимацию. Сейчас она ломает механику
   // if (!diceMeta[diceKey]) {
   //   diceMeta[diceKey] = getInitialDiceOptions({ lastSide })
@@ -74,5 +74,5 @@ export const rollDice = (diceKey: string, options: RollDiceOptions) => {
   //   })
   //   return
   // }
-  drawDiceSide({ ctx, diceSide: lastSide, x: minX, y: minY })
-}
+  drawDiceSide({ ctx, diceSide: lastSide, x: minX, y: minY });
+};

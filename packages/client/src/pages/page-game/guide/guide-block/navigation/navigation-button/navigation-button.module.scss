@@ -6,11 +6,11 @@
   font-size: 18px;
   color: #fff;
   cursor: pointer;
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   padding: 6px 0;
   width: 121px;
   text-align: center;
-  transition: all .1s linear;
+  transition: all 0.1s linear;
   position: relative;
   &:active {
     opacity: 0.7;
@@ -24,11 +24,21 @@
   }
 
   &.neon {
-    background: linear-gradient(135deg, #71AEA0 0%, #45404E 51.04%, #192349 100%);
+    background: linear-gradient(
+      135deg,
+      #71aea0 0%,
+      #45404e 51.04%,
+      #192349 100%
+    );
   }
 
   &.purple {
-    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+    background: linear-gradient(
+      135deg,
+      #2c1d42 0%,
+      #45365d 51.04%,
+      #4a2957 100%
+    );
   }
 
   &.active {
@@ -43,7 +53,7 @@
 
 .top_left_corner {
   position: absolute;
-  transition: all linear .2s;
+  transition: all linear 0.2s;
   transform: rotateZ(90deg);
   top: -2px;
   left: 0;
@@ -51,7 +61,7 @@
 
 .bottom_right_corner {
   position: absolute;
-  transition: all linear .2s;
+  transition: all linear 0.2s;
   transform: rotateZ(90deg);
   bottom: -3px;
   right: 1px;

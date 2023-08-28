@@ -1,0 +1,81 @@
+.top_images {
+  display: flex;
+  justify-content: space-between;
+}
+
+.energy {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 10px 113px 0 155px;
+  overflow-y: auto;
+}
+
+.top_desc {
+  margin-top: 10px;
+  width: 427px;
+}
+
+.mini_cat_img {
+  position: absolute;
+  right: 124px;
+  top: 220px;
+}
+
+.prepare_card_img,
+.power_card_img,
+.first_bottom_desc,
+.second_bottom_desc {
+  margin-top: 10px;
+}
+
+.arrow {
+  position: absolute;
+  z-index: 1;
+
+  &_1 {
+    top: 164px;
+    left: 163px;
+    clip-path: inset(0 0 85px 0);
+  }
+
+  &_2 {
+    top: 110px;
+    left: 451px;
+    clip-path: inset(1px 1px 31px 1px);
+  }
+
+  &_3 {
+    top: 181px;
+    left: 625px;
+    clip-path: inset(1px 1px 1px 1px);
+    transform: rotateZ(90deg);
+  }
+
+  &_4 {
+    top: 415px;
+    left: 352px;
+    clip-path: inset(1px 1px 90px 1px);
+  }
+
+  &_5 {
+    top: 587px;
+    left: 198px;
+    transform: rotateZ(180deg);
+    clip-path: inset(1px 1px 60px 1px);
+  }
+
+  &_6 {
+    top: 587px;
+    left: 255px;
+    transform: rotateZ(180deg);
+    clip-path: inset(1px 1px 60px 1px);
+  }
+
+  &_7 {
+    top: 587px;
+    left: 314px;
+    transform: rotateZ(180deg);
+    clip-path: inset(1px 1px 60px 1px);
+  }
+}

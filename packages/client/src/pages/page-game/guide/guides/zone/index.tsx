@@ -1,12 +1,12 @@
-import inventory from '../assets/inventory.png'
-import prepareCard from '../assets/prepare-card.png'
-import emptyZones from '../assets/empty-zones.png'
-import gamers from '../assets/gamers.png'
-import styles from './zone.module.scss'
-import { CardDescription } from './card-description'
-import { DescriptionBlock } from '../description-block'
-import { ReactComponent as Arrow } from '../assets/arrow.svg'
-import cn from 'classnames'
+import cn from "classnames";
+import inventory from "../assets/inventory.png";
+import prepareCard from "../assets/prepare-card.png";
+import emptyZones from "../assets/empty-zones.png";
+import gamers from "../assets/gamers.png";
+import styles from "./zone.module.scss";
+import { CardDescription } from "./card-description";
+import { DescriptionBlock } from "../description-block";
+import { ReactComponent as Arrow } from "../assets/arrow.svg";
 
 const warZoneText = `
 Воины при призыве в зону битвы атакуют всех противников одновременно на сумму сил своих атак. 
@@ -21,9 +21,9 @@ const warZoneText = `
 6 меньше 7, значит волк остаётся в бою.
 
 Битва считается завершенной, когда наступает ваш следующий ход
-`
+`;
 
-export const Zone = () => {
+export function Zone() {
   return (
     <div className={styles.zone}>
       <Arrow className={cn(styles.arrow, styles.arrow_1)} />
@@ -53,7 +53,7 @@ export const Zone = () => {
           />
           <CardDescription
             title="зона подготовки"
-            text="Воинов, находящихся в зоне подготовки вы можете отправить на битву, если вам хватает силы на их призыв. Иначе невостребованные воины переходят сразу в зону отдыха."
+            text="Воинов, находящихся в зоне подготовки вы можете отправить на битву, если вам хватает энергии на их призыв. Иначе невостребованные воины переходят сразу в зону отдыха."
           />
         </div>
       </div>
@@ -64,7 +64,7 @@ export const Zone = () => {
             text="стоимость призыва"
           />
           <DescriptionBlock
-            text="ваша сила"
+            text="ваша энергия"
             className={cn(styles.description_default)}
           />
         </div>
@@ -101,5 +101,5 @@ export const Zone = () => {
         />
       </div>
     </div>
-  )
+  );
 }

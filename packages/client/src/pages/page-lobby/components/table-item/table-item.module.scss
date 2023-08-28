@@ -18,19 +18,19 @@
   z-index: 0;
 
   &.purpur {
-    background: #BB6AEA33;
+    background: #bb6aea33;
   }
 
   &.neon {
-    background: #3FB7EA33;
+    background: #3fb7ea33;
   }
 
   &_title {
     width: 327px;
 
-    color: #FFF;
+    color: #fff;
     font-size: 14px;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     text-transform: uppercase;
   }
 
@@ -52,16 +52,16 @@
       margin-right: 5px;
 
       border-radius: 50%;
-      border: 3px solid #FFF;
-      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.50);
+      border: 3px solid #fff;
+      box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
     }
   }
 
   &_password {
-    color: #FFFFFF;
+    color: #ffffff;
     cursor: pointer;
     &::placeholder {
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 
@@ -71,24 +71,24 @@
 
     padding-top: 7px;
 
-    color: #FFF;
+    color: #fff;
     text-align: center;
     font-size: 14px;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     text-transform: uppercase;
 
-    border: 1px solid #FFFFFF;
+    border: 1px solid #ffffff;
 
     position: relative;
 
     &.purple {
-      border: 1px solid #FFF;
+      border: 1px solid #fff;
       background: rgba(187, 106, 234, 0.65);
     }
 
     &.neon {
-      border: 1px solid #FFF;
-      background: #3FB7EA65;
+      border: 1px solid #fff;
+      background: #3fb7ea65;
     }
 
     &::before {

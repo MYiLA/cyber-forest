@@ -1,29 +1,42 @@
 $offset-base-size: 4px;
 
-
-$color-white: #FFFFFF;
+$color-white: #ffffff;
 $color-black: #000000;
 $color-gray: #b0b0b0;
-$color-yellow: #FEDF3E;
-$color-violet: #E2B0FF;
-$color-neon: #2BFFFB;
-$color-orange: #FB7C45;
+$color-yellow: #fedf3e;
+$color-violet: #e2b0ff;
+$color-neon: #2bfffb;
+$color-orange: #fb7c45;
+$color-dark-green: #1e3e45;
 
 $color-error: #ef6a6a;
 $color-bg-neon: #10222e;
 $color-bg-purple: #05151d;
 
-$dialog-gradient: linear-gradient( -45deg, #321642, #a083b4);
-$game-gradient: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+$dialog-purple-gradient: linear-gradient(135deg, rgba(44, 29, 66, 0.70) 0%, rgba(69, 54, 93, 0.70) 51.04%, rgba(74, 41, 87, 0.70) 100%) !important;
+$dialog-neon-gradient: linear-gradient(135deg, rgba(33, 44, 50, 0.7) 0%, rgba(61, 125, 115, 0.7) 51.04%, rgba(33, 44, 50, 0.7) 100%) !important;
+$game-gradient: linear-gradient(
+  135deg,
+  #2c1d42 0%,
+  #45365d 51.04%,
+  #4a2957 100%
+);
+
+$game-gradient-neon: linear-gradient(
+  135deg, 
+  #71aea0 0%, 
+  #45404e 51.04%,
+  #192349 100%
+);
 
 $scrollbar-purple-color: #632885;
 $scrollbar-neon-color: #397970;
 
-$text-glow-purple: rgba(224, 172, 255, 0.80) 0px 0 10px;
-$player-red: #FF4949;
+$text-glow-purple: rgba(224, 172, 255, 0.8) 0px 0 10px;
+$player-red: #ff4949;
 $player-yellow: $color-yellow;
-$player-blue: #7CF0F0;
-$player-green: #00FF0A;
+$player-blue: #7cf0f0;
+$player-green: #00ff0a;
 
-$font-accent: 'New Zelek', Times, serif;
-$font-main: 'Blender Pro', Times, serif;
+$font-accent: "New Zelek", Times, serif;
+$font-main: "Blender Pro", Times, serif;

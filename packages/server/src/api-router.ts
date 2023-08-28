@@ -9,11 +9,11 @@ import { leaderboardRouter } from './features/leaderboard/leaderboard-router'
 import { resourcesRouter } from './features/resources/resources-router'
 import { authRouter } from './features/auth/auth-router'
 import { userRouter } from './features/user/user-router'
+import { oAuthRouter } from './features/o-auth/o-auth-router'
 
 export const apiRouter = Router()
 
 apiRouter.use(express.static('swagger'))
-apiRouter.use('/resources', AuthMiddleware, express.static('uploads'))
 
 apiRouter.use(
   '/docs',
@@ -26,6 +26,7 @@ apiRouter.use(
 )
 
 apiRouter.use('/auth', authRouter)
+apiRouter.use('/oauth', oAuthRouter)
 apiRouter.use('/chats', AuthMiddleware, chatsRouter)
 apiRouter.use('/leaderboard', AuthMiddleware, leaderboardRouter)
 apiRouter.use('/user', AuthMiddleware, userRouter)

@@ -5,12 +5,12 @@
   width: 80%;
   min-height: 70%;
 
-  border: 1px solid #FFFFFF40;
+  border: 1px solid #ffffff40;
 
   margin: 15px auto;
   padding: 15px;
 
-  color: #FFF;
+  color: #fff;
 
   font-family: Blender Pro;
   font-size: 15px;
@@ -22,7 +22,7 @@
     color: #fff;
     margin: 10px 60px;
     text-align: center;
-    font-family: New_Zelek;
+    font-family: "New Zelek";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -32,11 +32,11 @@
 }
 
 .button {
-  width: 175px;
+  width: 215px;
 
-  color: #FFF;
+  color: #fff;
   text-align: center;
-  font-family: New_Zelek;
+  font-family: "New Zelek";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -49,6 +49,45 @@
     background: rgba(63, 183, 234, 0.65) !important;
   }
   &_container {
-    margin-left: 60%;
+    margin-left: 40%;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-5px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(5px);
+  }
+}
+
+.error {
+  border-color: #F80202;
+  animation: shake 0.6s;
+
+  &_mess {
+    display: block;
+    font-size: 15px;
+    color: #FFFFFF90;
+    text-align: center;
+
+    &_abs {
+      position: absolute;
+      top: 45px;
+      left: -20px;
+      color: #FFFFFF90;
+
+      &_mini {
+        position: absolute;
+        font-size: 13px;
+        top: 35px;
+        left: 20px;
+        color: #FFFFFF90;
+      }
+    }
   }
 }

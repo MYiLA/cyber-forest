@@ -1,0 +1,100 @@
+@import "@scss/_variables.scss";
+@import "@scss/_mixins.scss";
+
+.wrap {
+  position: relative;
+}
+
+.list_wrap {
+  @include glow-for-big;
+
+  position: absolute;
+  z-index: 1;
+  left: 4px;
+  top: 34px;
+  width: 328px;
+  padding: 16px;
+  background: $game-gradient;
+  border-color: #E2B0FF;
+
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s;
+
+  &::before {
+    @include background-img-position;
+
+    content: '';
+    width: 318px;
+    height: 134px;
+    bottom: -1px;
+    left: -6px;
+    background-image: url(@images/game/chronicle/angle-bottom-left.svg);
+  }
+
+  &::after {
+    @include background-img-position;
+
+    content: '';
+    width: 53px;
+    height: 61px;
+    top: -1px;
+    right: -1px;
+    background-image: url(@images/game/chronicle/angle-top-right.svg);
+  }
+}
+
+.list {
+  list-style: none;
+  max-height: 100px;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  opacity: 0;
+
+  transition: opacity 1s;
+  transition-delay: 0.15s;
+}
+
+.emoji {
+  display: inline-block;
+}
+
+.btn {
+  @include background-img-position;
+
+  &::before, &::after {
+    content: none;
+  }
+
+  position: relative;
+  pointer-events: initial;
+  width: 32px;
+  height: 32px;
+  border-color: #E2B0FF;
+  background-color: rgba(#BB6AEA, $alpha: .2);
+  background-size: 20px;
+  background-image: url(@images/game/chat/smile.svg);
+
+  &:hover, &:active, &:focus {
+    @include glow-for-smile;
+
+    border-color: $color-white;
+  }
+
+
+  & button { 
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.wrap.open {
+  & .list_wrap {
+    transform: scaleY(1);
+  }
+
+  & .list {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,178 @@
+.container {
+  padding: 50px;
+}
+
+.header {
+  color: rgba(238, 216, 255, 0.10);
+  font-family: "New Zelek";
+  font-size: 96px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 0 5px;
+
+  span {
+    color: #FFF;
+    font-family: "New Zelek";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    -webkit-text-stroke: 1px #fff;
+    text-shadow: none;
+  }
+
+  &_purlpe {
+    -webkit-text-stroke: 5px #E2B0FF;
+    text-shadow: 0 0 40px #E2B0FF;
+    color: rgba(238, 216, 255, 0.10);
+  }
+
+  &_neon {
+    -webkit-text-stroke: 5px #7CF0F0;
+    text-shadow: 0 0 40px #7CF0F0;
+    color: rgba(238, 216, 255, 0.10);
+  }
+}
+
+.wrapper {
+  min-height: 500px;
+  height: 80% !important;
+
+  margin-top: 30px;
+  padding: 54px 54px 15px 54px !important;
+
+  position: relative;
+
+  border: 1px solid #FFF;
+  box-shadow: 0 0 20px 0 rgba(255, 255, 255, 0.50);
+
+  .back {
+    display: block;
+    position: absolute;
+
+    right: 30px;
+    top: 25px;
+  }
+
+  .description {
+    color: #FFF;
+    font-family: Blender Pro;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+
+    &_cards {
+      display: flex;
+      justify-content: space-between;
+
+      margin-top: 2%;
+    }
+  }
+
+  .tab {
+    position: absolute;
+    bottom: 15px;
+    left: 45%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    &_grid {
+      display: grid;
+      grid-template-columns: 580px 580px;
+      grid-template-rows: 173px;
+      grid-column-gap: 30px;
+      grid-row-gap: 20px;
+    }
+
+    &_section {
+      display: none;
+    }
+
+    &_sign {
+      width: 10px;
+      height: 10px;
+
+      border-radius: 50px;
+
+      border: 1px solid #B1B1B1;
+      background: rgba(187, 106, 234, 0.40);
+
+      &.neon {
+        background-color: rgba(51, 134, 117, 0.4);
+      }
+
+
+      &_active {
+        width: 16px;
+        height: 16px;
+
+        border-radius: 50px;
+
+        border: 1px solid #FFF;
+        background: #BB6AEA;
+        box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.25);
+
+        &.neon {
+          background-color: rgba(61, 210, 182, 0.66);
+        }
+      }
+    }
+
+    &_next_button {
+      background: transparent;
+      border: none;
+
+      cursor: pointer;
+
+      position: absolute;
+      right: 30px;
+      bottom: 15px;
+
+      color: rgba(255, 255, 255, 0.70);
+
+      font-family: Blender Pro;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 500;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.devs {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 24px;
+
+  img {
+    margin: 10px 0 24px 0;
+    min-width: 170px;
+    min-height: 170px;
+    max-width: 170px;
+    max-height: 170px;
+    border-radius: 100%;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 30px 0px rgba(255, 255, 255, 1);
+    transition: all 1s ease-in;
+
+  }
+  .gray {
+    filter: grayscale(1);
+    box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
+  }
+  .active {
+    color: yellow;
+  }
+}
+.desc {
+  color: yellow;
+  width: 100%;
+  text-align: center;
+  padding: 32px 0;
+  font-size: 24px;
+}

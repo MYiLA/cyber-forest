@@ -1,19 +1,18 @@
-import { FC, Fragment, ReactNode, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '@store/store'
-import { Loading } from '@ui/loading/loading'
-import { useAuth } from '@hooks/use-auth'
+import { FC, Fragment, ReactNode, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useAuth } from "@hooks/use-auth";
+import { Loader } from "@ui/loader";
 
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const getUserState = (store: RootState) => store.user
-  const { authorized } = useSelector(getUserState)
-  const { checkAuth, authChecked } = useAuth()
+  const getUserState = (store: RootState) => store.user;
+  const { authorized } = useSelector(getUserState);
+  const { checkAuth, authChecked } = useAuth();
 
   useEffect(() => {
     if (!authChecked && !authorized) {
-      checkAuth()
+      checkAuth();
     }
-  }, [authorized, authChecked, checkAuth])
+  }, [authorized, authChecked, checkAuth]);
 
-  return <Fragment>{authChecked ? children : <Loading />}</Fragment>
-}
+  return <>{authChecked ? children : <Loader />}</>;
+};

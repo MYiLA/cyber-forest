@@ -1,91 +1,90 @@
-import { FormEvent, Fragment } from 'react'
-import { Navigate, NavLink } from 'react-router-dom'
-import { Validators, useForm } from '@hooks/use-form'
-import { UserRegister } from '@config/user-types'
-import { DialogWindow } from '@ui/dialog-window/dialog-window'
-import { MainInput } from '@ui/main-input/main-input'
-import { MainButton } from '@ui/main-button/main-button'
-import { PATH } from '@config/constants'
-import { useAuth } from '@hooks/use-auth'
+import { FormEvent, Fragment } from "react";
+import { Navigate, NavLink } from "react-router-dom";
+import { Validators, useForm } from "@hooks/use-form";
+import { UserRegister } from "@config/user-types";
+import { DialogWindow } from "@ui/dialog-window/dialog-window";
+import { MainInput } from "@ui/main-input/main-input";
+import { MainButton } from "@ui/main-button/main-button";
+import { PATH } from "@config/constants";
+import { useAuth } from "@hooks/use-auth";
 
-import styles from './page-register.module.scss'
-import { useSelector } from 'react-redux'
-import { RootState } from '@store/store'
+import { useSelector } from "react-redux";
+import styles from "./page-register.module.scss";
 
 const validators: Validators = {
   first_name: {
     required: true,
     rule: /^[A-ZА-Я][a-zA-Zа-яА-Я-]+$/,
-    message: 'Только буквы или -, первая заглавная',
+    message: "Только буквы или -, первая заглавная",
   },
   second_name: {
     required: true,
     rule: /^[A-ZА-Я][a-zA-Zа-яА-Я-]+$/,
-    message: 'Только буквы или -, первая заглавная',
+    message: "Только буквы или -, первая заглавная",
   },
   login: {
     required: true,
     rule: /^(?![\d+]+$)[a-zа-я0-9+_-]{3,20}$/gi,
-    message: '3-20 символов без пробелов, буквы обязательно',
+    message: "3-20 символов без пробелов, буквы обязательно",
   },
   email: {
     required: true,
     rule: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-    message: 'Email в формате ivan@mail.ru',
+    message: "Email в формате ivan@mail.ru",
   },
   phone: {
     required: true,
     rule: /^(?:\+|\d)[0-9]{10,15}$/,
-    message: '10-15 цифр, можно в начале +',
+    message: "10-15 цифр, можно в начале +",
   },
   password: {
     required: true,
     rule: /^(?=.*\d)(?=.*[A-Z])\S{8,40}$/g,
-    message: '8-40 символов, обязательны цифры и заглавные буквы',
+    message: "8-40 символов, обязательны цифры и заглавные буквы",
   },
   password_confirm: {
     required: true,
-    rule: 'confirm:password',
-    message: 'пароли не совпадают',
+    rule: "confirm:password",
+    message: "пароли не совпадают",
   },
   agreement: {
     required: true,
     rule: true,
-    message: 'Нужно обязательно принять условия',
+    message: "Нужно обязательно принять условия",
   },
-}
+};
 
 const initialForm = {
-  first_name: '',
-  second_name: '',
-  login: '',
-  email: '',
-  password: '',
-  password_confirm: '',
-  phone: '',
+  first_name: "",
+  second_name: "",
+  login: "",
+  email: "",
+  password: "",
+  password_confirm: "",
+  phone: "",
   agreement: false,
-}
+};
 
-const PageRegister = () => {
-  const getUserState = (store: RootState) => store.user
-  const { authorized } = useSelector(getUserState)
+function PageRegister() {
+  const getUserState = (store: RootState) => store.user;
+  const { authorized } = useSelector(getUserState);
 
   const { form, onChange, validate, onFocus, onBlur, validateAllFields } =
-    useForm(initialForm, validators)
+    useForm(initialForm, validators);
 
-  const { toRegister, error } = useAuth()
+  const { toRegister, error } = useAuth();
 
   const onSubmit = (e: FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     if (validateAllFields()) {
-      toRegister(form as UserRegister)
+      toRegister(form as UserRegister);
     }
-  }
+  };
 
   return (
-    <Fragment>
+    <>
       {authorized ? (
-        <Navigate to={PATH.LOBBY} replace={true} />
+        <Navigate to={PATH.LOBBY} replace />
       ) : (
         <div className={styles.container}>
           <DialogWindow>
@@ -192,7 +191,8 @@ const PageRegister = () => {
                   <MainButton
                     type="submit"
                     extraClassName="ml-10 mr-10"
-                    className="mt-10 mb-1 mr-5">
+                    className="mt-10 mb-1 mr-5"
+                  >
                     Регистрация
                   </MainButton>
                   <NavLink to={PATH.LOGIN}>Зарегистрированы?</NavLink>
@@ -203,8 +203,8 @@ const PageRegister = () => {
           </DialogWindow>
         </div>
       )}
-    </Fragment>
-  )
+    </>
+  );
 }
 
-export default PageRegister
+export default PageRegister;

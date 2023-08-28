@@ -1,16 +1,26 @@
 @import "@scss/_mixins.scss";
 
 .screen_wrapper {
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
   width: 670px;
   position: relative;
 
   &.purple {
-    background: linear-gradient(135deg, #2C1D42 0%, #45365D 51.04%, #4A2957 100%);
+    background: linear-gradient(
+      135deg,
+      #2c1d42 0%,
+      #45365d 51.04%,
+      #4a2957 100%
+    );
   }
 
   &.neon {
-    background: linear-gradient(135deg, #71AEA0 0%, #45404E 51.04%, #192349 100%);
+    background: linear-gradient(
+      135deg,
+      #71aea0 0%,
+      #45404e 51.04%,
+      #192349 100%
+    );
   }
 }
 
@@ -34,14 +44,13 @@
 }
 
 .lobby_button {
-  border: 1px solid #FFF;
+  border: 1px solid #fff;
 
   &.neon {
-    background: rgba(124, 240, 240, 0.50);
+    background: rgba(124, 240, 240, 0.5);
   }
 
   &.purple {
     background: rgba(187, 106, 234, 0.65);
   }
-
 }

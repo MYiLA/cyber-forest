@@ -1,13 +1,13 @@
-import catCard from '../assets/cat-card.png'
-import catScale from '../assets/cat-scale.png'
-import counters from '../assets/counters.png'
-import countersColumn from '../assets/counters-column.png'
-import styles from './glory.module.scss'
-import { ReactComponent as Arrow } from '../assets/arrow.svg'
-import { DescriptionBlock } from '../description-block'
-import cn from 'classnames'
+import cn from "classnames";
+import catCard from "../assets/cat-card.png";
+import catScale from "../assets/cat-scale.png";
+import counters from "../assets/counters.png";
+import countersColumn from "../assets/counters-column.png";
+import styles from "./glory.module.scss";
+import { ReactComponent as Arrow } from "../assets/arrow.svg";
+import { DescriptionBlock } from "../description-block";
 
-export const Glory = () => {
+export function Glory() {
   return (
     <div className={styles.glory}>
       <Arrow className={cn(styles.arrow, styles.arrow_1)} />
@@ -34,5 +34,5 @@ export const Glory = () => {
         alt="glory counters with description"
       />
     </div>
-  )
+  );
 }
