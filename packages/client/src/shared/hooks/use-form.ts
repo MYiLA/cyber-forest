@@ -1,4 +1,5 @@
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
+import sanitizeHtml from "sanitize-html";
 
 export type ValidatorItem = {
   required?: boolean;
@@ -24,7 +25,7 @@ export const useForm = (initialFields: Fields, validators: Validators = {}) => {
       setForm((prev) => ({ ...prev, [name]: checked }));
     } else {
       const { name, value } = e.target;
-      setForm((prev) => ({ ...prev, [name]: value }));
+      setForm((prev) => ({ ...prev, [name]: sanitizeHtml(value) }));
       clearError(name);
     }
   }, []);
