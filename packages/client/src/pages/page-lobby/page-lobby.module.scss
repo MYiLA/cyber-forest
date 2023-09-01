@@ -39,6 +39,7 @@
       position: absolute;
       bottom: -13px;
       left: 2px;
+      pointer-events: none;
     }
 
     &_header {
@@ -364,4 +365,9 @@
   &::after {
     content: none;
   }
+}
+.video {
+  display: block;
+  margin: 15px 30px;
+  height: 100%;
 }

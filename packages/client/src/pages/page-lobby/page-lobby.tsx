@@ -94,21 +94,17 @@ export const PageLobby = () => {
           themeName === Theme.Purple ? styles.purpur : styles.neon
         )}
       >
-        <h3 className={styles.window_header}>доступные битвы</h3>
-        <div className={styles.window_wrapper}>
-          <h3
-            style={{
-              marginTop: "15%",
-              textAlign: "center",
-              fontFamily: "Blender Pro",
-            }}
-          >
-            Раздел находится в разработке
-          </h3>
-          {/* TODO: добавить рабочие элементы после подключения АПИ */}
-          {/* {tables_mock.map((table, index) => ( */}
-          {/*  <TableItem key={index} {...table} /> */}
-          {/* ))} */}
+        <h3>Обучающее видео</h3>
+        <div className={styles.video}>
+          <iframe
+            width="99%"
+            height="90%"
+            src="https://www.youtube.com/embed/lEfwq078mig?si=bN1BcCAtKaXXB54q"
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; clipboard-write; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
         </div>
       </section>
       <section
