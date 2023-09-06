@@ -2,6 +2,7 @@ import cn from "classnames";
 
 import { useTheme } from "@hooks/use-theme";
 import { Theme } from "@config/constants";
+import { Tooltip } from "@ui/tooltip/tooltip";
 import { Player } from "../../type";
 import { GloryCounter } from "../../entities/glory-counter";
 import { Chronicle } from "../../entities/chronicle";
@@ -35,22 +36,24 @@ export function GameInterface({
     <div className={styles.interface}>
       <div className={styles.info}>
         <div className={styles.progress}>
-          <ul className={styles.glories}>
-            {players.map(
-              (player) =>
-                player && (
-                  <li
-                    key={`${player.type}-${player?.id}`}
-                    className={styles.glory}
-                  >
-                    <GloryCounter
-                      gloryCount={player.gloryCount}
-                      playerType={player.type}
-                    />
-                  </li>
-                )
-            )}
-          </ul>
+          <Tooltip direction="right" text="Слава игроков">
+            <ul className={styles.glories}>
+              {players.map(
+                (player) =>
+                  player && (
+                    <li
+                      key={`${player.type}-${player?.id}`}
+                      className={styles.glory}
+                    >
+                      <GloryCounter
+                        gloryCount={player.gloryCount}
+                        playerType={player.type}
+                      />
+                    </li>
+                  )
+              )}
+            </ul>
+          </Tooltip>
           {gameType === GameType.Online && <TimeCounter />}
         </div>
         <Chronicle />
