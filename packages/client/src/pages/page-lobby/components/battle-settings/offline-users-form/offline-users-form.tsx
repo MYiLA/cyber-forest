@@ -9,6 +9,7 @@ import { useGameStart } from "@hooks/use-game-start";
 import { FormEvent } from "react";
 import { userLogout } from "@store/reducers/user-reducer";
 import { useDispatch } from "react-redux";
+import { Tooltip } from "@ui/tooltip/tooltip";
 
 const initialForm: {
   user1: string;
@@ -130,20 +131,25 @@ export const OfflineUsersForm = () => {
         onFocus={onFocus}
         onBlur={onBlur}
       />
-      <MainInput
-        name="max_glory"
-        maxLength={2}
-        placeholder="число славы (макс.)"
-        value={form.max_glory as string}
-        onChange={(e) => {
-          e.target.value = e.target.value.replace(/[^0-9]/g, "");
-          onChange(e);
-        }}
-        className={styles.battle_inputs}
-        error={validate.max_glory.error}
-        onFocus={onFocus}
-        onBlur={onBlur}
-      />
+      <Tooltip
+        direction="top"
+        text="Цель игры - заработать славу. Игра заканчивается, если у одного из игроков наберется нужное количество славы."
+      >
+        <MainInput
+          name="max_glory"
+          maxLength={2}
+          placeholder="число славы (макс.)"
+          value={form.max_glory as string}
+          onChange={(e) => {
+            e.target.value = e.target.value.replace(/[^0-9]/g, "");
+            onChange(e);
+          }}
+          className={styles.battle_inputs}
+          error={validate.max_glory.error}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </Tooltip>
 
       <div
         style={{
