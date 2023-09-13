@@ -123,6 +123,8 @@ export const PageLobby = () => {
           onChange={(event: BaseSyntheticEvent) => {
             if (event.target.value) {
               setSearchenTopic(event.target.value);
+            } else {
+              setSearchenTopic(null);
             }
           }}
         />
