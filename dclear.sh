@@ -1,3 +1,3 @@
-docker stop $(docker ps -a -q)
-docker rm $(docker ps -a -q)
+docker stop cyb-client cyb-server
+docker rm cyb-client cyb-server
 docker images

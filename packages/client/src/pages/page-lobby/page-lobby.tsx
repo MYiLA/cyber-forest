@@ -96,6 +96,7 @@ export const PageLobby = () => {
       >
         <h3>Обучающее видео</h3>
         <div className={styles.video}>
+          {typeof document !== 'undefined' &&
           <iframe
             width="99%"
             height="90%"
@@ -105,6 +106,7 @@ export const PageLobby = () => {
             allow="accelerometer; clipboard-write; gyroscope; picture-in-picture; web-share"
             allowFullScreen
           />
+          }
         </div>
       </section>
       <section

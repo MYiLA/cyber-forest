@@ -1,38 +1,39 @@
 # В файле docker-compose — клиент,сервер и база данных.
+# в настоящий момент сайт задеплоен на сервере где NGINX установлен в системе
+# закомментированные строки оставлены для упрощения возврата к предыдущему варианту деплоя,
+# где NGINX внутри контейнера
 version: '3.3'
 
 services:
-  nginx:
-    container_name: cyb-nginx
-    image: cyb-nginx
-    build: ./nginx
-    restart: always
-    volumes:
-      - ./ssl:/ssl
-      - ./ssl/certbot/conf:/etc/letsencrypt
-      - ./ssl/certbot/www:/var/www/certbot
-    links:
-      - client:client
-      - server:server
-#      - pgadmin:pgadmin
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - cyb-net
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-    depends_on:
-      - client
-      - server
-      - postgres
-#      - pgadmin
-
-  certbot:
-    image: certbot/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-    volumes:
-      - ./ssl/certbot/conf:/etc/letsencrypt
-      - ./ssl/certbot/www:/var/www/certbot
+#  nginx:
+#    container_name: cyb-nginx
+#    image: cyb-nginx
+#    build: ./nginx
+#    restart: always
+#    volumes:
+#      - ./ssl:/ssl
+#      - ./ssl/certbot/conf:/etc/letsencrypt
+#      - ./ssl/certbot/www:/var/www/certbot
+#    links:
+#      - client:client
+#      - server:server
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#    networks:
+#      - cyb-net
+#    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+#    depends_on:
+#      - client
+#      - server
+#      - postgres
+#
+#  certbot:
+#    image: certbot/certbot
+#    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+#    volumes:
+#      - ./ssl/certbot/conf:/etc/letsencrypt
+#      - ./ssl/certbot/www:/var/www/certbot
 
   client:
     container_name: cyb-client
@@ -46,7 +47,8 @@ services:
       args:
         CLIENT_PORT: ${CLIENT_PORT}
     ports:
-      - '${CLIENT_PORT}:${CLIENT_PORT}'
+#      - '${CLIENT_PORT}:${CLIENT_PORT}'
+      - '5200:${CLIENT_PORT}'
     env_file:
       - .env
     environment:
@@ -68,7 +70,8 @@ services:
       args:
         SERVER_PORT: ${SERVER_PORT}
     ports:
-      - '${SERVER_PORT}:${SERVER_PORT}'
+#      - '${SERVER_PORT}:${SERVER_PORT}'
+      - '5201:${SERVER_PORT}'
     env_file:
       - .env
     environment:
@@ -94,27 +97,6 @@ services:
       PG_DATA: /var/lib/postgresql/data/
     volumes:
       - ./tmp/pgdata:/var/lib/postgresql/data/
-
-# не нужен, но может пригодиться
-#  pgadmin:
-#    container_name: cyb-pgadmin
-#    image: dpage/pgadmin4
-#    user: root
-#    networks:
-#      - cyb-net
-#    restart: always
-#    ports:
-#      - '${PGADMIN_LISTEN_PORT}:${PGADMIN_LISTEN_PORT}'
-#    env_file:
-#      - .env
-#    environment:
-#      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 0
-#    volumes:
-#      - ./tmp/pgadmin:/var/lib/pgadmin
-#      - ./ssl/cert.pem:/certs/server.cert
-#      - ./ssl/privkey.pem:/certs/server.key
-#    depends_on:
-#      - postgres
 
 networks:
   cyb-net:

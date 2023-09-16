@@ -11,7 +11,7 @@
     "dev:ssr": "lerna run ssr --scope=client",
     "dev:server": "lerna run dev --scope=server",
     "dev": "lerna run dev",
-    "deploy": "rsync -av --exclude={'node_modules','dist','.git','tmp','uploads','.idea','ssl','yarn.lock'} . root@cyberforest.ru:/home/cyb/ && ssh root@cyberforest.ru 'cd /home/cyb/ && ./rebuild.sh'",
+    "deploy": "rsync -e 'ssh -p 3322' -av --exclude={'node_modules','dist','.git','tmp','uploads','.idea','ssl','yarn.lock'} . root@cyberforest.ru:/home/projects/cyb/ && ssh -p 3322 root@cyberforest.ru 'cd /home/projects/cyb/ && ./rebuild.sh'",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
