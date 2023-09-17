@@ -1,11 +1,11 @@
 import express from 'express'
 import { json, urlencoded } from 'body-parser'
-import * as path from 'path'
+// import * as path from 'path'
 import * as http from 'http'
-import * as https from 'https'
+// import * as https from 'https'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import fs from 'fs'
+// import fs from 'fs'
 import db from './config/db'
 import cookieParser from 'cookie-parser'
 import { apiRouter } from './api-router'
@@ -58,31 +58,36 @@ db.sync({ alter: true })
 const PORT = Number(process.env.SERVER_PORT || 3001)
 const HOST = isProduction ? 'cyberforest.ru' : 'localhost'
 
-const server = isProduction
-  ? https.createServer(
-      {
-        key: fs.readFileSync(
-          path.join(
-            __dirname,
-            '..',
-            '..',
-            '..',
-            'ssl/certbot/conf/live/cyberforest.ru/privkey.pem'
-          )
-        ),
-        cert: fs.readFileSync(
-          path.join(
-            __dirname,
-            '..',
-            '..',
-            '..',
-            'ssl/certbot/conf/live/cyberforest.ru/cert.pem'
-          )
-        ),
-      },
-      app
-    )
-  : http.createServer(app)
+// в настоящий момент сайт задеплоен на сервере где NGINX установлен в системе
+// закомментированные строки оставлены для упрощения возврата к предыдущему варианту деплоя,
+// где NGINX внутри контейнера
+
+const server = http.createServer(app)
+// const server = isProduction
+//   ? https.createServer(
+//       {
+//         key: fs.readFileSync(
+//           path.join(
+//             __dirname,
+//             '..',
+//             '..',
+//             '..',
+//             'ssl/certbot/conf/live/cyberforest.ru/privkey.pem'
+//           )
+//         ),
+//         cert: fs.readFileSync(
+//           path.join(
+//             __dirname,
+//             '..',
+//             '..',
+//             '..',
+//             'ssl/certbot/conf/live/cyberforest.ru/cert.pem'
+//           )
+//         ),
+//       },
+//       app
+//     )
+//   : http.createServer(app)
 
 server.listen(PORT, () => {
   console.log(`Server started at: ${HOST}:${PORT}`)
